@@ -21,6 +21,7 @@ public class MagicAttack : MonoBehaviour
     public float overrideTime = 0.15f;
     float overrideAnim = 0;
 
+
     // Start is called before the first frame update
     void Start()
     {
