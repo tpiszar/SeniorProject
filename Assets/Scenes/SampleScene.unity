@@ -550,6 +550,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1096586823}
+    - targetCorrespondingSourceObject: {fileID: 100054, guid: d0c255d07fd68f14b94e55d388e7e6bb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1096586824}
   m_SourcePrefab: {fileID: 100100000, guid: d0c255d07fd68f14b94e55d388e7e6bb, type: 3}
 --- !u!95 &390824054 stripped
 Animator:
@@ -1670,9 +1674,6 @@ MonoBehaviour:
   animator: {fileID: 850672873}
   overrideTrig: -1
   overrideGrip: -1
-  p: {fileID: 0}
-  launchpoint: {fileID: 0}
-  force: 0
 --- !u!1 &968059045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,9 +2402,27 @@ MonoBehaviour:
   animator: {fileID: 390824054}
   overrideTrig: -1
   overrideGrip: -1
-  p: {fileID: 8697730109696811438, guid: a623fa85f0586244a8c79e0ead46e77f, type: 3}
-  launchpoint: {fileID: 276152879}
+--- !u!114 &1096586824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096586820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48afd525daa8600499636eab217c74b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 1096586823}
+  fireBall: {fileID: 0}
+  blast: {fileID: 8697730109696811438, guid: a623fa85f0586244a8c79e0ead46e77f, type: 3}
+  launchPoint: {fileID: 276152879}
+  attkType: 1
   force: 30
+  shotTime: 0.15
+  fireRate: 0.5
+  overrideTime: 0.15
 --- !u!1 &1419034878
 GameObject:
   m_ObjectHideFlags: 0
