@@ -18,6 +18,7 @@ public class Wand : MonoBehaviour
 
     public float newPosThreshold = 0.05f;
 
+    Transform camReference;
     public bool createGesture = false;
     public string newGestureName;
     public bool debug = false;
@@ -25,6 +26,7 @@ public class Wand : MonoBehaviour
     private List<Gesture> trainingSet = new List<Gesture>();
 
     public XRRayInteractor rayInteractor;
+    public XRInteractorLineVisual rayVisual;
     bool usingRay = false;
 
     public Transform shootPoint;
@@ -32,11 +34,13 @@ public class Wand : MonoBehaviour
     public float force = 30;
     bool active = true;
 
+    bool waitForNext = false;
     bool charging = false;
     bool primed = false;
     public float primeTime = 0.2f;
     float primer = 0;
-    int activeSpell = 0;
+    int activeSpell = -1;
+
 
     [System.Serializable]
     public class Spell
@@ -64,35 +68,37 @@ public class Wand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        grabbable.activated.AddListener(Attack);
+        //XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
+        //grabbable.activated.AddListener(Attack);
 
         TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("Gestures/");
         foreach (TextAsset gestureXml in gesturesXml)
         {
             trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
         }
+
+        camReference = Camera.main.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), inputButton, out bool isPressed, inputThreshold);
-        if (isPressed)
-        {
-            print("Pressed " + Time.time);
-        }
 
-
-        if (isPressed && !primed && !usingRay)
+        if (isPressed && !primed && !usingRay && !waitForNext)
         {
             charging = true;
             rayInteractor.enabled = false;
 
-            Vector3 lastPos = positionsList[positionsList.Count - 1];
-            if (Vector3.Distance(movementSource.position, lastPos) > newPosThreshold)
+            if (positionsList.Count == 0)
             {
-                positionsList.Add(movementSource.position);
+                positionsList.Add(camReference.InverseTransformPoint(movementSource.position));
+                return;
+            }
+            Vector3 lastPos = positionsList[positionsList.Count - 1];
+            if (Vector3.Distance(camReference.InverseTransformPoint(movementSource.position), lastPos) > newPosThreshold)
+            {
+                positionsList.Add(camReference.InverseTransformPoint(movementSource.position));
 
                 if (debug)
                 {
@@ -105,58 +111,25 @@ public class Wand : MonoBehaviour
                 if (primer > primeTime)
                 {
                     primer = 0;
-                    Point[] points = new Point[positionsList.Count];
 
-                    for (int i = 0; i < positionsList.Count; i++)
+                    if (positionsList.Count < 3)
                     {
-                        Vector3 pos = positionsList[i];
-                        points[i] = new Point(pos.x, pos.y, pos.z, 0);
+                        return;
                     }
 
-                    Gesture wandSwing = new Gesture(points);
-
-                    if (createGesture)
-                    {
-                        string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/Gestures", newGestureName, DateTime.Now.ToFileTime());
-
-                        #if !UNITY_WEBPLAYER
-                            GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
-                        #endif
-
-                        trainingSet.Add(wandSwing);
-                    }
-
-                    Result wandResult = PointCloudRecognizer.Classify(wandSwing, trainingSet.ToArray());
-
-                    print(wandResult.GestureClass + " " + wandResult.Score);
-
-                    //Subject to change
-                    positionsList.Clear();
-
-                    foreach (Spell spell in spells)
-                    {
-                        if (wandResult.GestureClass == spell.name)
-                        {
-                            if (wandResult.Score > spell.recognitionThreshold)
-                            {
-                                primed = true;
-                                activeSpell = spell.number;
-                                break;
-                            }
-
-                        }
-                    }
+                    DetectGesture();
                 }
             }
         }
         else if (!isPressed && primed)
         {
             //Attack
-            switch(activeSpell)
+            switch (activeSpell)
             {
                 case 0: //Energy Blast
 
                     GameObject eBlast = Instantiate(blast, shootPoint.position, Quaternion.identity);
+                    eBlast.transform.forward = shootPoint.up;
                     eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
                     Destroy(eBlast, 3);
 
@@ -172,25 +145,82 @@ public class Wand : MonoBehaviour
             }
 
             primed = false;
-        }
-        else if (!isPressed && charging)
-        {
             rayInteractor.enabled = true;
-            positionsList.Clear();
-            primer = 0;
+            activeSpell = -1;
+        }
+
+        if (!isPressed && charging)
+        {
+            if (positionsList.Count < 3)
+            {
+                rayInteractor.enabled = true;
+                positionsList.Clear();
+                primer = 0;
+            }
+            else
+            {
+                DetectGesture();
+            }
+        }
+
+        if (!isPressed)
+        {
+            waitForNext = false;
         }
     }
 
-    public void Attack(ActivateEventArgs args)
+    void DetectGesture()
     {
-        if (active)
+
+        Point[] points = new Point[positionsList.Count];
+
+        for (int i = 0; i < positionsList.Count; i++)
         {
+            Vector3 pos = positionsList[i];
+            points[i] = new Point(pos.x, pos.y, pos.z, 0);
+        }
 
-            GameObject eBlast = Instantiate(blast, shootPoint.position, Quaternion.identity);
-            eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
-            Destroy(eBlast, 3);
-        }   
+        Gesture wandSwing = new Gesture(points);
 
+        if (createGesture)
+        {
+            string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/Gestures", newGestureName, DateTime.Now.ToFileTime());
+
+            #if !UNITY_WEBPLAYER
+                GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
+            #endif
+
+            trainingSet.Add(wandSwing);
+
+            print(fileName);
+        }
+
+        Result wandResult = PointCloudRecognizer.Classify(wandSwing, trainingSet.ToArray());
+
+        print(wandResult.GestureClass + " " + wandResult.Score);
+
+        //Subject to change
+        positionsList.Clear();
+        charging = false;
+
+        foreach (Spell spell in spells)
+        {
+            if (wandResult.GestureClass == spell.name)
+            {
+                if (wandResult.Score > spell.recognitionThreshold)
+                {
+                    primed = true;
+                    print("PRIMED " + spell.name);
+                    activeSpell = spell.number;
+                }
+                break;
+            }
+        }
+
+        if (activeSpell < 0)
+        {
+            waitForNext = true;
+        }
     }
 
     public void RayActive()
@@ -201,5 +231,20 @@ public class Wand : MonoBehaviour
     public void NoRay()
     {
         usingRay = false;
+    }
+
+    public void EnableLine()
+    {
+        rayVisual.enabled = true;
+    }
+
+    public void DisableLine()
+    {
+        rayVisual.enabled = false;
+    }
+
+    public void UnParent()
+    {
+        transform.parent = null;
     }
 }
