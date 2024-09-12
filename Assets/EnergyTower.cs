@@ -30,10 +30,10 @@ public class EnergyTower : MonoBehaviour
                 return;
             }
 
-            GameObject newShot = Instantiate(energyShot, shootPoint.position, Quaternion.identity);
-            newShot.GetComponent<TowerBlast>().target = currentTarget;
-            print(currentTarget.name + " GIVEN");
-            print(newShot.GetComponent<TowerBlast>().target.name + " RECIEVED");
+            TowerBlast newShot = Instantiate(energyShot, shootPoint.position, Quaternion.identity).GetComponent<TowerBlast>();
+            newShot.target = currentTarget;
+            newShot.tower = this;
+            //newShot.GetComponent<TowerBlast>().target = currentTarget;
 
             nextShot = fireRate;
         }

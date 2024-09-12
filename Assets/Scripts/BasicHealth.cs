@@ -23,7 +23,7 @@ public class BasicHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        print(gameObject.name + ": " + health);
+        //print(gameObject.name + ": " + health);
         if (health <= 0)
         {
             Destroy(gameObject);

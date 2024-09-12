@@ -40,11 +40,13 @@ public class BasicTowerDetection : MonoBehaviour
 
     public Transform GetTarget()
     {
-        foreach (Transform t in targets)
+
+        for (int i = targets.Count - 1; i >= 0; i--)
         {
-            if (!t)
+            if (!targets[i])
             {
-                targets.Remove(t);
+                targets.RemoveAt(i);
+
             }
         }
 

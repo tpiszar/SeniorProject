@@ -9,6 +9,7 @@ public class TowerBlast : MonoBehaviour
     bool starting = true;
 
     public Transform target;
+    public EnergyTower tower;
     Vector3 direction;
     Rigidbody rig;
 
@@ -17,6 +18,10 @@ public class TowerBlast : MonoBehaviour
     public float damage;
 
     float missingTarget = 0;
+
+    public bool redirect;
+    public float smoothing;
+    Vector3 refVel = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +41,34 @@ public class TowerBlast : MonoBehaviour
         }
         else
         {
-            missingTarget += Time.deltaTime;
-            if (missingTarget > 5)
+            if (redirect)
             {
-                Destroy(this.gameObject);
+                target = tower.detector.GetTarget();
+                smoothing /= 2;
+
+                if (!target)
+                {
+                    redirect = false;
+                    print("FAILED REDIRECT");
+                }
+                else
+                {
+                    print("REDIRECT");
+                }
+            }
+            else
+            {
+                missingTarget += Time.deltaTime;
+                if (starting)
+                {
+                    starting = false;
+                    direction *= 1 / startMod;
+                }
+
+                if (missingTarget > 5)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
         if (starting)
@@ -55,9 +84,12 @@ public class TowerBlast : MonoBehaviour
                 direction.Normalize();
                 direction *= speed * startMod;
             }
+            rig.velocity = direction;
         }
-        rig.velocity = direction;
-        print(rig.velocity + " " + rig.velocity.magnitude);
+        else
+        {
+            rig.velocity = Vector3.SmoothDamp(rig.velocity, direction, ref refVel, smoothing);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
