@@ -7,10 +7,11 @@ using PDollarGestureRecognizer;
 using System.Linq;
 using System;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class Wand : MonoBehaviour
 {
-    public XRNode inputSource;
+    public CurrentHand hand;
     public InputHelpers.Button inputButton;
     public float inputThreshold = 0.1f;
     private List<Vector3> positionsList = new List<Vector3>();
@@ -27,12 +28,11 @@ public class Wand : MonoBehaviour
 
     public XRRayInteractor rayInteractor;
     public XRInteractorLineVisual rayVisual;
+    XRGrabInteractable wandHeld;
     bool usingRay = false;
 
     public Transform shootPoint;
-    public GameObject blast;
     public float force = 30;
-    bool active = true;
 
     bool waitForNext = false;
     bool charging = false;
@@ -48,28 +48,17 @@ public class Wand : MonoBehaviour
         public string name;
         public int number;
         public float recognitionThreshold = 0.8f;
-
-        public Spell(string name, int number)
-        {
-            this.name = name;
-            this.number = number;
-        }
-
-        public Spell(string name, int number, float recognitionThreshold)
-        {
-            this.name = name;
-            this.number = number;
-            this.recognitionThreshold = recognitionThreshold;
-        }
+        public GameObject attackPrefab;
     }
+
     [SerializeField]
     public Spell[] spells;
 
     // Start is called before the first frame update
     void Start()
     {
-        //XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        //grabbable.activated.AddListener(Attack);
+        //rayInteractor.interactablesSelected[0];
+        //rayInteractor.interactionManager.SelectEnter(rayInteractor.GetComponent<IXRSelectInteractor>(), wandHeld.GetComponent<IXRSelectInteractable>());
 
         TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("Gestures/");
         foreach (TextAsset gestureXml in gesturesXml)
@@ -83,7 +72,7 @@ public class Wand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(inputSource), inputButton, out bool isPressed, inputThreshold);
+        InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(hand.inputSource), inputButton, out bool isPressed, inputThreshold);
 
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
@@ -128,7 +117,7 @@ public class Wand : MonoBehaviour
             {
                 case 0: //Energy Blast
 
-                    GameObject eBlast = Instantiate(blast, shootPoint.position, Quaternion.identity);
+                    GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
                     eBlast.transform.forward = shootPoint.up;
                     eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
                     Destroy(eBlast, 3);
@@ -136,7 +125,7 @@ public class Wand : MonoBehaviour
                     break;
 
                 case 1: //Fireball
-
+                    //rayInteractor.interactionManager.SelectExit(rayInteractor, wandHeld);
                     break;
 
                 case 2: //Lightning
@@ -221,6 +210,15 @@ public class Wand : MonoBehaviour
         {
             waitForNext = true;
         }
+
+        if (activeSpell == 1)
+        {
+            //GameObject fireball = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
+            ////rayInteractor.interactionManager.ForceSelect(rayInteractor, fireball.GetComponent<XRGrabInteractable>());
+            //wandHeld = fireball.GetComponent<XRGrabInteractable>();
+            //rayInteractor.interactionManager.SelectEnter(rayInteractor, wandHeld);
+            //fireball.transform.position = shootPoint.position;
+        }
     }
 
     public void RayActive()
@@ -241,10 +239,5 @@ public class Wand : MonoBehaviour
     public void DisableLine()
     {
         rayVisual.enabled = false;
-    }
-
-    public void UnParent()
-    {
-        transform.parent = null;
     }
 }

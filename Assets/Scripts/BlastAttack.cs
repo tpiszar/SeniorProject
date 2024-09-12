@@ -6,6 +6,7 @@ public class BlastAttack : MonoBehaviour
 {
     public float damage;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,6 @@ public class BlastAttack : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
+
     }
 }
