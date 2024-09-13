@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 3312255597822909839}
   - component: {fileID: 1186574332123306441}
   - component: {fileID: 7771093875379270821}
+  - component: {fileID: 6963345760752403585}
   - component: {fileID: 5373604099690199295}
   m_Layer: 6
   m_Name: Energy Mini
@@ -309,6 +310,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6963345760752403585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633386330320187606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f0ac524250cf545b8f607a7f1cc29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetPoint: {fileID: 0}
+  resetTime: 5
+  lostResetTime: 15
 --- !u!114 &5373604099690199295
 MonoBehaviour:
   m_ObjectHideFlags: 0

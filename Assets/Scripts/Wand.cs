@@ -6,8 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 using PDollarGestureRecognizer;
 using System.Linq;
 using System;
-using UnityEngine.Events;
-using Unity.VisualScripting;
 
 public class Wand : MonoBehaviour
 {
