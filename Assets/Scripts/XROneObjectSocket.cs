@@ -23,6 +23,10 @@ public class XROneObjectSocket : XRSocketInteractor
 
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
+        if (!singleObject)
+        {
+            singleObject = args.interactable.GetComponent<XRGrabInteractable>();
+        }
         if (args.interactableObject == singleObject)
         {
             base.OnHoverEntered(args);
@@ -39,6 +43,7 @@ public class XROneObjectSocket : XRSocketInteractor
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
+        showInteractableHoverMeshes = true;
         if (args.interactableObject == singleObject)
         {
             base.OnSelectExited(args);
@@ -47,6 +52,7 @@ public class XROneObjectSocket : XRSocketInteractor
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
+        showInteractableHoverMeshes = false;
         if (args.interactableObject == singleObject)
         {
             base.OnSelectEntered(args);

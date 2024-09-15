@@ -6,20 +6,21 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class CreateTower : MonoBehaviour
 {
     public Transform socket;
-
     public Transform attachPoint;
 
     public Transform miniReference;
+    public float mapScale;
 
     public GameObject towerPrefab;
 
-    public float mapScale;
-
     GameObject tower;
+    public Transform player;
 
     public float overlap = 0;
 
     public Transform holderTrans;
+
+
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
@@ -62,7 +63,12 @@ public class CreateTower : MonoBehaviour
         Vector3 groundedPoint = socket.position;
         groundedPoint.y -= attachPoint.localPosition.y * transform.localScale.y;
         Vector3 relativeSpot = miniReference.InverseTransformPoint(groundedPoint) * mapScale;
-        tower = Instantiate(towerPrefab, relativeSpot, socket.rotation);
+        Vector3 rotation = socket.GetChild(0).rotation.eulerAngles;
+        rotation.x = 0; 
+        rotation.z = 0;
+
+        tower = Instantiate(towerPrefab, relativeSpot, Quaternion.Inverse(Quaternion.Euler(rotation)) * miniReference.rotation);
+        tower.GetComponent<BasicTowerDetection>().player = player;
     }
 
     private void OnDestroy()
@@ -75,7 +81,7 @@ public class CreateTower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CreateTower tower = other.GetComponent<CreateTower>();
+        CreateTower tower = other.GetComponentInParent<CreateTower>();
         if (tower)// && other.transform != transform)
         {
             overlap++;
@@ -84,7 +90,7 @@ public class CreateTower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        CreateTower tower = other.GetComponent<CreateTower>();
+        CreateTower tower = other.GetComponentInParent<CreateTower>();
         if (tower)// && other.transform != transform)
         {
             overlap--;

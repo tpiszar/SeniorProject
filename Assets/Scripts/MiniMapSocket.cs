@@ -61,12 +61,10 @@ public class MiniMapSocket : MonoBehaviour
                 Respawns.instance.earlyRespawn(0, miniNum);
             }
         }
-
-        socket.showInteractableHoverMeshes = false;
     }
 
     public void Stolen(SelectExitEventArgs args)
     {
-        socket.showInteractableHoverMeshes = true;
+        
     }
 }

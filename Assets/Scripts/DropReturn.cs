@@ -68,6 +68,8 @@ public class DropReturn : MonoBehaviour
             transform.position = basicPoint;
             transform.rotation = basicRot;
         }
+        nextLostReset = 0;
+        nextReset = 0;
     }
 
     public void Grabbed(SelectEnterEventArgs args)

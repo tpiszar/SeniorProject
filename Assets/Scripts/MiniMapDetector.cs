@@ -7,17 +7,27 @@ public class MiniMapDetector : MonoBehaviour
 {
     public Transform miniReference;
     public float mapScale;
+    float colliderHeight;
+
+    void Start()
+    {
+        colliderHeight = miniReference.InverseTransformPoint(transform.position).y;
+    }
 
     private void OnTriggerStay(Collider other)
     {
         CreateTower tower = other.transform.parent.GetComponent<CreateTower>();
         if (tower.overlap == 0)
         {
-            Vector3 newPos = new Vector3(other.transform.position.x, transform.position.y + (tower.attachPoint.localPosition.y * tower.transform.localScale.y), other.transform.position.z); //transform.position.y
+            Vector3 newPos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+            float baseAttach = newPos.y;
             newPos += tower.holderTrans.forward * tower.attachPoint.localPosition.z * tower.transform.localScale.z;
 
             //Possibly needed for future attach point issues
             //newPos += tower.holderTrans.right * tower.attachPoint.localPosition.x * tower.transform.localScale.x;
+
+            float attachHeightAdjust = baseAttach + (tower.attachPoint.localPosition.y * tower.transform.localScale.y);
+            newPos.y = attachHeightAdjust;
 
             tower.socket.position = newPos;
             Transform socketAttach = tower.socket.GetChild(0);

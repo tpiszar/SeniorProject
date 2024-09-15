@@ -9,11 +9,12 @@ public class IntervalSpawner : MonoBehaviour
     public float endInterval;
     public float rampTime;
     float nextSpawn;
+    public float startDelay;
 
     // Start is called before the first frame update
     void Start()
     {
-        nextSpawn = endInterval;
+        nextSpawn = startDelay;
     }
 
     // Update is called once per frame
@@ -22,8 +23,9 @@ public class IntervalSpawner : MonoBehaviour
         nextSpawn -= Time.deltaTime;
         if (nextSpawn < 0)
         {
-            Instantiate(slimePrefab, transform.position, Quaternion.identity);
-            nextSpawn = Mathf.Lerp(startInterval, endInterval, Time.time / rampTime);
+            GameObject newSLime = Instantiate(slimePrefab, transform.position, Quaternion.identity);
+            MiniMapTracker.instance.AddMapTracker(newSLime.transform);
+            nextSpawn = Mathf.Lerp(startInterval, endInterval, Time.time - startDelay / rampTime);
         }
     }
 }
