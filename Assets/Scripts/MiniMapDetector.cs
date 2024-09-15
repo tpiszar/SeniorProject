@@ -20,6 +20,8 @@ public class MiniMapDetector : MonoBehaviour
         if (tower.overlap == 0)
         {
             Vector3 newPos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+            tower.createPoint = newPos;
+
             float baseAttach = newPos.y;
             newPos += tower.holderTrans.forward * tower.attachPoint.localPosition.z * tower.transform.localScale.z;
 
@@ -33,6 +35,8 @@ public class MiniMapDetector : MonoBehaviour
             Transform socketAttach = tower.socket.GetChild(0);
             Vector3 yRotChange = new Vector3(socketAttach.rotation.eulerAngles.x, tower.holderTrans.rotation.eulerAngles.y, socketAttach.rotation.eulerAngles.z);
             socketAttach.rotation = Quaternion.Euler(yRotChange);
+
+            tower.createRot.y = tower.holderTrans.rotation.eulerAngles.y;
         }
     }
 

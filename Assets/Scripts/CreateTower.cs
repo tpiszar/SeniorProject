@@ -20,7 +20,8 @@ public class CreateTower : MonoBehaviour
 
     public Transform holderTrans;
 
-
+    public Vector3 createPoint = Vector3.zero;
+    public Vector3 createRot = Vector3.zero;
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
@@ -60,14 +61,19 @@ public class CreateTower : MonoBehaviour
 
     public void Create()
     {
-        Vector3 groundedPoint = socket.position;
-        groundedPoint.y -= attachPoint.localPosition.y * transform.localScale.y;
-        Vector3 relativeSpot = miniReference.InverseTransformPoint(groundedPoint) * mapScale;
-        Vector3 rotation = socket.GetChild(0).rotation.eulerAngles;
-        rotation.x = 0; 
-        rotation.z = 0;
+        //Vector3 groundedPoint = socket.position;
+        //groundedPoint.y -= attachPoint.localPosition.y * transform.localScale.y;
+        //Vector3 relativeSpot = miniReference.InverseTransformPoint(groundedPoint) * mapScale;
 
-        tower = Instantiate(towerPrefab, relativeSpot, Quaternion.Inverse(Quaternion.Euler(rotation)) * miniReference.rotation);
+
+        //Vector3 rotation = socket.GetChild(0).rotation.eulerAngles;
+        //rotation.x = 0; 
+        //rotation.z = 0;
+
+        Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
+        Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
+
+        tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
         tower.GetComponent<BasicTowerDetection>().player = player;
     }
 
