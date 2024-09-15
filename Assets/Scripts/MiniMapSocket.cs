@@ -20,6 +20,10 @@ public class MiniMapSocket : MonoBehaviour
         socket.selectEntered.AddListener(Release);
         socket.selectExited.AddListener(Stolen);
         miniNum = Respawns.instance.getObjNum(transform.parent.gameObject);
+        if (transform.parent)
+        {
+            transform.parent = null;
+        }
     }
 
     // Update is called once per frame

@@ -239,9 +239,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633386330320187606}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.062, y: 0.6743977, z: 0.558}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 0.060000002, y: 0.060000006, z: 0.060000025}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3195330507945116487}
@@ -263,6 +263,7 @@ Transform:
   - {fileID: 4919099909919134487}
   - {fileID: 632405203402804853}
   - {fileID: 8445333441353868682}
+  - {fileID: 805975429288749513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1186574332123306441
@@ -326,10 +327,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 0}
+  attachPoint: {fileID: 805975429288749513}
   miniReference: {fileID: 0}
   towerPrefab: {fileID: 1796219835056638140, guid: d6cb3df77b94c20478c8af744728f665,
     type: 3}
   mapScale: 0
+  overlap: 0
+  holderTrans: {fileID: 0}
 --- !u!114 &6963345760752403585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetPoint: {fileID: 0}
-  resetTime: 5
+  resetTime: 3
   lostResetTime: 15
 --- !u!114 &5373604099690199295
 MonoBehaviour:
@@ -363,7 +367,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 5
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -447,7 +451,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 805975429288749513}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -1863,6 +1867,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6754946847392827806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805975429288749513}
+  m_Layer: 6
+  m_Name: Attach Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &805975429288749513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754946847392827806}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.23089886, y: 0, z: 0, w: 0.97297776}
+  m_LocalPosition: {x: 0, y: 1.05, z: -0.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3312255597822909839}
+  m_LocalEulerAnglesHint: {x: -26.7, y: 0, z: 0}
 --- !u!1 &6929411583607202993
 GameObject:
   m_ObjectHideFlags: 0
