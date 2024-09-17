@@ -24,6 +24,7 @@ public class Wand : MonoBehaviour
     public bool debug = false;
     public GameObject debugObj;
     private List<Gesture> trainingSet = new List<Gesture>();
+    private List<Gesture> leftTrainingSet = new List<Gesture>();
 
     public GameObject[] rayObjects;
    // public XRRayInteractor[] rayInteractors;
@@ -55,6 +56,16 @@ public class Wand : MonoBehaviour
     [SerializeField]
     public Spell[] spells;
 
+    [Range(0, 1)]
+    public float primeHapticIntensity;
+    public float primeHapticDuration;
+    [Range(0, 1)]
+    public float fireHapticIntensity;
+    public float fireHapticDuration;
+    [Range(0, 1)]
+    public float magicGrabHapticIntensity;
+    public float magicGrabHapticDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,21 +78,35 @@ public class Wand : MonoBehaviour
             trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
         }
 
+        TextAsset[] gesturesXmlLeft = Resources.LoadAll<TextAsset>("GesturesLeft/");
+        foreach (TextAsset gestureXmlLeft in gesturesXmlLeft)
+        {
+            leftTrainingSet.Add(GestureIO.ReadGestureFromXML(gestureXmlLeft.text));
+        }
+
         camReference = Camera.main.transform;
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.selectEntered.AddListener(WandGrabbed);
+        grabbable.selectExited.AddListener(WandReleased);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hand.noHand)
+        {
+            DisableControllerRays();
+            this.enabled = false;
+            return;
+        }
+
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(hand.inputSource), inputButton, out bool isPressed, inputThreshold);
 
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
             charging = true;
-            rayObjects[currentRay].SetActive(false); //rayInteract.enabled
+            //rayObjects[currentRay].SetActive(false); //rayInteract.enabled
 
             if (positionsList.Count == 0)
             {
@@ -89,7 +114,8 @@ public class Wand : MonoBehaviour
                 return;
             }
             Vector3 lastPos = positionsList[positionsList.Count - 1];
-            if (Vector3.Distance(camReference.InverseTransformPoint(movementSource.position), lastPos) > newPosThreshold)
+            Vector3 currentPos = camReference.InverseTransformPoint(movementSource.position);
+            if (Vector3.Distance(currentPos, lastPos) > newPosThreshold)
             {
                 positionsList.Add(camReference.InverseTransformPoint(movementSource.position));
 
@@ -110,36 +136,14 @@ public class Wand : MonoBehaviour
                         return;
                     }
 
-                    DetectGesture();
+                    print("Stop Detect");
+                    DetectGesture(true);
                 }
             }
         }
         else if (!isPressed && primed)
         {
-            //Attack
-            switch (activeSpell)
-            {
-                case 0: //Energy Blast
-
-                    GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
-                    eBlast.transform.forward = shootPoint.up;
-                    eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
-                    Destroy(eBlast, 3);
-
-                    break;
-
-                case 1: //Fireball
-                    //rayInteractor.interactionManager.SelectExit(rayInteractor, wandHeld);
-                    break;
-
-                case 2: //Lightning
-
-                    break;
-            }
-
-            primed = false;
-            rayObjects[currentRay].SetActive(true);
-            activeSpell = -1;
+            Fire();
         }
 
         if (!isPressed && charging)
@@ -152,7 +156,8 @@ public class Wand : MonoBehaviour
             }
             else
             {
-                DetectGesture();
+                print("Last Second Detect");
+                DetectGesture(true);
             }
         }
 
@@ -162,8 +167,9 @@ public class Wand : MonoBehaviour
         }
     }
 
-    void DetectGesture()
+    void DetectGesture(bool endCharge)
     {
+        bool righty = hand.inputSource == XRNode.RightHand;
 
         Point[] points = new Point[positionsList.Count];
 
@@ -177,24 +183,43 @@ public class Wand : MonoBehaviour
 
         if (createGesture)
         {
-            string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/Gestures", newGestureName, DateTime.Now.ToFileTime());
+            if (righty)
+            {
+                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/Gestures", newGestureName, DateTime.Now.ToFileTime());
 
-            #if !UNITY_WEBPLAYER
-                GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
-            #endif
+                #if !UNITY_WEBPLAYER
+                    GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
+                #endif
 
-            trainingSet.Add(wandSwing);
+                trainingSet.Add(wandSwing);
 
-            print(fileName);
+                print(fileName);
+            }
+            else
+            {
+                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/GesturesLeft", newGestureName, DateTime.Now.ToFileTime());
+
+                #if !UNITY_WEBPLAYER
+                    GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
+                #endif
+
+                leftTrainingSet.Add(wandSwing);
+
+                print(fileName);
+            }
         }
 
-        Result wandResult = PointCloudRecognizer.Classify(wandSwing, trainingSet.ToArray());
+        Result wandResult; 
+        if (righty)
+        {
+            wandResult = PointCloudRecognizer.Classify(wandSwing, trainingSet.ToArray());
+        }
+        else
+        {
+            wandResult = PointCloudRecognizer.Classify(wandSwing, leftTrainingSet.ToArray());
+        }
 
         print(wandResult.GestureClass + " " + wandResult.Score);
-
-        //Subject to change
-        positionsList.Clear();
-        charging = false;
 
         foreach (Spell spell in spells)
         {
@@ -203,6 +228,7 @@ public class Wand : MonoBehaviour
                 if (wandResult.Score > spell.recognitionThreshold)
                 {
                     primed = true;
+                    TriggerHaptic(primeHapticIntensity, primeHapticDuration);
                     print("PRIMED " + spell.name);
                     activeSpell = spell.number;
                 }
@@ -212,7 +238,17 @@ public class Wand : MonoBehaviour
 
         if (activeSpell < 0)
         {
-            waitForNext = true;
+            if (endCharge)
+            {
+                positionsList.Clear();
+                charging = false;
+                waitForNext = true;
+            }
+        }
+        else
+        {
+            positionsList.Clear();
+            charging = false;
         }
 
         if (activeSpell == 1)
@@ -225,9 +261,45 @@ public class Wand : MonoBehaviour
         }
     }
 
+    void Fire()
+    {
+        //Attack
+        switch (activeSpell)
+        {
+            case 0: //Energy Blast
+
+                GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
+                eBlast.transform.forward = shootPoint.up;
+                eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
+                Destroy(eBlast, 3);
+
+                break;
+
+            case 1: //Fireball
+                    //rayInteractor.interactionManager.SelectExit(rayInteractor, wandHeld);
+                break;
+
+            case 2: //Lightning
+
+                break;
+        }
+
+        TriggerHaptic(fireHapticIntensity, fireHapticDuration);
+
+        primed = false;
+        rayObjects[currentRay].SetActive(true);
+        activeSpell = -1;
+    }
+
+    public void TriggerHaptic(float intensity, float duration)
+    {
+        hand.controller.SendHapticImpulse(intensity, duration);
+    }
+
     public void RayActive()
     {
         usingRay = true;
+        TriggerHaptic(magicGrabHapticIntensity, magicGrabHapticDuration);
     }
 
     public void NoRay()
@@ -253,6 +325,17 @@ public class Wand : MonoBehaviour
     void WandGrabbed(SelectEnterEventArgs args)
     {
         SetControllerRay();
+    }
+
+    void WandReleased(SelectExitEventArgs args)
+    {
+        DisableControllerRays();
+    }
+
+    public void DisableControllerRays()
+    {
+        rayObjects[0].SetActive(false);
+        rayObjects[1].SetActive(false);
     }
 
     void SetControllerRay()

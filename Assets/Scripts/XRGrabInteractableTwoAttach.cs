@@ -21,7 +21,7 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
                 interactionManager.SelectEnter(args.interactorObject, args.interactableObject);
             }
         }
-        else if (args.interactorObject.transform.CompareTag("Right Hand"))
+        else //if (args.interactorObject.transform.CompareTag("Right Hand"))
         {
             if (attachTransform == attachLeft)
             {

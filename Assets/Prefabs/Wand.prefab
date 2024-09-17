@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7073077821924895264}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AttachPointL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 731663634548918160}
   - component: {fileID: 2210801262642029099}
   - component: {fileID: 5293013745856700876}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18308454842443443}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 8882594772037243039}
   - component: {fileID: 8626496904373607681}
   - component: {fileID: 7503428560390679670}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ray Interactor Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,19 @@ MonoBehaviour:
   m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7626060625440001657}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -628,7 +640,7 @@ MonoBehaviour:
   m_AllowHoverHapticsWhileSelecting: 1
   m_LineType: 0
   m_BlendVisualLinePoints: 1
-  m_MaxRaycastDistance: 30
+  m_MaxRaycastDistance: 10
   m_RayOriginTransform: {fileID: 0}
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 16
@@ -657,7 +669,7 @@ MonoBehaviour:
   m_BlockUIOnInteractableSelection: 1
   m_AllowAnchorControl: 1
   m_UseForceGrab: 0
-  m_RotateSpeed: 180
+  m_RotateSpeed: 0
   m_TranslateSpeed: 2
   m_AnchorRotateReferenceFrame: {fileID: 0}
   m_AnchorRotationMode: 0
@@ -797,8 +809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LineWidth: 0.005
-  m_OverrideInteractorLineLength: 1
-  m_LineLength: 10
+  m_OverrideInteractorLineLength: 0
+  m_LineLength: 5
   m_AutoAdjustLineLength: 0
   m_MinLineLength: 0.5
   m_UseDistanceToHitAsMaxLineLength: 1
@@ -861,8 +873,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0.0019285679, b: 1, a: 0.34509805}
-    key1: {r: 0, g: 0.12478434, b: 0.9547169, a: 0.7294118}
+    key0: {r: 0, g: 0.0019285679, b: 1, a: 0.44313726}
+    key1: {r: 0, g: 0.12478434, b: 0.9547169, a: 0}
     key2: {r: 0.3254902, g: 0, b: 1, a: 0.7294118}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -953,7 +965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5970575296870187112}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AttachPointR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8651530325042098410}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ray Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5245830946179397735}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1065,7 @@ GameObject:
   - component: {fileID: 1550227911133970653}
   - component: {fileID: 9006376012316348659}
   - component: {fileID: 7358241892267721141}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1172,7 @@ GameObject:
   - component: {fileID: 5531921020858530324}
   - component: {fileID: 1209095486559374646}
   - component: {fileID: 4171364174256467439}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,7 +1282,7 @@ GameObject:
   - component: {fileID: 4163521479355566041}
   - component: {fileID: 7878117300029954484}
   - component: {fileID: 4035411003259710587}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ray Interactor Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1658,7 +1670,7 @@ MonoBehaviour:
   m_AllowHoverHapticsWhileSelecting: 1
   m_LineType: 0
   m_BlendVisualLinePoints: 1
-  m_MaxRaycastDistance: 30
+  m_MaxRaycastDistance: 10
   m_RayOriginTransform: {fileID: 0}
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 16
@@ -1687,7 +1699,7 @@ MonoBehaviour:
   m_BlockUIOnInteractableSelection: 1
   m_AllowAnchorControl: 1
   m_UseForceGrab: 0
-  m_RotateSpeed: 180
+  m_RotateSpeed: 0
   m_TranslateSpeed: 2
   m_AnchorRotateReferenceFrame: {fileID: 0}
   m_AnchorRotationMode: 0
@@ -1827,8 +1839,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LineWidth: 0.005
-  m_OverrideInteractorLineLength: 1
-  m_LineLength: 10
+  m_OverrideInteractorLineLength: 0
+  m_LineLength: 5
   m_AutoAdjustLineLength: 0
   m_MinLineLength: 0.5
   m_UseDistanceToHitAsMaxLineLength: 1
@@ -1891,8 +1903,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0.0019285679, b: 1, a: 0.34509805}
-    key1: {r: 0, g: 0.12478434, b: 0.9547169, a: 0.7294118}
+    key0: {r: 0, g: 0.0019285679, b: 1, a: 0.44313726}
+    key1: {r: 0, g: 0.12478434, b: 0.9547169, a: 0}
     key2: {r: 0.3254902, g: 0, b: 1, a: 0.7294118}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1986,7 +1998,7 @@ GameObject:
   - component: {fileID: 3979184990295772754}
   - component: {fileID: 1119294228348381670}
   - component: {fileID: 8010786636630821993}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2108,7 @@ GameObject:
   - component: {fileID: 35674712423306964}
   - component: {fileID: 6609064577754461722}
   - component: {fileID: 7192099296930988207}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2188,6 +2200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSource: 5
+  controller: {fileID: 0}
+  noHand: 1
 --- !u!114 &35674712423306964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,6 +2260,12 @@ MonoBehaviour:
     number: 2
     recognitionThreshold: 0.75
     attackPrefab: {fileID: 0}
+  primeHapticIntensity: 0.2
+  primeHapticDuration: 0.2
+  fireHapticIntensity: 0.5
+  fireHapticDuration: 0.2
+  magicGrabHapticIntensity: 0.1
+  magicGrabHapticDuration: 0.1
 --- !u!114 &7192099296930988207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,7 +2284,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 9
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -2417,7 +2437,7 @@ MonoBehaviour:
   m_ThrowVelocityScale: 2.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
+  m_RetainTransformParent: 0
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []

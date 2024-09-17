@@ -25,8 +25,7 @@ public class BlastAttack : MonoBehaviour
         if (enemy)
         {
             enemy.TakeDamage(damage);
-            Destroy(gameObject);
         }
-
+        Destroy(gameObject);
     }
 }
