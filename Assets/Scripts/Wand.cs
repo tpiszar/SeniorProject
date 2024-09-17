@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using PDollarGestureRecognizer;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
 
 public class Wand : MonoBehaviour
 {
@@ -24,8 +25,10 @@ public class Wand : MonoBehaviour
     public GameObject debugObj;
     private List<Gesture> trainingSet = new List<Gesture>();
 
-    public XRRayInteractor rayInteractor;
-    public XRInteractorLineVisual rayVisual;
+    public GameObject[] rayObjects;
+   // public XRRayInteractor[] rayInteractors;
+    int currentRay = 0;
+    //public XRInteractorLineVisual rayVisual;
     XRGrabInteractable wandHeld;
     bool usingRay = false;
 
@@ -65,6 +68,9 @@ public class Wand : MonoBehaviour
         }
 
         camReference = Camera.main.transform;
+
+        XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
+        grabbable.selectEntered.AddListener(WandGrabbed);
     }
 
     // Update is called once per frame
@@ -75,7 +81,7 @@ public class Wand : MonoBehaviour
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
             charging = true;
-            rayInteractor.enabled = false;
+            rayObjects[currentRay].SetActive(false); //rayInteract.enabled
 
             if (positionsList.Count == 0)
             {
@@ -132,7 +138,7 @@ public class Wand : MonoBehaviour
             }
 
             primed = false;
-            rayInteractor.enabled = true;
+            rayObjects[currentRay].SetActive(true);
             activeSpell = -1;
         }
 
@@ -140,7 +146,7 @@ public class Wand : MonoBehaviour
         {
             if (positionsList.Count < 3)
             {
-                rayInteractor.enabled = true;
+                rayObjects[currentRay].SetActive(true);
                 positionsList.Clear();
                 primer = 0;
             }
@@ -229,13 +235,39 @@ public class Wand : MonoBehaviour
         usingRay = false;
     }
 
-    public void EnableLine()
+    //public void EnableLine()
+    //{
+    //    rayVisual.enabled = true;
+    //}
+
+    //public void DisableLine()
+    //{
+    //    rayVisual.enabled = false;
+    //}
+
+    private void OnEnable()
     {
-        rayVisual.enabled = true;
+        SetControllerRay();
     }
 
-    public void DisableLine()
+    void WandGrabbed(SelectEnterEventArgs args)
     {
-        rayVisual.enabled = false;
+        SetControllerRay();
+    }
+
+    void SetControllerRay()
+    {
+        if (hand.inputSource == XRNode.RightHand)
+        {
+            currentRay = 0;
+            rayObjects[0].SetActive(true);
+            rayObjects[1].SetActive(false);
+        }
+        else
+        {
+            currentRay = 1;
+            rayObjects[0].SetActive(false);
+            rayObjects[1].SetActive(true);
+        }
     }
 }
