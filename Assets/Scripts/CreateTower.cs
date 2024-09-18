@@ -75,7 +75,8 @@ public class CreateTower : MonoBehaviour
 
         tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
         tower.GetComponent<BasicTowerDetection>().player = player;
-        transform.parent = socket.parent.parent;
+        transform.parent = miniReference;
+        socket.parent = miniReference;
     }
 
     private void OnDestroy()

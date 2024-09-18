@@ -5,6 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class MiniEnvironmentFollow : MonoBehaviour
 {
+    public Transform miniMap;
+
     public GameObject[] detectors;
 
     // Start is called before the first frame update

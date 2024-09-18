@@ -48,7 +48,6 @@ public class MiniMapDetector : MonoBehaviour
         tower.socket.parent = transform;
 
         //tower.ToggleVisible();
-        print(this.enabled);
     }
 
     //private void OnTriggerExit(Collider other)
