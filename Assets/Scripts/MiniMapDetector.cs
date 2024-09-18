@@ -45,8 +45,10 @@ public class MiniMapDetector : MonoBehaviour
         CreateTower tower = other.transform.parent.GetComponent<CreateTower>();
         tower.miniReference = miniReference;
         tower.mapScale = mapScale;
+        tower.socket.parent = transform;
 
         //tower.ToggleVisible();
+        print(this.enabled);
     }
 
     //private void OnTriggerExit(Collider other)

@@ -23,6 +23,8 @@ public class TowerBlast : MonoBehaviour
     public float smoothing;
     Vector3 refVel = Vector3.zero;
 
+    public bool rotateTowards;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,10 @@ public class TowerBlast : MonoBehaviour
         if (target)
         {
             direction = (target.position - transform.position).normalized * speed;
+            if (rotateTowards)
+            {
+                transform.LookAt(target.position);
+            }
         }
         else
         {
