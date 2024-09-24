@@ -43,7 +43,6 @@ public class Wand : MonoBehaviour
     float primer = 0;
     int activeSpell = -1;
 
-
     [System.Serializable]
     public class Spell
     {

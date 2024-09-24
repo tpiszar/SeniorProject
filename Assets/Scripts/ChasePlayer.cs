@@ -6,13 +6,13 @@ using UnityEngine.AI;
 
 public class ChasePlayer : MonoBehaviour
 {
-    Transform player;
-    NavMeshAgent agent;
+    protected Transform player;
+    protected NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<XROrigin>().transform;
+        player = FindObjectOfType<Camera>().transform;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(player.position);
     }

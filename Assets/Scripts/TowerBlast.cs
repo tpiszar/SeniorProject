@@ -15,7 +15,7 @@ public class TowerBlast : MonoBehaviour
 
     public float speed;
     public float startMod;
-    public float damage;
+    public int damage;
 
     float missingTarget = 0;
 
@@ -104,12 +104,13 @@ public class TowerBlast : MonoBehaviour
         if (enemy)
         {
             enemy.TakeDamage(damage);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
-        if (!target)
-        {
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
+        //if (!target)
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 }
