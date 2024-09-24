@@ -2201,6 +2201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSource: 5
   controller: {fileID: 0}
+  movementSource: {fileID: 0}
   noHand: 1
 --- !u!114 &35674712423306964
 MonoBehaviour:
@@ -2232,10 +2233,9 @@ MonoBehaviour:
   hand: {fileID: 5654996764955844196}
   inputButton: 4
   inputThreshold: 0.1
-  movementSource: {fileID: 0}
   newPosThreshold: 0.05
   createGesture: 0
-  newGestureName: fireball
+  newGestureName: blast
   debug: 0
   debugObj: {fileID: 3614918639646276970, guid: c7325ea13629a96429e89f846f03ca9e,
     type: 3}
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_ThrowVelocityScale: 2.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 0
+  m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []

@@ -14,7 +14,6 @@ public class Wand : MonoBehaviour
     public InputHelpers.Button inputButton;
     public float inputThreshold = 0.1f;
     private List<Vector3> positionsList = new List<Vector3>();
-    public Transform movementSource;
 
     public float newPosThreshold = 0.05f;
 
@@ -109,18 +108,18 @@ public class Wand : MonoBehaviour
 
             if (positionsList.Count == 0)
             {
-                positionsList.Add(camReference.InverseTransformPoint(movementSource.position));
+                positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
                 return;
             }
             Vector3 lastPos = positionsList[positionsList.Count - 1];
-            Vector3 currentPos = camReference.InverseTransformPoint(movementSource.position);
+            Vector3 currentPos = camReference.InverseTransformPoint(hand.movementSource.position);
             if (Vector3.Distance(currentPos, lastPos) > newPosThreshold)
             {
-                positionsList.Add(camReference.InverseTransformPoint(movementSource.position));
+                positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
 
                 if (debug)
                 {
-                    Destroy(Instantiate(debugObj, movementSource.position, Quaternion.identity), 3);
+                    Destroy(Instantiate(debugObj, hand.movementSource.position, Quaternion.identity), 3);
                 }
             }
             else
