@@ -34,7 +34,12 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                // VICTORY
+                if (enemies.Count == 0)
+                {
+                    //VICTORY
+
+                    this.enabled = false;
+                }
             }
         }
     }

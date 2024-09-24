@@ -96,7 +96,6 @@ public class EnemyAI : MonoBehaviour
                     RaycastHit hit;
                     if (Physics.Raycast(transform.position, transform.forward, out hit, attkRange, hitMask))
                     {
-                        print(hit.transform.name);
                         nextAttk = attkRate;
                         Attack();
                     }
@@ -229,6 +228,7 @@ public class EnemyAI : MonoBehaviour
         chasingBarrier = false;
         close = false;
         curAttackObj = null;
+        attacking = false;
         StartCoroutine(reStart(teleportTime));
     }
 
@@ -237,11 +237,12 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(delay);
         agent.enabled = true;
         Locate();
-        //yield return new WaitForSeconds(0.2f);
-        //if (attackObjs.Count > 0)
-        //{
-        //    DetermineBarrierAttack();
-        //}
+        yield return new WaitForSeconds(0.2f);
+        CleanUpBarriers();
+        if (attackObjs.Count > 0)
+        {
+            attacking = true;
+        }
     }
 
     private void OnDestroy()
