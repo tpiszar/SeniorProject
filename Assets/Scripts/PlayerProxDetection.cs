@@ -12,4 +12,13 @@ public class PlayerProxDetection : MonoBehaviour
             enemy.isClose();
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        EnemyAI enemy = other.GetComponent<EnemyAI>();
+        if (enemy)
+        {
+            enemy.isFar();
+        }
+    }
 }
