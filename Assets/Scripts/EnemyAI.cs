@@ -125,10 +125,8 @@ public class EnemyAI : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, direction, out hit, attkRange * 2, hitMask))
                 {
-                    print(Vector3.Distance(transform.position, hit.point));
                     curAttackObj = hit.transform;
                     agent.SetDestination(hit.transform.position);
-                    print("HIT " + hit.transform.name);
                 }
                 else
                 {

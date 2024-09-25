@@ -7,10 +7,16 @@ public class Barrier : MonoBehaviour
     public int maxHealth;
     int health;
 
+    public bool startMini = false;
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        if (startMini)
+        {
+            MiniMapTracker.instance.AddMapBarrier(transform);
+        }
     }
 
     // Update is called once per frame

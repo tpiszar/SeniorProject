@@ -13,9 +13,13 @@ public class MiniMapTracker : MonoBehaviour
     public static MiniMapTracker instance;
 
     public GameObject trackerPrefab;
+    public GameObject barrierPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    public Transform playerBarrier;
+    public Transform miniPlayerBarrier;
+    bool noBarrier = false;
+
+    private void Awake()
     {
         if (!instance)
         {
@@ -27,9 +31,25 @@ public class MiniMapTracker : MonoBehaviour
         }
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (playerBarrier)
+        {
+            miniPlayerBarrier.position = miniReference.TransformPoint(playerBarrier.position / mapScale);
+        }
+        else if (!noBarrier)
+        {
+            Destroy(miniPlayerBarrier.gameObject);
+            noBarrier = true;
+        }
+
         for (int i = trackedObjects.Count - 1; i >= 0; i--)
         {
             if (!trackedObjects[i])
@@ -50,5 +70,13 @@ public class MiniMapTracker : MonoBehaviour
         trackedObjects.Add(obj);
         GameObject newTracker = Instantiate(trackerPrefab, miniReference.TransformPoint(obj.position / mapScale), Quaternion.identity);
         trackers.Add(newTracker.transform);
+    }
+
+    public void AddMapBarrier(Transform obj)
+    {
+        trackedObjects.Add(obj);
+        GameObject newBarrier = Instantiate(barrierPrefab, miniReference.TransformPoint(obj.position / mapScale), Quaternion.Inverse(obj.rotation) * miniReference.rotation);
+        newBarrier.transform.localScale = obj.localScale / mapScale;
+        trackers.Add(newBarrier.transform);
     }
 }

@@ -32,7 +32,7 @@ public class Teleport : MonoBehaviour
         }
     }
 
-    bool testDone = false;
+    public bool testDone = true;
 
     // Update is called once per frame
     void Update()

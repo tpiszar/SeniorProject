@@ -22,8 +22,11 @@ public class PlayerDeath : MonoBehaviour
     {
         foreach (Transform enemy in manager.enemies)
         {
-            enemy.GetComponent<EnemyAI>().enabled = false;
-            enemy.GetComponent<NavMeshAgent>().enabled = false;
+            if (enemy)
+            {
+                enemy.GetComponent<EnemyAI>().enabled = false;
+                enemy.GetComponent<NavMeshAgent>().enabled = false;
+            }
         }
         if (manager)
         {

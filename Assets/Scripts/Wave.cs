@@ -81,5 +81,7 @@ public class Wave : MonoBehaviour
         enemy.SetActive(true);
         manager.enemies.Add(enemy.transform);
         enemy.GetComponent<EnemyAI>().player = manager.player;
+
+        //MiniMapTracker.instance.AddMapTracker(enemy.transform);
     }
 }
