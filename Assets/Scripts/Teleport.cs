@@ -10,13 +10,22 @@ public class Teleport : MonoBehaviour
 
     public event Action<float> onTeleport;
 
+    public Transform[] bases;
+    public Transform playerBase;
+
+    public int curBase = 0;
+
     public float teleportTime;
-    public void doTeleport()
+
+    public void doTeleport(int baseNum)
     {
         if (onTeleport != null)
         {
             onTeleport(teleportTime);
         }
+
+        playerBase.position = bases[baseNum].position;
+        playerBase.rotation = bases[baseNum].rotation;
     }
 
     // Start is called before the first frame update
@@ -30,6 +39,8 @@ public class Teleport : MonoBehaviour
         {
             Destroy(this);
         }
+
+        doTeleport(curBase);
     }
 
     public bool testDone = true;
@@ -37,9 +48,9 @@ public class Teleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!testDone && Time.time > 15)
+        if (!testDone)
         {
-            doTeleport();
+            doTeleport(curBase);
             testDone = true;
         }
     }

@@ -13,7 +13,9 @@ public class WaveManager : MonoBehaviour
 
     public Transform player;
     public Transform spawnPoint;
-    public List<Transform> enemies = new List<Transform>();
+    public List<EnemyAI> enemies = new List<EnemyAI>();
+
+    public float winDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +39,15 @@ public class WaveManager : MonoBehaviour
                 if (enemies.Count == 0)
                 {
                     //VICTORY
-
+                    Invoke("VictoryScreen", winDelay);
                     this.enabled = false;
                 }
             }
         }
+    }
+
+    public void VictoryScreen()
+    {
+
     }
 }

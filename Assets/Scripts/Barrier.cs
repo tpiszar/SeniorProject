@@ -9,6 +9,8 @@ public class Barrier : MonoBehaviour
 
     public bool startMini = false;
 
+    bool isPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,11 @@ public class Barrier : MonoBehaviour
         if (startMini)
         {
             MiniMapTracker.instance.AddMapBarrier(transform);
+        }
+        
+        if (health == 0)
+        {
+            isPlayer = true;
         }
     }
 
@@ -31,7 +38,14 @@ public class Barrier : MonoBehaviour
         //print(gameObject.name + ": " + health);
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (isPlayer)
+            {
+                GetComponent<PlayerDeath>().Die();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

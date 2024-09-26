@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IComparable
 {
     public Transform player;
     protected NavMeshAgent agent;
@@ -18,6 +19,9 @@ public class EnemyAI : MonoBehaviour
 
     public float relocateInterval;
     float nextLocate = 0;
+
+    public float distCheckInterval = 0.5f;
+    float nextDist;
 
     bool close = false;
     List<Transform> attackObjs = new List<Transform>();
@@ -36,12 +40,31 @@ public class EnemyAI : MonoBehaviour
 
     public float rotationSpeed;
 
+    float distance;
+
+    public int CompareTo(object obj)
+    {
+        GetDistance();
+        EnemyAI other = obj as EnemyAI;
+        if (GetDistance() < other.GetDistance())
+        {
+            return -1;
+        }
+        if (distance > other.distance)
+        {
+            return 1;
+        }
+
+        return 0;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Teleport.Instance.onTeleport += onTeleport;
         agent = GetComponent<NavMeshAgent>();
         nextAttk = attkRate;
+        nextDist = distCheckInterval;
         Locate();
     }
 
@@ -126,7 +149,9 @@ public class EnemyAI : MonoBehaviour
                 if (Physics.Raycast(transform.position, direction, out hit, attkRange * 2, hitMask))
                 {
                     curAttackObj = hit.transform;
+                    GetDistance();
                     agent.SetDestination(hit.transform.position);
+                    chasingBarrier = true;
                 }
                 else
                 {
@@ -148,6 +173,11 @@ public class EnemyAI : MonoBehaviour
 
     public void Hit()
     {
+        if (!this || !curAttackObj)
+        {
+            return;
+        }
+
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, attkRange, hitMask))
@@ -160,9 +190,35 @@ public class EnemyAI : MonoBehaviour
                 if (!barrier)
                 {
                     agent.SetDestination(player.position);
+                    chasingBarrier = false;
                 }
             }
         }
+    }
+
+    public float GetDistance()
+    {
+        if (Time.time > nextDist && !chasingBarrier)
+        {
+            if (agent && !agent.pathPending && agent.pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                if (agent.path.corners.Length == 0)
+                {
+                    return (player.position - transform.position).magnitude;
+                }
+
+                nextDist = Time.time + distCheckInterval;
+                //distance = (player.position - transform.position).sqrMagnitude;
+
+                distance = 0;
+                for (int i = 0; i < agent.path.corners.Length - 1; i++)
+                {
+                    distance += Vector3.Distance(agent.path.corners[i], agent.path.corners[i + 1]);
+                }
+            }
+
+        }
+        return distance;
     }
 
     public void isClose()
@@ -212,12 +268,14 @@ public class EnemyAI : MonoBehaviour
             attacking = false;
             curAttackObj = null;
             agent.SetDestination(player.position);
+            chasingBarrier = false;
         }
     }
 
     void Locate()
     {
         agent.SetDestination(player.position);
+        chasingBarrier = false;
     }
 
     private void onTeleport(float teleportTime)

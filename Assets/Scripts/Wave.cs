@@ -79,7 +79,8 @@ public class Wave : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         enemy.SetActive(true);
-        manager.enemies.Add(enemy.transform);
+        enemy.name = enemy.name + " " + Time.time.ToString();
+        manager.enemies.Add(enemy.GetComponent<EnemyAI>());
         enemy.GetComponent<EnemyAI>().player = manager.player;
 
         //MiniMapTracker.instance.AddMapTracker(enemy.transform);

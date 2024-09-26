@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class BasicTowerDetection : MonoBehaviour
 {
-    List<Transform> targets = new List<Transform>();
-    public Transform player;
+    public List<EnemyAI> targets = new List<EnemyAI>();
 
     // Start is called before the first frame update
     void Start()
@@ -22,25 +21,36 @@ public class BasicTowerDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        BasicHealth enemy = other.GetComponent<BasicHealth>();
+        EnemyAI enemy = other.GetComponent<EnemyAI>();
         if (enemy)
         {
-            targets.Add(other.transform);
+            targets.Add(enemy);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        BasicHealth enemy = other.GetComponent<BasicHealth>();
+        EnemyAI enemy = other.GetComponent<EnemyAI>();
         if (enemy)
         {
-            targets.Remove(other.transform);
+            targets.Remove(enemy);
+        }
+    }
+
+    public void CleanUp()
+    {
+        for (int i = targets.Count - 1; i >= 0; i--)
+        {
+            if (!targets[i])
+            {
+                targets.RemoveAt(i);
+
+            }
         }
     }
 
     public Transform GetTarget()
     {
-
         for (int i = targets.Count - 1; i >= 0; i--)
         {
             if (!targets[i])
@@ -54,25 +64,25 @@ public class BasicTowerDetection : MonoBehaviour
         {
             return null;
         }
-        
-        float minDist = (player.position - targets[0].position).sqrMagnitude;
-        Transform closestTarget = targets[0];
 
-        foreach(Transform t in targets)
+        float minDist = targets[0].GetDistance();
+        EnemyAI closestTarget = targets[0];
+
+        foreach(EnemyAI en in targets)
         {
-            if (t == closestTarget)
+            if (en == closestTarget)
             {
                 continue;
             }
 
-            float nextDist = (player.position - t.position).sqrMagnitude;
+            float nextDist = en.GetDistance();
             if (nextDist < minDist)
             {
                 minDist = nextDist;
-                closestTarget = t;
+                closestTarget = en;
             }
         }
 
-        return closestTarget;
+        return closestTarget.transform;
     }
 }

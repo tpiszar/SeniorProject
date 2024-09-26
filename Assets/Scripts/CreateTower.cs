@@ -80,9 +80,11 @@ public class CreateTower : MonoBehaviour
             Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
 
             tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
-            tower.GetComponent<BasicTowerDetection>().player = player;
+            //tower.GetComponent<BasicTowerDetection>().player = player;
             transform.parent = miniReference;
             socket.parent = miniReference;
+
+            //PlayerDeath.towers.Add(tower);
         }
     }
 
@@ -90,6 +92,7 @@ public class CreateTower : MonoBehaviour
     {
         if (tower)
         {
+            //PlayerDeath.towers.Remove(tower);
             Destroy(tower);
         }
     }

@@ -9,18 +9,6 @@ public class XROneObjectSocket : XRSocketInteractor
     [SerializeField]
     public XRGrabInteractable singleObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         if (!singleObject)
