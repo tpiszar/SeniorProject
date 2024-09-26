@@ -23,6 +23,8 @@ public class CreateTower : MonoBehaviour
     public Vector3 createPoint = Vector3.zero;
     public Vector3 createRot = Vector3.zero;
 
+    public int manaCost;
+
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
     //Material baseMat;
@@ -70,13 +72,18 @@ public class CreateTower : MonoBehaviour
         //rotation.x = 0; 
         //rotation.z = 0;
 
-        Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
-        Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
+        
 
-        tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
-        tower.GetComponent<BasicTowerDetection>().player = player;
-        transform.parent = miniReference;
-        socket.parent = miniReference;
+        if (Mana.Instance.useMana(manaCost))
+        {
+            Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
+            Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
+
+            tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
+            tower.GetComponent<BasicTowerDetection>().player = player;
+            transform.parent = miniReference;
+            socket.parent = miniReference;
+        }
     }
 
     private void OnDestroy()
