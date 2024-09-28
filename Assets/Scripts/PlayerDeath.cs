@@ -47,20 +47,13 @@ public class PlayerDeath : MonoBehaviour
 
         manager.enemies.Sort();
 
-        foreach(var enemy in manager.enemies)
-        {
-            print(enemy.transform.name + " " +enemy.GetDistance());
-        }
-
         float curRamp = 0;
         for (int i = manager.enemies.Count - 1; i >= 0; i--)
         {
             if (manager.enemies[i])
             {
-                //manager.enemies[i].enabled = false;
-                //manager.enemies[i].GetComponent<NavMeshAgent>().enabled = false;
                 curRamp += Mathf.Lerp(minKillInterval, maxKillInterval, curRamp / rampTime);
-                print(curRamp + " " + manager.enemies[i].transform.name);
+                //print(curRamp + " " + manager.enemies[i].transform.name);
                 manager.enemies[i].attkRange = 1000;
                 Destroy(manager.enemies[i].gameObject, curRamp);
                 Destroy(manager.enemies[i].GetComponent<NavMeshAgent>());

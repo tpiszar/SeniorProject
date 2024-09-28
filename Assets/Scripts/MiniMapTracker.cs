@@ -72,11 +72,14 @@ public class MiniMapTracker : MonoBehaviour
         trackers.Add(newTracker.transform);
     }
 
-    public void AddMapBarrier(Transform obj)
+    public GameObject AddMapBarrier(Transform obj)
     {
-        trackedObjects.Add(obj);
+        //trackedObjects.Add(obj);
         GameObject newBarrier = Instantiate(barrierPrefab, miniReference.TransformPoint(obj.position / mapScale), Quaternion.Inverse(obj.rotation) * miniReference.rotation);
         newBarrier.transform.localScale = obj.localScale / mapScale;
-        trackers.Add(newBarrier.transform);
+        //trackers.Add(newBarrier.transform);
+        newBarrier.transform.parent = miniReference;
+
+        return newBarrier;
     }
 }

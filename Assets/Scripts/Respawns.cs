@@ -35,6 +35,7 @@ public class Respawns : MonoBehaviour
             GameObject newObj = Instantiate(objectsToRespawn[i]);
             newObj.transform.position = objectsToRespawn[i].transform.position;
             newObj.transform.rotation = objectsToRespawn[i].transform.rotation;
+            newObj.transform.parent = objectsToRespawn[i].transform.parent;
             //newObj.transform.parent = transform;
             newObj.SetActive(true);
             copies[i] = newObj;
@@ -54,7 +55,8 @@ public class Respawns : MonoBehaviour
         GameObject newObj = Instantiate(objectsToRespawn[objNum]);
         newObj.transform.position = objectsToRespawn[objNum].transform.position;
         newObj.transform.rotation = objectsToRespawn[objNum].transform.rotation;
-        newObj.transform.parent = transform;
+        newObj.transform.parent = objectsToRespawn[objNum].transform.parent;
+        //newObj.transform.parent = transform; //Hopefully Not Necessary???
         newObj.SetActive(false);
         copies[objNum] = newObj;
 

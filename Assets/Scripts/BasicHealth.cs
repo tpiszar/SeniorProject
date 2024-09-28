@@ -7,6 +7,8 @@ public class BasicHealth : MonoBehaviour
     public int maxHealth;
     protected int health;
 
+    public int manaGain;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class BasicHealth : MonoBehaviour
         //print(gameObject.name + ": " + health);
         if (health <= 0)
         {
+            Mana.Instance.GainMana(manaGain);
             Destroy(gameObject);
         }
     }

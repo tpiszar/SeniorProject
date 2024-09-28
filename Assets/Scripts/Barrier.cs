@@ -8,6 +8,7 @@ public class Barrier : MonoBehaviour
     int health;
 
     public bool startMini = false;
+    GameObject mini;
 
     bool isPlayer;
 
@@ -17,7 +18,7 @@ public class Barrier : MonoBehaviour
         health = maxHealth;
         if (startMini)
         {
-            MiniMapTracker.instance.AddMapBarrier(transform);
+            mini = MiniMapTracker.instance.AddMapBarrier(transform);
         }
         
         if (health == 0)
@@ -65,5 +66,10 @@ public class Barrier : MonoBehaviour
         {
             enemy.barrierFar(transform);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(mini);
     }
 }

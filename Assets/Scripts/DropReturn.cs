@@ -30,25 +30,37 @@ public class DropReturn : MonoBehaviour
             basicPoint = transform.position;
             basicRot = transform.rotation;
         }
+
+        Teleport.Instance.onTeleport += onTeleport;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nextLostReset > 0)
+        if (nextLostReset >= 0)
         {
             nextLostReset -= Time.deltaTime;
-            if (nextLostReset < 0)
+            if (nextLostReset <= 0)
             {
-                rig.velocity = Vector3.zero;
+                if (!rig.isKinematic)
+                {
+                    rig.velocity = Vector3.zero;
+                }
                 ResetObj();
+
+                return;
+            }
+
+            if (rig.isKinematic)
+            {
+                return;
             }
 
             float horizontalMove = Mathf.Abs(rig.velocity.x) + Mathf.Abs(rig.velocity.y);
             if (horizontalMove < 0.1f)
             {
                 nextReset -= Time.deltaTime;
-                if (nextReset < 0)
+                if (nextReset <= 0)
                 {
                     ResetObj();
                 }
@@ -56,11 +68,15 @@ public class DropReturn : MonoBehaviour
         }
     }
 
-    void ResetObj()
+    public void ResetObj()
     {
-        nextLostReset = 0;
-        nextReset = 0;
-        rig.velocity = Vector3.zero;
+        nextLostReset = -1;
+        nextReset = -1;
+
+        if (!rig.isKinematic)
+        {
+            rig.velocity = Vector3.zero;
+        }
 
         if (resetPoint)
         {
@@ -76,13 +92,26 @@ public class DropReturn : MonoBehaviour
 
     public void Grabbed(SelectEnterEventArgs args)
     {
-        nextLostReset = 0;
-        nextReset = 0;
+        nextLostReset = -1;
+        nextReset = -1;
     }
 
     public void Dropped(SelectExitEventArgs args)
     {
         nextLostReset = lostResetTime;
         nextReset = resetTime;
+    }
+
+    void onTeleport(float delay)
+    {
+        if (nextLostReset >= 0 || nextReset >= 0)
+        {
+            ResetObj();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Teleport.Instance.onTeleport -= onTeleport;
     }
 }

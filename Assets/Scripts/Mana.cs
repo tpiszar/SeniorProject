@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
-    public int maxMana;
+    public int maxJarMana;
+
+    public int startingMana;
 
     int currentMana;
 
@@ -21,8 +23,9 @@ public class Mana : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
-            currentMana = maxMana;
+            currentMana = startingMana;
             nextMana = manaGainTime;
+            UpdateJar();
         }
         else
         {
@@ -33,21 +36,18 @@ public class Mana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentMana < maxMana)
+        nextMana -= Time.deltaTime;
+        if (nextMana < 0)
         {
-            nextMana -= Time.deltaTime;
-            if (nextMana < 0)
-            {
-                nextMana = manaGainTime;
-                currentMana++;
-                UpdateJar();
-            }
+            nextMana = manaGainTime;
+            currentMana++;
+            UpdateJar();
         }
     }
 
     void UpdateJar()
     {
-        float ratio = (float)currentMana / maxMana;
+        float ratio = (float)currentMana / maxJarMana;
         Vector3 localScale = jar.localScale;
         localScale.y = ratio;
         jar.localScale = localScale;
@@ -77,5 +77,12 @@ public class Mana : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void GainMana(int amount)
+    {
+        currentMana += amount;
+
+        UpdateJar();
     }
 }

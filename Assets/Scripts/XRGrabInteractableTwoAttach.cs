@@ -12,11 +12,18 @@ public class XRGrabInteractableTwoAttach : XRGrabInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
+        if (attachLeft == attachRight)
+        {
+            base.OnSelectEntered(args);
+            return;
+        }
+
         if (args.interactorObject.transform.CompareTag("Left Hand"))
         {
             if (attachTransform == attachRight)
             {
                 attachTransform = attachLeft;
+
                 interactionManager.SelectExit(args.interactorObject, args.interactableObject);
                 interactionManager.SelectEnter(args.interactorObject, args.interactableObject);
             }
