@@ -14,6 +14,10 @@ public class PlayerDeath : MonoBehaviour
     public GameObject directionalLight;
     private Light skyLight;
 
+    public GameObject lossScreen;
+    public GameObject leftRayInteractor;
+    public GameObject rightRayInteractor;
+
     //public static List<GameObject> towers = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -75,6 +79,9 @@ public class PlayerDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         // SHOW LOSS SCREEN
-        print("LOSS");
+        WaveManager.LevelEnd = true;
+        lossScreen.SetActive(true);
+        leftRayInteractor.SetActive(true);
+        rightRayInteractor.SetActive(true);
     }
 }

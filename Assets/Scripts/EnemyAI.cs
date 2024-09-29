@@ -130,6 +130,11 @@ public class EnemyAI : MonoBehaviour, IComparable
             }
             else if (nextRay < 0)
             {
+                if (chasingBarrier)
+                {
+                    chasingBarrier = false;
+                    agent.SetDestination(player.position);
+                }
                 //if (agent.enabled && agent.path.corners.Length >= 2)
                 //{
                 //    travellingDir = agent.path.corners[1];

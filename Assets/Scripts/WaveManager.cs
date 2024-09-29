@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class WaveManager : MonoBehaviour
 {
-    int curWave = 1;
+    int curWave = 0;
 
     Wave[] waves;
 
@@ -17,11 +18,35 @@ public class WaveManager : MonoBehaviour
 
     public float winDelay;
 
+    public GameObject winScreen;
+    public GameObject leftRayInteractor;
+    public GameObject rightRayInteractor;
+    public GameObject barrierSphere;
+
+    public static bool LevelEnd = false;
+
+    private void Awake()
+    {
+        LevelEnd = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         waves = GetComponentsInChildren<Wave>();
-        nextWave = waves[0].InitializeWave();
+        nextWave = 0;
+        //nextWave = waves[0].InitializeWave();
+    }
+
+    public void CleanUp()
+    {
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (!enemies[i])
+            {
+                enemies.RemoveAt(i);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -31,11 +56,13 @@ public class WaveManager : MonoBehaviour
         {
             if (curWave < waves.Length)
             {
-                nextWave = Time.time + waves[curWave].InitializeWave();
+                nextWave = Time.time + waves[curWave].InitializeWave() + 0.2f;
+                CleanUp();
                 curWave++;
             }
             else
             {
+                CleanUp();
                 if (enemies.Count == 0)
                 {
                     //VICTORY
@@ -48,6 +75,13 @@ public class WaveManager : MonoBehaviour
 
     public void VictoryScreen()
     {
-
+        LevelEnd = true;
+        if (barrierSphere)
+        {
+            barrierSphere.SetActive(false);
+        }
+        winScreen.SetActive(true);
+        leftRayInteractor.SetActive(true);
+        rightRayInteractor.SetActive(true);
     }
 }
