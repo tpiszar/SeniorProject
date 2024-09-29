@@ -66,6 +66,9 @@ public class EnemyAI : MonoBehaviour, IComparable
         nextAttk = attkRate;
         nextDist = distCheckInterval;
         Locate();
+
+        // Will need to be changed in the future
+        animator.speed = 1 / attkRate;
     }
 
     // Update is called once per frame

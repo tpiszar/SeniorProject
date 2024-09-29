@@ -4809,6 +4809,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7741703271322365907, guid: a73391300e7b44b45bbfeed9c730af4c,
+        type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8141,7 +8146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseNum: 2
-  useRate: 2
+  useRate: 20
   mesh: {fileID: 724909276}
   minFade: 0.43
   maxFade: 0.9
@@ -8548,7 +8553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1096706694
 MonoBehaviour:
@@ -8562,23 +8567,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 10
+  startDelay: 15
   spawns:
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
-    counts: 03000000
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0300000002000000
     delay: 0
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
-    counts: 05000000
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0500000003000000
     delay: 5
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 0a000000
     delay: 5
   - enemies:
-    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
-    counts: 14000000
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0a000000
     delay: 10
 --- !u!1 &1121572177
 GameObject:
@@ -9627,7 +9634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1805706593}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1222934760
 MonoBehaviour:
@@ -9645,7 +9652,9 @@ MonoBehaviour:
   spawns:
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
-    counts: 14000000
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 190000001900000019000000
     delay: 0
 --- !u!4 &1228996808 stripped
 Transform:
@@ -11366,10 +11375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33bb0734677b59445af8b98ce1460120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJarMana: 100
+  maxJarMana: 200
   startingMana: 20
   jar: {fileID: 1446288379}
-  manaGainTime: 5
+  manaGainTime: 2
 --- !u!4 &1528836491
 Transform:
   m_ObjectHideFlags: 0
@@ -11704,6 +11713,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7741703271322365907, guid: a73391300e7b44b45bbfeed9c730af4c,
+        type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11814,6 +11828,164 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605249664}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1618521432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618521433}
+  - component: {fileID: 1618521434}
+  m_Layer: 0
+  m_Name: Wave5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1618521433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618521432}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805706593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1618521434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618521432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 20
+  spawns:
+  - enemies:
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 01000000
+    delay: 0
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 14000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 05000000
+    delay: 7
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 05000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 0500000003000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 0a0000000a000000
+    delay: 7
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 140000000a000000
+    delay: 10
+--- !u!1 &1668969810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668969811}
+  - component: {fileID: 1668969812}
+  m_Layer: 0
+  m_Name: Wave4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1668969811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668969810}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805706593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1668969812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668969810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 20
+  spawns:
+  - enemies:
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 01000000
+    delay: 0
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 03000000
+    delay: 2
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 0700000007000000
+    delay: 5
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 07000000
+    delay: 5
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 07000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 07000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 050000000500000003000000
+    delay: 3
+  - enemies:
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 07000000
+    delay: 7
 --- !u!1 &1717042627
 GameObject:
   m_ObjectHideFlags: 0
@@ -12037,7 +12209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseNum: 0
-  useRate: 2
+  useRate: 20
   mesh: {fileID: 261463877}
   minFade: 0.43
   maxFade: 0.9
@@ -12354,7 +12526,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1776900845
 MonoBehaviour:
@@ -12377,27 +12549,31 @@ MonoBehaviour:
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 01000000
-    delay: 1
+    delay: 2
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 01000000
-    delay: 1
+    delay: 2
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 03000000
+    delay: 4
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 02000000
     delay: 3
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 02000000
-    delay: 2
-  - enemies:
-    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
-    counts: 02000000
-    delay: 1
+    delay: 1.5
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     counts: 05000000
     delay: 4
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 03000000
+    delay: 5
 --- !u!1 &1792103845
 GameObject:
   m_ObjectHideFlags: 0
@@ -12523,7 +12699,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1222934759}
+  - {fileID: 1776900844}
+  - {fileID: 1096706693}
+  - {fileID: 1914396877}
+  - {fileID: 1668969811}
+  - {fileID: 1618521433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835540949
@@ -13146,6 +13326,94 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904394492}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1914396876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914396877}
+  - component: {fileID: 1914396878}
+  m_Layer: 0
+  m_Name: Wave3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1914396877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914396876}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805706593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1914396878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914396876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 20
+  spawns:
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0600000003000000
+    delay: 0
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0300000006000000
+    delay: 5
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    counts: 0a000000
+    delay: 6
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 4
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 1
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 1
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 1
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 1
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
+    delay: 1
+  - enemies:
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 05000000
+    delay: 6
 --- !u!1 &1928980940
 GameObject:
   m_ObjectHideFlags: 0
@@ -16982,6 +17250,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7741703271322365907, guid: a73391300e7b44b45bbfeed9c730af4c,
+        type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18089,7 +18362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb9d1b88c1d64745b9f1887993055cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 300
   startMini: 0
 --- !u!23 &3160155430856865205
 MeshRenderer:
@@ -22981,7 +23254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseNum: 1
-  useRate: 2
+  useRate: 20
   mesh: {fileID: 6495491952395363541}
   minFade: 0.43
   maxFade: 0.9
@@ -23451,8 +23724,7 @@ SceneRoots:
   - {fileID: 1273431892}
   - {fileID: 373334571}
   - {fileID: 1805706593}
-  - {fileID: 1776900844}
-  - {fileID: 1096706693}
+  - {fileID: 1222934759}
   - {fileID: 7227921492278715579}
   - {fileID: 1856657881}
   - {fileID: 207486120}

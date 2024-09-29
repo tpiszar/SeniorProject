@@ -47,7 +47,13 @@ public class Mana : MonoBehaviour
 
     void UpdateJar()
     {
-        float ratio = (float)currentMana / maxJarMana;
+        float ratio = 1;
+
+        if (currentMana <= maxJarMana)
+        {
+            ratio = (float)currentMana / maxJarMana;
+        }
+
         Vector3 localScale = jar.localScale;
         localScale.y = ratio;
         jar.localScale = localScale;
