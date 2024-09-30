@@ -49,6 +49,13 @@ public class BasicTowerDetection : MonoBehaviour
         }
     }
 
+    public bool isEmpty()
+    {
+        CleanUp();
+
+        return targets.Count == 0;
+    }
+
     public Transform GetTarget()
     {
         for (int i = targets.Count - 1; i >= 0; i--)
