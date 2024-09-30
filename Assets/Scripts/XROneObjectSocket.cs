@@ -9,11 +9,14 @@ public class XROneObjectSocket : XRSocketInteractor
     [SerializeField]
     public XRGrabInteractable singleObject;
 
+#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         if (!singleObject)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             singleObject = args.interactable.GetComponent<XRGrabInteractable>();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
         if (args.interactableObject == singleObject)
         {
@@ -46,4 +49,5 @@ public class XROneObjectSocket : XRSocketInteractor
             base.OnSelectEntered(args);
         }
     }
+#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
 }

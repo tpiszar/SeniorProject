@@ -44,7 +44,6 @@ public class BasicTowerDetection : MonoBehaviour
             if (!targets[i])
             {
                 targets.RemoveAt(i);
-
             }
         }
     }

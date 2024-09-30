@@ -101,16 +101,23 @@ public class TowerBlast : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         BasicHealth enemy = collision.gameObject.GetComponent<BasicHealth>();
-        if (enemy)
+        if (enemy && collision.transform == target.transform) // Possibly remove the last bit
         {
             enemy.TakeDamage(damage);
             //Destroy(gameObject);
+            print(enemy.transform == target.transform);
         }
 
+        //StopAllCoroutines();
         Destroy(this.gameObject);
         //if (!target)
         //{
         //    Destroy(this.gameObject);
         //}
     }
+
+    //IEnumerator Damage()
+    //{
+
+    //}
 }

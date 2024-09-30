@@ -45,7 +45,8 @@ public class Demo : MonoBehaviour {
 			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
 	}
 
-	void Update () {
+    [Obsolete]
+    void Update () {
 
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
 			if (Input.touchCount > 0) {

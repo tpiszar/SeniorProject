@@ -7,6 +7,7 @@ public class TowerFlame : MonoBehaviour
     public int damage;
     public float burnDuration;
     public float burnRate;
+    public int tickDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class TowerFlame : MonoBehaviour
         if (enemy)
         {
             enemy.TakeDamage(damage);
-            enemy.Burn(burnDuration, burnRate);
+            enemy.Burn(burnDuration, burnRate, tickDamage);
         }
     }
 }

@@ -36,6 +36,9 @@ public class CurrentHand : MonoBehaviour
         {
             noHand = true;
         }
+#pragma warning disable CS0618 // Type or member is obsolete
         controller = args.interactor.GetComponent<XRBaseController>();
+#pragma warning restore CS0618 // Type or member is obsolete
+
     }
 }

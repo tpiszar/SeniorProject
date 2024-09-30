@@ -9,7 +9,6 @@ public class MiniMapSocket : MonoBehaviour
     XRSocketInteractor socket;
     public Collider mapCollider;
     bool slotted = false;
-    bool justSlotted = true;
     int miniNum;
 
     // Start is called before the first frame update

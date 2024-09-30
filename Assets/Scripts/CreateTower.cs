@@ -24,6 +24,7 @@ public class CreateTower : MonoBehaviour
     public Vector3 createRot = Vector3.zero;
 
     public int manaCost;
+    public int refundCost;
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
@@ -34,7 +35,7 @@ public class CreateTower : MonoBehaviour
     {
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.selectEntered.AddListener(Grabbed);
-
+        grabbable.selectExited.AddListener(Dropped);
 
         //for (int i = 0; i < transform.childCount; i++)
         //{
@@ -58,7 +59,30 @@ public class CreateTower : MonoBehaviour
 
     public void Grabbed(SelectEnterEventArgs args)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         holderTrans = args.interactor.transform;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+        //if (tower)
+        //{
+        //    Mana.Instance.PreGaining(refundCost);
+        //}
+        //else
+        //{
+        //    Mana.Instance.PreUsing(manaCost);
+        //}
+    }
+
+    public void Dropped(SelectExitEventArgs args)
+    {
+        //if (tower)
+        //{
+        //    Mana.Instance.PreGaining(refundCost * -1);
+        //}
+        //else
+        //{
+        //    Mana.Instance.PreUsing(manaCost * -1);
+        //}
     }
 
     public void Create()
@@ -74,7 +98,7 @@ public class CreateTower : MonoBehaviour
 
         
 
-        if (Mana.Instance.useMana(manaCost))
+        if (Mana.Instance.UseMana(manaCost))
         {
             Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
             Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
@@ -93,7 +117,10 @@ public class CreateTower : MonoBehaviour
         if (tower)
         {
             //PlayerDeath.towers.Remove(tower);
+            //Mana.Instance.PreGaining(refundCost * -1);
+            Mana.Instance.GainMana(refundCost);
             Destroy(tower);
+            Destroy(socket.gameObject);
         }
     }
 

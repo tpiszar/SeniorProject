@@ -13,7 +13,8 @@ public class BasicHealth : MonoBehaviour
 
     float burnDuration = 0;
     float burnRate = 0;
-    float burnRamp;
+    float burnRamp = 0;
+    int tickBurn = 0;
 
     public Renderer mainRend;
     public float flashSpeed = 0.5f;
@@ -24,7 +25,7 @@ public class BasicHealth : MonoBehaviour
     {
         health = maxHealth;
         mainColor = mainRend.material.color;
-        flashSpeed /= 2;
+        //flashSpeed /= 2;
     }
 
     // Update is called once per frame
@@ -36,7 +37,8 @@ public class BasicHealth : MonoBehaviour
             burnRamp += Time.deltaTime;
             if (burnRamp > burnRate)
             {
-                TakeDamage(1);
+                TakeDamage(tickBurn);
+                burnRamp = 0;
             }
         }
     }
@@ -60,12 +62,12 @@ public class BasicHealth : MonoBehaviour
     {
         float timer = 0;
 
-        while (timer < flashSpeed)
-        {
-            timer += Time.deltaTime;
-            mainRend.material.color = Color.Lerp(mainColor, Color.red, timer / flashSpeed);
-            yield return null;
-        }
+        //while (timer < flashSpeed)
+        //{
+        //    timer += Time.deltaTime;
+        //    mainRend.material.color = Color.Lerp(mainColor, Color.red, timer / flashSpeed);
+        //    yield return null;
+        //}
 
         timer = 0;
         while (timer < flashSpeed)
@@ -77,10 +79,11 @@ public class BasicHealth : MonoBehaviour
         mainRend.material.color = mainColor;
     }
 
-    public void Burn(float duration, float rate)
+    public void Burn(float duration, float rate, int tick)
     {
         burnDuration = duration;
         burnRate = rate;
         burnRamp = 0;
+        tickBurn = tick;
     }
 }

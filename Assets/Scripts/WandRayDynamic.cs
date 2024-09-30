@@ -21,6 +21,7 @@ public class WandRayDynamic : MonoBehaviour
         
     }
 
+#pragma warning disable CS0618 // Type or member is obsolete
     public void makeGrabDynamic(HoverEnterEventArgs args)
     {
         args.interactable.GetComponent<XRGrabInteractable>().useDynamicAttach = true;
@@ -35,4 +36,5 @@ public class WandRayDynamic : MonoBehaviour
     {
         args.interactable.GetComponent<XRGrabInteractable>().useDynamicAttach = false;
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 }

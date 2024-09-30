@@ -36,7 +36,6 @@ public class EnemyAI : MonoBehaviour, IComparable
     Vector3 travellingDir;
 
     public Animator animator;
-    bool attackAnim = false;
 
     public float rotationSpeed;
 

@@ -14,8 +14,8 @@ public class WandTrack : MonoBehaviour
 
     bool dropped = false;
     float dropVelocity;
-    float timeDropped = 0;
-    float timeReturning = 0;
+    //float timeDropped = 0;
+    //float timeReturning = 0;
 
     bool returnToSender = false;
 
@@ -39,7 +39,7 @@ public class WandTrack : MonoBehaviour
         {
             if (!returnToSender)
             {
-                timeDropped += Time.deltaTime;
+                //timeDropped += Time.deltaTime;
                 if (transform.position.y > peakHeight)
                 {
                     peakHeight = transform.position.y;
@@ -73,7 +73,7 @@ public class WandTrack : MonoBehaviour
     public void Collect()
     {
         dropped = false;
-        timeDropped = 0;
+        //timeDropped = 0;
         returnToSender = false;
     }
 }

@@ -10,12 +10,17 @@ public class Mana : MonoBehaviour
 
     int currentMana;
 
-    public Transform jar;
+    public Transform fill;
+    //public Transform useFill;
+    //public Transform gainFill;
 
     public static Mana Instance;
 
     public float manaGainTime = 5f;
     float nextMana;
+
+    //public int preUse = 0;
+    //public int preGain = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,21 +54,23 @@ public class Mana : MonoBehaviour
     {
         float ratio = 1;
 
-        if (currentMana <= maxJarMana)
+        if (currentMana < maxJarMana)
         {
             ratio = (float)currentMana / maxJarMana;
         }
 
-        Vector3 localScale = jar.localScale;
-        localScale.y = ratio;
-        jar.localScale = localScale;
 
-        Vector3 localPos = jar.localPosition;
+
+        Vector3 localScale = fill.localScale;
+        localScale.y = ratio;
+        fill.localScale = localScale;
+
+        Vector3 localPos = fill.localPosition;
         localPos.y = ratio - 1;
-        jar.localPosition = localPos;
+        fill.localPosition = localPos;
     }
 
-    public bool checkMana(int amount)
+    public bool CheckMana(int amount)
     {
         if (currentMana < amount)
         {
@@ -72,9 +79,37 @@ public class Mana : MonoBehaviour
         return true;
     }
 
-    public bool useMana(int amount)
+    //public void PreUsing(int amount)
+    //{
+    //    preUse += amount;
+    //    if (preUse > 0)
+    //    {
+    //        useFill.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        useFill.gameObject.SetActive(false);
+    //    }
+    //    UpdateJar();
+    //}
+
+    //public void PreGaining(int amount)
+    //{
+    //    preGain += amount;
+    //    if (preGain > 0)
+    //    {
+    //        gainFill.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        gainFill.gameObject.SetActive(false);
+    //    }
+    //    UpdateJar();
+    //}
+
+    public bool UseMana(int amount)
     {
-        if (checkMana(amount))
+        if (CheckMana(amount))
         {
             currentMana -= amount;
 
