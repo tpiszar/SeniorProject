@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlastAttack : MonoBehaviour
 {
     public int damage;
+    bool hit = false;
 
 
     // Start is called before the first frame update
@@ -21,6 +22,12 @@ public class BlastAttack : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (hit)
+        {
+            return;
+        }
+
+        hit = true;
         BasicHealth enemy = collision.gameObject.GetComponent<BasicHealth>();
         if (enemy)
         {

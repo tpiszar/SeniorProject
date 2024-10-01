@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [System.Serializable]
 public class BodySocket
@@ -13,6 +14,7 @@ public class BodySocket
 public class BodySockets : MonoBehaviour
 {
     public Transform player;
+    public Transform xrRig;
     public BodySocket[] sockets;
 
     // Start is called before the first frame update
@@ -26,7 +28,7 @@ public class BodySockets : MonoBehaviour
     {
         foreach (BodySocket socket in sockets)
         {
-            socket.sTransform.position = new Vector3(socket.sTransform.position.x, player.position.y * socket.heightRatio, socket.sTransform.position.z);
+            socket.sTransform.position = new Vector3(socket.sTransform.position.x, player.localPosition.y * socket.heightRatio + xrRig.position.y, socket.sTransform.position.z);
         }
         transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         transform.rotation = new Quaternion(transform.rotation.x, player.rotation.y, transform.rotation.z, player.rotation.w);

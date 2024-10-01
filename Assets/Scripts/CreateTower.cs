@@ -134,7 +134,7 @@ public class CreateTower : MonoBehaviour
             //PlayerDeath.towers.Remove(tower);
             Mana.Instance.GainMana(refundCost);
             Destroy(tower);
-            Destroy(socket.gameObject);
+            //Destroy(socket.gameObject);
         }
     }
 

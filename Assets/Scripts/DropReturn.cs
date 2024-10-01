@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -10,9 +11,9 @@ public class DropReturn : MonoBehaviour
     Quaternion basicRot;
 
     public float resetTime = 5;
-    float nextReset = 0;
+    float nextReset = -1;
     public float lostResetTime = 15;
-    float nextLostReset = 0;
+    float nextLostReset = -1;
 
     Rigidbody rig;
 
@@ -73,7 +74,7 @@ public class DropReturn : MonoBehaviour
         nextLostReset = -1;
         nextReset = -1;
 
-        if (!rig.isKinematic)
+        if (rig && !rig.isKinematic)
         {
             rig.velocity = Vector3.zero;
         }
@@ -104,6 +105,10 @@ public class DropReturn : MonoBehaviour
 
     void onTeleport(float delay)
     {
+        if (!this)
+        { return; }
+
+
         if (nextLostReset >= 0 || nextReset >= 0)
         {
             ResetObj();
