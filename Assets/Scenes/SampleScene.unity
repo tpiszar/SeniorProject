@@ -9562,7 +9562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1222934760
 MonoBehaviour:
@@ -9582,8 +9582,20 @@ MonoBehaviour:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
     - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
-    counts: 190000001900000019000000
-    delay: 0
+    counts: 050000000500000005000000
+    delay: 5
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 050000000500000005000000
+    delay: 5
+  - enemies:
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 1592463388622421454, guid: 93ca719dab01c5c43b1545554c951483, type: 3}
+    - {fileID: 1592463388622421454, guid: e6a6d4a64b1db1547b18133b99ac6f0b, type: 3}
+    counts: 050000000500000005000000
+    delay: 5
 --- !u!4 &1228996808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5599615280915046323, guid: 6e749585b02084d48aeaf9d5a2157365,
@@ -11911,7 +11923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1805706593}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1618521434
 MonoBehaviour:
@@ -12860,7 +12872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1618521433}
+  - {fileID: 1222934759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835540949
@@ -20915,7 +20927,7 @@ MonoBehaviour:
   - {fileID: 1021714134750235905}
   - {fileID: 1038784570}
   playerBase: {fileID: 7227921492278715579}
-  curBase: 0
+  curBase: 1
   easeInTime: 0.3
   teleportTime: 0.7
   vignetteProvider: {fileID: 7459332643820366378}
@@ -24387,8 +24399,8 @@ SceneRoots:
   - {fileID: 1096706693}
   - {fileID: 1914396877}
   - {fileID: 1668969811}
+  - {fileID: 1618521433}
   - {fileID: 1805706593}
-  - {fileID: 1222934759}
   - {fileID: 7227921492278715579}
   - {fileID: 1856657881}
   - {fileID: 207486120}
