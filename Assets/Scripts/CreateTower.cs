@@ -26,8 +26,6 @@ public class CreateTower : MonoBehaviour
     public int manaCost;
     public int refundCost;
 
-    bool doPreUse = false;
-    bool undoPreUse = false;
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;

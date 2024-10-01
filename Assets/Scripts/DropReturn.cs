@@ -32,7 +32,10 @@ public class DropReturn : MonoBehaviour
             basicRot = transform.rotation;
         }
 
-        Teleport.Instance.onTeleport += onTeleport;
+        if (Teleport.Instance)
+        {
+            Teleport.Instance.onTeleport += onTeleport;
+        }
     }
 
     // Update is called once per frame
@@ -117,6 +120,9 @@ public class DropReturn : MonoBehaviour
 
     private void OnDestroy()
     {
-        Teleport.Instance.onTeleport -= onTeleport;
+        if (Teleport.Instance)
+        {
+            Teleport.Instance.onTeleport -= onTeleport;
+        }
     }
 }

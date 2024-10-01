@@ -76,11 +76,14 @@ public class WaveManager : MonoBehaviour
     public void VictoryScreen()
     {
         LevelEnd = true;
+
         if (barrierSphere)
         {
             barrierSphere.SetActive(false);
         }
         winScreen.SetActive(true);
+
+        HandRay.activeHandRays = true;
         leftRayInteractor.SetActive(true);
         rightRayInteractor.SetActive(true);
     }

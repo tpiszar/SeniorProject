@@ -5,11 +5,20 @@ using UnityEngine;
 public class HandRay : MonoBehaviour
 {
     bool holding = false;
+    public bool overrideOn = false;
+
+    public static bool activeHandRays = false;
+
+    bool started = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!WaveManager.LevelEnd || holding)
+        activeHandRays = overrideOn;
+
+        started = true;
+
+        if (!activeHandRays || holding)
         {
             gameObject.SetActive(false);
         }
@@ -28,7 +37,7 @@ public class HandRay : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        else
+        else if (activeHandRays)
         {
             gameObject.SetActive(true);
         }
@@ -36,7 +45,12 @@ public class HandRay : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!WaveManager.LevelEnd || holding)
+        if (!started)
+        {
+            return;
+        }
+
+        if (!activeHandRays || holding)
         {
             gameObject.SetActive(false);
         }

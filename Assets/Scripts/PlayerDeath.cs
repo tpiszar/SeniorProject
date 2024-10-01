@@ -81,6 +81,7 @@ public class PlayerDeath : MonoBehaviour
         // SHOW LOSS SCREEN
         WaveManager.LevelEnd = true;
         lossScreen.SetActive(true);
+        HandRay.activeHandRays = true;
         leftRayInteractor.SetActive(true);
         rightRayInteractor.SetActive(true);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 public class UIScript : MonoBehaviour
 {
@@ -11,6 +11,17 @@ public class UIScript : MonoBehaviour
     public float padding;
 
     Color fadeColor;
+
+    bool paused = false;
+    public GameObject pauseScreen;
+    public GameObject barrierSphere;
+
+
+    public bool pauseable = true;
+    public InputActionProperty pauseButton;
+
+    public GameObject leftRayInteractor;
+    public GameObject rightRayInteractor;
 
     private void Awake()
     {
@@ -26,11 +37,17 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (pauseable && pauseButton.action.WasPressedThisFrame())
+        {
+            TogglePause();
+        }
     }
 
     IEnumerator Fade(float a, float b)
     {
+        leftRayInteractor.SetActive(false);
+        rightRayInteractor.SetActive(false);
+
         if (a > b)
         {
             yield return new WaitForSeconds(padding);
@@ -53,10 +70,48 @@ public class UIScript : MonoBehaviour
 
             yield return null;
         }
+
+        leftRayInteractor.SetActive(true);
+        rightRayInteractor.SetActive(true);
+    }
+
+    public void TogglePause()
+    {
+        if (WaveManager.LevelEnd)
+        {
+            return;
+        }
+
+
+        paused = !paused;
+        if (paused)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+            barrierSphere.SetActive(false);
+
+            HandRay.activeHandRays = true;
+            leftRayInteractor.SetActive(true);
+            rightRayInteractor.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+            barrierSphere.SetActive(true);
+
+            HandRay.activeHandRays = false;
+            leftRayInteractor.SetActive(false);
+            rightRayInteractor.SetActive(false);
+        }
     }
 
     public void LoadScene(string scene)
     {
+        if (paused)
+        {
+            TogglePause();
+        }
         StartCoroutine(Fade(0, 1));
         StartCoroutine(Load(scene));
     }
@@ -65,7 +120,6 @@ public class UIScript : MonoBehaviour
     {
         yield return new WaitForSeconds(fadeTime + padding);
 
-        Time.timeScale = 1f;
         SceneManager.LoadScene(scene);
     }
 
