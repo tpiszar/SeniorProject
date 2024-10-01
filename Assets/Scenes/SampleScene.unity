@@ -4526,12 +4526,12 @@ PrefabInstance:
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.5982788
+      value: 3.8732038
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.55
+      value: -1.5477
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
@@ -6367,8 +6367,8 @@ Transform:
   m_GameObject: {fileID: 783310181}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1.01, y: 0.2, z: 1.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 461236119}
@@ -8071,7 +8071,7 @@ MonoBehaviour:
   useRate: 20
   mesh: {fileID: 724909276}
   minFade: 0.43
-  maxFade: 0.9
+  maxFade: 0.8
   hand: {fileID: 1038784573}
   heldHapticIntensity: 0.05
   heldHapticDuration: 0.1
@@ -8481,7 +8481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1096706694
 MonoBehaviour:
@@ -9562,7 +9562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1805706593}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1222934760
 MonoBehaviour:
@@ -10849,8 +10849,8 @@ Transform:
   m_GameObject: {fileID: 1446288378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 461236119}
@@ -11427,7 +11427,11 @@ MonoBehaviour:
   maxJarMana: 200
   startingMana: 20
   fill: {fileID: 1446288379}
+  useFill: {fileID: 2018076768}
+  gainFill: {fileID: 783310182}
   manaGainTime: 2
+  preUse: 0
+  preGain: 0
 --- !u!4 &1528836491
 Transform:
   m_ObjectHideFlags: 0
@@ -11695,7 +11699,7 @@ PrefabInstance:
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.2505658
+      value: 3.5493293
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
@@ -11710,7 +11714,7 @@ PrefabInstance:
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7125
+      value: 4.7058
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
@@ -11907,7 +11911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1618521434
 MonoBehaviour:
@@ -11984,7 +11988,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1668969812
 MonoBehaviour:
@@ -12261,7 +12265,7 @@ MonoBehaviour:
   useRate: 20
   mesh: {fileID: 261463877}
   minFade: 0.43
-  maxFade: 0.9
+  maxFade: 0.8
   hand: {fileID: 1717042630}
   heldHapticIntensity: 0.05
   heldHapticDuration: 0.1
@@ -12683,7 +12687,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1776900845
 MonoBehaviour:
@@ -12856,7 +12860,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1222934759}
+  - {fileID: 1776900844}
+  - {fileID: 1096706693}
+  - {fileID: 1914396877}
+  - {fileID: 1668969811}
+  - {fileID: 1618521433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835540949
@@ -13716,7 +13724,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914396878
 MonoBehaviour:
@@ -15262,8 +15270,8 @@ Transform:
   m_GameObject: {fileID: 2018076767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalScale: {x: 1.01, y: 0.2, z: 1.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 461236119}
@@ -17826,7 +17834,7 @@ PrefabInstance:
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.9073708
+      value: 4.2443185
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
@@ -17841,7 +17849,7 @@ PrefabInstance:
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0772
+      value: 0.0526
       objectReference: {fileID: 0}
     - target: {fileID: 27054474201682112, guid: a73391300e7b44b45bbfeed9c730af4c,
         type: 3}
@@ -20422,6 +20430,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5011330122036576239}
+    - target: {fileID: 6933703783088721463, guid: a1e6f70532a932b40ad80e79492a0e56,
+        type: 3}
+      propertyPath: refundCost
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6945140359171443144, guid: a1e6f70532a932b40ad80e79492a0e56,
         type: 3}
       propertyPath: m_InteractionManager
@@ -21735,6 +21748,11 @@ PrefabInstance:
       objectReference: {fileID: 5011330122036576239}
     - target: {fileID: 5946311345837640535, guid: 9c1a4a0ba6a693a43a9cb8e334c34a09,
         type: 3}
+      propertyPath: refundCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5946311345837640535, guid: 9c1a4a0ba6a693a43a9cb8e334c34a09,
+        type: 3}
       propertyPath: attachPoint
       value: 
       objectReference: {fileID: 1040194407}
@@ -22467,6 +22485,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5011330122036576239}
+    - target: {fileID: 3462537009931833568, guid: 839fcec7292fb884cb54abb052abe721,
+        type: 3}
+      propertyPath: refundCost
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3816738559446410469, guid: 839fcec7292fb884cb54abb052abe721,
         type: 3}
       propertyPath: m_DynamicOccludee
@@ -23886,7 +23909,7 @@ MonoBehaviour:
   useRate: 20
   mesh: {fileID: 6495491952395363541}
   minFade: 0.43
-  maxFade: 0.9
+  maxFade: 0.8
   hand: {fileID: 8679122624134811942}
   heldHapticIntensity: 0.05
   heldHapticDuration: 0.1
@@ -24196,6 +24219,16 @@ PrefabInstance:
       propertyPath: newGestureName
       value: blast
       objectReference: {fileID: 0}
+    - target: {fileID: 6609064577754461722, guid: 6e749585b02084d48aeaf9d5a2157365,
+        type: 3}
+      propertyPath: spells.Array.data[1].unlocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609064577754461722, guid: 6e749585b02084d48aeaf9d5a2157365,
+        type: 3}
+      propertyPath: spells.Array.data[2].unlocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7192099296930988207, guid: 6e749585b02084d48aeaf9d5a2157365,
         type: 3}
       propertyPath: m_InteractionManager
@@ -24354,11 +24387,7 @@ SceneRoots:
   - {fileID: 373334571}
   - {fileID: 9665019}
   - {fileID: 1805706593}
-  - {fileID: 1776900844}
-  - {fileID: 1096706693}
-  - {fileID: 1914396877}
-  - {fileID: 1668969811}
-  - {fileID: 1618521433}
+  - {fileID: 1222934759}
   - {fileID: 7227921492278715579}
   - {fileID: 1856657881}
   - {fileID: 207486120}

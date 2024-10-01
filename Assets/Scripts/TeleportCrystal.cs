@@ -52,6 +52,8 @@ public class TeleportCrystal : MonoBehaviour
         if (Teleport.Instance.curBase == baseNum)
         {
             timeToUse = useRate;
+            off = true;
+            grabbable.enabled = false;
         }
     }
 

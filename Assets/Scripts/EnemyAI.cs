@@ -70,6 +70,11 @@ public class EnemyAI : MonoBehaviour, IComparable
         animator.speed = 1 / attkRate;
     }
 
+    private void OnEnable()
+    {
+        if (player) { Locate(); }
+    }
+
     // Update is called once per frame
     void Update()
     {

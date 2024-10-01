@@ -105,7 +105,6 @@ public class TowerBlast : MonoBehaviour
         {
             enemy.TakeDamage(damage);
             //Destroy(gameObject);
-            print(enemy.transform == target.transform);
         }
 
         //StopAllCoroutines();

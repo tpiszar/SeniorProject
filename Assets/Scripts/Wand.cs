@@ -45,6 +45,7 @@ public class Wand : MonoBehaviour
     [System.Serializable]
     public class Spell
     {
+        public bool unlocked = true;
         public string name;
         public int number;
         public float recognitionThreshold = 0.8f;
@@ -70,17 +71,36 @@ public class Wand : MonoBehaviour
         //rayInteractor.interactablesSelected[0];
         //rayInteractor.interactionManager.SelectEnter(rayInteractor.GetComponent<IXRSelectInteractor>(), wandHeld.GetComponent<IXRSelectInteractable>());
 
-        TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("Gestures/");
-        foreach (TextAsset gestureXml in gesturesXml)
+        //TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("Gestures/");
+        //foreach (TextAsset gestureXml in gesturesXml)
+        //{
+        //    trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
+        //}
+        
+        foreach (Spell spell in spells)
         {
-            trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
-        }
+            if (spell.unlocked)
+            {
+                TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>(spell.name + "/");
+                foreach (TextAsset gesture in gesturesXml)
+                {
+                    trainingSet.Add(GestureIO.ReadGestureFromXML(gesture.text));
+                }
 
-        TextAsset[] gesturesXmlLeft = Resources.LoadAll<TextAsset>("GesturesLeft/");
-        foreach (TextAsset gestureXmlLeft in gesturesXmlLeft)
-        {
-            leftTrainingSet.Add(GestureIO.ReadGestureFromXML(gestureXmlLeft.text));
+                TextAsset[] gesturesXmlLeft = Resources.LoadAll<TextAsset>(spell.name + "Left/");
+                foreach (TextAsset gesture in gesturesXmlLeft)
+                {
+                    leftTrainingSet.Add(GestureIO.ReadGestureFromXML(gesture.text));
+                }
+            }
         }
+        
+
+        //TextAsset[] gesturesXmlLeft = Resources.LoadAll<TextAsset>("GesturesLeft/");
+        //foreach (TextAsset gestureXmlLeft in gesturesXmlLeft)
+        //{
+        //    leftTrainingSet.Add(GestureIO.ReadGestureFromXML(gestureXmlLeft.text));
+        //}
 
         camReference = Camera.main.transform;
 

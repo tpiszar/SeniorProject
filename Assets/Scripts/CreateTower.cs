@@ -26,6 +26,9 @@ public class CreateTower : MonoBehaviour
     public int manaCost;
     public int refundCost;
 
+    bool doPreUse = false;
+    bool undoPreUse = false;
+
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
     //Material baseMat;
@@ -57,32 +60,44 @@ public class CreateTower : MonoBehaviour
 
     }
 
+    bool socketGrab = true;
+
     public void Grabbed(SelectEnterEventArgs args)
     {
 #pragma warning disable CS0618 // Type or member is obsolete
         holderTrans = args.interactor.transform;
 #pragma warning restore CS0618 // Type or member is obsolete
 
-        //if (tower)
-        //{
-        //    Mana.Instance.PreGaining(refundCost);
-        //}
-        //else
-        //{
-        //    Mana.Instance.PreUsing(manaCost);
-        //}
+        if (tower)
+        {
+            if (!socketGrab)
+            {
+                Mana.Instance.PreGaining(refundCost);
+            }
+            socketGrab = !socketGrab;
+        }
+        else
+        {
+            Mana.Instance.PreUsing(manaCost);
+        }
     }
+
+    bool socketDrop = true;
 
     public void Dropped(SelectExitEventArgs args)
     {
-        //if (tower)
-        //{
-        //    Mana.Instance.PreGaining(refundCost * -1);
-        //}
-        //else
-        //{
-        //    Mana.Instance.PreUsing(manaCost * -1);
-        //}
+        if (tower)
+        {
+            if (!socketDrop)
+            {
+                Mana.Instance.PreGaining(refundCost * -1);
+            }
+            socketDrop = !socketDrop;
+        }
+        else
+        {
+            Mana.Instance.PreUsing(manaCost * -1);
+        }
     }
 
     public void Create()
@@ -117,7 +132,6 @@ public class CreateTower : MonoBehaviour
         if (tower)
         {
             //PlayerDeath.towers.Remove(tower);
-            //Mana.Instance.PreGaining(refundCost * -1);
             Mana.Instance.GainMana(refundCost);
             Destroy(tower);
             Destroy(socket.gameObject);

@@ -16,6 +16,7 @@ public class Teleport : MonoBehaviour
     public Transform playerBase;
 
     public int curBase = 0;
+    int lastBase = 1;
 
     public float easeInTime = 0.3f;
     public float teleportTime;
@@ -29,8 +30,7 @@ public class Teleport : MonoBehaviour
             onTeleport(easeInTime);
         }
 
-        crystals[curBase].SetActive(true);
-
+        lastBase = curBase;
         curBase = baseNum;
 
         vignetteProvider.setLocomotion(LocomotionPhase.Moving);
@@ -44,6 +44,7 @@ public class Teleport : MonoBehaviour
         playerBase.rotation = bases[curBase].rotation;
 
         crystals[curBase].SetActive(false);
+        crystals[lastBase].SetActive(true);
 
         Invoke("endTeleport", easeInTime);
     }
@@ -58,7 +59,6 @@ public class Teleport : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
-            doTeleport();
         }
         else
         {
@@ -70,6 +70,8 @@ public class Teleport : MonoBehaviour
     void Start()
     {
         Teleport.Instance.onTeleport += onTeleport;
+
+        doTeleport();
     }
 
     public bool testDone = true;
