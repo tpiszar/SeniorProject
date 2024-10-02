@@ -26,11 +26,14 @@ public class Wand : MonoBehaviour
     private List<Gesture> leftTrainingSet = new List<Gesture>();
 
     public GameObject[] rayObjects;
-   // public XRRayInteractor[] rayInteractors;
+    public XRRayInteractor[] rayInteractors;
+    public WandRayDynamic[] dynamicRays;
     int currentRay = 0;
     //public XRInteractorLineVisual rayVisual;
     XRGrabInteractable wandHeld;
     bool usingRay = false;
+
+    public XRGrabInteractable wandGrababble;
 
     public Transform shootPoint;
     public float force = 30;
@@ -105,6 +108,9 @@ public class Wand : MonoBehaviour
         camReference = Camera.main.transform;
 
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
+
+        wandGrababble = grabbable;
+
         grabbable.selectEntered.AddListener(WandGrabbed);
         grabbable.selectExited.AddListener(WandReleased);
     }
@@ -203,7 +209,7 @@ public class Wand : MonoBehaviour
         {
             if (righty)
             {
-                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/Gestures", newGestureName, DateTime.Now.ToFileTime());
+                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/" + newGestureName, newGestureName, DateTime.Now.ToFileTime());
 
                 #if !UNITY_WEBPLAYER
                     GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
@@ -215,7 +221,7 @@ public class Wand : MonoBehaviour
             }
             else
             {
-                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/GesturesLeft", newGestureName, DateTime.Now.ToFileTime());
+                string fileName = String.Format("{0}/{1}-{2}.xml", "Assets/PDollar/Resources/" + newGestureName + "Left", newGestureName, DateTime.Now.ToFileTime());
 
                 #if !UNITY_WEBPLAYER
                     GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
@@ -271,11 +277,16 @@ public class Wand : MonoBehaviour
 
         if (activeSpell == 1)
         {
-            //GameObject fireball = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
-            ////rayInteractor.interactionManager.ForceSelect(rayInteractor, fireball.GetComponent<XRGrabInteractable>());
-            //wandHeld = fireball.GetComponent<XRGrabInteractable>();
-            //rayInteractor.interactionManager.SelectEnter(rayInteractor, wandHeld);
-            //fireball.transform.position = shootPoint.position;
+            GameObject fireball = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
+            //rayInteractor.interactionManager.ForceSelect(rayInteractor, fireball.GetComponent<XRGrabInteractable>());
+            wandHeld = fireball.GetComponent<XRGrabInteractable>();
+
+            dynamicRays[currentRay].enabled = false;
+            rayInteractors[currentRay].allowAnchorControl = false;
+            rayInteractors[currentRay].useForceGrab = true;
+            rayInteractors[currentRay].interactionManager.SelectEnter(rayInteractors[currentRay], wandHeld);
+
+            fireball.transform.position = shootPoint.position;
         }
     }
 
@@ -294,7 +305,13 @@ public class Wand : MonoBehaviour
                 break;
 
             case 1: //Fireball
-                    //rayInteractor.interactionManager.SelectExit(rayInteractor, wandHeld);
+                dynamicRays[currentRay].enabled = true;
+                rayInteractors[currentRay].allowAnchorControl = true;
+                rayInteractors[currentRay].useForceGrab = false;
+
+                //wandGrababble.interactionManager.SelectExit(hand.movementSource.GetComponent<XRDirectInteractor>(), wandHeld);
+
+                //rayInteractors[currentRay].interactionManager.SelectExit(rayInteractors[currentRay], wandHeld);
                 break;
 
             case 2: //Lightning

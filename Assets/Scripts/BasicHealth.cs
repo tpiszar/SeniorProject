@@ -81,7 +81,7 @@ public class BasicHealth : MonoBehaviour
 
     public void Burn(float duration, float rate, int tick)
     {
-        burnDuration = duration;
+        burnDuration = duration + 0.1f;
         burnRate = rate;
         burnRamp = 0;
         tickBurn = tick;
