@@ -7,6 +7,8 @@ using PDollarGestureRecognizer;
 using System.Linq;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SocialPlatforms;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Wand : MonoBehaviour
 {
@@ -57,6 +59,24 @@ public class Wand : MonoBehaviour
 
     [SerializeField]
     public Spell[] spells;
+
+    float lightningCharge = 0;
+    public int lightningDamage;
+    public LayerMask lightningMask;
+    public float lightningRange = 50;
+    public float lightningRadius;
+    public float maxChargeTime = 5;
+    public float minChargeTime = 1;
+    public float maxChargeMod = 2;
+    public int jumpCount = 3;
+    public float jumpMod = 0.5f;
+    public float jumpRadius;
+    public float jumpDelay = 1;
+
+    public LineRenderer lightningRender;
+    public float lightningDuration;
+    public static float lightningSpikesPerUnit = 3;
+    public static float lightningSpikeOffset = 0.1f;
 
     [Range(0, 1)]
     public float primeHapticIntensity;
@@ -118,6 +138,11 @@ public class Wand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lightningCharge > 0)
+        {
+            lightningCharge -= Time.deltaTime;
+        }
+
         if (hand.noHand)
         {
             DisableControllerRays();
@@ -288,6 +313,10 @@ public class Wand : MonoBehaviour
 
             fireball.transform.position = shootPoint.position;
         }
+        else if (activeSpell == 2)
+        {
+            lightningCharge = maxChargeTime;
+        }
     }
 
     void Fire()
@@ -316,6 +345,45 @@ public class Wand : MonoBehaviour
 
             case 2: //Lightning
 
+                float modifier = 1;
+                if (lightningCharge > maxChargeTime - minChargeTime) 
+                {
+                    modifier += (maxChargeTime - lightningCharge - minChargeTime) / (maxChargeTime - minChargeTime) * maxChargeMod;
+                }
+
+                RaycastHit[] hits = Physics.SphereCastAll(shootPoint.position, lightningRadius, shootPoint.up, lightningRange, lightningMask);
+                float minDist = float.MaxValue;
+                BasicHealth minEn = null;
+                for (int i = 0; i < hits.Length; i++)
+                {
+                    BasicHealth newEn = hits[i].transform.GetComponent<BasicHealth>();
+                    float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
+                    if (newDist < minDist)
+                    {
+                        minDist = newDist;
+                        minEn = newEn;
+                    }
+                }
+
+                if (minEn)
+                {
+                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay);
+
+                    StartCoroutine(DrawLightning(minEn.transform));
+                }
+
+                //RaycastHit hit;
+                //if (Physics.SphereCast(shootPoint.position, lightningRadius, shootPoint.up, out hit, lightningRange, lightningMask))
+                //{
+                //    BasicHealth enemy = hit.transform.GetComponent<BasicHealth>();
+                //    if (enemy)
+                //    {
+                //        enemy.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay);
+
+                //        StartCoroutine(DrawLightning(enemy.transform));
+                //    }
+                //}
+
                 break;
         }
 
@@ -324,6 +392,65 @@ public class Wand : MonoBehaviour
         primed = false;
         rayObjects[currentRay].SetActive(true);
         activeSpell = -1;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(shootPoint.position, lightningRadius);
+
+        RaycastHit hit;
+        if (Physics.SphereCast(shootPoint.position, lightningCharge, shootPoint.up, out hit, lightningRange, lightningMask))
+        {
+            Gizmos.color = Color.green;
+            Vector3 sphereCastMidpoint = shootPoint.position + (shootPoint.up * hit.distance);
+            Gizmos.DrawWireSphere(sphereCastMidpoint, lightningRadius);
+            Gizmos.DrawSphere(hit.point, 0.1f);
+            Debug.DrawLine(shootPoint.position, sphereCastMidpoint, Color.green);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Vector3 sphereCastMidpoint = shootPoint.position + (shootPoint.up * (lightningRange - lightningRadius));
+            Gizmos.DrawWireSphere(sphereCastMidpoint, lightningRadius);
+            Debug.DrawLine(transform.position, sphereCastMidpoint, Color.red);
+        }
+    }
+
+    IEnumerator DrawLightning(Transform enemy)
+    {
+        float distance = Vector3.Distance(transform.position, enemy.position);
+        int numSegments = Mathf.CeilToInt(distance * lightningSpikesPerUnit);
+
+        // Set the LineRenderer position count
+        lightningRender.positionCount = numSegments + 2;  // +2 to account for start and end points
+
+        // Set the start position (wand position)
+        lightningRender.SetPosition(0, transform.position);
+
+        // Add intermediate points with random offsets to create spikes
+        for (int i = 1; i <= numSegments; i++)
+        {
+            // Interpolate between wand and enemy
+            float t = (float)i / (numSegments + 1);  // Normalized position along the line
+            Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy.position, t);
+
+            // Apply a random offset to make it jagged (spike effect)
+            Vector3 randomOffset = new Vector3(
+                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
+                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
+                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset)
+            );
+
+            // Set the position in the LineRenderer
+            lightningRender.SetPosition(i, interpolatedPos + randomOffset);
+        }
+        lightningRender.SetPosition(1, enemy.position);
+
+        lightningRender.enabled = true;
+
+        yield return new WaitForSeconds(lightningDuration);
+
+        lightningRender.enabled = false;
     }
 
     public void TriggerHaptic(float intensity, float duration)

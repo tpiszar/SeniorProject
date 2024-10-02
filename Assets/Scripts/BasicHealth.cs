@@ -20,6 +20,9 @@ public class BasicHealth : MonoBehaviour
     public float flashSpeed = 0.5f;
     Color mainColor;
 
+    public LineRenderer lightningRender;
+    public float lightningDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,5 +88,55 @@ public class BasicHealth : MonoBehaviour
         burnRate = rate;
         burnRamp = 0;
         tickBurn = tick;
+    }
+
+    public void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0)
+    {
+        TakeDamage(damage);
+
+        jumpCount--;
+        if (jumpCount > 0)
+        {
+            StartCoroutine(ShockJump((int)(damage * jumpMod), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay));
+        }
+    }
+
+    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay)
+    {
+        yield return new WaitForSeconds(jumpDelay);
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, jumpRadius, lightningMask);
+
+        float minDist = float.MaxValue;
+        BasicHealth minEn = null;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            BasicHealth newEn = hits[i].GetComponent<BasicHealth>();
+            float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
+            if (newDist < minDist)
+            {
+                minDist = newDist;
+                minEn = newEn;
+            }
+        }
+
+        if (minEn)
+        {
+            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay);
+
+            StartCoroutine(DrawLightning(minEn.transform));
+        }
+    }
+
+    IEnumerator DrawLightning(Transform nextEnemy)
+    {
+        lightningRender.SetPosition(0, transform.position);
+        lightningRender.SetPosition(1, nextEnemy.position);
+
+        lightningRender.enabled = true;
+
+        yield return new WaitForSeconds(lightningDuration);
+
+        lightningRender.enabled = false;
     }
 }
