@@ -2274,24 +2274,29 @@ MonoBehaviour:
   lightningDamage: 10
   lightningMask:
     serializedVersion: 2
-    m_Bits: 513
-  lightningRange: 50
-  lightningRadius: 3
+    m_Bits: 512
+  blockMask:
+    serializedVersion: 2
+    m_Bits: 1
+  lightningRange: 25
+  lightningRadius: 2
   maxChargeTime: 5
   minChargeTime: 1
   maxChargeMod: 2
   jumpCount: 3
   jumpMod: 0.5
   jumpRadius: 5
-  jumpDelay: 1
+  jumpDelay: 0.2
   lightningRender: {fileID: 6680278765335616409}
-  lightningDuration: 2
   primeHapticIntensity: 0.2
   primeHapticDuration: 0.2
   fireHapticIntensity: 0.5
   fireHapticDuration: 0.2
   magicGrabHapticIntensity: 0.1
   magicGrabHapticDuration: 0.1
+  chargeIntensityMin: 0.05
+  chargeIntensityMax: 0.3
+  chargeDuration: 0.1
 --- !u!114 &7192099296930988207
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,7 +21,8 @@ public class BasicHealth : MonoBehaviour
     Color mainColor;
 
     public LineRenderer lightningRender;
-    public float lightningDuration;
+
+    float delayDeath = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -53,12 +54,9 @@ public class BasicHealth : MonoBehaviour
         if (health <= 0)
         {
             Mana.Instance.GainMana(manaGain);
-            Destroy(gameObject);
+            Destroy(gameObject, delayDeath);
         }
-        else
-        {
-            StartCoroutine(DamageFlash());
-        }
+        StartCoroutine(DamageFlash());
     }
 
     IEnumerator DamageFlash()
@@ -90,21 +88,26 @@ public class BasicHealth : MonoBehaviour
         tickBurn = tick;
     }
 
-    public void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0)
+    public void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0, Transform shocker = null)
     {
+        delayDeath = jumpDelay + .1f;
+
         TakeDamage(damage);
+
+        print(transform.name + " " + damage + " " + health);
 
         jumpCount--;
         if (jumpCount > 0)
         {
-            StartCoroutine(ShockJump((int)(damage * jumpMod), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay));
+            StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, shocker));
         }
     }
 
-    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay)
+    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay, Transform shocker)
     {
         yield return new WaitForSeconds(jumpDelay);
 
+        bool shockerClose = false;
         Collider[] hits = Physics.OverlapSphere(transform.position, jumpRadius, lightningMask);
 
         float minDist = float.MaxValue;
@@ -112,6 +115,18 @@ public class BasicHealth : MonoBehaviour
         for (int i = 0; i < hits.Length; i++)
         {
             BasicHealth newEn = hits[i].GetComponent<BasicHealth>();
+
+            if (newEn.transform == shocker) // Avoids reshocking the same enemy that shocked it unless there are no other options
+            {
+                shockerClose = true;
+                continue;
+            }
+
+            if (!newEn || newEn == this)
+            {
+                continue;
+            }
+
             float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
             if (newDist < minDist)
             {
@@ -122,20 +137,60 @@ public class BasicHealth : MonoBehaviour
 
         if (minEn)
         {
-            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay);
+            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, transform);
 
-            StartCoroutine(DrawLightning(minEn.transform));
+            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay));
         }
+        else if (shockerClose)
+        {
+            BasicHealth newEn = shocker.GetComponent<BasicHealth>();
+            if (newEn)
+            {
+                newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, transform);
+
+                StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay));
+            }
+        }
+        else
+        {
+            // Could have enemy take the extra shock damage if there is nothing left to chain to?
+        }
+        delayDeath = 0;
     }
 
-    IEnumerator DrawLightning(Transform nextEnemy)
+    IEnumerator DrawLightning(Vector3 enemy, float duration)
     {
+        float distance = Vector3.Distance(transform.position, enemy);
+        int numSegments = Mathf.CeilToInt(distance * Wand.lightningSpikesPerUnit);
+
+        // Set the LineRenderer position count
+        lightningRender.positionCount = numSegments + 2;  // +2 to account for start and end points
+
+        // Set the start position (wand position)
         lightningRender.SetPosition(0, transform.position);
-        lightningRender.SetPosition(1, nextEnemy.position);
+
+        // Add intermediate points with random offsets to create spikes
+        for (int i = 1; i <= numSegments; i++)
+        {
+            // Interpolate between wand and enemy
+            float t = (float)i / (numSegments + 1);  // Normalized position along the line
+            Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy, t);
+
+            // Apply a random offset to make it jagged (spike effect)
+            Vector3 randomOffset = new Vector3(
+                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
+                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
+                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset)
+            );
+
+            // Set the position in the LineRenderer
+            lightningRender.SetPosition(i, interpolatedPos + randomOffset);
+        }
+        lightningRender.SetPosition(lightningRender.positionCount - 1, enemy);
 
         lightningRender.enabled = true;
 
-        yield return new WaitForSeconds(lightningDuration);
+        yield return new WaitForSeconds(duration);
 
         lightningRender.enabled = false;
     }
