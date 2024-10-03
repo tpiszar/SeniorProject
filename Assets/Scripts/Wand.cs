@@ -6,10 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using PDollarGestureRecognizer;
 using System.Linq;
 using System;
-using Unity.VisualScripting;
 using UnityEngine.SocialPlatforms;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.EventSystems.EventTrigger;
+using static Wand;
 
 public class Wand : MonoBehaviour
 {
@@ -56,6 +54,7 @@ public class Wand : MonoBehaviour
         public int number;
         public float recognitionThreshold = 0.8f;
         public GameObject attackPrefab;
+        public ParticleSystem chargeSystem;
     }
 
     [SerializeField]
@@ -77,7 +76,8 @@ public class Wand : MonoBehaviour
 
     public LineRenderer lightningRender;
     public static float lightningSpikesPerUnit = 3;
-    public static float lightningSpikeOffset = 0.1f;
+    public static float lightningSpikeOffset = 0.2f;
+    public static float lightningSpikeOffsetMax = 0.2f;
 
     [Range(0, 1)]
     public float primeHapticIntensity;
@@ -142,6 +142,7 @@ public class Wand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (lightningCharge > 0)
         {
             lightningCharge -= Time.deltaTime;
@@ -292,6 +293,7 @@ public class Wand : MonoBehaviour
                     TriggerHaptic(primeHapticIntensity, primeHapticDuration);
                     print("PRIMED " + spell.name);
                     activeSpell = spell.number;
+                    spell.chargeSystem.Play();
                 }
                 break;
             }
@@ -364,6 +366,8 @@ public class Wand : MonoBehaviour
 
             case 2: //Lightning
 
+
+                spells[activeSpell].chargeSystem.Stop();
 
                 float modifier = 1;
                 if (lightningCharge < maxChargeTime - minChargeTime) 
@@ -496,27 +500,21 @@ public class Wand : MonoBehaviour
         float distance = Vector3.Distance(transform.position, enemy);
         int numSegments = Mathf.CeilToInt(distance * lightningSpikesPerUnit);
 
-        // Set the LineRenderer position count
-        lightningRender.positionCount = numSegments + 2;  // +2 to account for start and end points
+        lightningRender.positionCount = numSegments + 2;
 
-        // Set the start position (wand position)
         lightningRender.SetPosition(0, transform.position);
 
-        // Add intermediate points with random offsets to create spikes
         for (int i = 1; i <= numSegments; i++)
         {
-            // Interpolate between wand and enemy
-            float t = (float)i / (numSegments + 1);  // Normalized position along the line
+            float t = (float)i / (numSegments + 1);
             Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy, t);
 
-            // Apply a random offset to make it jagged (spike effect)
             Vector3 randomOffset = new Vector3(
                 UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
                 UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
                 UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset)
             );
 
-            // Set the position in the LineRenderer
             lightningRender.SetPosition(i, interpolatedPos + randomOffset);
         }
         lightningRender.SetPosition(lightningRender.positionCount - 1, enemy);

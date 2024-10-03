@@ -163,27 +163,21 @@ public class BasicHealth : MonoBehaviour
         float distance = Vector3.Distance(transform.position, enemy);
         int numSegments = Mathf.CeilToInt(distance * Wand.lightningSpikesPerUnit);
 
-        // Set the LineRenderer position count
-        lightningRender.positionCount = numSegments + 2;  // +2 to account for start and end points
+        lightningRender.positionCount = numSegments + 2;
 
-        // Set the start position (wand position)
         lightningRender.SetPosition(0, transform.position);
 
-        // Add intermediate points with random offsets to create spikes
         for (int i = 1; i <= numSegments; i++)
         {
-            // Interpolate between wand and enemy
-            float t = (float)i / (numSegments + 1);  // Normalized position along the line
+            float t = (float)i / (numSegments + 1);
             Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy, t);
 
-            // Apply a random offset to make it jagged (spike effect)
             Vector3 randomOffset = new Vector3(
                 UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
                 UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
                 UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset)
             );
 
-            // Set the position in the LineRenderer
             lightningRender.SetPosition(i, interpolatedPos + randomOffset);
         }
         lightningRender.SetPosition(lightningRender.positionCount - 1, enemy);

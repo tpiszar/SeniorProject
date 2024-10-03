@@ -33,6 +33,7 @@ public class Barrier : MonoBehaviour
         if (healthText)
         {
             startingColor = healthText.color;
+            healthText.text = health.ToString();
         }
     }
 
@@ -50,7 +51,9 @@ public class Barrier : MonoBehaviour
         if (healthText)
         {
             healthText.text = health.ToString();
-            healthText.color = Color.Lerp(startingColor, Color.red, health / maxHealth);
+            float t = (float)health / maxHealth;
+            Color lerpColor = Color.Lerp(Color.red, startingColor, t);
+            healthText.color = lerpColor;
         }
 
         if (health <= 0)
