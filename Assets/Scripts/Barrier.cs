@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Barrier : MonoBehaviour
@@ -11,6 +12,9 @@ public class Barrier : MonoBehaviour
     GameObject mini;
 
     bool isPlayer;
+
+    public TextMeshProUGUI healthText;
+    Color startingColor;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,11 @@ public class Barrier : MonoBehaviour
         {
             isPlayer = true;
         }
+
+        if (healthText)
+        {
+            startingColor = healthText.color;
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +46,13 @@ public class Barrier : MonoBehaviour
     {
         health -= damage;
         //print(gameObject.name + ": " + health);
+
+        if (healthText)
+        {
+            healthText.text = health.ToString();
+            healthText.color = Color.Lerp(startingColor, Color.red, health / maxHealth);
+        }
+
         if (health <= 0)
         {
             if (isPlayer)

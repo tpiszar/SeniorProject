@@ -36,7 +36,7 @@ public class Wand : MonoBehaviour
     XRGrabInteractable wandHeld;
     bool usingRay = false;
 
-    public XRGrabInteractable wandGrababble;
+    public XRGrabInteractable wandGrabbable;
 
     public Transform shootPoint;
     public float force = 30;
@@ -133,12 +133,10 @@ public class Wand : MonoBehaviour
 
         camReference = Camera.main.transform;
 
-        XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
+        wandGrabbable = GetComponent<XRGrabInteractable>();
 
-        wandGrababble = grabbable;
-
-        grabbable.selectEntered.AddListener(WandGrabbed);
-        grabbable.selectExited.AddListener(WandReleased);
+        wandGrabbable.selectEntered.AddListener(WandGrabbed);
+        wandGrabbable.selectExited.AddListener(WandReleased);
     }
 
     // Update is called once per frame
@@ -323,7 +321,12 @@ public class Wand : MonoBehaviour
             dynamicRays[currentRay].enabled = false;
             rayInteractors[currentRay].allowAnchorControl = false;
             rayInteractors[currentRay].useForceGrab = true;
-            rayInteractors[currentRay].interactionManager.SelectEnter(rayInteractors[currentRay], wandHeld);
+
+            //rayInteractors[currentRay].interactionManager.SelectEnter(rayInteractors[currentRay], wandHeld);
+
+            // Potential Solution hand grabs and attach point is set so it appears to be on the tip of the wand
+            fireball.transform.GetChild(0).position = wandGrabbable.attachTransform.position;
+            wandGrabbable.interactionManager.SelectEnter(hand.interactor, wandHeld);
 
             fireball.transform.position = shootPoint.position;
         }
@@ -352,7 +355,9 @@ public class Wand : MonoBehaviour
                 rayInteractors[currentRay].allowAnchorControl = true;
                 rayInteractors[currentRay].useForceGrab = false;
 
-                //wandGrababble.interactionManager.SelectExit(hand.movementSource.GetComponent<XRDirectInteractor>(), wandHeld);
+
+                // Using Hand
+                wandGrabbable.interactionManager.SelectExit(hand.interactor, wandHeld);
 
                 //rayInteractors[currentRay].interactionManager.SelectExit(rayInteractors[currentRay], wandHeld);
                 break;

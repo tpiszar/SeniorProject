@@ -8,6 +8,7 @@ public class CurrentHand : MonoBehaviour
 {
     public XRNode inputSource;
     public XRBaseController controller;
+    public IXRSelectInteractor interactor;
     public Transform movementSource;
     public bool noHand = true;
 
@@ -38,6 +39,7 @@ public class CurrentHand : MonoBehaviour
         }
 #pragma warning disable CS0618 // Type or member is obsolete
         controller = args.interactor.GetComponent<XRBaseController>();
+        interactor = args.interactorObject;
 #pragma warning restore CS0618 // Type or member is obsolete
 
     }

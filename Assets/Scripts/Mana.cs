@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Mana : MonoBehaviour
@@ -21,6 +22,8 @@ public class Mana : MonoBehaviour
 
     public int preUse = 0;
     public int preGain = 0;
+
+    public TextMeshProUGUI manaText;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,11 @@ public class Mana : MonoBehaviour
 
     void UpdateJar()
     {
+        if (manaText)
+        {
+            manaText.text = currentMana.ToString();
+        }
+
         float ratio = 1;
 
         float appendedMana = currentMana - preUse;
