@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 7919749415591318870}
   - component: {fileID: 964965699098678141}
   - component: {fileID: 1732301652542345474}
+  - component: {fileID: 1779938916734627202}
   m_Layer: 9
   m_Name: Slime
   m_TagString: Untagged
@@ -336,7 +337,6 @@ MonoBehaviour:
   mainRend: {fileID: 1289062648050102269}
   flashSpeed: 0.4
   lightningRender: {fileID: 8874779019928022365}
-  lightningDuration: 0
 --- !u!114 &1732301652542345474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +363,23 @@ MonoBehaviour:
   marker: {fileID: 5077127888441677261}
   animator: {fileID: 6505433766460004034}
   rotationSpeed: 150
+--- !u!114 &1779938916734627202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592463388622421454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e998fce258ba0044ac5ffc519916110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 0.25
+  maxSpeed: 2.5
+  lerpTime: 1
+  minSize: {x: 1, y: 1, z: 1}
+  maxSize: {x: 0.8, y: 0.8, z: 1.2}
 --- !u!1 &2617996314555030991
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +621,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3807336259420697419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

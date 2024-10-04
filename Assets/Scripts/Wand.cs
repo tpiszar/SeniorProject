@@ -316,18 +316,21 @@ public class Wand : MonoBehaviour
 
         if (activeSpell == 1)
         {
+            DisableControllerRays();
+
             GameObject fireball = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
             //rayInteractor.interactionManager.ForceSelect(rayInteractor, fireball.GetComponent<XRGrabInteractable>());
             wandHeld = fireball.GetComponent<XRGrabInteractable>();
 
-            dynamicRays[currentRay].enabled = false;
-            rayInteractors[currentRay].allowAnchorControl = false;
-            rayInteractors[currentRay].useForceGrab = true;
+            //dynamicRays[currentRay].enabled = false;
+            //rayInteractors[currentRay].allowAnchorControl = false;
+            //rayInteractors[currentRay].useForceGrab = true;
 
             //rayInteractors[currentRay].interactionManager.SelectEnter(rayInteractors[currentRay], wandHeld);
 
             // Potential Solution hand grabs and attach point is set so it appears to be on the tip of the wand
             fireball.transform.GetChild(0).position = wandGrabbable.attachTransform.position;
+            fireball.transform.GetChild(0).rotation = wandGrabbable.attachTransform.rotation;
             wandGrabbable.interactionManager.SelectEnter(hand.interactor, wandHeld);
 
             fireball.transform.position = shootPoint.position;
@@ -340,6 +343,8 @@ public class Wand : MonoBehaviour
 
     void Fire()
     {
+        spells[activeSpell].chargeSystem.Stop();
+
         //Attack
         switch (activeSpell)
         {
@@ -353,13 +358,17 @@ public class Wand : MonoBehaviour
                 break;
 
             case 1: //Fireball
-                dynamicRays[currentRay].enabled = true;
-                rayInteractors[currentRay].allowAnchorControl = true;
-                rayInteractors[currentRay].useForceGrab = false;
+                //dynamicRays[currentRay].enabled = true;
+                //rayInteractors[currentRay].allowAnchorControl = true;
+                //rayInteractors[currentRay].useForceGrab = false;
 
+                SetControllerRay();
 
                 // Using Hand
-                wandGrabbable.interactionManager.SelectExit(hand.interactor, wandHeld);
+                if (wandHeld)
+                {
+                    wandGrabbable.interactionManager.SelectExit(hand.interactor, wandHeld);
+                }
 
                 //rayInteractors[currentRay].interactionManager.SelectExit(rayInteractors[currentRay], wandHeld);
                 break;
@@ -528,6 +537,11 @@ public class Wand : MonoBehaviour
 
     public void TriggerHaptic(float intensity, float duration)
     {
+        if (hand.noHand)
+        {
+            return;
+        }
+
         hand.controller.SendHapticImpulse(intensity, duration);
     }
 

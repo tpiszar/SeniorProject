@@ -94,8 +94,6 @@ public class BasicHealth : MonoBehaviour
 
         TakeDamage(damage);
 
-        print(transform.name + " " + damage + " " + health);
-
         jumpCount--;
         if (jumpCount > 0)
         {
