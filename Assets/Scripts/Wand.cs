@@ -46,6 +46,9 @@ public class Wand : MonoBehaviour
     float primer = 0;
     int activeSpell = -1;
 
+    public LineRenderer trailLine;
+    public float trailDissipateTime = 2f;
+
     [System.Serializable]
     public class Spell
     {
@@ -173,6 +176,10 @@ public class Wand : MonoBehaviour
             if (positionsList.Count == 0)
             {
                 positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
+                trailLine.positionCount = 1;
+                trailLine.SetPosition(0, hand.movementSource.position);
+                trailLine.enabled = true;
+
                 return;
             }
             Vector3 lastPos = positionsList[positionsList.Count - 1];
@@ -180,6 +187,8 @@ public class Wand : MonoBehaviour
             if (Vector3.Distance(currentPos, lastPos) > newPosThreshold)
             {
                 positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
+                trailLine.positionCount++;
+                trailLine.SetPosition(trailLine.positionCount - 1, hand.movementSource.position);
 
                 if (debug)
                 {
@@ -214,6 +223,7 @@ public class Wand : MonoBehaviour
             {
                 rayObjects[currentRay].SetActive(true);
                 positionsList.Clear();
+                Invoke("DisableTrail", trailDissipateTime);
                 primer = 0;
             }
             else
@@ -304,6 +314,7 @@ public class Wand : MonoBehaviour
             if (endCharge)
             {
                 positionsList.Clear();
+                Invoke("DisableTrail", trailDissipateTime);
                 charging = false;
                 waitForNext = true;
             }
@@ -311,6 +322,7 @@ public class Wand : MonoBehaviour
         else
         {
             positionsList.Clear();
+            Invoke("DisableTrail", trailDissipateTime);
             charging = false;
         }
 
@@ -543,6 +555,12 @@ public class Wand : MonoBehaviour
         }
 
         hand.controller.SendHapticImpulse(intensity, duration);
+    }
+
+    void DisableTrail()
+    {
+        trailLine.enabled = false;
+        trailLine.positionCount = 0;
     }
 
     public void RayActive()

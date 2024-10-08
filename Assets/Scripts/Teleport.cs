@@ -15,6 +15,7 @@ public class Teleport : MonoBehaviour
     public GameObject[] crystals;
     public Transform playerBase;
 
+    public int startingBase = 0;
     public int curBase = 0;
     int lastBase = 1;
 
@@ -69,6 +70,8 @@ public class Teleport : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startingBase = curBase;
+
         Teleport.Instance.onTeleport += onTeleport;
 
         doTeleport();

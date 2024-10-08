@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -11,6 +12,7 @@ public class TeleportCrystal : MonoBehaviour
 
     public float useRate;
     float timeToUse = -1;
+    public bool startOff = false;
 
     public MeshRenderer mesh;
     [Range(0, 1)]
@@ -38,6 +40,9 @@ public class TeleportCrystal : MonoBehaviour
 
     DropReturn dropReturn;
 
+    public GameObject timerUI;
+    public TextMeshProUGUI timerText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,12 +54,15 @@ public class TeleportCrystal : MonoBehaviour
         crystalMat = mesh.material;
 
         dropReturn = GetComponent<DropReturn>();
-
-        if (Teleport.Instance.curBase == baseNum)
+        if (Teleport.Instance.startingBase == baseNum)
         {
             timeToUse = useRate;
             off = true;
             grabbable.enabled = false;
+        }
+        else
+        {
+            timerUI.SetActive(false);
         }
     }
 
@@ -64,6 +72,12 @@ public class TeleportCrystal : MonoBehaviour
         if (off)
         {
             timeToUse -= Time.deltaTime;
+
+            if (timerText)
+            {
+                timerText.text = timeToUse.ToString("F1");
+            }
+
             crystalMat.color = new Color(crystalMat.color.r, crystalMat.color.g, crystalMat.color.b, Mathf.Lerp(maxFade, minFade, timeToUse / useRate));
             mesh.material = crystalMat;
             if (timeToUse < 0)
@@ -73,6 +87,11 @@ public class TeleportCrystal : MonoBehaviour
 
                 crystalMat.color = new Color(crystalMat.color.r, crystalMat.color.g, crystalMat.color.b, 1);
                 mesh.material = crystalMat;
+
+                if (timerUI)
+                {
+                    timerUI.SetActive(false);
+                }
             }
         }
 
@@ -101,11 +120,18 @@ public class TeleportCrystal : MonoBehaviour
             grabbable.enabled = false;
             dropReturn.ResetObj();
 
+            timerUI.SetActive(true);
+
             Teleport.Instance.startTeleport(baseNum);
 
             TriggerHaptic(crushHapticIntensity, Teleport.Instance.easeInTime);
             Invoke("TeleportHaptic", Teleport.Instance.easeInTime);
         }
+    }
+
+    private void OnEnable()
+    {
+       
     }
 
     void TeleportHaptic()
