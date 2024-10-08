@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IComparable
     // Start is called before the first frame update
     void Start()
     {
-        Teleport.Instance.onTeleport += onTeleport;
+        Teleport.Instance.onTeleport += OnTeleport;
         agent = GetComponent<NavMeshAgent>();
         nextAttk = attkRate;
         nextDist = distCheckInterval;
@@ -198,7 +198,7 @@ public class EnemyAI : MonoBehaviour, IComparable
             Barrier barrier = curAttackObj.GetComponent<Barrier>();
             if (barrier)
             {
-                barrier.TakeDamage(damage);
+                barrier.TakeDamage(damage, gameObject);
 
                 if (!barrier)
                 {
@@ -291,7 +291,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         chasingBarrier = false;
     }
 
-    private void onTeleport(float teleportTime)
+    private void OnTeleport(float teleportTime)
     {
         agent.enabled = false;
         chasingBarrier = false;
@@ -316,6 +316,6 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     private void OnDestroy()
     {
-        Teleport.Instance.onTeleport -= onTeleport;
+        Teleport.Instance.onTeleport -= OnTeleport;
     }
 }

@@ -26,7 +26,7 @@ public class TowerFlame : MonoBehaviour
         BasicHealth enemy = other.gameObject.GetComponent<BasicHealth>();
         if (enemy)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
             enemy.Burn(burnDuration, burnRate, tickDamage);
         }
     }

@@ -75,6 +75,12 @@ public class UIScript : MonoBehaviour
         rightRayInteractor.SetActive(true);
     }
 
+    public void Next(GameObject activate)
+    {
+        activate.SetActive(true);
+        transform.parent.gameObject.SetActive(false);
+    }
+
     public void TogglePause()
     {
         if (WaveManager.LevelEnd)

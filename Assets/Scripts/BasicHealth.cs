@@ -24,6 +24,13 @@ public class BasicHealth : MonoBehaviour
 
     float delayDeath = 0;
 
+    public enum DamageType
+    {
+        energy,
+        fire,
+        lightning
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,13 +48,13 @@ public class BasicHealth : MonoBehaviour
             burnRamp += Time.deltaTime;
             if (burnRamp > burnRate)
             {
-                TakeDamage(tickBurn);
+                TakeDamage(tickBurn, DamageType.fire);
                 burnRamp = 0;
             }
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, DamageType type)
     {
         health -= damage;
         //print(gameObject.name + ": " + health);
@@ -80,7 +87,7 @@ public class BasicHealth : MonoBehaviour
         mainRend.material.color = mainColor;
     }
 
-    public void Burn(float duration, float rate, int tick)
+    public virtual void Burn(float duration, float rate, int tick)
     {
         burnDuration = duration + 0.1f;
         burnRate = rate;
@@ -88,11 +95,11 @@ public class BasicHealth : MonoBehaviour
         tickBurn = tick;
     }
 
-    public void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0, Transform shocker = null)
+    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0, Transform shocker = null)
     {
         delayDeath = jumpDelay + .1f;
 
-        TakeDamage(damage);
+        TakeDamage(damage, DamageType.lightning);
 
         jumpCount--;
         if (jumpCount > 0)

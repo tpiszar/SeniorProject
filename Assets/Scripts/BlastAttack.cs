@@ -31,7 +31,7 @@ public class BlastAttack : MonoBehaviour
         BasicHealth enemy = collision.gameObject.GetComponent<BasicHealth>();
         if (enemy)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
         }
         Destroy(gameObject);
     }

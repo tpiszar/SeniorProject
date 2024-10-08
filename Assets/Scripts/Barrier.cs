@@ -8,6 +8,8 @@ public class Barrier : MonoBehaviour
     public int maxHealth;
     int health;
 
+    public bool annihilate = false;
+
     public bool startMini = false;
     GameObject mini;
 
@@ -43,10 +45,15 @@ public class Barrier : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject attacker)
     {
         health -= damage;
         //print(gameObject.name + ": " + health);
+
+        if (annihilate)
+        {
+            Destroy(attacker);
+        }
 
         if (healthText)
         {

@@ -38,7 +38,7 @@ public class FireBall : MonoBehaviour
         BasicHealth enemy = collision.gameObject.GetComponent<BasicHealth>();
         if (enemy)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
         }
 
         StartCoroutine(ExpandFlame());
