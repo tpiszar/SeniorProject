@@ -60,8 +60,12 @@ public class EnemyAI : MonoBehaviour, IComparable
     // Start is called before the first frame update
     void Start()
     {
-        Teleport.Instance.onTeleport += OnTeleport;
+        if (Teleport.Instance)
+        {
+            Teleport.Instance.onTeleport += OnTeleport;
+        }
         agent = GetComponent<NavMeshAgent>();
+        print(agent);
         nextAttk = attkRate;
         nextDist = distCheckInterval;
         Locate();
@@ -316,6 +320,9 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     private void OnDestroy()
     {
-        Teleport.Instance.onTeleport -= OnTeleport;
+        if (Teleport.Instance)
+        {
+            Teleport.Instance.onTeleport -= OnTeleport;
+        }
     }
 }

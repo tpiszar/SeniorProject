@@ -86,7 +86,10 @@ public class TutorialManager : MonoBehaviour
         CreateTower[] towers = FindObjectsOfType<CreateTower>();
         foreach (CreateTower t in towers)
         {
-            Destroy(t.gameObject);
+            if (t && t.hasTower())
+            {            
+                Destroy(t.gameObject);
+            }
         }
 
         counter++;

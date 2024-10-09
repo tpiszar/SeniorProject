@@ -8,18 +8,6 @@ public class SpecificDamageHealth : BasicHealth
     public bool fire;
     public bool lightning;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void TakeDamage(int damage, DamageType type)
     {
         if (type == DamageType.energy && !energy)

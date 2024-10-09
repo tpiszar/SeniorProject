@@ -153,7 +153,7 @@ public class BasicHealth : MonoBehaviour
             {
                 newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, transform);
 
-                StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay));
+                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay));
             }
         }
         else

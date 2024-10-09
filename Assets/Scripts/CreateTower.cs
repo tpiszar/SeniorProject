@@ -125,6 +125,11 @@ public class CreateTower : MonoBehaviour
         }
     }
 
+    public bool hasTower()
+    {
+        return tower;
+    }
+
     private void OnDestroy()
     {
         if (tower)
