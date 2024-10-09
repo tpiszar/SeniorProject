@@ -24,7 +24,9 @@ public class Respawns : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            //Destroy(this);
+
+            instance = this;
         }
     }
 

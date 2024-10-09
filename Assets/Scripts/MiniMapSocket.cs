@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class MiniMapSocket : MonoBehaviour
 {
     public GameObject mini;
-    XRSocketInteractor socket;
+    XROneObjectSocket socket;
     public Collider mapCollider;
     bool slotted = false;
     int miniNum;
@@ -14,7 +14,7 @@ public class MiniMapSocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        socket = GetComponent<XRSocketInteractor>();
+        socket = GetComponent<XROneObjectSocket>();
         socket.hoverExited.AddListener(HoverExit);
         socket.selectEntered.AddListener(Release);
         socket.selectExited.AddListener(Stolen);
@@ -33,6 +33,12 @@ public class MiniMapSocket : MonoBehaviour
 
     public void HoverExit(HoverExitEventArgs args)
     {
+        
+        if (socket.singleObject != args.interactable.gameObject)
+        {
+            return;
+        }
+
         if (slotted)
         {
             Destroy(mini.gameObject);
@@ -46,6 +52,11 @@ public class MiniMapSocket : MonoBehaviour
 
     public void Release(SelectEnterEventArgs args)
     {
+        if (socket.singleObject != args.interactable.gameObject)
+        {
+            return;
+        }
+
         if (!slotted)
         {
             mapCollider.enabled = false;

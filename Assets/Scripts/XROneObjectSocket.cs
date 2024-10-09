@@ -7,47 +7,69 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class XROneObjectSocket : XRSocketInteractor
 {
     [SerializeField]
-    public XRGrabInteractable singleObject;
+    public GameObject singleObject;
 
-#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
-    protected override void OnHoverEntered(HoverEnterEventArgs args)
+    //protected override void OnHoverEntered(HoverEnterEventArgs args)
+    //{
+    //    if (!singleObject)
+    //    {
+    //        singleObject = args.interactable.gameObject;
+    //    }
+    //    if (args.interactable.gameObject == singleObject)
+    //    {
+    //        base.OnHoverEntered(args);
+    //    }
+
+    //    if (args.interactable.gameObject != singleObject)
+    //    {
+    //        //interactionManager.CancelInteractableHover(args.interactableObject);
+    //        //interactionManager.HoverExit(this, args.interactableObject);
+    //    }
+    //    else
+    //    {
+    //        base.OnHoverEntered(args);
+    //    }
+    //}
+
+    //protected override void OnHoverExited(HoverExitEventArgs args)
+    //{
+    //    if (args.interactable.gameObject == singleObject)
+    //    {
+    //        base.OnHoverExited(args);
+    //    }
+    //}
+
+    //protected override void OnSelectExited(SelectExitEventArgs args)
+    //{
+    //    showInteractableHoverMeshes = true;
+    //    if (args.interactable.gameObject == singleObject)
+    //    {
+    //        base.OnSelectExited(args);
+    //    }
+    //}
+
+    //protected override void OnSelectEntered(SelectEnterEventArgs args)
+    //{
+    //    showInteractableHoverMeshes = false;
+
+    //    if (args.interactable.gameObject == singleObject)
+    //    {
+    //        base.OnSelectEntered(args);
+    //    }
+    //}
+
+    public override bool CanHover(XRBaseInteractable interactable)
     {
         if (!singleObject)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            singleObject = args.interactable.GetComponent<XRGrabInteractable>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            singleObject = interactable.gameObject;
         }
-        if (args.interactableObject == singleObject)
-        {
-            base.OnHoverEntered(args);
-        }
+
+        return interactable.gameObject == singleObject && base.CanHover(interactable);
     }
 
-    protected override void OnHoverExited(HoverExitEventArgs args)
+    public override bool CanSelect(XRBaseInteractable interactable)
     {
-        if (args.interactableObject == singleObject)
-        {
-            base.OnHoverExited(args);
-        }
+        return interactable.gameObject == singleObject && base.CanSelect(interactable);
     }
-
-    protected override void OnSelectExited(SelectExitEventArgs args)
-    {
-        showInteractableHoverMeshes = true;
-        if (args.interactableObject == singleObject)
-        {
-            base.OnSelectExited(args);
-        }
-    }
-
-    protected override void OnSelectEntered(SelectEnterEventArgs args)
-    {
-        showInteractableHoverMeshes = false;
-        if (args.interactableObject == singleObject)
-        {
-            base.OnSelectEntered(args);
-        }
-    }
-#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
 }

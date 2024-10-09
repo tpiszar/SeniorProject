@@ -6051,6 +6051,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483089773}
   m_CullTransparentMesh: 1
+--- !u!1 &491086905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491086907}
+  - component: {fileID: 491086906}
+  m_Layer: 0
+  m_Name: Respawn Crystal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &491086906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491086905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b79f536af28aa4283ad4f570c435e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToRespawn:
+  - {fileID: 975588846}
+--- !u!4 &491086907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491086905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &501307839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501307841}
+  - component: {fileID: 501307840}
+  m_Layer: 0
+  m_Name: Respawns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &501307840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501307839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b79f536af28aa4283ad4f570c435e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToRespawn:
+  - {fileID: 1162946774}
+  - {fileID: 975588846}
+  - {fileID: 464131421}
+--- !u!4 &501307841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501307839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506266050
 GameObject:
   m_ObjectHideFlags: 0
@@ -12655,7 +12749,6 @@ MonoBehaviour:
   - {fileID: 1592463388279467632}
   - {fileID: 1592463387862799122}
   - {fileID: 1592463388476351446}
-  - {fileID: 1162946774}
   disables: []
   keyObjects:
   - {fileID: 9087999755030141163}
@@ -13591,7 +13684,7 @@ MonoBehaviour:
   - {fileID: 1298973700}
   - {fileID: 1037255086}
   enables:
-  - {fileID: 975588846}
+  - {fileID: 491086905}
   - {fileID: 511322155}
   - {fileID: 1256505422}
   - {fileID: 1314167992}
@@ -27083,12 +27176,12 @@ GameObject:
   - component: {fileID: 1856657881}
   - component: {fileID: 1856657880}
   m_Layer: 0
-  m_Name: Respawns
+  m_Name: Respawn Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1856657880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27103,8 +27196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToRespawn:
   - {fileID: 1162946774}
-  - {fileID: 975588846}
-  - {fileID: 464131421}
 --- !u!4 &1856657881
 Transform:
   m_ObjectHideFlags: 0
@@ -31082,6 +31173,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &2118291593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118291595}
+  - component: {fileID: 2118291594}
+  m_Layer: 0
+  m_Name: Respawn Flame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2118291594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118291593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b79f536af28aa4283ad4f570c435e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToRespawn:
+  - {fileID: 464131421}
+--- !u!4 &2118291595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118291593}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132361686
 GameObject:
   m_ObjectHideFlags: 0
@@ -31365,7 +31502,7 @@ MonoBehaviour:
   - {fileID: 1573944507}
   - {fileID: 910815594}
   enables:
-  - {fileID: 464131421}
+  - {fileID: 2118291593}
   - {fileID: 1112043718}
   - {fileID: 68320005}
   - {fileID: 1980883761}
@@ -31667,7 +31804,10 @@ SceneRoots:
   - {fileID: 1222934759}
   - {fileID: 1805706593}
   - {fileID: 1440328580}
+  - {fileID: 501307841}
   - {fileID: 1856657881}
+  - {fileID: 491086907}
+  - {fileID: 2118291595}
   - {fileID: 207486120}
   - {fileID: 1378382608}
   - {fileID: 1837435802}
