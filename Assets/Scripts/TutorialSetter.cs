@@ -13,10 +13,15 @@ public class TutorialSetter : MonoBehaviour
     public bool crystalTower = true;
     public bool flameOrbTower = true;
 
-    //private void Awake()
-    //{
-    //    Set();
-    //}
+
+    public bool setOnAwake = false;
+    private void Awake()
+    {
+        if (setOnAwake)
+        {
+            Set();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

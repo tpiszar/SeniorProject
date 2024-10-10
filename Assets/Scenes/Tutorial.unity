@@ -8033,7 +8033,7 @@ Transform:
   m_GameObject: {fileID: 688827560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.1233383, y: 0.69234, z: 0.710574}
+  m_LocalPosition: {x: 0.49, y: 0.69234, z: 0.959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8058,7 +8058,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.2, y: 1.985, z: 0.2}
+  m_Extents: {x: 0.1, y: 1.985, z: 0.1}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -8787,6 +8787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775187284}
   - component: {fileID: 775187283}
+  - component: {fileID: 775187285}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -8838,6 +8839,27 @@ Transform:
   - {fileID: 2141452234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &775187285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775187282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263829c3f522d3a4aad21115817bc6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPlacing: 0
+  energyBlast: 0
+  fireball: 0
+  lightning: 0
+  barrier: 1
+  teleport: 0
+  crystalTower: 0
+  flameOrbTower: 0
+  setOnAwake: 0
 --- !u!1 &776500903
 GameObject:
   m_ObjectHideFlags: 0
@@ -12710,7 +12732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1063426851
 Transform:
   m_ObjectHideFlags: 0
@@ -13601,7 +13623,7 @@ MonoBehaviour:
   - {fileID: 1375635814}
   - {fileID: 1428953146}
   manager: {fileID: 775187283}
-  fullActivate: 0
+  fullActivate: 1
 --- !u!1 &1190081798
 GameObject:
   m_ObjectHideFlags: 0
@@ -21005,6 +21027,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1692261302}
+    - target: {fileID: 7919749415591318870, guid: 36bd157f0fb23ca4ebc176ae882680e2,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9087999753093483349, guid: 36bd157f0fb23ca4ebc176ae882680e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21803,6 +21830,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 30.141
       objectReference: {fileID: 0}
+    - target: {fileID: 762071242111522569, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: directionalLight
@@ -21902,6 +21934,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954701465978671160, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Carve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954701465978671160, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Extents.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954701465978671160, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Extents.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8201502209615163912, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}

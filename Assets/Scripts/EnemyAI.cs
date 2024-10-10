@@ -17,6 +17,9 @@ public class EnemyAI : MonoBehaviour, IComparable
     float nextRay = 0;
     public LayerMask hitMask;
 
+    [Range(0f, 1f)]
+    public float rayBlendAmount = 0.5f;
+
     public float relocateInterval;
     float nextLocate = 0;
 
@@ -33,9 +36,10 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public Transform marker;
 
-    Vector3 travellingDir;
+    public Vector3 travellingDir;
 
     public Animator animator;
+    public float attackAnimDuration = 1;
 
     public float rotationSpeed;
 
@@ -65,13 +69,14 @@ public class EnemyAI : MonoBehaviour, IComparable
             Teleport.Instance.onTeleport += OnTeleport;
         }
         agent = GetComponent<NavMeshAgent>();
-        print(agent);
         nextAttk = attkRate;
         nextDist = distCheckInterval;
         Locate();
 
         // Will need to be changed in the future
-        animator.speed = 1 / attkRate;
+        //animator.speed = 1 / attkRate;
+
+        animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
     }
 
     private void OnEnable()
@@ -167,7 +172,10 @@ public class EnemyAI : MonoBehaviour, IComparable
                 {
                     curAttackObj = hit.transform;
                     GetDistance();
-                    agent.SetDestination(hit.transform.position);
+
+                    Vector3 blend = (hit.point - hit.transform.position) * rayBlendAmount + hit.transform.position;
+
+                    agent.SetDestination(blend);// hit.transform.position);
                     chasingBarrier = true;
                 }
                 else
@@ -291,6 +299,11 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     void Locate()
     {
+        if (!player || !agent)
+        {
+            return;
+        }
+
         agent.SetDestination(player.position);
         chasingBarrier = false;
     }

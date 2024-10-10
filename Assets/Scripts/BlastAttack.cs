@@ -6,8 +6,6 @@ public class BlastAttack : MonoBehaviour
 {
     public int damage;
     bool hit = false;
-
-    public bool passThrough = false;
     public float delayDestroy = 0;
 
     // Start is called before the first frame update
@@ -35,11 +33,18 @@ public class BlastAttack : MonoBehaviour
         {
             enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
         }
-        if (!passThrough)
+        Destroy(gameObject);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        BasicHealth enemy = other.gameObject.GetComponent<BasicHealth>();
+        if (enemy)
         {
-            Destroy(gameObject);
+            enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
         }
-        else if (passThrough && !enemy)
+        else
         {
             Destroy(gameObject, delayDestroy);
         }
