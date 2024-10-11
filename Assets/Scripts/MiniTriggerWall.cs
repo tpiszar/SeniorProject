@@ -18,10 +18,13 @@ public class MiniTriggerWall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            MiniMapTracker.instance.AddMapTracker(other.transform);
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                MiniMapTracker.instance.AddMapTracker(enemy.transform);
+            }
         }
     }
 }

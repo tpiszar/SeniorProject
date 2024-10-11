@@ -28,25 +28,42 @@ public class BlastAttack : MonoBehaviour
         }
 
         hit = true;
-        BasicHealth enemy = collision.gameObject.GetComponent<BasicHealth>();
-        if (enemy)
+        if (collision.transform.CompareTag("Enemy"))
         {
-            enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+            BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
+            if (enemy)
+            {
+                enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+            }
         }
+
         Destroy(gameObject);
     }
 
-
+    bool destroyDone = false;
     private void OnTriggerEnter(Collider other)
     {
-        BasicHealth enemy = other.gameObject.GetComponent<BasicHealth>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+            BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
+            if (enemy)
+            {
+                enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+            }
+            else
+            {
+                if (!destroyDone)
+                {
+                    Destroy(gameObject, delayDestroy);
+                }
+            }
         }
         else
         {
-            Destroy(gameObject, delayDestroy);
+            if (!destroyDone)
+            {
+                Destroy(gameObject, delayDestroy);
+            }
         }
     }
 }

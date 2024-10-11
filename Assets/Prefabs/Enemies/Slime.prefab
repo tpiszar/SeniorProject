@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 1779938916734627202}
   m_Layer: 9
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,11 +357,14 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 36864
+  rayBlendAmount: 0.5
   relocateInterval: 0.5
   distCheckInterval: 0
   model: {fileID: 3807336259420697419}
   marker: {fileID: 5077127888441677261}
+  travellingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 6505433766460004034}
+  attackAnimDuration: 1
   rotationSpeed: 150
 --- !u!114 &1779938916734627202
 MonoBehaviour:
@@ -605,7 +608,7 @@ GameObject:
   - component: {fileID: 1289062648050102269}
   m_Layer: 0
   m_Name: slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +691,7 @@ GameObject:
   - component: {fileID: 6170614746771852969}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

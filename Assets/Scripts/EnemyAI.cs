@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour, IComparable
             Teleport.Instance.onTeleport += OnTeleport;
         }
         agent = GetComponent<NavMeshAgent>();
-        nextAttk = attkRate;
+        nextAttk = 0;
         nextDist = distCheckInterval;
         Locate();
 

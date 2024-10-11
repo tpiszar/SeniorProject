@@ -78,19 +78,25 @@ public class Barrier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            enemy.barrierClose(transform);
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                enemy.barrierClose(transform);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            enemy.barrierFar(transform);
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                enemy.barrierFar(transform);
+            }
         }
     }
 

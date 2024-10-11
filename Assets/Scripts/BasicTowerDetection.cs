@@ -21,19 +21,25 @@ public class BasicTowerDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            targets.Add(enemy);
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                targets.Add(enemy);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            targets.Remove(enemy);
+            EnemyAI enemy = other.GetComponent<EnemyAI>();
+            if (enemy)
+            {
+                targets.Remove(enemy);
+            }
         }
     }
 

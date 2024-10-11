@@ -9,10 +9,13 @@ public class HumanoidAnim : MonoBehaviour
     public EnemyAI enemyAI;
     public Animator animator;
 
+    public float optimalSpeed = 3;
+    float speedMod;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        speedMod = agent.speed / optimalSpeed;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class HumanoidAnim : MonoBehaviour
         //print(direction1 + " 0: " + direction);
         //print(agent.velocity.magnitude + " / " + agent.speed + " = " + agent.velocity.magnitude / agent.speed);
 
-        animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
+        animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed * speedMod);
         animator.SetFloat("X", direction1.x);
         animator.SetFloat("Y", direction1.z);
     }
