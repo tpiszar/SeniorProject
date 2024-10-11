@@ -8,6 +8,7 @@ public class FlameTower : MonoBehaviour
 {
     public BasicTowerDetection detector;
     public Transform flameBlast;
+    TowerFlame flame;
     public float fireRate;
     [Range(0f, 1f)]
     public float expandMod; // Should be less than fire rate
@@ -21,6 +22,8 @@ public class FlameTower : MonoBehaviour
     {
         blastRadius = GetComponent<SphereCollider>().radius * 2;
         expandRate = fireRate * expandMod;
+
+        flame = flameBlast.GetComponent<TowerFlame>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class FlameTower : MonoBehaviour
 
     IEnumerator ExpandFlame()
     {
+        flame.hitThisCycle.Clear();
         float timer = 0;
         while (timer < expandRate)
         {

@@ -6,19 +6,25 @@ public class PlayerProxDetection : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Root"))
         {
-            enemy.isClose();
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                enemy.isClose();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        EnemyAI enemy = other.GetComponent<EnemyAI>();
-        if (enemy)
+        if (other.CompareTag("Root"))
         {
-            enemy.isFar();
+            EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
+            if (enemy)
+            {
+                enemy.isFar();
+            }
         }
     }
 }

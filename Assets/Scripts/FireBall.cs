@@ -8,6 +8,7 @@ public class FireBall : MonoBehaviour
     public int damage = 10;
 
     public Transform flameBlast;
+    TowerFlame flame;
     public float expandRate;
     float blastRadius;
 
@@ -18,6 +19,8 @@ public class FireBall : MonoBehaviour
     {
         blastRadius = flameBlast.localScale.x;
         flameBlast.localScale = Vector3.zero;
+
+        flame = flameBlast.GetComponent<TowerFlame>();
     }
 
     // Update is called once per frame
@@ -54,6 +57,7 @@ public class FireBall : MonoBehaviour
 
     IEnumerator ExpandFlame()
     {
+        flame.hitThisCycle.Clear();
         float timer = 0;
         while (timer < expandRate)
         {

@@ -98,14 +98,21 @@ public class TowerBlast : MonoBehaviour
         }
     }
 
+    bool hit = false;
     private void OnCollisionEnter(Collision collision)
     {
+        if (hit)
+        {
+            return;
+        }
+
         if (collision.transform.CompareTag("Enemy"))
         {
             BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)// && collision.transform == target.transform) // Possibly remove the last bit
             {
                 enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+                hit = true;
                 //Destroy(gameObject);
             }
         }

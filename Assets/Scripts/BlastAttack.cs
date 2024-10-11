@@ -41,14 +41,23 @@ public class BlastAttack : MonoBehaviour
     }
 
     bool destroyDone = false;
+    List<Transform> hits = new List<Transform>();
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
+
+
             BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)
             {
+                if (hits.Contains(enemy.transform))
+                {
+                    return;
+                }
+
                 enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+                hits.Add(enemy.transform);
             }
             else
             {

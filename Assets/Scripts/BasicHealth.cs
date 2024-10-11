@@ -119,7 +119,11 @@ public class BasicHealth : MonoBehaviour
         BasicHealth minEn = null;
         for (int i = 0; i < hits.Length; i++)
         {
-            BasicHealth newEn = hits[i].GetComponent<BasicHealth>();
+            if (!hits[i].transform.CompareTag("Root"))
+            {
+                continue;
+            }
+            BasicHealth newEn = hits[i].GetComponentInParent<BasicHealth>();
 
             if (newEn.transform == shocker) // Avoids reshocking the same enemy that shocked it unless there are no other options
             {

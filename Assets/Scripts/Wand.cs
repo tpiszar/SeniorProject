@@ -402,7 +402,12 @@ public class Wand : MonoBehaviour
                 BasicHealth minEn = null;
                 for (int i = 0; i < hits.Length; i++)
                 {
-                    BasicHealth newEn = hits[i].transform.GetComponent<BasicHealth>();
+                    if (!hits[i].transform.CompareTag("Enemy"))
+                    {
+                        continue;
+                    }
+
+                    BasicHealth newEn = hits[i].transform.GetComponentInParent<BasicHealth>();
                     
                     if (!newEn)
                     {

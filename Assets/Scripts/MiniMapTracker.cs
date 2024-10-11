@@ -67,11 +67,6 @@ public class MiniMapTracker : MonoBehaviour
 
     public void AddMapTracker(Transform obj)
     {
-        if (trackedObjects.Contains(obj))
-        {
-            return;
-        }
-
         trackedObjects.Add(obj);
         GameObject newTracker = Instantiate(trackerPrefab, miniReference.TransformPoint(obj.position / mapScale), Quaternion.identity);
         trackers.Add(newTracker.transform);

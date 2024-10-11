@@ -9,6 +9,8 @@ public class TowerFlame : MonoBehaviour
     public float burnRate;
     public int tickDamage;
 
+    public List<Transform> hitThisCycle = new List<Transform>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,23 @@ public class TowerFlame : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        BasicHealth enemy = other.gameObject.GetComponent<BasicHealth>();
-        if (enemy)
+        if (other.CompareTag("Enemy"))
         {
-            enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
-            enemy.Burn(burnDuration, burnRate, tickDamage);
+
+            BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
+            if (enemy)
+            {
+                if (hitThisCycle.Contains(enemy.transform))
+                {
+                    return;
+                }
+
+                enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
+                enemy.Burn(burnDuration, burnRate, tickDamage);
+
+                hitThisCycle.Add(enemy.transform);
+            }
         }
+
     }
 }
