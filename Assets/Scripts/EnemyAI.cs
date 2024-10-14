@@ -207,7 +207,8 @@ public class EnemyAI : MonoBehaviour, IComparable
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, attkRange, hitMask))
         {
-            Barrier barrier = curAttackObj.GetComponent<Barrier>();
+
+            Barrier barrier = hit.transform.GetComponent<Barrier>();//curAttackObj.GetComponent<Barrier>();
             if (barrier)
             {
                 barrier.TakeDamage(damage, gameObject);
