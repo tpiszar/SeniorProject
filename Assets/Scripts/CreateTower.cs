@@ -143,8 +143,13 @@ public class CreateTower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CreateTower tower = other.GetComponentInParent<CreateTower>();
-        if (tower)// && other.transform != transform)
+        //CreateTower tower = other.GetComponentInParent<CreateTower>();
+        //if (tower)// && other.transform != transform)
+        //{
+        //    overlap++;
+        //}
+
+        if (other.CompareTag("Blocker"))
         {
             overlap++;
         }
@@ -152,8 +157,13 @@ public class CreateTower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        CreateTower tower = other.GetComponentInParent<CreateTower>();
-        if (tower)// && other.transform != transform)
+        //CreateTower tower = other.GetComponentInParent<CreateTower>();
+        //if (tower)// && other.transform != transform)
+        //{
+        //    overlap--;
+        //}
+
+        if (other.CompareTag("Blocker"))
         {
             overlap--;
         }
