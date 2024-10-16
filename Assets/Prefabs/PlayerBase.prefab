@@ -1066,7 +1066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseNum: 2
   useRate: 20
-  startOff: 0
   mesh: {fileID: 6030358385740760336}
   minFade: 0.43
   maxFade: 0.8
@@ -1372,7 +1371,7 @@ GameObject:
   - component: {fileID: 647427800794818016}
   m_Layer: 12
   m_Name: PlayerBarrier
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10077,7 +10076,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseNum: 0
   useRate: 20
-  startOff: 0
   mesh: {fileID: 3868639347817598018}
   minFade: 0.43
   maxFade: 0.8
@@ -14640,7 +14638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseNum: 1
   useRate: 20
-  startOff: 0
   mesh: {fileID: 3706748770982186404}
   minFade: 0.43
   maxFade: 0.8
@@ -15415,6 +15412,106 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5496976014607805130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411399885915394696}
+  - component: {fileID: 4154569293864443654}
+  - component: {fileID: 7108287445165043915}
+  - component: {fileID: 2610341392857927940}
+  m_Layer: 15
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &411399885915394696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496976014607805130}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -0.29136965, y: 0, z: 0.29107863}
+  m_LocalScale: {x: 0.6, y: 1, z: 0.08000002}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1259718910441046526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4154569293864443654
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496976014607805130}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7108287445165043915
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496976014607805130}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &2610341392857927940
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496976014607805130}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5635776654655159984
 GameObject:
   m_ObjectHideFlags: 0
@@ -15918,7 +16015,7 @@ MonoBehaviour:
   fill: {fileID: 3564774669536339689}
   useFill: {fileID: 3508585945401492172}
   gainFill: {fileID: 7092130791242394624}
-  manaGainTime: 2
+  manaGainTime: 1.5
   preUse: 0
   preGain: 0
   manaText: {fileID: 7122924325063587749}
@@ -24577,6 +24674,7 @@ GameObject:
   - component: {fileID: 3957193071630339339}
   - component: {fileID: 8160136266310793561}
   - component: {fileID: 5766765526951289903}
+  - component: {fileID: 7121318376144206335}
   - component: {fileID: 8419877220058325003}
   m_Layer: 12
   m_Name: AuraCrystal
@@ -24685,6 +24783,34 @@ MonoBehaviour:
   controller: {fileID: 0}
   movementSource: {fileID: 0}
   noHand: 1
+--- !u!114 &7121318376144206335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684812298926257345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377164c9290cf0c4db26636587e6c21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 5766765526951289903}
+  pickUp: 0
+  grabHapticIntensity: 0
+  grabHapticDuration: 0
+  hold: 1
+  heldHapticIntensity: 0.05
+  heldHapticDuration: 0.1
+  activate: 0
+  activateHapticIntensity: 0
+  activateHapticDuration: 0
+  disable: 1
+  disableHapticIntensity: 0.75
+  disableHapticDuration: 0.3
+  destroy: 0
+  destroyHapticIntensity: 0.75
+  destroyHapticDuration: 0.3
 --- !u!114 &8419877220058325003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25386,7 +25512,7 @@ Transform:
   m_GameObject: {fileID: 8071307467859859654}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0.4863, z: 0}
+  m_LocalPosition: {x: -0.0688, y: 0.445, z: 0.0688}
   m_LocalScale: {x: 0.0060000005, y: 0.006, z: 0.0060000005}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -26263,7 +26389,7 @@ GameObject:
   - component: {fileID: 7954701465978671160}
   m_Layer: 15
   m_Name: BarrierSphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26281,6 +26407,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 411399885915394696}
   - {fileID: 1631613345598542989}
   m_Father: {fileID: 1574759336381771405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26399,7 +26526,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8497544938214717825}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}

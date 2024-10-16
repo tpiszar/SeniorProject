@@ -7,7 +7,10 @@ public class Tutorial : MonoBehaviour
     public List<GameObject> screens;
 
     public List<GameObject> enables;
+    public List<GameObject> enableConditionalDisable;
     public List<GameObject> disables;
+
+    public bool conditionalDisable = false;
 
     public List<Transform> keyObjects;
 
@@ -64,6 +67,10 @@ public class Tutorial : MonoBehaviour
         {
             go.SetActive(true);
         }
+        foreach (GameObject go in enableConditionalDisable)
+        {
+            go.SetActive(true);
+        }
         foreach (GameObject go in disables)
         {
             go.SetActive(false);
@@ -80,11 +87,35 @@ public class Tutorial : MonoBehaviour
             }
 
         }
+
         foreach (GameObject go in enables)
         {
             if (go)
             {
                 go.SetActive(false);
+            }
+        }        
+
+        if (conditionalDisable)
+        {
+            foreach (GameObject go in enableConditionalDisable)
+            {
+                if (go)
+                {
+                    go.SetActive(false);
+                }
+
+            }
+        }
+        else
+        {
+            foreach (GameObject go in enableConditionalDisable)
+            {
+                if (go)
+                {
+                    go.SetActive(true);
+                }
+
             }
         }
     }

@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  manaGain: 5
+  manaGain: 3
   mainRend: {fileID: 8803797332812464262}
   flashSpeed: 0.4
   lightningRender: {fileID: 7543724545108645588}
@@ -626,7 +626,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 36864
-  rayBlendAmount: 0.5
+  barrierBlendAmount: 0.5
   relocateInterval: 0.5
   distCheckInterval: 0
   model: {fileID: 3272207967299121998}
@@ -635,6 +635,7 @@ MonoBehaviour:
   animator: {fileID: 7324407564102509034}
   attackAnimDuration: 1.27
   rotationSpeed: 150
+  destination: {x: 0, y: 0, z: 0}
 --- !u!1001 &3090470665747977381
 PrefabInstance:
   m_ObjectHideFlags: 0

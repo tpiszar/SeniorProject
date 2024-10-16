@@ -17,7 +17,7 @@ public class Teleport : MonoBehaviour
 
     public int startingBase = 0;
     public int curBase = 0;
-    int lastBase = 1;
+    int lastBase = -1;
 
     public float easeInTime = 0.3f;
     public float teleportTime;
@@ -45,7 +45,10 @@ public class Teleport : MonoBehaviour
         playerBase.rotation = bases[curBase].rotation;
 
         crystals[curBase].SetActive(false);
-        crystals[lastBase].SetActive(true);
+        if (lastBase >= 0)
+        {
+            crystals[lastBase].SetActive(true);
+        }
 
         Invoke("endTeleport", easeInTime);
     }

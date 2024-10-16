@@ -12,7 +12,7 @@ public class TeleportCrystal : MonoBehaviour
 
     public float useRate;
     float timeToUse = -1;
-    public bool startOff = false;
+    //public bool startOff = false;
 
     public MeshRenderer mesh;
     [Range(0, 1)]

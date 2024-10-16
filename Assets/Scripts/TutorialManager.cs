@@ -19,6 +19,16 @@ public class TutorialManager : MonoBehaviour
     int counter = -1;
     int curTut = 0;
 
+    bool replayTower = false;
+    bool replayEnergy = false;
+    bool replayFireball = false;
+    bool replayLightning = false;
+    bool replayBarrier = false;
+    bool replayTeleport = false;
+    bool replayCrystal = false;
+    bool replayFlameOrb = false;
+    public GameObject endScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +83,7 @@ public class TutorialManager : MonoBehaviour
 
     void End()
     {
-
+        endScreen.SetActive(true);
     }
 
     public void NextTutorial()
@@ -103,50 +113,58 @@ public class TutorialManager : MonoBehaviour
 
         tutObjs[curTut].SetActive(true);
 
-        switch (curTut)
-        {
-            case 0:
-                towerPlacing = false; break;
-            case 1:
-                energyBlast = false; break;
-            case 2:
-                fireball = false; break;
-            case 3:
-                lightning = false; break;
-            case 4:
-                barrier = false; break;
-            case 5:
-                teleport = false; break;
-            case 6:
-                crystalTower = false; break;
-            case 7:
-                flameOrbTower = false; break;
-        }
+        //switch (curTut)
+        //{
+        //    case 0:
+        //        towerPlacing = false; 
+        //        break;
+        //    case 1:
+        //        energyBlast = false; 
+        //        break;
+        //    case 2:
+        //        fireball = false; 
+        //        break;
+        //    case 3:
+        //        lightning = false; 
+        //        break;
+        //    case 4:
+        //        barrier = false; 
+        //        break;
+        //    case 5:
+        //        teleport = false;
+        //        break;
+        //    case 6:
+        //        crystalTower = false; 
+        //        break;
+        //    case 7:
+        //        flameOrbTower = false; 
+        //        break;
+        //}
     }
 
-    public void Replay()
-    {
-        foreach (int tut in tutorials)
-        {
-            switch (tut)
-            {
-                case 0:
-                    towerPlacing = true; break;
-                case 1:
-                    energyBlast = true; break;
-                case 2:
-                    fireball = true; break;
-                case 3:
-                    lightning = true; break;
-                case 4:
-                    barrier = true; break;
-                case 5:
-                    teleport = true; break;
-                case 6:
-                    crystalTower = true; break;
-                case 7:
-                    flameOrbTower = true; break;
-            }
-        }
-    }
+    //public void Replay()
+    //{
+    //    foreach (int tut in tutorials)
+    //    {
+    //        switch (tut)
+    //        {
+    //            case 0:
+    //                towerPlacing = true; break;
+    //            case 1:
+    //                energyBlast = true; break;
+    //            case 2:
+    //                fireball = true; break;
+    //            case 3:
+    //                lightning = true; break;
+    //            case 4:
+    //                barrier = true; break;
+    //            case 5:
+    //                teleport = true; break;
+    //            case 6:
+    //                crystalTower = true; break;
+    //            case 7:
+    //                flameOrbTower = true; break;
+    //        }
+    //    }
+    //}
 }

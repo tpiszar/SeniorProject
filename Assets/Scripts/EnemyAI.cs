@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour, IComparable
     public LayerMask hitMask;
 
     [Range(0f, 1f)]
-    public float rayBlendAmount = 0.5f;
+    public float barrierBlendAmount = 0.5f;
 
     public float relocateInterval;
     float nextLocate = 0;
@@ -84,9 +84,11 @@ public class EnemyAI : MonoBehaviour, IComparable
         if (player) { Locate(); }
     }
 
+    public Vector3 destination;
     // Update is called once per frame
     void Update()
     {
+        destination = agent.destination;
         if (agent.enabled && agent.path.corners.Length >= 2 && !close)
         {
             travellingDir = agent.path.corners[1];
@@ -107,11 +109,14 @@ public class EnemyAI : MonoBehaviour, IComparable
 
         if (close)
         {
-            nextLocate -= Time.deltaTime;
-            if (nextLocate < Time.time)
+            if (!curAttackObj || curAttackObj == player)
             {
-                Locate();
-                nextLocate = relocateInterval;
+                nextLocate -= Time.deltaTime;
+                if (nextLocate < Time.time)
+                {
+                    Locate();
+                    nextLocate = relocateInterval;
+                }
             }
 
             Vector3 direction = player.position - transform.position;
@@ -173,9 +178,17 @@ public class EnemyAI : MonoBehaviour, IComparable
                     curAttackObj = hit.transform;
                     GetDistance();
 
-                    Vector3 blend = (hit.point - hit.transform.position) * rayBlendAmount + hit.transform.position;
+                    if (hit.transform.CompareTag("Player"))
+                    {
+                        agent.SetDestination(hit.point);
+                    }
+                    else
+                    {
+                        Vector3 blend = (hit.point - hit.transform.position) * barrierBlendAmount + hit.transform.position;
 
-                    agent.SetDestination(blend);// hit.transform.position);
+                        agent.SetDestination(blend);// hit.transform.position);
+                    }
+
                     chasingBarrier = true;
                 }
                 else
@@ -251,7 +264,7 @@ public class EnemyAI : MonoBehaviour, IComparable
     {
         close = true;
         attackObjs.Add(player);
-        curAttackObj = player;
+        //curAttackObj = player;
         attacking = true;
         agent.updateRotation = false;
     }
