@@ -17,6 +17,9 @@ public class MiniMapDetector : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         CreateTower tower = other.transform.parent.GetComponent<CreateTower>();
+
+
+        //REMOVE FOR SHOWING WITHOUT SELECTING
         if (Mana.Instance.CheckMana(tower.manaCost))
         {
             if (tower.overlap == 0)

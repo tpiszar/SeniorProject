@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetPoint: {fileID: 0}
-  resetTime: 3
-  lostResetTime: 10
+  resetTime: 2
+  lostResetTime: 6
 --- !u!114 &5373604099690199295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 20 -
+  m_text: 15 -
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1644,6 +1644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5760350282356941527}
   - component: {fileID: 4257015334338773403}
+  - component: {fileID: 5860750313920205819}
   m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
@@ -1682,6 +1683,20 @@ MonoBehaviour:
   player: {fileID: 0}
   upClamp: 25
   downClamp: 10
+--- !u!114 &5860750313920205819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357357341171369022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1cf435e6765f840899121a994d7655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 2497768938151088929}
+  manaCost: 15
 --- !u!1 &3731837714405232774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15 +
+  m_text: 12 +
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

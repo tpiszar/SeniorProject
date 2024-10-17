@@ -1361,6 +1361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7990283540707865986}
   - component: {fileID: 5781456968737369974}
+  - component: {fileID: 5063356131163214891}
   m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
@@ -1399,6 +1400,20 @@ MonoBehaviour:
   player: {fileID: 0}
   upClamp: 17.6
   downClamp: 10
+--- !u!114 &5063356131163214891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609487141148229405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1cf435e6765f840899121a994d7655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 8126883653975542916}
+  manaCost: 35
 --- !u!1 &2693767646878898484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,8 +1559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetPoint: {fileID: 0}
-  resetTime: 3
-  lostResetTime: 10
+  resetTime: 2
+  lostResetTime: 6
 --- !u!114 &2743840082294050560
 MonoBehaviour:
   m_ObjectHideFlags: 0

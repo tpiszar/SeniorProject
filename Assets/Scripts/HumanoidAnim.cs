@@ -11,11 +11,13 @@ public class HumanoidAnim : MonoBehaviour
 
     public float optimalSpeed = 3;
     float speedMod;
+    float startSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         speedMod = agent.speed / optimalSpeed;
+        startSpeed = agent.speed;
     }
 
     // Update is called once per frame

@@ -11,6 +11,8 @@ public class MiniMapSocket : MonoBehaviour
     bool slotted = false;
     int miniNum;
 
+    Material hoverMat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class MiniMapSocket : MonoBehaviour
         {
             transform.parent = null;
         }
+
+        hoverMat = socket.interactableHoverMeshMaterial;
     }
 
     // Update is called once per frame
@@ -63,6 +67,10 @@ public class MiniMapSocket : MonoBehaviour
             mini.GetComponent<DropReturn>().enabled = false;
             socket.interactableHoverMeshMaterial = socket.interactableCantHoverMeshMaterial;
             slotted = true;
+
+            //POSSIBLY MOVE FOR HIGHER UP DROP
+            //transform.position = transform.GetChild(0).position;
+            //transform.GetChild(0).position = transform.position;
 
             mini.GetComponent<CreateTower>().Create();
 

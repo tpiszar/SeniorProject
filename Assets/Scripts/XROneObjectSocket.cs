@@ -9,6 +9,8 @@ public class XROneObjectSocket : XRSocketInteractor
     [SerializeField]
     public GameObject singleObject;
 
+    public int manaRequirement = -1;
+
     //protected override void OnHoverEntered(HoverEnterEventArgs args)
     //{
     //    if (!singleObject)
@@ -60,16 +62,22 @@ public class XROneObjectSocket : XRSocketInteractor
 
     public override bool CanHover(XRBaseInteractable interactable)
     {
-        if (!singleObject)
-        {
-            singleObject = interactable.gameObject;
-        }
+        //if (!singleObject)
+        //{
+        //    singleObject = interactable.gameObject;
+        //}
+
 
         return interactable.gameObject == singleObject && base.CanHover(interactable);
     }
 
     public override bool CanSelect(XRBaseInteractable interactable)
     {
+        if (manaRequirement > 0 && !Mana.Instance.CheckMana(manaRequirement))
+        {
+            return false;
+        }
+
         return interactable.gameObject == singleObject && base.CanSelect(interactable);
     }
 }
