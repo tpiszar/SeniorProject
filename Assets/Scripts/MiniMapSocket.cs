@@ -13,6 +13,8 @@ public class MiniMapSocket : MonoBehaviour
 
     Material hoverMat;
 
+    public GameObject rangeSphere;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,10 @@ public class MiniMapSocket : MonoBehaviour
             mini.GetComponent<DropReturn>().enabled = false;
             socket.interactableHoverMeshMaterial = socket.interactableCantHoverMeshMaterial;
             slotted = true;
+
+            socket.manaRequirement = -1;
+
+            Destroy(rangeSphere);
 
             //POSSIBLY MOVE FOR HIGHER UP DROP
             //transform.position = transform.GetChild(0).position;

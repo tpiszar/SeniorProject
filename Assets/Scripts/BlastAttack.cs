@@ -36,7 +36,7 @@ public class BlastAttack : MonoBehaviour
                 enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
             }
         }
-
+        //print(collision.gameObject.name);
         Destroy(gameObject);
     }
 

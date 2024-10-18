@@ -113,8 +113,10 @@ public class TeleportCrystal : MonoBehaviour
 
     void Use(ActivateEventArgs args)
     {
-        if (timeToUse < 0)
+        if (timeToUse < 0 && !Teleport.Instance.isTeleporting)
         {
+            Teleport.Instance.isTeleporting = true;
+
             timeToUse = useRate;
             off = true;
             grabbable.enabled = false;

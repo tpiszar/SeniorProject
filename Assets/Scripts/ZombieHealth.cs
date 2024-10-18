@@ -25,14 +25,20 @@ public class ZombieHealth : BasicHealth
     {
         base.TakeDamage(damage, type);
 
+        if (!agent)
+        {
+            return;
+        }
+
         float thresholdHealth = (minSpeed / maxSpeed) * maxHealth;
         float adjustedHealth = Mathf.Clamp(health - thresholdHealth, 0, maxHealth - thresholdHealth);
         float ratio = adjustedHealth / (maxHealth - thresholdHealth);
-        print(ratio);
+
         agent.speed = Mathf.Lerp(minSpeed, maxSpeed, ratio);
         enemyAI.attkRate = Mathf.Lerp(minAttk, maxAttk, ratio);
 
+        print(agent.velocity.magnitude / maxSpeed);
 
-        animator.SetFloat("SpeedRatio", agent.velocity.magnitude / agent.speed / maxSpeed);
+        animator.SetFloat("AttackRate", 1 / (enemyAI.attkRate / enemyAI.attackAnimDuration));
     }
 }

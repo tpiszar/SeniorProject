@@ -11,6 +11,15 @@ public class XROneObjectSocket : XRSocketInteractor
 
     public int manaRequirement = -1;
 
+    Material hoverMat;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        hoverMat = interactableHoverMeshMaterial;
+    }
+
     //protected override void OnHoverEntered(HoverEnterEventArgs args)
     //{
     //    if (!singleObject)
@@ -73,9 +82,17 @@ public class XROneObjectSocket : XRSocketInteractor
 
     public override bool CanSelect(XRBaseInteractable interactable)
     {
-        if (manaRequirement > 0 && !Mana.Instance.CheckMana(manaRequirement))
+        if (manaRequirement > 0)
         {
-            return false;
+            if (!Mana.Instance.CheckMana(manaRequirement))
+            {
+                interactableHoverMeshMaterial = interactableCantHoverMeshMaterial;
+                return false;
+            }
+            else
+            {
+                interactableHoverMeshMaterial = hoverMat;
+            }
         }
 
         return interactable.gameObject == singleObject && base.CanSelect(interactable);

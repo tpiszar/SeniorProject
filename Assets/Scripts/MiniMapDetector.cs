@@ -18,10 +18,6 @@ public class MiniMapDetector : MonoBehaviour
     {
         CreateTower tower = other.transform.parent.GetComponent<CreateTower>();
 
-
-        //REMOVE FOR SHOWING WITHOUT SELECTING
-        if (Mana.Instance.CheckMana(tower.manaCost))
-        {
             if (tower.overlap == 0)
             {
                 Vector3 newPos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
@@ -43,11 +39,16 @@ public class MiniMapDetector : MonoBehaviour
 
                 tower.createRot.y = tower.holderTrans.rotation.eulerAngles.y;
             }
-        }
-        else
-        {
-            tower.socket.position = Vector3.down * 1000;
-        }
+
+        //REMOVE FOR SHOWING WITHOUT SELECTING
+        //if (Mana.Instance.CheckMana(tower.manaCost))
+        //{
+
+        //}
+        //else
+        //{
+        //    tower.socket.position = Vector3.down * 1000;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)

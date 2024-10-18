@@ -42,6 +42,9 @@ public class HumanoidAnim : MonoBehaviour
         //print(direction1 + " 0: " + direction);
         //print(agent.velocity.magnitude + " / " + agent.speed + " = " + agent.velocity.magnitude / agent.speed);
 
+        speedMod = agent.speed / optimalSpeed;
+
+        animator.SetFloat("SpeedRatio", agent.velocity.magnitude / startSpeed);
         animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed * speedMod);
         animator.SetFloat("X", direction1.x);
         animator.SetFloat("Y", direction1.z);

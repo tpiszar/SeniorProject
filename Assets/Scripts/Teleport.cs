@@ -13,7 +13,6 @@ public class Teleport : MonoBehaviour
 
     public Transform[] bases;
     public GameObject[] crystals;
-    public TeleportCrystal[] crystalScripts;
     public Transform playerBase;
 
     public int startingBase = 0;
@@ -25,16 +24,13 @@ public class Teleport : MonoBehaviour
 
     public CustomProvider vignetteProvider;
 
+    public bool isTeleporting = false;
+
     public void startTeleport(int baseNum)
     {
         if (onTeleport != null)
         {
             onTeleport(easeInTime);
-        }
-
-        foreach (TeleportCrystal crystal in crystalScripts)
-        {
-            crystal.enabled = false;
         }
 
         lastBase = curBase;
@@ -63,10 +59,7 @@ public class Teleport : MonoBehaviour
     {
         vignetteProvider.setLocomotion(LocomotionPhase.Done);
 
-        foreach (TeleportCrystal crystal in crystalScripts)
-        {
-            crystal.enabled = true;
-        }
+        isTeleporting = false;
     }
 
     public void Awake()

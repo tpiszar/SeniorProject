@@ -365,7 +365,7 @@ public class Wand : MonoBehaviour
                 GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
                 eBlast.transform.forward = shootPoint.up;
                 eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
-                Destroy(eBlast, 3);
+                Destroy(eBlast, 10);
 
                 break;
 
