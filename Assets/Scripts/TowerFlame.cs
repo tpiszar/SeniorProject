@@ -36,7 +36,7 @@ public class TowerFlame : MonoBehaviour
                     return;
                 }
 
-                enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
+                enemy.TakeDamage(damage, DamageType.fire);
                 enemy.Burn(burnDuration, burnRate, tickDamage);
 
                 hitThisCycle.Add(enemy.transform);

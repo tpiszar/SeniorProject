@@ -43,7 +43,7 @@ public class FireBall : MonoBehaviour
             BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)
             {
-                enemy.TakeDamage(damage, BasicHealth.DamageType.fire);
+                enemy.TakeDamage(damage, DamageType.fire);
             }
         }
 

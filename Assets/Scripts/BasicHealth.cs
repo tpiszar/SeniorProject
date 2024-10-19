@@ -20,16 +20,9 @@ public class BasicHealth : MonoBehaviour
     public float flashSpeed = 0.5f;
     Color mainColor;
 
-    public LineRenderer lightningRender;
+    //public LineRenderer lightningRender;
 
     float delayDeath = 0;
-
-    public enum DamageType
-    {
-        energy,
-        fire,
-        lightning
-    }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -55,8 +48,16 @@ public class BasicHealth : MonoBehaviour
         }
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     public virtual void TakeDamage(int damage, DamageType type)
     {
+        WaveManager.totalDamage += damage;
+        //print(WaveManager.totalDamage);
+
         health -= damage;
         //print(gameObject.name + ": " + health);
         if (health <= 0)
@@ -96,7 +97,7 @@ public class BasicHealth : MonoBehaviour
         tickBurn = tick;
     }
 
-    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay = 0, Transform shocker = null)
+    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LineRenderer[] lines, float jumpDelay = 0, Transform shocker = null)
     {
         delayDeath = jumpDelay + .1f;
 
@@ -105,11 +106,11 @@ public class BasicHealth : MonoBehaviour
         jumpCount--;
         if (jumpCount > 0)
         {
-            StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, shocker));
+            StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, shocker));
         }
     }
 
-    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, float jumpDelay, Transform shocker)
+    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LineRenderer[] lines, float jumpDelay, Transform shocker)
     {
         yield return new WaitForSeconds(jumpDelay);
 
@@ -147,18 +148,18 @@ public class BasicHealth : MonoBehaviour
 
         if (minEn)
         {
-            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, transform);
+            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
 
-            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay));
+            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount]));
         }
         else if (shockerClose)
         {
             BasicHealth newEn = shocker.GetComponent<BasicHealth>();
             if (newEn)
             {
-                newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay, transform);
+                newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
 
-                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay));
+                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount]));
             }
         }
         else
@@ -168,7 +169,7 @@ public class BasicHealth : MonoBehaviour
         delayDeath = 0;
     }
 
-    IEnumerator DrawLightning(Vector3 enemy, float duration)
+    IEnumerator DrawLightning(Vector3 enemy, float duration, LineRenderer lightningRender)
     {
         float distance = Vector3.Distance(transform.position, enemy);
         int numSegments = Mathf.CeilToInt(distance * Wand.lightningSpikesPerUnit);

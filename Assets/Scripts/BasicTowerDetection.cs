@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicTowerDetection : MonoBehaviour
+public class BasicTowerDetection : TowerDetection
 {
-    public List<EnemyAI> targets = new List<EnemyAI>();
+    public List<EnemyAI> enemies = new List<EnemyAI>();
+    public List<BasicHealth> healths = new List<BasicHealth>();
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,8 @@ public class BasicTowerDetection : MonoBehaviour
                 //{
                 //    return;
                 //}
-                targets.Add(enemy);
+                enemies.Add(enemy);
+                healths.Add(enemy.GetComponent<BasicHealth>());
             }
         }
     }
@@ -46,18 +48,20 @@ public class BasicTowerDetection : MonoBehaviour
                 //{
                 //    return;
                 //}
-                targets.Remove(enemy);
+                enemies.Remove(enemy);
+                healths.Remove(other.GetComponent<BasicHealth>());
             }
         }
     }
 
     public void CleanUp()
     {
-        for (int i = targets.Count - 1; i >= 0; i--)
+        for (int i = enemies.Count - 1; i >= 0; i--)
         {
-            if (!targets[i])
+            if (!enemies[i])
             {
-                targets.RemoveAt(i);
+                enemies.RemoveAt(i);
+                healths.RemoveAt(i);
             }
         }
     }
@@ -66,43 +70,85 @@ public class BasicTowerDetection : MonoBehaviour
     {
         CleanUp();
 
-        return targets.Count == 0;
+        return enemies.Count == 0;
     }
 
-    public Transform GetTarget()
+    public override Transform GetTarget()
     {
-        for (int i = targets.Count - 1; i >= 0; i--)
-        {
-            if (!targets[i])
-            {
-                targets.RemoveAt(i);
-
-            }
-        }
-
-        if (targets.Count == 0)
+        if (isEmpty())
         {
             return null;
         }
 
-        float minDist = targets[0].GetDistance();
-        EnemyAI closestTarget = targets[0];
-
-        foreach(EnemyAI en in targets)
+        switch (detectionType)
         {
-            if (en == closestTarget)
-            {
-                continue;
-            }
+            case DetectionType.Close:
 
-            float nextDist = en.GetDistance();
-            if (nextDist < minDist)
-            {
-                minDist = nextDist;
-                closestTarget = en;
-            }
+                float minDist = enemies[0].GetDistance();
+                EnemyAI closestTarget = enemies[0];
+
+                foreach (EnemyAI en in enemies)
+                {
+                    if (en == closestTarget)
+                    {
+                        continue;
+                    }
+
+                    float nextDist = en.GetDistance();
+                    if (nextDist < minDist)
+                    {
+                        minDist = nextDist;
+                        closestTarget = en;
+                    }
+                }
+
+                return closestTarget.transform;
+
+            case DetectionType.Far:
+
+                float maxDist = enemies[0].GetDistance();
+                EnemyAI furthestTarget = enemies[0];
+
+                foreach (EnemyAI en in enemies)
+                {
+                    if (en == furthestTarget)
+                    {
+                        continue;
+                    }
+
+                    float nextDist = en.GetDistance();
+                    if (nextDist > maxDist)
+                    {
+                        maxDist = nextDist;
+                        furthestTarget = en;
+                    }
+                }
+
+                return furthestTarget.transform;
+
+            case DetectionType.Strong:
+
+                float maxHealth = healths[0].GetHealth();
+                BasicHealth maxTarget = healths[0];
+
+                foreach (BasicHealth en in healths)
+                {
+                    if (en == maxTarget)
+                    {
+                        continue;
+                    }
+
+                    float nextHealth = en.GetHealth();
+                    if (nextHealth > maxHealth)
+                    {
+                        maxHealth = nextHealth;
+                        maxTarget = en;
+                    }
+                }
+
+                return maxTarget.transform;
         }
 
-        return closestTarget.transform;
+        return null;
     }
 }

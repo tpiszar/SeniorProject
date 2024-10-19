@@ -77,7 +77,7 @@ public class Wand : MonoBehaviour
     public float jumpRadius;
     public float jumpDelay = 1;
 
-    public LineRenderer lightningRender;
+    public LineRenderer[] lightningRenders;
     public static float lightningSpikesPerUnit = 3;
     public static float lightningSpikeOffset = 0.2f;
     public static float lightningSpikeOffsetMax = 0.2f;
@@ -427,20 +427,20 @@ public class Wand : MonoBehaviour
 
                 if (minEn)
                 {
-                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, jumpDelay);
+                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningRenders, jumpDelay);
 
-                    StartCoroutine(DrawLightning(minEn.transform.position));
+                    StartCoroutine(DrawLightning(minEn.transform.position, lightningRenders[jumpCount]));
                 }
                 else
                 {
                     RaycastHit hit;
                     if (Physics.Raycast(shootPoint.position, shootPoint.up, out hit, lightningRange, blockMask))
                     {
-                        StartCoroutine(DrawLightning(hit.point));
+                        StartCoroutine(DrawLightning(hit.point, lightningRenders[jumpCount]));
                     }
                     else
                     {
-                        StartCoroutine(DrawLightning(shootPoint.position + shootPoint.up * lightningRange));
+                        StartCoroutine(DrawLightning(shootPoint.position + shootPoint.up * lightningRange, lightningRenders[jumpCount]));
                     }
                 }
 
@@ -521,7 +521,7 @@ public class Wand : MonoBehaviour
     //    //}
     //}
 
-    IEnumerator DrawLightning(Vector3 enemy)
+    IEnumerator DrawLightning(Vector3 enemy, LineRenderer lightningRender)
     {
         float distance = Vector3.Distance(transform.position, enemy);
         int numSegments = Mathf.CeilToInt(distance * lightningSpikesPerUnit);

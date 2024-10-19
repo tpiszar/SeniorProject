@@ -33,7 +33,7 @@ public class BlastAttack : MonoBehaviour
             BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)
             {
-                enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+                enemy.TakeDamage(damage, DamageType.energy);
             }
         }
         //print(collision.gameObject.name);
@@ -56,7 +56,7 @@ public class BlastAttack : MonoBehaviour
                     return;
                 }
 
-                enemy.TakeDamage(damage, BasicHealth.DamageType.energy);
+                enemy.TakeDamage(damage, DamageType.energy);
                 hits.Add(enemy.transform);
             }
             else

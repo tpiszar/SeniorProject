@@ -24,6 +24,8 @@ public class MiniTriggerWall : MonoBehaviour
             if (enemy)
             {
                 MiniMapTracker.instance.AddMapTracker(enemy.transform);
+                WaveManager.Instance.enemies.Add(enemy);
+                WaveManager.Instance.healths.Add(enemy.GetComponent<BasicHealth>());
             }
         }
     }

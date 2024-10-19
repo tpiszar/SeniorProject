@@ -72,7 +72,10 @@ public class MiniMapSocket : MonoBehaviour
 
             socket.manaRequirement = -1;
 
-            Destroy(rangeSphere);
+            if (rangeSphere)
+            {
+                Destroy(rangeSphere);
+            }
 
             //POSSIBLY MOVE FOR HIGHER UP DROP
             //transform.position = transform.GetChild(0).position;

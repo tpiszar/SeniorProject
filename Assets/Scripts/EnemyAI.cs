@@ -45,6 +45,8 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     float distance;
 
+    public float headHeight;
+
     public int CompareTo(object obj)
     {
         GetDistance();
