@@ -429,18 +429,18 @@ public class Wand : MonoBehaviour
                 {
                     minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningRenders, jumpDelay);
 
-                    StartCoroutine(DrawLightning(minEn.transform.position, lightningRenders[jumpCount]));
+                    StartCoroutine(DrawLightning(minEn.transform.position, lightningRenders[jumpCount - 1]));
                 }
                 else
                 {
                     RaycastHit hit;
                     if (Physics.Raycast(shootPoint.position, shootPoint.up, out hit, lightningRange, blockMask))
                     {
-                        StartCoroutine(DrawLightning(hit.point, lightningRenders[jumpCount]));
+                        StartCoroutine(DrawLightning(hit.point, lightningRenders[jumpCount - 1]));
                     }
                     else
                     {
-                        StartCoroutine(DrawLightning(shootPoint.position + shootPoint.up * lightningRange, lightningRenders[jumpCount]));
+                        StartCoroutine(DrawLightning(shootPoint.position + shootPoint.up * lightningRange, lightningRenders[jumpCount - 1]));
                     }
                 }
 

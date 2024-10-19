@@ -164,7 +164,7 @@ public class BasicHealth : MonoBehaviour
         {
             minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
 
-            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount]));
+            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount - 1]));
         }
         else if (shockerClose)
         {
@@ -173,7 +173,7 @@ public class BasicHealth : MonoBehaviour
             {
                 newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
 
-                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount]));
+                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount - 1]));
             }
         }
         else

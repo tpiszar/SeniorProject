@@ -59,6 +59,8 @@ public class HandLaser : MonoBehaviour
 
         if (isPressed)
         {
+            TriggerHaptic(fireHapticIntensity, fireHapticDuration);
+
             Vector3 groundPos;
 
             RaycastHit hit;
@@ -66,17 +68,23 @@ public class HandLaser : MonoBehaviour
             {
                 groundPos = hit.point;
 
-                TriggerHaptic(fireHapticIntensity, fireHapticDuration);
+                Quaternion directionShift = Quaternion.Euler(0, 180, 0) * miniReference.rotation;
+
+                laserPoint.SetLaser(miniReference.InverseTransformPoint(groundPos) * mapScale, directionShift * (transform.position - groundPos));
+
+                print(transform.position - groundPos);
             }
             else
             {
                 groundPos = transform.position + transform.forward * range;
+
+                laserPoint.SetLaser(Vector3.down * 30, Vector3.down);
             }
 
             smallLaser.SetPosition(0, transform.position);
             smallLaser.SetPosition(1, groundPos);
 
-            laserPoint.SetLaser(miniReference.InverseTransformPoint(groundPos) * mapScale, transform.position - groundPos);
+            
         }
         else
         {
