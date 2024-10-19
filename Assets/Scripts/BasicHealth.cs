@@ -18,6 +18,7 @@ public class BasicHealth : MonoBehaviour
 
     public Renderer mainRend;
     public float flashSpeed = 0.5f;
+    Coroutine currentFlash;
     Color mainColor;
 
     //public LineRenderer lightningRender;
@@ -53,6 +54,8 @@ public class BasicHealth : MonoBehaviour
         return health;
     }
 
+    int hits = 0;
+
     public virtual void TakeDamage(int damage, DamageType type)
     {
         WaveManager.totalDamage += damage;
@@ -65,10 +68,16 @@ public class BasicHealth : MonoBehaviour
             Mana.Instance.GainMana(manaGain);
             Destroy(gameObject, delayDeath);
         }
-        StartCoroutine(DamageFlash());
+
+        if (currentFlash != null)
+        {
+            StopCoroutine(currentFlash);
+        }
+
+        currentFlash = StartCoroutine(DamageFlash(hits));
     }
 
-    IEnumerator DamageFlash()
+    IEnumerator DamageFlash(int hitNum)
     {
         float timer = 0;
 
@@ -79,13 +88,18 @@ public class BasicHealth : MonoBehaviour
         //    yield return null;
         //}
 
+        mainRend.material.color = Color.red;
+
         timer = 0;
         while (timer < flashSpeed)
         {
             timer += Time.deltaTime;
+
             mainRend.material.color = Color.Lerp(Color.red, mainColor, timer / flashSpeed);
+
             yield return null;
         }
+
         mainRend.material.color = mainColor;
     }
 
