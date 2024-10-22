@@ -21526,6 +21526,9 @@ GameObject:
   - component: {fileID: 5654996764955844196}
   - component: {fileID: 35674712423306964}
   - component: {fileID: 6609064577754461722}
+  - component: {fileID: 3064413731872328003}
+  - component: {fileID: 8272321896261587751}
+  - component: {fileID: 7274951661230764074}
   - component: {fileID: 7192099296930988207}
   m_Layer: 12
   m_Name: Wand
@@ -21660,6 +21663,7 @@ MonoBehaviour:
   inputButton: 4
   inputThreshold: 0.1
   newPosThreshold: 0.05
+  detectRate: 0.2
   createGesture: 0
   newGestureName: blast
   debug: 0
@@ -21684,23 +21688,29 @@ MonoBehaviour:
   - unlocked: 1
     name: blast
     number: 0
-    recognitionThreshold: 0.65
+    recognitionThreshold: 0.8
+    stopThreshold: 0.6
     attackPrefab: {fileID: 8697730109696811438, guid: a623fa85f0586244a8c79e0ead46e77f,
       type: 3}
     chargeSystem: {fileID: 2897292006660396089}
+    vibration: {fileID: 3064413731872328003}
   - unlocked: 1
     name: fireball
     number: 1
-    recognitionThreshold: 0.55
+    recognitionThreshold: 0.8
+    stopThreshold: 0.6
     attackPrefab: {fileID: 9028523963531256353, guid: 9bff4059c91a872488b7e0d371950f58,
       type: 3}
     chargeSystem: {fileID: 6183527475882919755}
+    vibration: {fileID: 8272321896261587751}
   - unlocked: 0
     name: lightning
     number: 2
-    recognitionThreshold: 0.75
+    recognitionThreshold: 0.8
+    stopThreshold: 0.6
     attackPrefab: {fileID: 0}
     chargeSystem: {fileID: 1579228769268770189}
+    vibration: {fileID: 7274951661230764074}
   lightningDamage: 15
   lightningMask:
     serializedVersion: 2
@@ -21734,6 +21744,78 @@ MonoBehaviour:
   chargeIntensityMin: 0.05
   chargeIntensityMax: 0.3
   chargeDuration: 0.1
+--- !u!114 &3064413731872328003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626060625440001657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d88659da0ccf1488309ab9f84483f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: blast
+  vibrations:
+  - delay: 0
+    intensity: 1
+    duration: 0.1
+  - delay: 0.2
+    intensity: 0.5
+    duration: 0.1
+  - delay: 0.2
+    intensity: 1
+    duration: 0.1
+--- !u!114 &8272321896261587751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626060625440001657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d88659da0ccf1488309ab9f84483f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fireball
+  vibrations:
+  - delay: 0
+    intensity: 0.6
+    duration: 0.4
+  - delay: 0.5
+    intensity: 1
+    duration: 0.1
+--- !u!114 &7274951661230764074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626060625440001657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d88659da0ccf1488309ab9f84483f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: lightning
+  vibrations:
+  - delay: 0.2
+    intensity: 1
+    duration: 0.1
+  - delay: 0.2
+    intensity: 0.7
+    duration: 0.1
+  - delay: 0
+    intensity: 0.4
+    duration: 0.4
+  - delay: 0.4
+    intensity: 1
+    duration: 0.1
+  - delay: 0.2
+    intensity: 0.7
+    duration: 0.1
 --- !u!114 &7192099296930988207
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ public class Wand : MonoBehaviour
 
     public float newPosThreshold = 0.05f;
 
+    //BETA
+    public float detectRate = 0.2f;
+    float nextDetect = 0;
+
     Transform camReference;
     public bool createGesture = false;
     public string newGestureName;
@@ -56,8 +60,11 @@ public class Wand : MonoBehaviour
         public string name;
         public int number;
         public float recognitionThreshold = 0.8f;
+        public float stopThreshold = 0.6f;
         public GameObject attackPrefab;
         public ParticleSystem chargeSystem;
+        [SerializeField]
+        public VibrationProfile vibration;
     }
 
     [SerializeField]
@@ -170,29 +177,40 @@ public class Wand : MonoBehaviour
 
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
+
+
             charging = true;
             //rayObjects[currentRay].SetActive(false); //rayInteract.enabled
 
             if (positionsList.Count == 0)
             {
-                positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
+                positionsList.Add(camReference.InverseTransformPoint(transform.position));//hand.movementSource.position));
                 trailLine.positionCount = 1;
-                trailLine.SetPosition(0, hand.movementSource.position);
+                trailLine.SetPosition(0, transform.position);
                 trailLine.enabled = true;
 
                 return;
             }
             Vector3 lastPos = positionsList[positionsList.Count - 1];
-            Vector3 currentPos = camReference.InverseTransformPoint(hand.movementSource.position);
+            Vector3 currentPos = camReference.InverseTransformPoint(transform.position);//hand.movementSource.position); //BETA
             if (Vector3.Distance(currentPos, lastPos) > newPosThreshold)
             {
-                positionsList.Add(camReference.InverseTransformPoint(hand.movementSource.position));
+                positionsList.Add(currentPos);//hand.movementSource.position)); //BETA
                 trailLine.positionCount++;
-                trailLine.SetPosition(trailLine.positionCount - 1, hand.movementSource.position);
+                trailLine.SetPosition(trailLine.positionCount - 1, transform.position);
 
                 if (debug)
                 {
-                    Destroy(Instantiate(debugObj, hand.movementSource.position, Quaternion.identity), 3);
+                    Destroy(Instantiate(debugObj, transform.position, Quaternion.identity), 3);
+                }
+
+                //BETA
+                primer = 0;
+                nextDetect += Time.deltaTime;
+                if (nextDetect > detectRate && !createGesture)
+                {
+                    nextDetect = 0;
+                    DetectGesture(false);
                 }
             }
             else
@@ -202,10 +220,14 @@ public class Wand : MonoBehaviour
                 {
                     primer = 0;
 
+                    //BETA
+                    nextDetect = 0;
+
                     if (positionsList.Count < 3)
                     {
                         return;
                     }
+
 
                     print("Stop Detect");
                     DetectGesture(true);
@@ -223,7 +245,8 @@ public class Wand : MonoBehaviour
             {
                 rayObjects[currentRay].SetActive(true);
                 positionsList.Clear();
-                Invoke("DisableTrail", trailDissipateTime);
+                trailLine.positionCount = 0;
+                //Invoke("DisableTrail", trailDissipateTime);
                 primer = 0;
             }
             else
@@ -236,6 +259,9 @@ public class Wand : MonoBehaviour
         if (!isPressed)
         {
             waitForNext = false;
+
+            //BETA
+            nextDetect = 0;
         }
     }
 
@@ -297,10 +323,11 @@ public class Wand : MonoBehaviour
         {
             if (wandResult.GestureClass == spell.name)
             {
-                if (wandResult.Score > spell.recognitionThreshold)
+                if ((!endCharge && wandResult.Score > spell.recognitionThreshold) || (endCharge & wandResult.Score > spell.stopThreshold))
                 {
                     primed = true;
-                    TriggerHaptic(primeHapticIntensity, primeHapticDuration);
+                    //TriggerHaptic(primeHapticIntensity, primeHapticDuration);
+                    spell.vibration.Play(hand.controller);
                     print("PRIMED " + spell.name);
                     activeSpell = spell.number;
                     spell.chargeSystem.Play();
@@ -314,15 +341,25 @@ public class Wand : MonoBehaviour
             if (endCharge)
             {
                 positionsList.Clear();
-                Invoke("DisableTrail", trailDissipateTime);
-                charging = false;
-                waitForNext = true;
+
+                trailLine.positionCount = 0;
+                //Invoke("DisableTrail", trailDissipateTime);
+
+                if (createGesture)
+                {
+                    charging = false;
+                    waitForNext = true;
+                }
+
+                //BETA
             }
         }
         else
         {
             positionsList.Clear();
-            Invoke("DisableTrail", trailDissipateTime);
+
+            trailLine.positionCount = 0;
+            //Invoke("DisableTrail", trailDissipateTime);
             charging = false;
         }
 
