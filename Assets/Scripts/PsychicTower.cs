@@ -106,6 +106,13 @@ public class PsychicTower : MonoBehaviour
         {
             collapseDone -= Time.deltaTime;
 
+            if (!currentTarget)
+            {
+                chargeDone += 0.2f;
+                nextAttk += 0.2f + collapseRate;
+                collapseDone = collapseRate;
+            }
+
             Vector3 attkPos = currentTarget.position;
             attkPos.y += attkHeight;
             attack.position = attkPos;

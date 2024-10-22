@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     public static bool teleport = true;
     public static bool crystalTower = true;
     public static bool flameOrbTower = true;
+    public static bool psychicTower = true;
 
     public GameObject[] tutObjs;
     List<int> tutorials = new List<int>();
@@ -63,6 +64,10 @@ public class TutorialManager : MonoBehaviour
         if (flameOrbTower)
         {
             tutorials.Add(7);
+        }
+        if (psychicTower)
+        {
+            tutorials.Add(8);
         }
         
         if (tutorials.Count == 0) 

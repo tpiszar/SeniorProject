@@ -12,7 +12,7 @@ public class TutorialSetter : MonoBehaviour
     public bool teleport = true;
     public bool crystalTower = true;
     public bool flameOrbTower = true;
-
+    public bool psychicTower = true;
 
     public bool setOnAwake = false;
     private void Awake()
@@ -39,6 +39,7 @@ public class TutorialSetter : MonoBehaviour
         TutorialManager.teleport = teleport;
         TutorialManager.crystalTower = crystalTower;
         TutorialManager.flameOrbTower = flameOrbTower;
+        TutorialManager.psychicTower = psychicTower;
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,9 +35,9 @@ public class HumanoidAnim : MonoBehaviour
             return;
         }
 
-        Vector3 direction1 = (enemyAI.travellingDir - transform.position);
-        direction1.y = 0;
-        direction1.Normalize();
+        //Vector3 direction1 = (enemyAI.travellingDir - transform.position);
+        //direction1.y = 0;
+        //direction1.Normalize();
 
         Vector3 direction = transform.InverseTransformDirection(agent.velocity.normalized); // Maybe better?
         //print(direction1 + " 0: " + direction);
@@ -46,7 +47,8 @@ public class HumanoidAnim : MonoBehaviour
 
         animator.SetFloat("SpeedRatio", agent.velocity.magnitude / startSpeed);
         animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed * speedMod);
-        animator.SetFloat("X", direction1.x);
-        animator.SetFloat("Y", direction1.z / 2);
+
+        animator.SetFloat("X", direction.z);
+        animator.SetFloat("Y", direction.x);
     }
 }
