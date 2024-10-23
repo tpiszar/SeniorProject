@@ -84,10 +84,12 @@ public class Wand : MonoBehaviour
     public float jumpRadius;
     public float jumpDelay = 1;
 
-    public LineRenderer[] lightningRenders;
-    public static float lightningSpikesPerUnit = 3;
-    public static float lightningSpikeOffset = 0.2f;
-    public static float lightningSpikeOffsetMax = 0.2f;
+    public LightningDrawer lightningDrawer;
+
+    //public LineRenderer[] lightningRenders;
+    //public static float lightningSpikesPerUnit = 3;
+    //public static float lightningSpikeOffset = 0.2f;
+    //public static float lightningSpikeOffsetMax = 0.2f;
 
     [Range(0, 1)]
     public float primeHapticIntensity;
@@ -317,7 +319,10 @@ public class Wand : MonoBehaviour
             wandResult = PointCloudRecognizer.Classify(wandSwing, leftTrainingSet.ToArray());
         }
 
-        print(wandResult.GestureClass + " " + wandResult.Score);
+        if (debug)
+        {
+            print(wandResult.GestureClass + " " + wandResult.Score);
+        }
 
         foreach (Spell spell in spells)
         {
@@ -445,16 +450,17 @@ public class Wand : MonoBehaviour
                     }
 
                     BasicHealth newEn = hits[i].transform.GetComponentInParent<BasicHealth>();
-                    
                     if (!newEn)
                     {
                         continue;
                     }
 
+                    minEn = newEn;
+
                     float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
                     if (newDist < minDist)
                     {
-                        if (Physics.Raycast(shootPoint.position, shootPoint.up, lightningRange, blockMask))
+                        if (!Physics.Raycast(shootPoint.position, shootPoint.up, Vector3.Distance(transform.position, newEn.transform.position), blockMask))
                         {
                             minDist = newDist;
                             minEn = newEn;
@@ -464,20 +470,28 @@ public class Wand : MonoBehaviour
 
                 if (minEn)
                 {
-                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningRenders, jumpDelay);
+                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningDrawer, jumpDelay);
 
-                    StartCoroutine(DrawLightning(minEn.transform.position, lightningRenders[jumpCount - 1]));
+                    lightningDrawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+
+                    //StartCoroutine(DrawLightning(transform.position, minEn.transform.position, lightningRenders[jumpCount - 1]));
                 }
                 else
                 {
+                    print("NOOOOOOOOOO");
+
                     RaycastHit hit;
                     if (Physics.Raycast(shootPoint.position, shootPoint.up, out hit, lightningRange, blockMask))
                     {
-                        StartCoroutine(DrawLightning(hit.point, lightningRenders[jumpCount - 1]));
+                        lightningDrawer.Draw(transform.position, hit.point, jumpCount - 1, jumpDelay);
+
+                        //StartCoroutine(DrawLightning(transform.position, hit.point, lightningRenders[jumpCount - 1]));
                     }
                     else
                     {
-                        StartCoroutine(DrawLightning(shootPoint.position + shootPoint.up * lightningRange, lightningRenders[jumpCount - 1]));
+                        lightningDrawer.Draw(transform.position, shootPoint.position + shootPoint.up * lightningRange, jumpCount - 1, jumpDelay);
+
+                        //StartCoroutine(DrawLightning(transform.position, shootPoint.position + shootPoint.up * lightningRange, lightningRenders[jumpCount - 1]));
                     }
                 }
 
@@ -503,22 +517,23 @@ public class Wand : MonoBehaviour
         activeSpell = -1;
     }
 
+
+    // VISUALIZE SPHERE CAST
     //private void OnDrawGizmos()
     //{
     //    Gizmos.DrawWireSphere(shootPoint.position, lightningRadius);
 
     //    RaycastHit[] hits = Physics.SphereCastAll(shootPoint.position, lightningRadius, shootPoint.up, lightningRange, lightningMask);
-    //    print(hits.Count());
     //    float minDist = float.MaxValue;
     //    BasicHealth minEn = null;
     //    int hitNum = -1;
     //    for (int i = 0; i < hits.Length; i++)
     //    {
-    //        BasicHealth newEn = hits[i].transform.GetComponent<BasicHealth>();
+    //        BasicHealth newEn = hits[i].transform.GetComponentInParent<BasicHealth>();
     //        float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
     //        if (newDist < minDist)
     //        {
-    //            if (!Physics.Raycast(shootPoint.position, shootPoint.up, lightningRange, blockMask))
+    //            if (!Physics.Raycast(shootPoint.position, shootPoint.up, Vector3.Distance(transform.position, newEn.transform.position), blockMask))
     //            {
     //                minDist = newDist;
     //                minEn = newEn;
@@ -538,6 +553,9 @@ public class Wand : MonoBehaviour
     //    else
     //    {
     //        Gizmos.color = Color.red;
+    //        Vector3 sphereCastMidpoint = shootPoint.position + (shootPoint.up * ((lightningRange - lightningRadius) / 2));
+    //        Gizmos.DrawWireSphere(sphereCastMidpoint, lightningRadius);
+    //        Debug.DrawLine(shootPoint.position, sphereCastMidpoint, Color.red);
 
     //    }
     //    Vector3 sphereCastMidpoint2 = shootPoint.position + (shootPoint.up * (lightningRange - lightningRadius));
@@ -557,37 +575,6 @@ public class Wand : MonoBehaviour
     //    //    Debug.DrawLine(transform.position, sphereCastMidpoint, Color.red);
     //    //}
     //}
-
-    IEnumerator DrawLightning(Vector3 enemy, LineRenderer lightningRender)
-    {
-        float distance = Vector3.Distance(transform.position, enemy);
-        int numSegments = Mathf.CeilToInt(distance * lightningSpikesPerUnit);
-
-        lightningRender.positionCount = numSegments + 2;
-
-        lightningRender.SetPosition(0, transform.position);
-
-        for (int i = 1; i <= numSegments; i++)
-        {
-            float t = (float)i / (numSegments + 1);
-            Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy, t);
-
-            Vector3 randomOffset = new Vector3(
-                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
-                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset),
-                UnityEngine.Random.Range(-lightningSpikeOffset, lightningSpikeOffset)
-            );
-
-            lightningRender.SetPosition(i, interpolatedPos + randomOffset);
-        }
-        lightningRender.SetPosition(lightningRender.positionCount - 1, enemy);
-
-        lightningRender.enabled = true;
-
-        yield return new WaitForSeconds(jumpDelay);
-
-        lightningRender.enabled = false;
-    }
 
     public void TriggerHaptic(float intensity, float duration)
     {

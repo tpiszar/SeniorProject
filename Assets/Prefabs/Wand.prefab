@@ -6106,6 +6106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2868676021882703238}
+  - component: {fileID: 1134604042374759084}
   m_Layer: 12
   m_Name: Bolts
   m_TagString: Untagged
@@ -6135,6 +6136,26 @@ Transform:
   - {fileID: 2586974609131719647}
   m_Father: {fileID: 5599615280915046323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1134604042374759084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719370009151688380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953a4bcbbe84cc84089950bec44074cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightningRenders:
+  - {fileID: 6680278765335616409}
+  - {fileID: 1554993827882485247}
+  - {fileID: 2826819464693102484}
+  - {fileID: 7358131325947985801}
+  - {fileID: 5343117026107813301}
+  - {fileID: 3397845942393910308}
+  - {fileID: 6835245641821979206}
 --- !u!1 &5495262759467471443
 GameObject:
   m_ObjectHideFlags: 0
@@ -21711,7 +21732,7 @@ MonoBehaviour:
     attackPrefab: {fileID: 0}
     chargeSystem: {fileID: 1579228769268770189}
     vibration: {fileID: 7274951661230764074}
-  lightningDamage: 15
+  lightningDamage: 30
   lightningMask:
     serializedVersion: 2
     m_Bits: 512
@@ -21727,14 +21748,7 @@ MonoBehaviour:
   jumpMod: 0.8
   jumpRadius: 3
   jumpDelay: 0.2
-  lightningRenders:
-  - {fileID: 6680278765335616409}
-  - {fileID: 1554993827882485247}
-  - {fileID: 2826819464693102484}
-  - {fileID: 7358131325947985801}
-  - {fileID: 5343117026107813301}
-  - {fileID: 3397845942393910308}
-  - {fileID: 6835245641821979206}
+  lightningDrawer: {fileID: 1134604042374759084}
   primeHapticIntensity: 0.2
   primeHapticDuration: 0.2
   fireHapticIntensity: 0.5

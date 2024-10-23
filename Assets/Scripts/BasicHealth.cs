@@ -111,7 +111,7 @@ public class BasicHealth : MonoBehaviour
         tickBurn = tick;
     }
 
-    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LineRenderer[] lines, float jumpDelay = 0, Transform shocker = null)
+    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
     {
         delayDeath = jumpDelay + .1f;
 
@@ -120,11 +120,12 @@ public class BasicHealth : MonoBehaviour
         jumpCount--;
         if (jumpCount > 0)
         {
-            StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, shocker));
+
+            StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, shocker));
         }
     }
 
-    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LineRenderer[] lines, float jumpDelay, Transform shocker)
+    IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay, Transform shocker)
     {
         yield return new WaitForSeconds(jumpDelay);
 
@@ -162,18 +163,22 @@ public class BasicHealth : MonoBehaviour
 
         if (minEn)
         {
-            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
+            minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, transform);
 
-            StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount - 1]));
+            drawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+
+            //StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount - 1]));
         }
         else if (shockerClose)
         {
             BasicHealth newEn = shocker.GetComponent<BasicHealth>();
             if (newEn)
             {
-                newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, lines, jumpDelay, transform);
+                newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, transform);
 
-                StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount - 1]));
+                drawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+
+                //StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount - 1]));
             }
         }
         else
@@ -181,36 +186,5 @@ public class BasicHealth : MonoBehaviour
             // Could have enemy take the extra shock damage if there is nothing left to chain to?
         }
         delayDeath = 0;
-    }
-
-    IEnumerator DrawLightning(Vector3 enemy, float duration, LineRenderer lightningRender)
-    {
-        float distance = Vector3.Distance(transform.position, enemy);
-        int numSegments = Mathf.CeilToInt(distance * Wand.lightningSpikesPerUnit);
-
-        lightningRender.positionCount = numSegments + 2;
-
-        lightningRender.SetPosition(0, transform.position);
-
-        for (int i = 1; i <= numSegments; i++)
-        {
-            float t = (float)i / (numSegments + 1);
-            Vector3 interpolatedPos = Vector3.Lerp(transform.position, enemy, t);
-
-            Vector3 randomOffset = new Vector3(
-                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
-                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset),
-                UnityEngine.Random.Range(-Wand.lightningSpikeOffset, Wand.lightningSpikeOffset)
-            );
-
-            lightningRender.SetPosition(i, interpolatedPos + randomOffset);
-        }
-        lightningRender.SetPosition(lightningRender.positionCount - 1, enemy);
-
-        lightningRender.enabled = true;
-
-        yield return new WaitForSeconds(duration);
-
-        lightningRender.enabled = false;
     }
 }
