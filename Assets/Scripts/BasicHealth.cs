@@ -167,7 +167,7 @@ public class BasicHealth : MonoBehaviour
 
             //StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount - 1]));
         }
-        else if (shockerClose)
+        else if (shockerClose && shocker)
         {
             BasicHealth newEn = shocker.GetComponent<BasicHealth>();
             if (newEn)

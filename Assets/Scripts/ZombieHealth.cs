@@ -37,8 +37,6 @@ public class ZombieHealth : BasicHealth
         agent.speed = Mathf.Lerp(minSpeed, maxSpeed, ratio);
         enemyAI.attkRate = Mathf.Lerp(minAttk, maxAttk, ratio);
 
-        print(agent.velocity.magnitude / maxSpeed);
-
         animator.SetFloat("AttackRate", 1 / (enemyAI.attkRate / enemyAI.attackAnimDuration));
     }
 }

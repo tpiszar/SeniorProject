@@ -476,8 +476,6 @@ public class Wand : MonoBehaviour
                 }
                 else
                 {
-                    print("NOOOOOOOOOO");
-
                     RaycastHit hit;
                     if (Physics.Raycast(shootPoint.position, shootPoint.up, out hit, lightningRange, blockMask))
                     {

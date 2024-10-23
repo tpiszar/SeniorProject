@@ -68,17 +68,19 @@ public class HandLaser : MonoBehaviour
             {
                 groundPos = hit.point;
 
-                Quaternion directionShift = Quaternion.Euler(0, 180, 0) * miniReference.rotation;
+                Quaternion directionShift = miniReference.rotation;
 
-                laserPoint.SetLaser(miniReference.InverseTransformPoint(groundPos) * mapScale, directionShift * (transform.position - groundPos));
+                laserPoint.SetLaser(miniReference.InverseTransformPoint(groundPos) * mapScale, miniReference.InverseTransformPoint(transform.position) * mapScale);//directionShift * (transform.position - groundPos));
 
-                print(transform.position - groundPos);
+                //print(miniReference.InverseTransformPoint(groundPos) * mapScale + " " + miniReference.InverseTransformPoint(transform.position) * mapScale);
+
+                //print((miniReference.InverseTransformPoint(transform.position) * mapScale - miniReference.InverseTransformPoint(groundPos) * mapScale).normalized);
             }
             else
             {
                 groundPos = transform.position + transform.forward * range;
 
-                laserPoint.SetLaser(Vector3.down * 30, Vector3.down);
+                laserPoint.SetLaser(Vector3.down * 30, Vector3.down * 30 + Vector3.right);
             }
 
             smallLaser.SetPosition(0, transform.position);
@@ -91,7 +93,7 @@ public class HandLaser : MonoBehaviour
             smallLaser.SetPosition(0, transform.position);
             smallLaser.SetPosition(1, transform.position);
 
-            laserPoint.SetLaser(Vector3.down * 30, Vector3.down);
+            laserPoint.SetLaser(Vector3.down * 30, Vector3.down * 30 + Vector3.right);
         }
     }
 

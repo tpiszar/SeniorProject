@@ -46,13 +46,15 @@ public class Laser : MonoBehaviour
         }
     }
 
-    public void SetLaser(Vector3 ground, Vector3 direction)
+    public void SetLaser(Vector3 ground, Vector3 hand)
     {
-        laserLine.SetPosition(1, transform.position);
-        laserLine.SetPosition(0, transform.position + direction.normalized * 100);
-
         transform.position = ground;
+        Vector3 direction = (hand - ground).normalized;
+        direction.y = Mathf.Clamp(direction.y, 0.35f, 1);
         transform.up = direction;
+
+        laserLine.SetPosition(1, ground);
+        laserLine.SetPosition(0, ground + direction.normalized * 100);
     }
 
     private void OnTriggerEnter(Collider other)
