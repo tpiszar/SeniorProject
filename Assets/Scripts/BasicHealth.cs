@@ -19,7 +19,7 @@ public class BasicHealth : MonoBehaviour
     public Renderer mainRend;
     public float flashSpeed = 0.5f;
     Coroutine currentFlash;
-    Color mainColor;
+    protected Color mainColor;
 
     //public LineRenderer lightningRender;
 
@@ -49,12 +49,10 @@ public class BasicHealth : MonoBehaviour
         }
     }
 
-    public int GetHealth()
+    public virtual int GetHealth()
     {
         return health;
     }
-
-    int hits = 0;
 
     public virtual void TakeDamage(int damage, DamageType type)
     {
@@ -74,10 +72,10 @@ public class BasicHealth : MonoBehaviour
             StopCoroutine(currentFlash);
         }
 
-        currentFlash = StartCoroutine(DamageFlash(hits));
+        currentFlash = StartCoroutine(DamageFlash());
     }
 
-    IEnumerator DamageFlash(int hitNum)
+    protected virtual IEnumerator DamageFlash()
     {
         float timer = 0;
 

@@ -47,6 +47,12 @@ public class TowerBlast : MonoBehaviour
         }
         else
         {
+            if (aHit)
+            {
+                aHit.TakeDamage(damage, DamageType.energy);
+                Destroy(gameObject);
+                return;
+            }
             if (redirect)
             {
                 target = tower.detector.GetTarget();
@@ -55,11 +61,6 @@ public class TowerBlast : MonoBehaviour
                 if (!target)
                 {
                     redirect = false;
-                    print("FAILED REDIRECT");
-                }
-                else
-                {
-                    print("REDIRECT");
                 }
             }
             else
@@ -99,31 +100,73 @@ public class TowerBlast : MonoBehaviour
     }
 
     bool hit = false;
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (hit)
+    //    {
+    //        return;
+    //    }
+
+    //    print(collision.transform.name + " " + Time.time);
+    //    if (collision.transform.CompareTag("Enemy"))
+    //    {
+    //        BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
+    //        if (enemy && (!target || enemy.transform == target))
+    //        {
+    //            enemy.TakeDamage(damage, DamageType.energy);
+    //            hit = true;
+    //            Destroy(gameObject);
+    //        }
+
+    //        if (enemy)
+    //        {
+    //            print(enemy.transform.name + " " + Time.time);
+    //        }
+    //    }
+        
+
+    //    //StopAllCoroutines();
+    //    //Destroy(this.gameObject);
+
+    //    //if (!target)
+    //    //{
+    //    //    Destroy(this.gameObject);
+    //    //}
+    //}
+
+    BasicHealth aHit;
+    private void OnTriggerEnter(Collider other)
     {
         if (hit)
         {
             return;
         }
 
-        if (collision.transform.CompareTag("Enemy"))
+        if (other.transform.CompareTag("Enemy"))
         {
-            BasicHealth enemy = collision.gameObject.GetComponentInParent<BasicHealth>();
-            if (enemy)// && collision.transform == target.transform) // Possibly remove the last bit
+            BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
+            if (enemy)
             {
-                enemy.TakeDamage(damage, DamageType.energy);
-                hit = true;
-                //Destroy(gameObject);
+                if (!target || enemy.transform == target)
+                {
+                    enemy.TakeDamage(damage, DamageType.energy);
+                    hit = true;
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    aHit = enemy;
+                }
+            }
+            else
+            {
+                if (aHit)
+                {
+                    aHit.TakeDamage(damage, DamageType.energy);
+                }
+                Destroy(gameObject);
             }
         }
-
-
-        //StopAllCoroutines();
-        Destroy(this.gameObject);
-        //if (!target)
-        //{
-        //    Destroy(this.gameObject);
-        //}
     }
 
     //IEnumerator Damage()

@@ -455,8 +455,6 @@ public class Wand : MonoBehaviour
                         continue;
                     }
 
-                    minEn = newEn;
-
                     float newDist = (transform.position - hits[i].transform.position).sqrMagnitude;
                     if (newDist < minDist)
                     {

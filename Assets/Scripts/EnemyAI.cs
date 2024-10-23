@@ -10,11 +10,11 @@ public class EnemyAI : MonoBehaviour, IComparable
     protected NavMeshAgent agent;
     public float attkRange;
     public float attkRate;
-    float nextAttk;
+    protected float nextAttk;
     public int damage;
 
     public float rayInterval;
-    float nextRay = 0;
+    protected float nextRay = 0;
     public LayerMask hitMask;
 
     [Range(0f, 1f)]
@@ -78,7 +78,10 @@ public class EnemyAI : MonoBehaviour, IComparable
         // Will need to be changed in the future
         //animator.speed = 1 / attkRate;
 
-        animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
+        if (animator)
+        {
+            animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
+        }
     }
 
     private void OnEnable()
@@ -88,18 +91,18 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public Vector3 destination;
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         destination = agent.destination;
         if (agent.enabled && agent.path.corners.Length >= 2 && !close)
         {
             travellingDir = agent.path.corners[1];
-            marker.position = agent.path.corners[1];
+            //marker.position = agent.path.corners[1];
         }
         else
         {
             travellingDir = transform.forward + transform.position;
-            marker.position = transform.forward + transform.position;
+            //marker.position = transform.forward + transform.position;
         }
 
         travellingDir.y = transform.position.y;
@@ -237,7 +240,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
     }
 
-    public float GetDistance()
+    public virtual float GetDistance()
     {
         if (Time.time > nextDist && !chasingBarrier)
         {
