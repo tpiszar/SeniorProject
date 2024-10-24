@@ -102,6 +102,9 @@ public class Barrier : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(mini);
+        if (mini)
+        {
+            Destroy(mini);
+        }
     }
 }
