@@ -28,15 +28,21 @@ public class MiniDivineBlock : MonoBehaviour
         if (timer > duration)
         {
             Destroy(this);
-            Destroy(bigBlock);
+            Destroy(bigBlock.gameObject);
             return;
         }
 
         bigBlock.transform.position = miniReference.InverseTransformPoint(transform.position) * mapScale;
-        bigBlock.rotation = Quaternion.Inverse(transform.rotation) * miniReference.rotation;
+        Vector3 rotation = transform.rotation.eulerAngles;
+        rotation.y -= miniReference.rotation.eulerAngles.y;
+        bigBlock.rotation = Quaternion.Euler(rotation);
+        //bigBlock.rotation = Quaternion.Inverse(transform.rotation)* miniReference.rotation;
 
         bigHand.transform.position = miniReference.InverseTransformPoint(smallHand.position) * mapScale;
-        bigHand.rotation = Quaternion.Inverse(smallHand.rotation) * miniReference.rotation;
+        Vector3 handRotation = smallHand.rotation.eulerAngles;
+        handRotation.y -= miniReference.rotation.eulerAngles.y;
+        bigHand.rotation = Quaternion.Euler(handRotation);
+        //bigHand.rotation = Quaternion.Inverse(smallHand.rotation) * miniReference.rotation;
     }
 
     private void OnEnable()
@@ -47,6 +53,7 @@ public class MiniDivineBlock : MonoBehaviour
 
     private void OnDestroy()
     {
+
         bigHand.gameObject.SetActive(false);
     }
 }

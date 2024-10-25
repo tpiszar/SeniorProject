@@ -115,7 +115,7 @@ public class CreateTower : MonoBehaviour
         {
 
             Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
-            Quaternion relativeRot = Quaternion.Inverse(Quaternion.Euler(createRot)) * miniReference.rotation;
+            Quaternion relativeRot = Quaternion.Euler(createRot) * miniReference.rotation;
 
             tower = Instantiate(towerPrefab, relativeSpot, relativeRot);
             //tower.GetComponent<BasicTowerDetection>().player = player;

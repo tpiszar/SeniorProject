@@ -19,6 +19,8 @@ public class DivineBlock : MonoBehaviour
     public Transform miniMap;
     public float shrinkScale = 0.03f;
 
+    public float burySize = 0.25f;
+
     List<BasicHealth> hitEnemies = new List<BasicHealth>();
     Dictionary<Transform, int> hitColliders = new Dictionary<Transform, int>();
 
@@ -39,25 +41,65 @@ public class DivineBlock : MonoBehaviour
         miniBlock.GetComponent<XRGrabInteractable>().enabled = false;
         Destroy(GetComponent<Rigidbody>());
 
+        float angle = Vector3.Angle(transform.up, Vector3.up);
+
+        Vector3 modifiedVector;
+
+        bool up = true;
+        float y = transform.rotation.eulerAngles.y;
+
+        if (angle < 45f)
+        {
+            modifiedVector = Vector3.Project(transform.up, Vector3.up);
+        }
+        else
+        {
+            modifiedVector = Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized;
+
+            up = false;
+        }
+
+        modifiedVector = Quaternion.FromToRotation(transform.up, modifiedVector) * transform.up;
+
+        transform.up = modifiedVector;
+
+        Vector3 rot = transform.rotation.eulerAngles;
+        if (up)
+        {
+            rot.y = y;
+            transform.rotation = Quaternion.Euler(rot);
+
+            slamPos.y = path.transform.position.y + path.transform.lossyScale.y / 2 + transform.lossyScale.y / 2 - burySize;
+        }
+        else
+        {
+            rot.x = 0;
+            transform.rotation = Quaternion.Euler(rot);
+
+            slamPos.y = path.transform.position.y + path.transform.lossyScale.y / 2 + transform.lossyScale.x / 2 - burySize;
+        }
+
         transform.position = slamPos;
 
         barrierTrigger.enabled = true;
         barrier.enabled = true;
         obstacle.SetActive(true);
-
         miniBlock.parent = miniMap;
-        print(miniBlock.position);
         miniBlock.localPosition = transform.position * shrinkScale;
-        print(transform.position * shrinkScale + " " + miniBlock.position);
+        miniBlock.localRotation = transform.rotation;
 
         Destroy(this);
     }
 
+    Transform path;
     private void OnTriggerEnter(Collider other)
     {
-        print(other.transform.name);
         if (other.CompareTag("Path"))
         {
+            if (!path || path.transform.position.y > other.transform.position.y)
+            {
+                path = other.transform;
+            }
             slamPos = transform.position;
             if (other.transform.lossyScale.x < other.transform.lossyScale.z)
             {
@@ -67,6 +109,7 @@ public class DivineBlock : MonoBehaviour
             {
                 slamPos.z = other.transform.position.z;
             }
+            
             Slam();
         }
         else if (other.CompareTag("Enemy"))
