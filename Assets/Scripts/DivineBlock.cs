@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class DivineBlock : MonoBehaviour
 {
+    public bool left;
+
     public int hitDamage;
+
+    public float activateVelocity;
 
     public ShockWave shockWave;
 
@@ -14,6 +19,8 @@ public class DivineBlock : MonoBehaviour
     public Collider barrierTrigger;
     public Barrier barrier;
     public GameObject obstacle;
+
+    public ParticleSystem shockWaveParticle;
 
     public Transform miniBlock;
     public Transform miniMap;
@@ -24,22 +31,33 @@ public class DivineBlock : MonoBehaviour
     List<BasicHealth> hitEnemies = new List<BasicHealth>();
     Dictionary<Transform, int> hitColliders = new Dictionary<Transform, int>();
 
-    Vector3 slamPos;
+    float lastY;
+    float yVelocity;
+
+    void Start()
+    {
+        lastY = transform.position.y;
+        transform.parent = null;
+    }
+
+    void Update()
+    {
+        yVelocity = (transform.position.y - lastY) / Time.deltaTime;
+        lastY = transform.position.y;
+    }
 
     void Slam()
     {
-        foreach (BasicHealth hit in hitEnemies)
+        if (left)
         {
-            hit.TakeDamage(hitDamage, DamageType.energy);
+            DivineHands.leftDivine = true;
+        }
+        else
+        {
+            DivineHands.rightDivine = true;
         }
 
-        blockCollider.isTrigger = false;
-
-        shockWave.Slam();
-        Destroy(shockWave.gameObject);
-        Destroy(miniBlock.GetComponent<MiniDivineBlock>());
-        miniBlock.GetComponent<XRGrabInteractable>().enabled = false;
-        Destroy(GetComponent<Rigidbody>());
+        Vector3 snapPoint = Vector3.zero;
 
         float angle = Vector3.Angle(transform.up, Vector3.up);
 
@@ -63,23 +81,42 @@ public class DivineBlock : MonoBehaviour
 
         transform.up = modifiedVector;
 
+        float heightMod = -burySize;
+
         Vector3 rot = transform.rotation.eulerAngles;
         if (up)
         {
             rot.y = y;
             transform.rotation = Quaternion.Euler(rot);
 
-            slamPos.y = path.transform.position.y + path.transform.lossyScale.y / 2 + transform.lossyScale.y / 2 - burySize;
+            heightMod += transform.lossyScale.y / 2;
         }
         else
         {
             rot.x = 0;
             transform.rotation = Quaternion.Euler(rot);
 
-            slamPos.y = path.transform.position.y + path.transform.lossyScale.y / 2 + transform.lossyScale.x / 2 - burySize;
+            heightMod += transform.lossyScale.x / 2;
         }
 
-        transform.position = slamPos;
+
+        snapPoint = MapPath.Instance.GetClosestPoint(transform.position);
+        snapPoint.y += heightMod;
+        transform.position = snapPoint;
+
+
+
+        foreach (BasicHealth hit in hitEnemies)
+        {
+            hit.TakeDamage(hitDamage, DamageType.energy);
+        }
+
+        blockCollider.isTrigger = false;
+
+        shockWave.Slam();
+        Destroy(shockWave.gameObject);
+        miniBlock.GetComponent<XRGrabInteractable>().enabled = false;
+        Destroy(GetComponent<Rigidbody>());
 
         barrierTrigger.enabled = true;
         barrier.enabled = true;
@@ -88,31 +125,14 @@ public class DivineBlock : MonoBehaviour
         miniBlock.localPosition = transform.position * shrinkScale;
         miniBlock.localRotation = transform.rotation;
 
+        shockWaveParticle.Play();
+
         Destroy(this);
     }
 
-    Transform path;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Path"))
-        {
-            if (!path || path.transform.position.y > other.transform.position.y)
-            {
-                path = other.transform;
-            }
-            slamPos = transform.position;
-            if (other.transform.lossyScale.x < other.transform.lossyScale.z)
-            {
-                slamPos.x = other.transform.position.x;
-            }
-            else
-            {
-                slamPos.z = other.transform.position.z;
-            }
-            
-            Slam();
-        }
-        else if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
             BasicHealth enemy = other.GetComponentInParent<BasicHealth>();
 
@@ -125,6 +145,16 @@ public class DivineBlock : MonoBehaviour
                 hitColliders[enemy.transform] = 1;
                 hitEnemies.Add(enemy);
             }
+        }
+    }
+
+    bool slammed = false;
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Path") && yVelocity < -50 && !slammed)
+        {
+            slammed = true;
+            Slam();
         }
     }
 

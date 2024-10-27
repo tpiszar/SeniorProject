@@ -22,6 +22,7 @@ public class ShockWave : MonoBehaviour
     void Update()
     {
         transform.position = block.position;
+        transform.rotation = block.rotation;
     }
 
     public void Slam()
