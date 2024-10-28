@@ -99,8 +99,12 @@ public class DivineBlock : MonoBehaviour
             heightMod += transform.lossyScale.x / 2;
         }
 
-
-        snapPoint = MapPath.Instance.GetClosestPoint(transform.position);
+        Quaternion angledPath;
+        snapPoint = MapPath.Instance.GetClosestPoint(transform.position);//, out angledPath);
+        //if (!up)
+        //{
+        //    transform.rotation = angledPath;
+        //}
         snapPoint.y += heightMod;
         transform.position = snapPoint;
 

@@ -25,10 +25,12 @@ public class MapPath : MonoBehaviour
         
     }
 
-    public Vector3 GetClosestPoint(Vector3 targetPosition)
+    public Vector3 GetClosestPoint(Vector3 targetPosition)//, out Quaternion targetRotation)
     {
         float minDistance = Mathf.Infinity;
         Vector3 closestPoint = targetPosition;
+
+        //targetRotation = Quaternion.identity;
 
         foreach (LineRenderer path in paths)
         {
@@ -39,6 +41,8 @@ public class MapPath : MonoBehaviour
                 Vector3 pointB = path.GetPosition(i + 1);
 
                 Vector3 closestPointOnSegment = ClosestPointOnLine(pointA, pointB, targetPosition);
+
+                //targetRotation = Quaternion.FromToRotation(Vector3.forward, pointB - pointA);
 
                 // Calculate the distance to the target position
                 float distance = Vector3.Distance(targetPosition, closestPointOnSegment);
