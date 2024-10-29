@@ -24,6 +24,7 @@ public class PlayerDeath : MonoBehaviour
     void Start()
     {
         skyLight = directionalLight.GetComponent<Light>();
+        WaveManager.LevelEnd = false;
     }
 
     // Update is called once per frame

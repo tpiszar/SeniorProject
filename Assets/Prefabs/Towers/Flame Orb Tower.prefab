@@ -370,7 +370,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 5
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &4353699109518462718
 MonoBehaviour:
@@ -384,7 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7541a93806a2124aa48885c128c652f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
+  detectionType: 0
+  enemies: []
+  healths: []
 --- !u!114 &2365131198547319198
 MonoBehaviour:
   m_ObjectHideFlags: 0

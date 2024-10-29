@@ -43,6 +43,8 @@ public class TeleportCrystal : MonoBehaviour
     public GameObject timerUI;
     public TextMeshProUGUI timerText;
 
+    public ParticleSystem shatterParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,6 +130,8 @@ public class TeleportCrystal : MonoBehaviour
 
             TriggerHaptic(crushHapticIntensity, Teleport.Instance.easeInTime);
             Invoke("TeleportHaptic", Teleport.Instance.easeInTime);
+
+            shatterParticle.Play();
         }
     }
 

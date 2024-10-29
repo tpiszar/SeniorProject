@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class MiniEnvironmentFollow : MonoBehaviour
 {
-    public Transform miniMap;
+    //public Transform miniMap;
 
     public GameObject[] detectors;
 

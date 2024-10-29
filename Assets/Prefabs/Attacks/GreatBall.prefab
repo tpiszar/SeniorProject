@@ -113,7 +113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3022419337182380261}
@@ -201,10 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f38821645bca3442a54fbdef43b6021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 50
   burnDuration: 5
   burnRate: 1
-  tickDamage: 5
+  tickDamage: 10
   hitThisCycle: []
 --- !u!1 &6410791382057088332
 GameObject:
@@ -335,9 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d7f199c513b454da564af82e985cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 60
   flameBlast: {fileID: 8184386977248153735}
-  expandRate: 0.1
+  expandRate: 0.2
   mesh: {fileID: 2367801689627707625}
 --- !u!114 &8112906390315047517
 MonoBehaviour:

@@ -33,7 +33,15 @@ public class MiniMapDetector : MonoBehaviour
                 newPos.y = attachHeightAdjust;
 
                 tower.socket.position = newPos;
+
+                // TEST TO TRY AND BETTER RANGED PLACE
+                //tower.socket.position = tower.transform.position;
+
                 Transform socketAttach = tower.socket.GetChild(0);
+
+                //TEST TO TRY AND BETTER RANGED PLACE
+                //socketAttach.position = newPos;
+
                 Vector3 yRotChange = new Vector3(socketAttach.rotation.eulerAngles.x, tower.holderTrans.rotation.eulerAngles.y, socketAttach.rotation.eulerAngles.z);
                 socketAttach.rotation = Quaternion.Euler(yRotChange);
 
