@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
 public class WaveManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class WaveManager : MonoBehaviour
     public GameObject barrierSphere;
 
     public static bool LevelEnd = false;
+    public static List<float> maxDistances;
 
     public static WaveManager Instance;
 
@@ -34,6 +36,8 @@ public class WaveManager : MonoBehaviour
         LevelEnd = false;
 
         Instance = this;
+
+        maxDistances = new List<float>();
 
         //if (!Instance)
         //{
@@ -48,9 +52,31 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ShadeAI.setter = false;
         waves = GetComponentsInChildren<Wave>();
         nextWave = 0;
         //nextWave = waves[0].InitializeWave();
+
+        foreach (Transform playerBase in Teleport.Instance.bases)
+        {
+            maxDistances.Add(CalculatePathLength(spawnPoint.position, playerBase.position));
+        }
+        foreach(float i in maxDistances) { print(i); }
+    }
+
+    float CalculatePathLength(Vector3 start, Vector3 end)
+    {
+        NavMeshPath path = new NavMeshPath();
+        if (NavMesh.CalculatePath(start, end, NavMesh.AllAreas, path))
+        {
+            float length = 0f;
+            for (int i = 1; i < path.corners.Length; i++)
+            {
+                length += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+            }
+            return length;
+        }
+        return 0f;
     }
 
     public void CleanUp()

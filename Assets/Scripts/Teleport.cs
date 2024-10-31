@@ -28,13 +28,13 @@ public class Teleport : MonoBehaviour
 
     public void startTeleport(int baseNum)
     {
+        lastBase = curBase;
+        curBase = baseNum;
+
         if (onTeleport != null)
         {
             onTeleport(easeInTime);
         }
-
-        lastBase = curBase;
-        curBase = baseNum;
 
         vignetteProvider.setLocomotion(LocomotionPhase.Moving);
 
@@ -64,14 +64,16 @@ public class Teleport : MonoBehaviour
 
     public void Awake()
     {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+        //if (!Instance)
+        //{
+        //    Instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(this);
+        //}
+
+        Instance = this;
     }
 
     // Start is called before the first frame update

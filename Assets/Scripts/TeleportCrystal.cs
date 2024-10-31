@@ -84,6 +84,11 @@ public class TeleportCrystal : MonoBehaviour
             mesh.material = crystalMat;
             if (timeToUse < 0)
             {
+                if (shatterParticle)
+                {
+                    shatterParticle.transform.parent = transform;
+                }
+
                 off = false;
                 grabbable.enabled = true;
 
@@ -117,6 +122,13 @@ public class TeleportCrystal : MonoBehaviour
     {
         if (timeToUse < 0 && !Teleport.Instance.isTeleporting)
         {
+            if (shatterParticle)
+            {
+                shatterParticle.transform.parent = null;
+                shatterParticle.transform.position = transform.position;
+                shatterParticle.Play();
+            }
+
             Teleport.Instance.isTeleporting = true;
 
             timeToUse = useRate;
@@ -130,8 +142,6 @@ public class TeleportCrystal : MonoBehaviour
 
             TriggerHaptic(crushHapticIntensity, Teleport.Instance.easeInTime);
             Invoke("TeleportHaptic", Teleport.Instance.easeInTime);
-
-            shatterParticle.Play();
         }
     }
 

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandRay : MonoBehaviour
 {
     bool holding = false;
+    int holdCount = 0;
     public bool overrideOn = false;
 
     public static bool activeHandRays = false;
@@ -28,6 +30,20 @@ public class HandRay : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void IncrementHolding()
+    {
+        holdCount++;
+        print(holdCount);
+        isHolding(true);
+    }
+
+    public void DecrementHolding()
+    {
+        holdCount--;
+        print(holdCount);
+        isHolding(holdCount == 0);
     }
 
     public void isHolding(bool hold)

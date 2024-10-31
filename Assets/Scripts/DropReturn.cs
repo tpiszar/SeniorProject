@@ -70,6 +70,23 @@ public class DropReturn : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            float distance;
+            if (resetPoint)
+            {
+                distance = Vector3.Distance(transform.position, resetPoint.position);
+            }
+            else
+            {
+                distance = Vector3.Distance(transform.position, basicPoint);
+            }
+            if (distance > 0.5f)
+            {
+                nextLostReset = lostResetTime;
+                nextReset = resetTime;
+            }
+        }
     }
 
     public void ResetObj()

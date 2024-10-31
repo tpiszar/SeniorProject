@@ -21,10 +21,10 @@ public class EnemyAI : MonoBehaviour, IComparable
     public float barrierBlendAmount = 0.5f;
 
     public float relocateInterval;
-    float nextLocate = 0;
+    protected float nextLocate = 0;
 
     public float distCheckInterval = 0.5f;
-    float nextDist;
+    protected float nextDist;
 
     bool close = false;
     List<Transform> attackObjs = new List<Transform>();
@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public float rotationSpeed;
 
-    float distance;
+    protected float distance;
 
     public float headHeight;
 
@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour, IComparable
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         if (Teleport.Instance)
         {
@@ -316,7 +316,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
     }
 
-    void Locate()
+    protected void Locate()
     {
         if (!player || !agent)
         {
@@ -327,7 +327,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         chasingBarrier = false;
     }
 
-    private void OnTeleport(float teleportTime)
+    protected virtual void OnTeleport(float teleportTime)
     {
         agent.enabled = false;
         chasingBarrier = false;
