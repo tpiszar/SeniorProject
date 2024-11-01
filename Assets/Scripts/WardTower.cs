@@ -23,6 +23,13 @@ public class WardTower : MonoBehaviour
 
     public bool prioGenerate = false;
 
+    public Transform top;
+    Vector3 topPosition = Vector3.zero;
+    public Transform close;
+
+    public float riseTime;
+    float rising = 0;
+
     public class BarrierSpawn : IComparable
     {
         Vector3 spawnPoint;
@@ -75,8 +82,10 @@ public class WardTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        topPosition = top.position;
+
         spawnHeight = barrierPrefab.transform.lossyScale.y / 2 - burySize;
-        nextCharge = chargeRate / 2;
+        nextCharge = chargeRate;
 
         player = Camera.main.transform;
 
@@ -93,8 +102,19 @@ public class WardTower : MonoBehaviour
     void Update()
     {
         nextCharge -= Time.deltaTime;
+        if (rising > 0)
+        {
+            rising -= Time.deltaTime;
+            top.position = Vector3.Lerp(topPosition, close.position, rising / riseTime);
+        }
+        else
+        {
+            top.position = Vector3.Lerp(close.position, topPosition, nextCharge / chargeRate);
+        }
+
         if (nextCharge < 0)
         {
+            rising = riseTime;
             if (prioGenerate)
             {
                 for (int i = 0; i < spawns.Count; i++)
@@ -102,7 +122,7 @@ public class WardTower : MonoBehaviour
                     if (!spawns[i].HasActiveBarrier())
                     {
                         spawns[i].Spawn(barrierPrefab);
-                        nextCharge = chargeRate;
+                        nextCharge = chargeRate + riseTime;
                         return;
                     }
                 }
@@ -111,12 +131,12 @@ public class WardTower : MonoBehaviour
                     if (spawns[i].IsOptimal(healAmount))
                     {
                         spawns[i].Boost(healAmount);
-                        nextCharge = chargeRate;
+                        nextCharge = chargeRate + riseTime;
                         return;
                     }
                 }
                 spawns[0].Boost(healAmount);
-                nextCharge = chargeRate;
+                nextCharge = chargeRate + riseTime;
             }
             else
             {
@@ -135,7 +155,7 @@ public class WardTower : MonoBehaviour
                     if (spawns[cycle].IsOptimal(healAmount))
                     {
                         spawns[cycle].Boost(healAmount);
-                        nextCharge = chargeRate;
+                        nextCharge = chargeRate + riseTime;
                         cycle++;
                     }
                     else
@@ -145,13 +165,13 @@ public class WardTower : MonoBehaviour
                             if (spawns[i].IsOptimal(healAmount))
                             {
                                 spawns[i].Boost(healAmount);
-                                nextCharge = chargeRate;
+                                nextCharge = chargeRate + riseTime;
                                 cycle++;
                                 return;
                             }
                         }
                         spawns[cycle].Boost(healAmount);
-                        nextCharge = chargeRate;
+                        nextCharge = chargeRate + riseTime;
                         cycle++;
                     }
                 }
