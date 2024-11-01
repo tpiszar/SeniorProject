@@ -459,6 +459,83 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7926080540302944869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 994465664692933466}
+  - component: {fileID: 6408736209404385625}
+  - component: {fileID: 4754085432805076581}
+  m_Layer: 9
+  m_Name: ShadeRoot
+  m_TagString: Shade Root
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &994465664692933466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926080540302944869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.13645099, y: -0, z: -0.0000000018626451, w: 0.99064684}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 556954743898999225}
+  m_LocalEulerAnglesHint: {x: 15.685, y: 0, z: 0}
+--- !u!135 &6408736209404385625
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926080540302944869}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &4754085432805076581
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926080540302944869}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 0.9126884
+  m_Direction: 1
+  m_Center: {x: -0.0000000063597283, y: 0.26512206, z: 0.0000007304015}
 --- !u!1 &9044469474275244636
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +695,7 @@ MonoBehaviour:
   headHeight: 1
   destination: {x: 0, y: 0, z: 0}
   root: {fileID: 6130979836772433903}
+  shadeRoot: {fileID: 994465664692933466}
   minFade: 0.1
   maxFade: 0.9
   distanceActivateRatio: 0.5
@@ -1945,6 +2023,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 6130979836772433903}
+    - targetCorrespondingSourceObject: {fileID: 5465940246521907071, guid: c512d6d5ea229bf40a9e3f5d5980ed84,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 994465664692933466}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c512d6d5ea229bf40a9e3f5d5980ed84,
         type: 3}

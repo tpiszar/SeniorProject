@@ -61,7 +61,6 @@ public class WaveManager : MonoBehaviour
         {
             maxDistances.Add(CalculatePathLength(spawnPoint.position, playerBase.position));
         }
-        foreach(float i in maxDistances) { print(i); }
     }
 
     float CalculatePathLength(Vector3 start, Vector3 end)

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Barrier : MonoBehaviour
 {
     public int maxHealth;
+    public int startingHealth;
     int health;
 
     public bool annihilate = false;
@@ -17,6 +18,9 @@ public class Barrier : MonoBehaviour
 
     public TextMeshProUGUI healthText;
     Color startingColor;
+
+    MeshRenderer mesh;
+    Color wardColor;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +41,15 @@ public class Barrier : MonoBehaviour
             startingColor = healthText.color;
             healthText.text = health.ToString();
         }
+
+        if (!isPlayer && !healthText)
+        {
+            health = startingHealth;
+            mesh = GetComponent<MeshRenderer>();
+            wardColor = mesh.material.color;
+            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            mesh.material.color = wardColor;
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +62,12 @@ public class Barrier : MonoBehaviour
     {
         health -= damage;
         //print(gameObject.name + ": " + health);
+
+        if (mesh)
+        {
+            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            mesh.material.color = wardColor;
+        }
 
         if (annihilate)
         {
@@ -76,9 +95,29 @@ public class Barrier : MonoBehaviour
         }
     }
 
+    public bool CanMaximizeCharge(int gain)
+    {
+        return (health + gain) <= maxHealth;
+    }
+
+    public void GainHealth(int gain)
+    {
+        health += gain;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        if (mesh)
+        {
+            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            mesh.material.color = wardColor;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Root"))
+        if (other.CompareTag("Root") || other.CompareTag("Shade Root"))
         {
             EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
             if (enemy)
@@ -90,7 +129,7 @@ public class Barrier : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Root"))
+        if (other.CompareTag("Root") || other.CompareTag("Shade Root"))
         {
             EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
             if (enemy)

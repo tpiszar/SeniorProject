@@ -8,6 +8,7 @@ public class ShadeAI : EnemyAI
     public static bool setter = false;
 
     public Transform root;
+    public Transform shadeRoot;
     [Range(0, 1)]
     public float minFade = 0.2f;
     [Range(0, 1)]
@@ -81,6 +82,7 @@ public class ShadeAI : EnemyAI
             float ratioDist = curMaxDist * distanceActivateRatio;
             if (GetDistance() > 5 && distance < ratioDist)
             {
+                shadeRoot.gameObject.SetActive(false);
                 root.gameObject.SetActive(true);
                 SetAlphas(1);
                 active = true;
@@ -96,7 +98,6 @@ public class ShadeAI : EnemyAI
                 WaveManager.Instance.enemies.Add(this);
                 WaveManager.Instance.healths.Add(GetComponent<BasicHealth>());
             }
-            print(ratioDist + " " + GetDistance());
         }
 
         base.Update();
