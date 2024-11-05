@@ -8,6 +8,7 @@ using System.Linq;
 using System;
 using UnityEngine.SocialPlatforms;
 using static Wand;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Wand : MonoBehaviour
 {
@@ -468,9 +469,17 @@ public class Wand : MonoBehaviour
 
                 if (minEn)
                 {
-                    minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningDrawer, jumpDelay);
+                    EnemyBarrier barrier = minEn.Shock((int)(lightningDamage * modifier), jumpMod, jumpCount, jumpRadius, lightningMask, lightningDrawer, jumpDelay);
 
-                    lightningDrawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+                    if (barrier)
+                    {
+                        Vector3 barrierPos = barrier.transform.position + (shootPoint.position - barrier.transform.position).normalized * barrier.transform.lossyScale.x / 2;
+                        lightningDrawer.Draw(shootPoint.position, barrierPos, jumpCount - 1, jumpDelay);
+                    }
+                    else
+                    {
+                        lightningDrawer.Draw(shootPoint.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+                    }
 
                     //StartCoroutine(DrawLightning(transform.position, minEn.transform.position, lightningRenders[jumpCount - 1]));
                 }

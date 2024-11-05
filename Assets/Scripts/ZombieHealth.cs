@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class ZombieHealth : BasicHealth
 {
-    public NavMeshAgent agent;
     public EnemyAI enemyAI;
     public Animator animator;
     public float minSpeed;
@@ -15,19 +14,19 @@ public class ZombieHealth : BasicHealth
 
     protected override void Start()
     {
+        base.Start();
+
         maxSpeed = agent.speed;
         maxAttk = enemyAI.attkRate;
-
-        base.Start();
     }
 
-    public override void TakeDamage(int damage, DamageType type)
+    public override EnemyBarrier TakeDamage(int damage, DamageType type)
     {
-        base.TakeDamage(damage, type);
+        EnemyBarrier barrier = base.TakeDamage(damage, type);
 
         if (!agent)
         {
-            return;
+            return barrier;
         }
 
         float thresholdHealth = (minSpeed / maxSpeed) * maxHealth;
@@ -39,5 +38,7 @@ public class ZombieHealth : BasicHealth
         enemyAI.attkRate = Mathf.Lerp(minAttk, maxAttk, ratio);
 
         animator.SetFloat("AttackRate", 1 / (enemyAI.attkRate / enemyAI.attackAnimDuration));
+
+        return barrier;
     }
 }

@@ -40,9 +40,18 @@ public class LightningTower : MonoBehaviour
             }
 
             BasicHealth enemy = currentTarget.GetComponent<BasicHealth>();
-            enemy.Shock(lightningDamage, jumpMod, jumpCount, jumpRadius, lightningMask, lightningDrawer, jumpDelay);
+            EnemyBarrier barrier = enemy.Shock(lightningDamage, jumpMod, jumpCount, jumpRadius, lightningMask, lightningDrawer, jumpDelay);
 
-            lightningDrawer.Draw(shootPoint.position, enemy.transform.position, jumpCount - 1, jumpDelay);
+            if (barrier)
+            {
+                Vector3 barrierPos = barrier.transform.position + (shootPoint.position - barrier.transform.position).normalized * barrier.transform.lossyScale.x / 2;
+                lightningDrawer.Draw(shootPoint.position, barrierPos, jumpCount - 1, jumpDelay);
+            }
+            else
+            {
+                lightningDrawer.Draw(shootPoint.position, enemy.transform.position, jumpCount - 1, jumpDelay);
+            }
+
 
             nextShot = fireRate;
         }

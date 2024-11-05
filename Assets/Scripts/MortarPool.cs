@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemyProtecter : MonoBehaviour
+public class MortarPool : MonoBehaviour
 {
-    public EnemyBarrier barrier;
-    public BasicHealth ghoul;
+    public ParticleSystem particle;
 
-    public float speedBoost = 0.2f;
+    public float duration;
+    float timer;
+
+    public float dps;
+    float damageRamp = 0f;
 
     List<BasicHealth> enemies = new List<BasicHealth>();
     Dictionary<Transform, int> colliders = new Dictionary<Transform, int>();
@@ -16,13 +18,41 @@ public class EnemyProtecter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        particle.Play();
+        timer = duration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            particle.Stop();
+            Destroy(this);
+        }
+
+        if (enemies.Count == 0)
+        {
+            damageRamp = 0f;
+            return;
+        }
+
+        damageRamp += Time.deltaTime * dps;
+        int dmg = (int)damageRamp;
+        damageRamp -= dmg;
+
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (!enemies[i])
+            {
+                enemies.RemoveAt(i);
+            }
+            else
+            {
+                enemies[i].TakeDamage(dmg, DamageType.fire);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,8 +69,6 @@ public class EnemyProtecter : MonoBehaviour
             {
                 colliders[enemy.transform] = 1;
                 enemies.Add(enemy);
-                enemy.SpeedBoost(speedBoost);
-                enemy.SetInvincible(true, barrier);
             }
         }
     }
@@ -59,35 +87,7 @@ public class EnemyProtecter : MonoBehaviour
                 {
                     colliders.Remove(enemy.transform);
                     enemies.Remove(enemy);
-                    enemy.RegularSpeed();
-                    enemy.SetInvincible(false, barrier);
                 }
-            }
-        }
-    }
-
-    private void OnEnable()
-    {
-        if (ghoul)
-        {
-            ghoul.SetInvincible(true, barrier);
-            ghoul.SpeedBoost(speedBoost);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (ghoul)
-        {
-            ghoul.SetInvincible(false, barrier);
-            ghoul.RegularSpeed();
-        }
-        foreach (BasicHealth enemy in enemies)
-        {
-            if (enemy)
-            {
-                enemy.SetInvincible(false, barrier);
-                enemy.RegularSpeed();
             }
         }
     }

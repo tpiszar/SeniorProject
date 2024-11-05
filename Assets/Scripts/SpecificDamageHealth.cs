@@ -8,21 +8,21 @@ public class SpecificDamageHealth : BasicHealth
     public bool fire;
     public bool lightning;
 
-    public override void TakeDamage(int damage, DamageType type)
+    public override EnemyBarrier TakeDamage(int damage, DamageType type)
     {
         if (type == DamageType.energy && !energy)
         {
-            return;
+            return null;
         }
         if (type == DamageType.fire && !fire)
         {
-            return;
+            return null;
         }
         if (type == DamageType.lightning && !lightning)
         {
-            return;
+            return null;
         }
-        base.TakeDamage(damage, type);
+        return(base.TakeDamage(damage, type));
     }
 
     public override void Burn(float duration, float rate, int tick)

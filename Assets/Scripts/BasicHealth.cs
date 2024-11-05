@@ -22,10 +22,10 @@ public class BasicHealth : MonoBehaviour
     Coroutine currentFlash;
     protected Color mainColor;
 
-    bool invincible = false;
-    EnemyBarrier enemyBarrier;
+    int invincible = 0;
+    List<EnemyBarrier> enemyBarriers = new List<EnemyBarrier>();
 
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
     protected float baseSpeed;
 
     //public LineRenderer lightningRender;
@@ -62,15 +62,42 @@ public class BasicHealth : MonoBehaviour
         return health;
     }
 
-    public void SetInvincible(bool invincible, EnemyBarrier barrier)
+    public void CleanUpBarriers()
     {
-        this.invincible = invincible;
-        enemyBarrier = barrier;
+        for (int i = enemyBarriers.Count - 1; i >= 0; i--)
+        {
+            if (!enemyBarriers[i])
+            {
+                enemyBarriers.RemoveAt(i);
+            }
+        }
+    }
+
+    public void SetInvincible(bool increase, EnemyBarrier barrier)
+    {
+        if (increase)
+        {
+            invincible++;
+            if (!enemyBarriers.Contains(barrier))
+            {
+                enemyBarriers.Add(barrier);
+            }
+        }
+        else
+        {
+            invincible--;
+            enemyBarriers.Remove(barrier);
+        }
 
         burnDuration = 0;
         burnRate = 0;
         burnRamp = 0;
         tickBurn = 0;
+    }
+
+    public bool IsInvincible()
+    {
+        return invincible > 0;
     }
 
     public virtual void SpeedBoost(float boost)
@@ -84,15 +111,17 @@ public class BasicHealth : MonoBehaviour
         agent.speed = baseSpeed;
     }
 
-    public virtual void TakeDamage(int damage, DamageType type)
+    public virtual EnemyBarrier TakeDamage(int damage, DamageType type)
     {
-        if (invincible)
+        if (invincible > 0)
         {
-            if (enemyBarrier && type != DamageType.fire)
+            //CleanUpBarriers();
+            
+            if (enemyBarriers[invincible - 1] && type != DamageType.fire)
             {
-                enemyBarrier.TakeDamage(damage, type);
+                return enemyBarriers[invincible - 1].TakeDamage(damage, type);
             }
-            return;
+            return null;
         }
 
         WaveManager.totalDamage += damage;
@@ -112,6 +141,8 @@ public class BasicHealth : MonoBehaviour
         }
 
         currentFlash = StartCoroutine(DamageFlash());
+
+        return null;
     }
 
     protected virtual IEnumerator DamageFlash()
@@ -142,7 +173,7 @@ public class BasicHealth : MonoBehaviour
 
     public virtual void Burn(float duration, float rate, int tick)
     {
-        if (invincible)
+        if (invincible > 0)
         {
             return;
         }
@@ -153,19 +184,19 @@ public class BasicHealth : MonoBehaviour
         tickBurn = tick;
     }
 
-    public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
+    public virtual EnemyBarrier Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
     {
         
         delayDeath = jumpDelay + .1f;
 
-        TakeDamage(damage, DamageType.lightning);
-
         jumpCount--;
-        if (jumpCount > 0 && !invincible)
+        if (jumpCount > 0 && invincible == 0)
         {
 
             StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, shocker));
         }
+
+        return TakeDamage(damage, DamageType.lightning);
     }
 
     IEnumerator ShockJump(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay, Transform shocker)
@@ -219,7 +250,7 @@ public class BasicHealth : MonoBehaviour
             {
                 newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, transform);
 
-                drawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+                drawer.Draw(transform.position, newEn.transform.position, jumpCount - 1, jumpDelay);
 
                 //StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount - 1]));
             }

@@ -72,7 +72,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
         agent = GetComponent<NavMeshAgent>();
         nextAttk = 0;
-        nextDist = distCheckInterval;
+        nextDist = 0;
         Locate();
 
         // Will need to be changed in the future

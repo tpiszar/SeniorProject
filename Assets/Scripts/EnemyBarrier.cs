@@ -11,7 +11,7 @@ public class EnemyBarrier : BasicHealth
         health = maxHealth;
     }
 
-    public override void TakeDamage(int damage, DamageType type)
+    public override EnemyBarrier TakeDamage(int damage, DamageType type)
     {
         WaveManager.totalDamage += damage;
         //print(WaveManager.totalDamage);
@@ -23,6 +23,8 @@ public class EnemyBarrier : BasicHealth
             ghoul.barrierUp = false;
             gameObject.SetActive(false);
         }
+
+        return this;
     }
 
     public override void Burn(float duration, float rate, int tick)
@@ -30,9 +32,9 @@ public class EnemyBarrier : BasicHealth
         return;
     }
 
-    public override void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
+    public override EnemyBarrier Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
     {
-        TakeDamage(damage, DamageType.lightning);
+        return TakeDamage(damage, DamageType.lightning);
     }
 
     public void Restore()
