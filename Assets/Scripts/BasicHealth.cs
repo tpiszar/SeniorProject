@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BasicHealth : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class BasicHealth : MonoBehaviour
     Coroutine currentFlash;
     protected Color mainColor;
 
+    bool invincible = false;
+    EnemyBarrier enemyBarrier;
+
+    NavMeshAgent agent;
+    protected float baseSpeed;
+
     //public LineRenderer lightningRender;
 
     float delayDeath = 0;
@@ -31,7 +38,8 @@ public class BasicHealth : MonoBehaviour
         health = maxHealth;
         mainColor = mainRend.material.color;
         //flashSpeed /= 2;
-        
+        agent = GetComponent<NavMeshAgent>();
+        baseSpeed = agent.speed;
     }
 
     // Update is called once per frame
@@ -54,8 +62,39 @@ public class BasicHealth : MonoBehaviour
         return health;
     }
 
+    public void SetInvincible(bool invincible, EnemyBarrier barrier)
+    {
+        this.invincible = invincible;
+        enemyBarrier = barrier;
+
+        burnDuration = 0;
+        burnRate = 0;
+        burnRamp = 0;
+        tickBurn = 0;
+    }
+
+    public virtual void SpeedBoost(float boost)
+    {
+        if (!agent) { return; }
+        agent.speed = baseSpeed * (1 + boost);
+    }
+    public virtual void RegularSpeed()
+    {
+        if (!agent) { return; }
+        agent.speed = baseSpeed;
+    }
+
     public virtual void TakeDamage(int damage, DamageType type)
     {
+        if (invincible)
+        {
+            if (enemyBarrier && type != DamageType.fire)
+            {
+                enemyBarrier.TakeDamage(damage, type);
+            }
+            return;
+        }
+
         WaveManager.totalDamage += damage;
         //print(WaveManager.totalDamage);
 
@@ -103,6 +142,11 @@ public class BasicHealth : MonoBehaviour
 
     public virtual void Burn(float duration, float rate, int tick)
     {
+        if (invincible)
+        {
+            return;
+        }
+
         burnDuration = duration + 0.1f;
         burnRate = rate;
         burnRamp = 0;
@@ -111,12 +155,13 @@ public class BasicHealth : MonoBehaviour
 
     public virtual void Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)
     {
+        
         delayDeath = jumpDelay + .1f;
 
         TakeDamage(damage, DamageType.lightning);
 
         jumpCount--;
-        if (jumpCount > 0)
+        if (jumpCount > 0 && !invincible)
         {
 
             StartCoroutine(ShockJump((int)(damage * jumpMod + 0.5f), jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, shocker));

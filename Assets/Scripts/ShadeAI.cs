@@ -86,6 +86,8 @@ public class ShadeAI : EnemyAI
                 root.gameObject.SetActive(true);
                 SetAlphas(1);
                 active = true;
+
+                MiniMapTracker.instance.AddMapTracker(transform);
             }
             else
             {

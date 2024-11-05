@@ -147,7 +147,8 @@ public class TowerBlast : MonoBehaviour
             BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)
             {
-                if (!target || enemy.transform == target)
+                EnemyBarrier barrier = other.GetComponent<EnemyBarrier>();
+                if (!target || enemy.transform == target || barrier)
                 {
                     enemy.TakeDamage(damage, DamageType.energy);
                     hit = true;

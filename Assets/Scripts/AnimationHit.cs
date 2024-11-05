@@ -22,4 +22,9 @@ public class AnimationHit : MonoBehaviour
     {
         enemy.Hit();
     }
+
+    public void finishHit()
+    {
+        enemy.AttackDone();
+    }
 }

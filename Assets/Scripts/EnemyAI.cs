@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     bool close = false;
     List<Transform> attackObjs = new List<Transform>();
-    Transform curAttackObj;
+    protected Transform curAttackObj;
 
     public Transform model;
     bool attacking = false;
@@ -214,7 +214,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
     }
 
-    public void Hit()
+    public virtual void Hit()
     {
         if (!this || !curAttackObj)
         {
@@ -238,6 +238,11 @@ public class EnemyAI : MonoBehaviour, IComparable
                 }
             }
         }
+    }
+
+    public virtual void AttackDone()
+    {
+        return;
     }
 
     public virtual float GetDistance()

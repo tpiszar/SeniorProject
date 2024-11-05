@@ -14,6 +14,8 @@ public class WardTower : MonoBehaviour
     public GameObject barrierPrefab;
     public float distanceThreshold;
     public float maxDistance;
+    public float checkSize = 1;
+    public LayerMask checkMask;
 
     public float chargeRate;
     float nextCharge;
@@ -32,7 +34,7 @@ public class WardTower : MonoBehaviour
 
     public class BarrierSpawn : IComparable
     {
-        Vector3 spawnPoint;
+        public Vector3 spawnPoint;
         public Barrier barrier;
         public float distance;
 
@@ -51,6 +53,11 @@ public class WardTower : MonoBehaviour
         {
             GameObject newBarrier = Instantiate(prefab, spawnPoint, Quaternion.identity);
             barrier = newBarrier.GetComponent<Barrier>();
+        }
+
+        public void Set(Barrier barrier)
+        {
+            this.barrier = barrier;
         }
 
         public void Boost(int amount)
@@ -121,8 +128,32 @@ public class WardTower : MonoBehaviour
                 {
                     if (!spawns[i].HasActiveBarrier())
                     {
-                        spawns[i].Spawn(barrierPrefab);
+                        Collider[] hitColliders = Physics.OverlapBox(spawns[i].spawnPoint, Vector3.one * checkSize, Quaternion.identity, checkMask);
+
+                        //foreach (Collider collider in hitColliders)
+                        //{
+                        //    Barrier existingBarrier = collider.GetComponent<Barrier>();
+                        //    if (existingBarrier)
+                        //    {
+                        //        minCol = Vector3.distance
+                        //    }
+                        //}
+
                         nextCharge = chargeRate + riseTime;
+
+                        print(hitColliders.Length);
+
+                        if (hitColliders.Length > 0)
+                        {
+                            Barrier existingBarrier = hitColliders[0].GetComponent<Barrier>();
+                            spawns[i].Set(existingBarrier);
+                            spawns[i].Boost(healAmount);
+                        }
+                        else
+                        {
+                            spawns[i].Spawn(barrierPrefab);
+                        }
+
                         return;
                     }
                 }
@@ -146,7 +177,22 @@ public class WardTower : MonoBehaviour
                 }
                 if (!spawns[cycle].HasActiveBarrier())
                 {
-                    spawns[cycle].Spawn(barrierPrefab);
+                    Collider[] hitColliders = Physics.OverlapBox(spawns[cycle].spawnPoint, Vector3.one * checkSize, Quaternion.identity, checkMask);
+
+                    nextCharge = chargeRate + riseTime;
+
+                    print(hitColliders.Length);
+
+                    if (hitColliders.Length > 0)
+                    {
+                        Barrier existingBarrier = hitColliders[0].GetComponent<Barrier>();
+                        spawns[cycle].Set(existingBarrier);
+                        spawns[cycle].Boost(healAmount);
+                    }
+                    else
+                    {
+                        spawns[cycle].Spawn(barrierPrefab);
+                    }
                     nextCharge = chargeRate;
                     cycle++;
                 }
