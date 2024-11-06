@@ -113,7 +113,6 @@ public class CreateTower : MonoBehaviour
 
         if (Mana.Instance.UseMana(manaCost))
         {
-
             Vector3 relativeSpot = miniReference.InverseTransformPoint(createPoint) * mapScale;
             Quaternion relativeRot = Quaternion.Euler(createRot) * miniReference.rotation;
 

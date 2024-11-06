@@ -10,6 +10,8 @@ public class MiniDetectSphere : MonoBehaviour
 
     Transform lastParent;
 
+    public bool selected = false;
+
     // Start is called before the first frame update
     void Start()
     {

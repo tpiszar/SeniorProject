@@ -8051,7 +8051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 30
+  startDelay: 3
   spawns:
   - enemies:
     - {fileID: 9206620049010714759, guid: 625ebad3c00d83a4e87ba946e177bcf6, type: 3}
@@ -13017,6 +13017,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867534941}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &867767316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6566777934305265939, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &875267873
 GameObject:
   m_ObjectHideFlags: 0
@@ -17581,8 +17587,8 @@ MonoBehaviour:
   startDelay: 1
   spawns:
   - enemies:
-    - {fileID: 8014673178385859721, guid: f97bde853ecacde44970d4cef2ccf1fc, type: 3}
-    counts: 01000000
+    - {fileID: 9044469474275244636, guid: 3104c287a6209d24a97cd6c059ab2d70, type: 3}
+    counts: 14000000
     delay: 0
 --- !u!1 &1246505598
 GameObject:
@@ -25922,7 +25928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToRespawn:
   - {fileID: 4141284757864741043}
-  - {fileID: 124267431301568701}
+  - {fileID: 867767316}
   - {fileID: 2569229624355462219}
   - {fileID: 7977267072322155145}
   - {fileID: 8218831105578662877}
@@ -26443,7 +26449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b5c9e6aa3c2614f9e19697ac239c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 20
+  startDelay: 2
   spawns:
   - enemies:
     - {fileID: 9206620049010714759, guid: 625ebad3c00d83a4e87ba946e177bcf6, type: 3}
@@ -26538,7 +26544,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
     - {fileID: 6564139298950782055, guid: 4481dc13ad1be3e40846f637046d9043, type: 3}
-    counts: 01000000
+    counts: 1400000002000000
     delay: 8
 --- !u!1 &1901153930
 GameObject:
@@ -30182,12 +30188,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146753722}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &124267431301568701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6039141176627312382, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
-    type: 3}
-  m_PrefabInstance: {fileID: 5941983441547390531}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1089507875083497052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6730805387076354079, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
@@ -30995,7 +30995,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 224444348}
+      objectReference: {fileID: 0}
     - target: {fileID: 3227570617223271272, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_InteractionManager
@@ -31111,6 +31111,11 @@ PrefabInstance:
       propertyPath: m_Colliders.Array.data[3]
       value: 
       objectReference: {fileID: 1359762979}
+    - target: {fileID: 4159589098716461893, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4438597714890395690, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_InteractionManager
@@ -31205,6 +31210,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sockets.Array.data[2].heightRatio
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452003774884894221, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: selected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452003774884894221, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5520898602756248104, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -31667,6 +31682,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 224444348}
+    - target: {fileID: 7242681625475706176, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7277576859275759936, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: startingMana
@@ -32177,9 +32197,9 @@ SceneRoots:
   - {fileID: 121349522}
   - {fileID: 1273431892}
   - {fileID: 373334571}
-  - {fileID: 1222934759}
   - {fileID: 875686212}
   - {fileID: 2000785551}
+  - {fileID: 1222934759}
   - {fileID: 1805706593}
   - {fileID: 9665019}
   - {fileID: 1856657881}

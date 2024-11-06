@@ -29,7 +29,7 @@ public class MortarPool : MonoBehaviour
         if (timer < 0)
         {
             particle.Stop();
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         if (enemies.Count == 0)

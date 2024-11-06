@@ -98,7 +98,10 @@ public class UIScript : MonoBehaviour
         {
             Time.timeScale = 0;
             pauseScreen.SetActive(true);
-            barrierSphere.SetActive(false);
+            if (barrierSphere)
+            {
+                barrierSphere.SetActive(false);
+            }
 
             HandRay.activeHandRays = true;
             leftRayInteractor.SetActive(true);
@@ -108,7 +111,10 @@ public class UIScript : MonoBehaviour
         {
             Time.timeScale = 1;
             pauseScreen.SetActive(false);
-            barrierSphere.SetActive(true);
+            if (barrierSphere)
+            {
+                barrierSphere.SetActive(true);
+            }
 
             HandRay.activeHandRays = false;
             leftRayInteractor.SetActive(false);
