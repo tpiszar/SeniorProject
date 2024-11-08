@@ -7,8 +7,6 @@ using PDollarGestureRecognizer;
 using System.Linq;
 using System;
 using UnityEngine.SocialPlatforms;
-using static Wand;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Wand : MonoBehaviour
 {
@@ -232,7 +230,7 @@ public class Wand : MonoBehaviour
                     }
 
 
-                    print("Stop Detect");
+                    //print("Stop Detect");
                     DetectGesture(true);
                 }
             }
@@ -254,7 +252,7 @@ public class Wand : MonoBehaviour
             }
             else
             {
-                print("Last Second Detect");
+                //print("Last Second Detect");
                 DetectGesture(true);
             }
         }
@@ -294,7 +292,7 @@ public class Wand : MonoBehaviour
 
                 trainingSet.Add(wandSwing);
 
-                print(fileName);
+                //print(fileName);
             }
             else
             {
@@ -306,7 +304,7 @@ public class Wand : MonoBehaviour
 
                 leftTrainingSet.Add(wandSwing);
 
-                print(fileName);
+                //print(fileName);
             }
         }
 
@@ -322,7 +320,7 @@ public class Wand : MonoBehaviour
 
         if (debug)
         {
-            print(wandResult.GestureClass + " " + wandResult.Score);
+            //print(wandResult.GestureClass + " " + wandResult.Score);
         }
 
         foreach (Spell spell in spells)
@@ -334,7 +332,7 @@ public class Wand : MonoBehaviour
                     primed = true;
                     //TriggerHaptic(primeHapticIntensity, primeHapticDuration);
                     spell.vibration.Play(hand.controller);
-                    print("PRIMED " + spell.name);
+                    //print("PRIMED " + spell.name);
                     activeSpell = spell.number;
                     spell.chargeSystem.Play();
                 }

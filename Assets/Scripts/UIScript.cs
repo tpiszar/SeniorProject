@@ -13,7 +13,7 @@ public class UIScript : MonoBehaviour
     Color fadeColor;
 
     bool paused = false;
-    public GameObject pauseScreen;
+    //public GameObject pauseScreen;
     public GameObject barrierSphere;
 
 
@@ -22,6 +22,27 @@ public class UIScript : MonoBehaviour
 
     public GameObject leftRayInteractor;
     public GameObject rightRayInteractor;
+
+    [System.Serializable]
+    public class Screen
+    {
+        public string name;
+        public GameObject obj;
+
+        public Screen(string aName, GameObject aObj)
+        {
+            name = aName;
+            obj = aObj;
+        }
+    }
+
+    public GameObject back;
+
+    [SerializeField] public Screen[] screenArr;
+
+    string currentScreen = "";
+    [SerializeField]
+    Dictionary<string, GameObject> screens = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
@@ -32,6 +53,15 @@ public class UIScript : MonoBehaviour
     void Start()
     {
         StartCoroutine(Fade(1, 0));
+
+        foreach (Screen screen in screenArr)
+        {
+            screens.Add(screen.name, screen.obj);
+            if (screen.obj.activeSelf)
+            {
+                currentScreen = screen.name;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -85,6 +115,26 @@ public class UIScript : MonoBehaviour
         activate.SetActive(true);
     }
 
+    public void SetScreen(string name)
+    {
+        if (currentScreen != "")
+        {
+            screens[currentScreen].SetActive(false);
+        }
+        if (screens.ContainsKey(name))
+        {
+            screens[name].SetActive(true);
+            currentScreen = name;
+
+            back.SetActive(true);
+        }
+        else
+        {
+            currentScreen = "";
+            back.SetActive(false);
+        }
+    }
+
     public void TogglePause()
     {
         if (WaveManager.LevelEnd)
@@ -97,7 +147,8 @@ public class UIScript : MonoBehaviour
         if (paused)
         {
             Time.timeScale = 0;
-            pauseScreen.SetActive(true);
+            //pauseScreen.SetActive(true);
+            SetScreen("Pause");
             if (barrierSphere)
             {
                 barrierSphere.SetActive(false);
@@ -110,7 +161,8 @@ public class UIScript : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            pauseScreen.SetActive(false);
+            //pauseScreen.SetActive(false);
+            SetScreen("");
             if (barrierSphere)
             {
                 barrierSphere.SetActive(true);

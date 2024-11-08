@@ -36,7 +36,7 @@ public class BlastAttack : MonoBehaviour
                 enemy.TakeDamage(damage, DamageType.energy);
             }
         }
-        print(collision.gameObject.name);
+        print("Wand Blast Hit: " + collision.gameObject.name);
         Destroy(gameObject);
     }
 

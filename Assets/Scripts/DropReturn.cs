@@ -36,6 +36,9 @@ public class DropReturn : MonoBehaviour
         {
             Teleport.Instance.onTeleport += onTeleport;
         }
+
+        // Any issues?
+        ResetObj();
     }
 
     // Update is called once per frame

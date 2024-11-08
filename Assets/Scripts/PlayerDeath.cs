@@ -14,7 +14,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject directionalLight;
     private Light skyLight;
 
-    public GameObject lossScreen;
+    public UIScript mainUI;
     public GameObject leftRayInteractor;
     public GameObject rightRayInteractor;
 
@@ -81,9 +81,12 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSeconds(delay);
         // SHOW LOSS SCREEN
         WaveManager.LevelEnd = true;
-        lossScreen.SetActive(true);
+        mainUI.SetScreen("Lose");
         HandRay.activeHandRays = true;
         leftRayInteractor.SetActive(true);
         rightRayInteractor.SetActive(true);
+
+        //Hopefully stop late enemies
+        WaveManager.Instance.StopAllCoroutines();
     }
 }

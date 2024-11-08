@@ -21,7 +21,7 @@ public class WaveManager : MonoBehaviour
 
     public float winDelay;
 
-    public GameObject winScreen;
+    public UIScript mainUI;
     public GameObject leftRayInteractor;
     public GameObject rightRayInteractor;
     public GameObject barrierSphere;
@@ -225,8 +225,9 @@ public class WaveManager : MonoBehaviour
         {
             barrierSphere.SetActive(false);
         }
-        winScreen.SetActive(true);
+        //winScreen.SetActive(true);
 
+        mainUI.SetScreen("Win");
         HandRay.activeHandRays = true;
         leftRayInteractor.SetActive(true);
         rightRayInteractor.SetActive(true);
