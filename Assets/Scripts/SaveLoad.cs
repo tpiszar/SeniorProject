@@ -17,11 +17,11 @@ public class SaveLoad : MonoBehaviour
     public static bool lefty = false;
 
     public static bool snapTurn = true;
-    public static float snapAmount = 45;
+    public static int snapAmount = 45;
 
-    public static float masterVolume = -1;
-    public static float musicVolume = -1;
-    public static float sounfFXVolume = -1;
+    public static float masterVolume = 0.5f;
+    public static float musicVolume = 0.5f;
+    public static float sounfFXVolume = 0.5f;
 
     public static SaveLoad Instance;
 

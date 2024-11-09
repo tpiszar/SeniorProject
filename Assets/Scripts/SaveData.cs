@@ -12,7 +12,7 @@ public struct SaveData
     public bool lefty;
 
     public bool snap;
-    public float amount;
+    public int amount;
 
     public float master;
     public float fx;

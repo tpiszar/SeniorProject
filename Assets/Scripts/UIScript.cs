@@ -41,6 +41,7 @@ public class UIScript : MonoBehaviour
     [SerializeField] public Screen[] screenArr;
 
     string currentScreen = "";
+    string previousScreen = "";
     [SerializeField]
     Dictionary<string, GameObject> screens = new Dictionary<string, GameObject>();
 
@@ -117,6 +118,7 @@ public class UIScript : MonoBehaviour
 
     public void SetScreen(string name)
     {
+        previousScreen = currentScreen;
         if (currentScreen != "")
         {
             screens[currentScreen].SetActive(false);
@@ -125,6 +127,28 @@ public class UIScript : MonoBehaviour
         {
             screens[name].SetActive(true);
             currentScreen = name;
+
+            back.SetActive(true);
+        }
+        else
+        {
+            currentScreen = "";
+            back.SetActive(false);
+        }
+    }
+
+    public void Back()
+    {
+        if (currentScreen != "")
+        {
+            screens[currentScreen].SetActive(false);
+        }
+        if (screens.ContainsKey(previousScreen))
+        {
+            screens[previousScreen].SetActive(true);
+            string temp = currentScreen;
+            currentScreen = previousScreen;
+            previousScreen = temp;
 
             back.SetActive(true);
         }
