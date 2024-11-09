@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TutorialSetter : MonoBehaviour
 {
+    public static int currentTutorial = 0;
+    public int tutorialNumber;
+
     public bool towerPlacing = true;
     public bool energyBlast = true;
     public bool fireball = true;
@@ -40,6 +43,8 @@ public class TutorialSetter : MonoBehaviour
         TutorialManager.crystalTower = crystalTower;
         TutorialManager.flameOrbTower = flameOrbTower;
         TutorialManager.psychicTower = psychicTower;
+
+        currentTutorial = tutorialNumber;
     }
 
     // Update is called once per frame

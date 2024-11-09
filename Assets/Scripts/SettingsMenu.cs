@@ -42,16 +42,19 @@ public class SettingsMenu : MonoBehaviour
     public void SetMaster()
     {
         SaveLoad.masterVolume = masterSlide.value;
+        SoundManager.instance.SetMasterVolume(SaveLoad.masterVolume);
     }
 
     public void SetMusic()
     {
         SaveLoad.musicVolume = musicSlide.value;
+        SoundManager.instance.SetMusicVolume(SaveLoad.musicVolume);
     }
 
     public void SetFx()
     {
         SaveLoad.sounfFXVolume = fxSlide.value;
+        SoundManager.instance.SetFXVolume(SaveLoad.sounfFXVolume);
     }
 
     public void SetLefty()

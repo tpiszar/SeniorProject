@@ -88,6 +88,18 @@ public class TutorialManager : MonoBehaviour
 
     void End()
     {
+        switch(TutorialSetter.currentTutorial)
+        {
+            case 0:
+                SaveLoad.level1TutorialDone = true;
+                break;
+            case 1:
+                SaveLoad.level2TutorialDone = true;
+                break;
+            case 2:
+                SaveLoad.level3TutorialDone = true;
+                break;
+        }
         endScreen.SetActive(true);
     }
 

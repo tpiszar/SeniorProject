@@ -7,6 +7,7 @@ using PDollarGestureRecognizer;
 using System.Linq;
 using System;
 using UnityEngine.SocialPlatforms;
+using static Wand;
 
 public class Wand : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class Wand : MonoBehaviour
     public LineRenderer trailLine;
     public float trailDissipateTime = 2f;
 
+    public AudioSource chargingSound;
+
     [System.Serializable]
     public class Spell
     {
@@ -64,6 +67,8 @@ public class Wand : MonoBehaviour
         public ParticleSystem chargeSystem;
         [SerializeField]
         public VibrationProfile vibration;
+        public AudioSource chargeSound;
+        public AudioSource fireSound;
     }
 
     [SerializeField]
@@ -148,6 +153,8 @@ public class Wand : MonoBehaviour
 
         wandGrabbable.selectEntered.AddListener(WandGrabbed);
         wandGrabbable.selectExited.AddListener(WandReleased);
+
+        chargingSound.Pause();
     }
 
     // Update is called once per frame
@@ -169,6 +176,8 @@ public class Wand : MonoBehaviour
 
         if (hand.noHand)
         {
+            chargingSound.Pause();
+
             DisableControllerRays();
             this.enabled = false;
             return;
@@ -178,7 +187,7 @@ public class Wand : MonoBehaviour
 
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
-
+            chargingSound.Play();
 
             charging = true;
             //rayObjects[currentRay].SetActive(false); //rayInteract.enabled
@@ -332,6 +341,12 @@ public class Wand : MonoBehaviour
                     primed = true;
                     //TriggerHaptic(primeHapticIntensity, primeHapticDuration);
                     spell.vibration.Play(hand.controller);
+
+                    if (spell.chargeSound)
+                    {
+                        spell.chargeSound.Play();
+                    }
+
                     //print("PRIMED " + spell.name);
                     activeSpell = spell.number;
                     spell.chargeSystem.Play();
@@ -398,6 +413,11 @@ public class Wand : MonoBehaviour
     {
         spells[activeSpell].chargeSystem.Stop();
 
+        if (spells[activeSpell].fireSound)
+        {
+            spells[activeSpell].fireSound.Play();
+        }
+
         //Attack
         switch (activeSpell)
         {
@@ -429,7 +449,7 @@ public class Wand : MonoBehaviour
             case 2: //Lightning
 
 
-                spells[activeSpell].chargeSystem.Stop();
+                //spells[activeSpell].chargeSystem.Stop();
 
                 float modifier = 1;
                 if (lightningCharge < maxChargeTime - minChargeTime) 

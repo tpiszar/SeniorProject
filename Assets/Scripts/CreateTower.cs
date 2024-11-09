@@ -25,7 +25,12 @@ public class CreateTower : MonoBehaviour
 
     public int manaCost;
     public int refundCost;
+    
+    public CurrentHand hand;
 
+    public AudioSource pickupSound;
+    public AudioSource createSound;
+    public AudioClip breakSound;
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
@@ -65,6 +70,8 @@ public class CreateTower : MonoBehaviour
 #pragma warning disable CS0618 // Type or member is obsolete
         holderTrans = args.interactor.transform;
 #pragma warning restore CS0618 // Type or member is obsolete
+
+        
 
         if (tower)
         {
