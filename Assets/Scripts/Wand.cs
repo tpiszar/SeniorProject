@@ -154,7 +154,7 @@ public class Wand : MonoBehaviour
         wandGrabbable.selectEntered.AddListener(WandGrabbed);
         wandGrabbable.selectExited.AddListener(WandReleased);
 
-        chargingSound.Pause();
+        chargingSound.Stop();
     }
 
     // Update is called once per frame
@@ -176,7 +176,7 @@ public class Wand : MonoBehaviour
 
         if (hand.noHand)
         {
-            chargingSound.Pause();
+            chargingSound.Stop();
 
             DisableControllerRays();
             this.enabled = false;
@@ -187,7 +187,10 @@ public class Wand : MonoBehaviour
 
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
-            chargingSound.Play();
+            if (!chargingSound.isPlaying)
+            {
+                chargingSound.Play();
+            }
 
             charging = true;
             //rayObjects[currentRay].SetActive(false); //rayInteract.enabled

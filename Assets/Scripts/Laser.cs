@@ -14,6 +14,8 @@ public class Laser : MonoBehaviour
     List<BasicHealth> enemies = new List<BasicHealth>();
     Dictionary<Transform, int> colliders = new Dictionary<Transform, int>();
 
+    public AudioSource laserSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,15 @@ public class Laser : MonoBehaviour
 
     public void SetLaser(Vector3 ground, Vector3 hand)
     {
+        if (ground == Vector3.down * 30)
+        {
+            laserSound.Stop();
+        }
+        else if (!laserSound.isPlaying)
+        {
+            laserSound.Play();
+        }
+
         transform.position = ground;
         Vector3 direction = (hand - ground).normalized;
         direction.y = Mathf.Clamp(direction.y, 0.35f, 1);

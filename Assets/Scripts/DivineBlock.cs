@@ -34,6 +34,10 @@ public class DivineBlock : MonoBehaviour
     float lastY;
     float yVelocity;
 
+    public AudioClip slamSound;
+    [Range(0.0001f, 1f)]
+    public float slamVolume = 1;
+
     void Start()
     {
         lastY = transform.position.y;
@@ -130,6 +134,8 @@ public class DivineBlock : MonoBehaviour
         miniBlock.localRotation = transform.rotation;
 
         shockWaveParticle.Play();
+
+        SoundManager.instance.PlayClip(slamSound, transform.position, slamVolume);
 
         Destroy(this);
     }

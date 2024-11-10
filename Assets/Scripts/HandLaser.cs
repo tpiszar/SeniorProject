@@ -36,6 +36,7 @@ public class HandLaser : MonoBehaviour
     public float fireHapticDuration;
 
     public AudioSource startSound;
+    public AudioSource shootSound;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,11 @@ public class HandLaser : MonoBehaviour
         {
             TriggerHaptic(fireHapticIntensity, fireHapticDuration);
 
+            if (!shootSound.isPlaying)
+            {
+                shootSound.Play();
+            }
+
             Vector3 groundPos;
 
             RaycastHit hit;
@@ -95,6 +101,8 @@ public class HandLaser : MonoBehaviour
         }
         else
         {
+            shootSound.Stop();
+
             smallLaser.SetPosition(0, transform.position);
             smallLaser.SetPosition(1, transform.position);
 
