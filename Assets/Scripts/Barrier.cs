@@ -22,6 +22,13 @@ public class Barrier : MonoBehaviour
     MeshRenderer mesh;
     Color wardColor;
 
+    public AudioClip damageSound;
+    [Range(0.0001f, 1f)]
+    public float damageVolume = 1;
+    public AudioClip destroySound;
+    [Range(0.0001f, 1f)]
+    public float destroyVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,8 +97,13 @@ public class Barrier : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.PlayClip(destroySound, transform.position, destroyVolume);
                 Destroy(gameObject);
             }
+        }
+        else
+        {
+            SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
         }
     }
 

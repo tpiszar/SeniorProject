@@ -32,11 +32,15 @@ public class WardTower : MonoBehaviour
     public float riseTime;
     float rising = 0;
 
+    public AudioSource riseSound;
+
     public class BarrierSpawn : IComparable
     {
         public Vector3 spawnPoint;
         public Barrier barrier;
         public float distance;
+
+
 
         public BarrierSpawn(Vector3 spawnPoint, float distance)
         {
@@ -122,6 +126,9 @@ public class WardTower : MonoBehaviour
         if (nextCharge < 0)
         {
             rising = riseTime;
+
+            riseSound.Play();
+
             if (prioGenerate)
             {
                 for (int i = 0; i < spawns.Count; i++)

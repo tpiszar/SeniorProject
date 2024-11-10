@@ -15,9 +15,15 @@ public class MortarPool : MonoBehaviour
     List<BasicHealth> enemies = new List<BasicHealth>();
     Dictionary<Transform, int> colliders = new Dictionary<Transform, int>();
 
+    public AudioSource hitSound;
+    public AudioSource bubbleSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        hitSound.Play();
+        bubbleSound.Play();
+
         particle.Play();
         timer = duration;
     }

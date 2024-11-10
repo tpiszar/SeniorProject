@@ -25,6 +25,11 @@ public class TowerBlast : MonoBehaviour
 
     public bool rotateTowards;
 
+    public AudioSource boostSound;
+    public AudioClip hitSound;
+    [Range(0.0001f, 1f)]
+    public float hitVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +88,11 @@ public class TowerBlast : MonoBehaviour
             float distTraveled = (transform.position - startPoint).magnitude;
             if (distTraveled > straightDistance)
             {
+                if (boostSound)
+                {
+                    boostSound.Play();
+                }
+
                 starting = false;
             }
             else
@@ -152,6 +162,9 @@ public class TowerBlast : MonoBehaviour
                 {
                     enemy.TakeDamage(damage, DamageType.energy);
                     hit = true;
+
+                    SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
+
                     Destroy(gameObject);
                 }
                 else

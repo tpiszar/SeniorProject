@@ -18,6 +18,8 @@ public class PlayerDeath : MonoBehaviour
     public GameObject leftRayInteractor;
     public GameObject rightRayInteractor;
 
+    public AudioSource loseAudio;
+
     //public static List<GameObject> towers = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
+        loseAudio.Play();
+
         //foreach (GameObject tower in towers)
         //{
         //    Destroy(tower);

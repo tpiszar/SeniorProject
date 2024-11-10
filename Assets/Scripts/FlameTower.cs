@@ -17,6 +17,8 @@ public class FlameTower : MonoBehaviour
     float blastRadius;
     float expandRate;
 
+    public AudioSource blastSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,8 @@ public class FlameTower : MonoBehaviour
         {
             if (!detector.isEmpty())
             {
+                blastSound.Play();
+
                 StartCoroutine(ExpandFlame());
                 nextShot = fireRate;
             }
@@ -43,6 +47,7 @@ public class FlameTower : MonoBehaviour
     IEnumerator ExpandFlame()
     {
         flame.hitThisCycle.Clear();
+        flame.soundCount = 0;
         float timer = 0;
         while (timer < expandRate)
         {

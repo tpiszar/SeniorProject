@@ -28,6 +28,13 @@ public class PsychicTower : MonoBehaviour
 
     bool wasNull = false;
 
+    public AudioSource chargeSound;
+    bool playCollapse = true;
+    public AudioSource collapesSound;
+    public AudioClip hitSound;
+    [Range(0.0001f, 1f)]
+    public float hitVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +68,8 @@ public class PsychicTower : MonoBehaviour
                 attkHeight = currentTarget.GetComponent<EnemyAI>().headHeight;
 
                 attack.gameObject.SetActive(true);
+
+                chargeSound.Play();
             }
             else
             {
@@ -100,6 +109,14 @@ public class PsychicTower : MonoBehaviour
 
                 collapseDone = collapseRate;
                 attackAnim.SetTrigger("Attack");
+
+                chargeSound.Stop();
+
+                if (playCollapse)
+                {
+                    collapesSound.Play();
+                    playCollapse = false;
+                }
             }
         }
         else if (collapseDone > 0)
@@ -148,6 +165,9 @@ public class PsychicTower : MonoBehaviour
 
                     return;
                 }
+
+                SoundManager.instance.PlayClip(hitSound, currentTarget.position, hitVolume);
+
                 health.TakeDamage(damage, DamageType.energy);
             }
         }
@@ -160,6 +180,7 @@ public class PsychicTower : MonoBehaviour
             return;
         }
 
+        playCollapse = true;
 
         attack.position = Vector3.down * 1000;
         attack.gameObject.SetActive(false);

@@ -11,6 +11,13 @@ public class TowerFlame : MonoBehaviour
 
     public List<Transform> hitThisCycle = new List<Transform>();
 
+    public int soundCap = 15;
+    public int soundCount = 0;
+
+    public AudioClip burnSound;
+    [Range(0.0001f, 1f)]
+    public float burnVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +42,13 @@ public class TowerFlame : MonoBehaviour
                 {
                     return;
                 }
+
+                if (soundCount < soundCap)
+                {
+                    SoundManager.instance.PlayClip(burnSound, enemy.transform.position, burnVolume);
+                    soundCount++;
+                }
+
 
                 enemy.TakeDamage(damage, DamageType.fire);
                 enemy.Burn(burnDuration, burnRate, tickDamage);

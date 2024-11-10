@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class UIScript : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class UIScript : MonoBehaviour
     string previousScreen = "";
     [SerializeField]
     Dictionary<string, GameObject> screens = new Dictionary<string, GameObject>();
+
+
+    public AudioSource UIClick;
+    public AudioSource startSound;
+    public AudioSource quitSound;
 
     private void Awake()
     {
@@ -113,11 +119,15 @@ public class UIScript : MonoBehaviour
 
     public void Next(GameObject activate)
     {
+        UIClick.Play();
+
         activate.SetActive(true);
     }
 
     public void SetScreen(string name)
     {
+        //Call play sound externally
+
         previousScreen = currentScreen;
         if (currentScreen != "")
         {
@@ -139,6 +149,8 @@ public class UIScript : MonoBehaviour
 
     public void Back()
     {
+        UIClick.Play();
+
         if (currentScreen != "")
         {
             screens[currentScreen].SetActive(false);
@@ -166,6 +178,7 @@ public class UIScript : MonoBehaviour
             return;
         }
 
+        UIClick.Play();
 
         paused = !paused;
         if (paused)
@@ -200,6 +213,8 @@ public class UIScript : MonoBehaviour
 
     public void LoadScene(string scene)
     {
+        startSound.Play();
+
         if (paused)
         {
             TogglePause();
@@ -217,6 +232,8 @@ public class UIScript : MonoBehaviour
 
     public void Quit()
     {
+        quitSound.Play();
+
         StartCoroutine(Fade(0, 1));
         StartCoroutine(EndApplication());
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LightningDrawer : MonoBehaviour
 {
@@ -9,8 +10,15 @@ public class LightningDrawer : MonoBehaviour
     public static float lightningSpikeOffset = 0.2f;
     public static float lightningSpikeOffsetMax = 0.2f;
 
+    public AudioClip zapSound;
+    [Range(0.0001f, 1f)]
+    public float zapVolume = 1;
+
+
     public void Draw(Vector3 posA, Vector3 posB, int lineNum, float disableDelay)
     {
+        SoundManager.instance.PlayClip(zapSound, posA, zapVolume);
+
         StartCoroutine(DrawLightning(posA, posB, lightningRenders[lineNum], disableDelay));
     }
 

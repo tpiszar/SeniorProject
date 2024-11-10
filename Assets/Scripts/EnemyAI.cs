@@ -47,6 +47,12 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public float headHeight;
 
+    public AudioSource passiveSound;
+    public float passiveMax = 12;
+    public float passiveMin = 5;
+    float playPassive;
+    public AudioSource attackSound;
+
     public int CompareTo(object obj)
     {
         GetDistance();
@@ -82,6 +88,8 @@ public class EnemyAI : MonoBehaviour, IComparable
         {
             animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
         }
+
+        playPassive = UnityEngine.Random.Range(passiveMin / 2, passiveMin);
     }
 
     private void OnEnable()
@@ -93,6 +101,13 @@ public class EnemyAI : MonoBehaviour, IComparable
     // Update is called once per frame
     protected virtual void Update()
     {
+        playPassive -= Time.deltaTime;
+        if (playPassive < 0)
+        {
+            playPassive = UnityEngine.Random.Range(passiveMin, passiveMax);
+            passiveSound.Play();
+        }
+
         destination = agent.destination;
         if (agent.enabled && agent.path.corners.Length >= 2 && !close)
         {
@@ -210,6 +225,8 @@ public class EnemyAI : MonoBehaviour, IComparable
         Barrier barrier = curAttackObj.GetComponent<Barrier>();
         if (barrier)
         {
+            attackSound.Play();
+
             animator.SetTrigger("Attack");
         }
     }

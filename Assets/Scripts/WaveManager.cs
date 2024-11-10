@@ -31,6 +31,8 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager Instance;
 
+    public AudioSource winSound;
+
     private void Awake()
     {
         LevelEnd = false;
@@ -208,6 +210,9 @@ public class WaveManager : MonoBehaviour
                 if (enemies.Count == 0)
                 {
                     //VICTORY
+
+                    winSound.Play();
+
                     Invoke("VictoryScreen", winDelay);
                     this.enabled = false;
                 }

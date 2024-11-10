@@ -28,6 +28,9 @@ public class MagicOrbTower : MonoBehaviour
     public float rotationMin;
     public float rotationMax;
 
+    public AudioSource chargeSound;
+    public AudioSource laserSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,10 @@ public class MagicOrbTower : MonoBehaviour
         if (!currentTarget)
         {
             laser.SetPosition(1, shootPoint.position);
+
+            laserSound.Stop();
+            chargeSound.Stop();
+            
             if (chargeLevel > 0)
             {
                 chargeLevel -= Time.deltaTime;
@@ -69,6 +76,11 @@ public class MagicOrbTower : MonoBehaviour
         {
             if (chargeLevel < chargeTime)
             {
+                if (!chargeSound.isPlaying)
+                {
+                    chargeSound.Play();
+                }
+
                 chargeLevel += Time.deltaTime;
             }
             else
@@ -79,7 +91,10 @@ public class MagicOrbTower : MonoBehaviour
                 int dmg = (int)damageRamp;
                 damageRamp -= dmg;
 
-                
+                if (!laserSound.isPlaying)
+                {
+                    laserSound.Play();
+                }
 
                 EnemyBarrier barrier = currentHealth.TakeDamage(dmg, DamageType.energy);
 

@@ -8,6 +8,10 @@ public class BlastAttack : MonoBehaviour
     bool hit = false;
     public float delayDestroy = 0;
 
+    public AudioClip hitSound;
+    [Range(0.0001f, 1f)]
+    public float hitVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +41,7 @@ public class BlastAttack : MonoBehaviour
             }
         }
         print("Wand Blast Hit: " + collision.gameObject.name);
+
         Destroy(gameObject);
     }
 
@@ -74,5 +79,10 @@ public class BlastAttack : MonoBehaviour
                 Destroy(gameObject, delayDestroy);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
     }
 }

@@ -14,6 +14,10 @@ public class FireBall : MonoBehaviour
 
     public GameObject mesh;
 
+    public AudioClip hitSound;
+    [Range(0.0001f, 1f)]
+    public float hitVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,8 @@ public class FireBall : MonoBehaviour
 
         flame = flameBlast.GetComponent<TowerFlame>();
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -47,6 +53,7 @@ public class FireBall : MonoBehaviour
             }
         }
 
+        SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
 
         StartCoroutine(ExpandFlame());
 

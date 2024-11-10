@@ -32,6 +32,13 @@ public class BasicHealth : MonoBehaviour
 
     float delayDeath = 0;
 
+    public AudioClip damageSound;
+    [Range(0.0001f, 1f)]
+    public float damageVolume = 1;
+
+    public float soundInterval = 2;
+    float nextInterval = 0;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -132,7 +139,18 @@ public class BasicHealth : MonoBehaviour
         if (health <= 0)
         {
             Mana.Instance.GainMana(manaGain);
+
+            SoundManager.instance.PlayDeathClip(type, transform.position);
+
             Destroy(gameObject, delayDeath);
+        }
+        else
+        {
+            if (Time.time > nextInterval)
+            {
+                nextInterval = Time.time + soundInterval;
+                SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
+            }
         }
 
         if (currentFlash != null)

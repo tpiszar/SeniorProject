@@ -11,6 +11,16 @@ public class SoundManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    public AudioClip energyDeath;
+    [Range(0.0001f, 1f)]
+    public float energyVolume = 1;
+    public AudioClip fireDeath;
+    [Range(0.0001f, 1f)]
+    public float fireVolume = 1;
+    public AudioClip lightningDeath;
+    [Range(0.0001f, 1f)]
+    public float lightningVolume = 1;
+
     public void Awake()
     {
         if (!instance)
@@ -68,5 +78,21 @@ public class SoundManager : MonoBehaviour
         int rand  = Random.Range(0, clips.Length);
 
         PlayClip(clips[rand], point, volume);
+    }
+
+    public void PlayDeathClip(DamageType damageType, Vector3 point)
+    {
+        switch(damageType)
+        {
+            case DamageType.energy:
+                PlayClip(energyDeath, point, energyVolume);
+                break;
+            case DamageType.fire:
+                PlayClip(fireDeath, point, fireVolume);
+                break;
+            case DamageType.lightning:
+                PlayClip(lightningDeath, point, lightningVolume);
+                break;
+        }
     }
 }
