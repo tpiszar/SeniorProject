@@ -45,6 +45,12 @@ public class TeleportCrystal : MonoBehaviour
 
     public ParticleSystem shatterParticle;
 
+    public AudioSource pickupSound;
+    public AudioSource readySound;
+    public AudioClip shatterSound;
+    [Range(0.0001f, 1f)]
+    public float shatterVolume = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +105,8 @@ public class TeleportCrystal : MonoBehaviour
                 {
                     timerUI.SetActive(false);
                 }
+
+                readySound.Play();
             }
         }
 
@@ -111,6 +119,8 @@ public class TeleportCrystal : MonoBehaviour
     public void Hold(SelectEnterEventArgs args)
     {
         held = true;
+
+        pickupSound.Play();
     }
 
     public void Drop(SelectExitEventArgs args)
@@ -128,6 +138,8 @@ public class TeleportCrystal : MonoBehaviour
                 shatterParticle.transform.position = transform.position;
                 shatterParticle.Play();
             }
+
+            SoundManager.instance.PlayClip(shatterSound, transform.position, shatterVolume);
 
             Teleport.Instance.isTeleporting = true;
 

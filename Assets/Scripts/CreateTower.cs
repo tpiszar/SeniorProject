@@ -31,6 +31,8 @@ public class CreateTower : MonoBehaviour
     public AudioSource pickupSound;
     public AudioSource createSound;
     public AudioClip breakSound;
+    [Range(0.0001f, 1f)]
+    public float breakVolume = 1;
 
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
@@ -63,23 +65,22 @@ public class CreateTower : MonoBehaviour
 
     }
 
-    bool socketGrab = true;
-
     public void Grabbed(SelectEnterEventArgs args)
     {
-#pragma warning disable CS0618 // Type or member is obsolete
-        holderTrans = args.interactor.transform;
-#pragma warning restore CS0618 // Type or member is obsolete
-
+        holderTrans = hand.movementSource;
         
+        if (!hand.noHand)
+        {
+            pickupSound.Play();
+        }
+
 
         if (tower)
         {
-            if (!socketGrab)
+            if (!hand.noHand)
             {
                 Mana.Instance.PreGaining(refundCost);
             }
-            socketGrab = !socketGrab;
         }
         else
         {
@@ -87,17 +88,14 @@ public class CreateTower : MonoBehaviour
         }
     }
 
-    bool socketDrop = true;
-
     public void Dropped(SelectExitEventArgs args)
     {
         if (tower)
         {
-            if (!socketDrop)
+            if (!hand.noHand)
             {
                 Mana.Instance.PreGaining(refundCost * -1);
             }
-            socketDrop = !socketDrop;
         }
         else
         {
@@ -129,6 +127,8 @@ public class CreateTower : MonoBehaviour
             socket.parent = miniReference;
 
             //PlayerDeath.towers.Add(tower);
+
+            createSound.Play();
         }
     }
 
@@ -145,6 +145,8 @@ public class CreateTower : MonoBehaviour
             Mana.Instance.GainMana(refundCost);
             Destroy(tower);
             //Destroy(socket.gameObject);
+
+            SoundManager.instance.PlayClip(breakSound, transform.position, breakVolume);
         }
     }
 

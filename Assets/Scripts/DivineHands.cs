@@ -23,11 +23,15 @@ public class DivineHands : MonoBehaviour
     public static bool leftDivine = false;
     public static bool rightDivine = false;
 
+    public AudioSource startSound;
+
     // Start is called before the first frame update
     void Start()
     {
         leftDivine = false;
         rightDivine = false;
+
+        startSound.Play();
     }
 
     // Update is called once per frame

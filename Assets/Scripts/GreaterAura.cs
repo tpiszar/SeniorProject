@@ -31,6 +31,8 @@ public class GreaterAura : MonoBehaviour
     float baseJumpMod;
     float baseJumpRadius;
 
+    public AudioSource startSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class GreaterAura : MonoBehaviour
     public void Activate()
     {
         auraSystem.Play();
+
+        startSound.Play();
 
         wand.spells[0].attackPrefab = greatBlast;
         wand.spells[1].attackPrefab = greatFireball;

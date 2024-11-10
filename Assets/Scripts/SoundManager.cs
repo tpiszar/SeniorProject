@@ -46,6 +46,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayClip(AudioClip clip, Vector3 point, float volume)
     {
+        if (!clip)
+        {
+            print("An empty clip was passed");
+            return;
+        }
+
         AudioSource audioSource = Instantiate(soundObj, point, Quaternion.identity);
 
         audioSource.clip = clip;

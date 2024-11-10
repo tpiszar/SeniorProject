@@ -26,6 +26,8 @@ public class Teleport : MonoBehaviour
 
     public bool isTeleporting = false;
 
+    public AudioSource teleportSound;
+
     public void startTeleport(int baseNum)
     {
         lastBase = curBase;
@@ -37,6 +39,10 @@ public class Teleport : MonoBehaviour
         }
 
         vignetteProvider.setLocomotion(LocomotionPhase.Moving);
+
+
+        teleportSound.Play();
+
 
         Invoke("doTeleport", easeInTime);
     }

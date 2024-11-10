@@ -35,10 +35,15 @@ public class HandLaser : MonoBehaviour
     public float fireHapticIntensity;
     public float fireHapticDuration;
 
+    public AudioSource startSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (handNode == XRNode.RightHand)
+        {
+            startSound.Play();
+        }
     }
 
     // Update is called once per frame
