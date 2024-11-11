@@ -8,6 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class WaveManager : MonoBehaviour
 {
+    public int level = 0;
+
     int curWave = 0;
 
     Wave[] waves;
@@ -212,6 +214,19 @@ public class WaveManager : MonoBehaviour
                     //VICTORY
 
                     winSound.Play();
+
+                    switch(level)
+                    {
+                        case 0:
+                            SaveLoad.level1Done = true;
+                            break;
+                        case 1:
+                            SaveLoad.level2Done = true;
+                            break;
+                        case 2:
+                            SaveLoad.level3Done = true;
+                            break;
+                    }
 
                     Invoke("VictoryScreen", winDelay);
                     this.enabled = false;
