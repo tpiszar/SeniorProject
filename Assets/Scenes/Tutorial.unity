@@ -1355,6 +1355,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 68320004}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -1388,6 +1391,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1001 &72580111
 PrefabInstance:
@@ -1982,6 +1989,12 @@ MonoBehaviour:
   soundObj: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
     type: 3}
   audioMixer: {fileID: 24100000, guid: 07f664a3d0c56374ebdc7e5873f178a0, type: 2}
+  energyDeath: {fileID: 8300000, guid: 623c36a2578b05d4c8ff68f58af09eae, type: 3}
+  energyVolume: 1
+  fireDeath: {fileID: 8300000, guid: c3c4ecbb72626ab499a525cfdf2b8f7c, type: 3}
+  fireVolume: 1
+  lightningDeath: {fileID: 8300000, guid: fa665dd15369dd24d9f5d7cf68c6d061, type: 3}
+  lightningVolume: 1
 --- !u!4 &88600597
 Transform:
   m_ObjectHideFlags: 0
@@ -7004,6 +7017,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 397855570}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -7037,6 +7053,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &401309221
 GameObject:
@@ -7424,6 +7444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15fba225d0d71459d8410d9df1fe8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   player: {fileID: 0}
   spawnPoint: {fileID: 9665019}
   enemies:
@@ -7439,6 +7460,7 @@ MonoBehaviour:
   leftRayInteractor: {fileID: 0}
   rightRayInteractor: {fileID: 0}
   barrierSphere: {fileID: 0}
+  winSound: {fileID: 0}
 --- !u!4 &413706553
 Transform:
   m_ObjectHideFlags: 0
@@ -8699,6 +8721,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 511322154}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -8732,6 +8757,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &524885592 stripped
 GameObject:
@@ -13942,6 +13971,10 @@ MonoBehaviour:
   timerUI: {fileID: 1155363138}
   timerText: {fileID: 662354783}
   shatterParticle: {fileID: 0}
+  pickupSound: {fileID: 0}
+  readySound: {fileID: 0}
+  shatterSound: {fileID: 0}
+  shatterVolume: 1
 --- !u!114 &906992348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14715,6 +14748,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 952701280}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 0
   lightning: 1
@@ -14838,6 +14874,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 956025269}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 0
   lightning: 1
@@ -15229,6 +15268,10 @@ MonoBehaviour:
   timerUI: {fileID: 1786645929}
   timerText: {fileID: 1831329483}
   shatterParticle: {fileID: 0}
+  pickupSound: {fileID: 0}
+  readySound: {fileID: 0}
+  shatterSound: {fileID: 0}
+  shatterVolume: 1
 --- !u!114 &972834750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15548,6 +15591,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 991091596}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 0
   lightning: 0
@@ -17729,6 +17775,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1112043717}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -17762,6 +17811,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1116805421
 GameObject:
@@ -18963,6 +19016,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1256505421}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -18996,6 +19052,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1262407839
 GameObject:
@@ -19587,6 +19647,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1284647946}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 1
   lightning: 0
@@ -20348,6 +20411,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1314167991}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -20381,6 +20447,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1319240556
 GameObject:
@@ -21814,6 +21884,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1394784201}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -21847,6 +21920,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1399222714
 GameObject:
@@ -22334,6 +22411,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1423816354}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 0
   lightning: 0
@@ -24479,6 +24559,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1535468174}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 1
   lightning: 0
@@ -24762,6 +24845,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0.555
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!114 &1549720382
 MonoBehaviour:
@@ -24779,6 +24866,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1549720379}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -26514,6 +26604,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0.555
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!114 &1641683069
 MonoBehaviour:
@@ -26531,6 +26625,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1641683066}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -26660,6 +26757,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1664702813}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 0
   lightning: 0
@@ -28831,6 +28931,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1787781928}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 0
   lightning: 1
@@ -28900,6 +29003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15fba225d0d71459d8410d9df1fe8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   player: {fileID: 0}
   spawnPoint: {fileID: 9665019}
   enemies:
@@ -28915,6 +29019,7 @@ MonoBehaviour:
   leftRayInteractor: {fileID: 0}
   rightRayInteractor: {fileID: 0}
   barrierSphere: {fileID: 0}
+  winSound: {fileID: 0}
 --- !u!4 &1805706593
 Transform:
   m_ObjectHideFlags: 0
@@ -29470,6 +29575,9 @@ MonoBehaviour:
   rightRayInteractor: {fileID: 1440328582}
   back: {fileID: 0}
   screenArr: []
+  UIClick: {fileID: 0}
+  startSound: {fileID: 0}
+  quitSound: {fileID: 0}
 --- !u!114 &1848794953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31629,6 +31737,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1976598785}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 0
   fire: 1
   lightning: 0
@@ -32024,6 +32135,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1980883760}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -32057,6 +32171,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1 &1984238968
 GameObject:
@@ -34506,6 +34624,9 @@ MonoBehaviour:
   rightRayInteractor: {fileID: 1440328582}
   back: {fileID: 0}
   screenArr: []
+  UIClick: {fileID: 0}
+  startSound: {fileID: 0}
+  quitSound: {fileID: 0}
 --- !u!114 &2116754725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34969,6 +35090,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1289062649380192545}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -35002,6 +35126,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!4 &9087999754917139789 stripped
 Transform:
@@ -35025,6 +35153,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1289062649708278245}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -35058,6 +35189,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!4 &9087999755030141163 stripped
 Transform:
@@ -35081,6 +35216,9 @@ MonoBehaviour:
   manaGain: 2
   mainRend: {fileID: 1289062649871547459}
   flashSpeed: 0.4
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  soundInterval: 2
   energy: 1
   fire: 1
   lightning: 1
@@ -35114,6 +35252,10 @@ MonoBehaviour:
   attackAnimDuration: 1
   rotationSpeed: 0
   headHeight: 0
+  passiveSound: {fileID: 0}
+  passiveMax: 12
+  passiveMin: 5
+  attackSound: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

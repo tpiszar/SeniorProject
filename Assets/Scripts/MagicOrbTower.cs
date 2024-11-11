@@ -81,6 +81,8 @@ public class MagicOrbTower : MonoBehaviour
                     chargeSound.Play();
                 }
 
+                chargeSound.pitch = Mathf.Lerp(1, 3, chargeLevel / chargeTime);
+
                 chargeLevel += Time.deltaTime;
             }
             else

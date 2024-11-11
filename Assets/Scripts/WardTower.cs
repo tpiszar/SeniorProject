@@ -188,8 +188,6 @@ public class WardTower : MonoBehaviour
 
                     nextCharge = chargeRate + riseTime;
 
-                    print(hitColliders.Length);
-
                     if (hitColliders.Length > 0)
                     {
                         Barrier existingBarrier = hitColliders[0].GetComponent<Barrier>();

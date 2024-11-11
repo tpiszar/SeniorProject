@@ -6498,6 +6498,12 @@ MonoBehaviour:
   soundObj: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
     type: 3}
   audioMixer: {fileID: 24100000, guid: 07f664a3d0c56374ebdc7e5873f178a0, type: 2}
+  energyDeath: {fileID: 8300000, guid: 623c36a2578b05d4c8ff68f58af09eae, type: 3}
+  energyVolume: 1
+  fireDeath: {fileID: 8300000, guid: c3c4ecbb72626ab499a525cfdf2b8f7c, type: 3}
+  fireVolume: 1
+  lightningDeath: {fileID: 8300000, guid: fa665dd15369dd24d9f5d7cf68c6d061, type: 3}
+  lightningVolume: 1
 --- !u!4 &519947677
 Transform:
   m_ObjectHideFlags: 0
@@ -23648,6 +23654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15fba225d0d71459d8410d9df1fe8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   player: {fileID: 1186719496}
   spawnPoint: {fileID: 9665019}
   enemies: []
@@ -23689,7 +23696,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1877627521873342962, guid: 07f664a3d0c56374ebdc7e5873f178a0,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0d589c93bb1b57c4a8f59b7eb302d770, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

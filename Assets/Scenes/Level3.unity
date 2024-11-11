@@ -3930,11 +3930,11 @@ MonoBehaviour:
   soundObj: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
     type: 3}
   audioMixer: {fileID: 24100000, guid: 07f664a3d0c56374ebdc7e5873f178a0, type: 2}
-  energyDeath: {fileID: 0}
+  energyDeath: {fileID: 8300000, guid: 623c36a2578b05d4c8ff68f58af09eae, type: 3}
   energyVolume: 1
-  fireDeath: {fileID: 0}
+  fireDeath: {fileID: 8300000, guid: c3c4ecbb72626ab499a525cfdf2b8f7c, type: 3}
   fireVolume: 1
-  lightningDeath: {fileID: 0}
+  lightningDeath: {fileID: 8300000, guid: fa665dd15369dd24d9f5d7cf68c6d061, type: 3}
   lightningVolume: 1
 --- !u!4 &253515062
 Transform:
@@ -15175,6 +15175,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032705073}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1039945130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3806443442879894676, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_Name
+      value: Ward Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5108035f1388f14f95769cde7b9dba5, type: 3}
 --- !u!1 &1070197468
 GameObject:
   m_ObjectHideFlags: 0
@@ -17752,7 +17820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1805706593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1222934760
 MonoBehaviour:
@@ -17769,8 +17837,8 @@ MonoBehaviour:
   startDelay: 1
   spawns:
   - enemies:
-    - {fileID: 9044469474275244636, guid: 3104c287a6209d24a97cd6c059ab2d70, type: 3}
-    counts: 14000000
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    counts: 01000000
     delay: 0
 --- !u!1 &1246505598
 GameObject:
@@ -25258,6 +25326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1222934759}
   - {fileID: 81742525}
   - {fileID: 1001114748}
   - {fileID: 2088158555}
@@ -25278,7 +25347,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1877627521873342962, guid: 07f664a3d0c56374ebdc7e5873f178a0,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0d589c93bb1b57c4a8f59b7eb302d770, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -32534,7 +32603,6 @@ SceneRoots:
   - {fileID: 373334571}
   - {fileID: 875686212}
   - {fileID: 2000785551}
-  - {fileID: 1222934759}
   - {fileID: 1805706593}
   - {fileID: 9665019}
   - {fileID: 1856657881}
@@ -32558,3 +32626,4 @@ SceneRoots:
   - {fileID: 693118390}
   - {fileID: 1796625610}
   - {fileID: 1418992609}
+  - {fileID: 1039945130}
