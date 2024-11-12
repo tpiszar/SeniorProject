@@ -4599,6 +4599,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292423912}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &294644134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.561602
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4601011
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.117115
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322575169157331298, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740474105110276286, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_Name
+      value: Psychic Tower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740474105110276286, guid: d8f5037dd61a7904fb374300803e1fcd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8f5037dd61a7904fb374300803e1fcd, type: 3}
 --- !u!1 &296128321
 GameObject:
   m_ObjectHideFlags: 0
@@ -15188,6 +15261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ward Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 3806443442879894676, guid: d5108035f1388f14f95769cde7b9dba5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8248696361451637899, guid: d5108035f1388f14f95769cde7b9dba5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17837,9 +17915,13 @@ MonoBehaviour:
   startDelay: 1
   spawns:
   - enemies:
-    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 9206620049010714759, guid: 625ebad3c00d83a4e87ba946e177bcf6, type: 3}
     counts: 01000000
     delay: 0
+  - enemies:
+    - {fileID: 3163385665159897073, guid: 5df614e8029f32b49a1701ae4d373982, type: 3}
+    counts: 01000000
+    delay: 100
 --- !u!1 &1246505598
 GameObject:
   m_ObjectHideFlags: 0
@@ -32627,3 +32709,4 @@ SceneRoots:
   - {fileID: 1796625610}
   - {fileID: 1418992609}
   - {fileID: 1039945130}
+  - {fileID: 294644134}
