@@ -70,7 +70,7 @@ public class SoundManager : MonoBehaviour
 
         audioSource.Play();
 
-        Destroy(audioSource, audioSource.clip.length);
+        Destroy(audioSource.gameObject, audioSource.clip.length);
     }
 
     public void PlayRandomClip(AudioClip[] clips, Vector3 point, float volume)

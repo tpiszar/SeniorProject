@@ -56,7 +56,7 @@ public class MortarPool : MonoBehaviour
             }
             else
             {
-                enemies[i].TakeDamage(dmg, DamageType.fire);
+                enemies[i].TakeDamage(dmg, DamageType.overTime);
             }
         }
     }

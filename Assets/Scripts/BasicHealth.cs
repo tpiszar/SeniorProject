@@ -52,6 +52,7 @@ public class BasicHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        overTimeDamageThisFrame = false;
         if (burnDuration > 0)
         {
             burnDuration -= Time.deltaTime;
@@ -118,8 +119,21 @@ public class BasicHealth : MonoBehaviour
         agent.speed = baseSpeed;
     }
 
+
+    bool overTimeDamageThisFrame = true;
     public virtual EnemyBarrier TakeDamage(int damage, DamageType type)
     {
+        if (type == DamageType.overTime)
+        {
+            if (overTimeDamageThisFrame)
+            {
+                return null;
+            }
+            overTimeDamageThisFrame = true;
+
+            type = DamageType.fire;
+        }
+
         if (invincible > 0)
         {
             //CleanUpBarriers();

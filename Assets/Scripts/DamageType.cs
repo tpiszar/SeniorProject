@@ -2,5 +2,6 @@ public enum DamageType
 {
     energy,
     fire,
-    lightning
+    lightning,
+    overTime
 }
