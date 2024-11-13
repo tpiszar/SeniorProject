@@ -87,7 +87,7 @@ public class ShadeAI : EnemyAI
                 SetAlphas(1);
                 active = true;
 
-                MiniMapTracker.instance.AddMapTracker(transform);
+                MiniMapTracker.instance.AddMapTracker(transform, Enemytype.Shade);
             }
             else
             {

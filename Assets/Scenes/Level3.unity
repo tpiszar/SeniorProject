@@ -14817,9 +14817,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -68264591993985049, guid: 07f664a3d0c56374ebdc7e5873f178a0,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fcaf64408c199154baab19aae6eec867, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17915,13 +17915,15 @@ MonoBehaviour:
   startDelay: 1
   spawns:
   - enemies:
+    - {fileID: 6564139298950782055, guid: 4481dc13ad1be3e40846f637046d9043, type: 3}
     - {fileID: 9206620049010714759, guid: 625ebad3c00d83a4e87ba946e177bcf6, type: 3}
-    counts: 01000000
-    delay: 0
-  - enemies:
     - {fileID: 3163385665159897073, guid: 5df614e8029f32b49a1701ae4d373982, type: 3}
-    counts: 01000000
-    delay: 100
+    - {fileID: 1592463388622421454, guid: 36bd157f0fb23ca4ebc176ae882680e2, type: 3}
+    - {fileID: 9206620049010714759, guid: c846a6f569939ad4c8be8bf82db42a92, type: 3}
+    - {fileID: 9044469474275244636, guid: 3104c287a6209d24a97cd6c059ab2d70, type: 3}
+    - {fileID: 8014673178385859721, guid: f97bde853ecacde44970d4cef2ccf1fc, type: 3}
+    counts: 01000000010000000100000001000000010000000100000001000000
+    delay: 0
 --- !u!1 &1246505598
 GameObject:
   m_ObjectHideFlags: 0
@@ -31666,6 +31668,59 @@ PrefabInstance:
       propertyPath: miniPlayerBarrier
       value: 
       objectReference: {fileID: 2097308733}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 9092714003320630487, guid: 6dcfdaa1218884e4b9be3d1eaebfe018,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5818822316111300354, guid: 269405d5c7833294783fa8fd84ea8c47,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7460565317587118910, guid: 79d97bf7d24dae9458b5c61067448062,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 2980422911292780475, guid: 610930db50feec241ae96239d13c78a3,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 3346475913765045532, guid: 80c6f26e9b02fd74a8a3822242470e63,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5113958969518040829, guid: 105e2390241fe1b42a30745be6a39a03,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1919623182148886621, guid: d83417f01d778ee4f80f0daa84fd9382,
+        type: 3}
+    - target: {fileID: 4792195430717690468, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: trackerPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 2636280498240385207, guid: bc0e5667f6b10874e8eb614e3014aaa2,
+        type: 3}
     - target: {fileID: 4943427162549176989, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive

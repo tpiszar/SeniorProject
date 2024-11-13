@@ -23,7 +23,7 @@ public class MiniTriggerWall : MonoBehaviour
             EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
             if (enemy)
             {
-                MiniMapTracker.instance.AddMapTracker(enemy.transform);
+                MiniMapTracker.instance.AddMapTracker(enemy.transform, enemy.type);
                 WaveManager.Instance.enemies.Add(enemy);
                 WaveManager.Instance.healths.Add(enemy.GetComponent<BasicHealth>());
             }

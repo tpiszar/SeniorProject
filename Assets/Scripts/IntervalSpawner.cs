@@ -24,7 +24,7 @@ public class IntervalSpawner : MonoBehaviour
         if (nextSpawn < 0)
         {
             GameObject newSLime = Instantiate(slimePrefab, transform.position, Quaternion.identity);
-            MiniMapTracker.instance.AddMapTracker(newSLime.transform);
+            MiniMapTracker.instance.AddMapTracker(newSLime.transform, Enemytype.Slime);
             nextSpawn = Mathf.Lerp(startInterval, endInterval, Time.time - startDelay / rampTime);
         }
     }

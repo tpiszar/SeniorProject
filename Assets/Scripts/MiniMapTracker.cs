@@ -12,7 +12,7 @@ public class MiniMapTracker : MonoBehaviour
 
     public static MiniMapTracker instance;
 
-    public GameObject trackerPrefab;
+    public GameObject[] trackerPrefabs;
     public GameObject barrierPrefab;
 
     public Transform playerBarrier;
@@ -61,14 +61,15 @@ public class MiniMapTracker : MonoBehaviour
             else
             {
                 trackers[i].position = miniReference.TransformPoint(trackedObjects[i].position / mapScale);
+                trackers[i].rotation = trackedObjects[i].rotation * miniReference.rotation;
             }
         }
     }
 
-    public void AddMapTracker(Transform obj)
+    public void AddMapTracker(Transform obj, Enemytype type)
     {
         trackedObjects.Add(obj);
-        GameObject newTracker = Instantiate(trackerPrefab, miniReference.TransformPoint(obj.position / mapScale), Quaternion.identity);
+        GameObject newTracker = Instantiate(trackerPrefabs[(int)type], miniReference.TransformPoint(obj.position / mapScale), Quaternion.identity);
         trackers.Add(newTracker.transform);
     }
 

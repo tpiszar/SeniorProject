@@ -45,7 +45,7 @@ public class TowerFlame : MonoBehaviour
 
                 if (soundCount < soundCap)
                 {
-                    SoundManager.instance.PlayClip(burnSound, enemy.transform.position, burnVolume);
+                    //SoundManager.instance.PlayClip(burnSound, enemy.transform.position, burnVolume);
                     soundCount++;
                 }
 

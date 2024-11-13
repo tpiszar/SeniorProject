@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IComparable
 {
+    public Enemytype type;
+
     public Transform player;
     protected NavMeshAgent agent;
     public float attkRange;
