@@ -153,8 +153,6 @@ public class Wand : MonoBehaviour
 
         wandGrabbable.selectEntered.AddListener(WandGrabbed);
         wandGrabbable.selectExited.AddListener(WandReleased);
-
-        chargingSound.Stop();
     }
 
     // Update is called once per frame
@@ -176,8 +174,6 @@ public class Wand : MonoBehaviour
 
         if (hand.noHand)
         {
-            chargingSound.Stop();
-
             DisableControllerRays();
             this.enabled = false;
             return;
@@ -254,6 +250,7 @@ public class Wand : MonoBehaviour
 
         if (!isPressed && charging)
         {
+            charging = false;
             if (positionsList.Count < 3)
             {
                 rayObjects[currentRay].SetActive(true);
@@ -275,6 +272,11 @@ public class Wand : MonoBehaviour
 
             //BETA
             nextDetect = 0;
+        }
+
+        if (!charging)
+        {
+            chargingSound.Stop();
         }
     }
 
@@ -429,7 +431,6 @@ public class Wand : MonoBehaviour
                 GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
                 eBlast.transform.forward = shootPoint.up;
                 eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
-                Destroy(eBlast, 10);
 
                 break;
 

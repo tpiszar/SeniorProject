@@ -128,6 +128,8 @@ public class UIScript : MonoBehaviour
     {
         //Call play sound externally
 
+        print(currentScreen + " " + name);
+
         previousScreen = currentScreen;
         if (currentScreen != "")
         {

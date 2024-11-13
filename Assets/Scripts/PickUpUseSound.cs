@@ -26,10 +26,11 @@ public class PickUpUseSound : MonoBehaviour
 
     public void Hold(SelectEnterEventArgs args)
     {
-        if (!hand.noHand)
-        {
-            pickupSound.Play();
-        }
+        pickupSound.Play();
+        //if (!hand.noHand)
+        //{
+        //    pickupSound.Play();
+        //}
 
     }
 

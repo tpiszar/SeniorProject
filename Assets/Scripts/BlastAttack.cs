@@ -15,7 +15,7 @@ public class BlastAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
@@ -83,6 +83,7 @@ public class BlastAttack : MonoBehaviour
 
     private void OnDestroy()
     {
+        print("BlastDestroyed " + Time.time);
         SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
     }
 }

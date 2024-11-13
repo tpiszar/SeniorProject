@@ -81,6 +81,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetSnapAmount()
     {
         SaveLoad.snapAmount = (int)snapSlide.value * 15;
+        snapAmount.text = SaveLoad.snapAmount.ToString();
         accessibility.Set();
     }
 }

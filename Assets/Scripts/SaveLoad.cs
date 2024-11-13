@@ -20,8 +20,8 @@ public class SaveLoad : MonoBehaviour
     public static int snapAmount = 45;
 
     public static float masterVolume = 1f;
-    public static float musicVolume = 1f;
-    public static float sounfFXVolume = 1f;
+    public static float musicVolume = 2f;
+    public static float sounfFXVolume = 2f;
 
     public static SaveLoad Instance;
 
@@ -78,13 +78,16 @@ public class SaveLoad : MonoBehaviour
             }
             catch (FileNotFoundException)
             {
-                print("Save file not found.");
+                print("Save file not found. New Save Created");
+                SaveSystem.Save();
             }
 
             DontDestroyOnLoad(this);
         }
         else
         {
+            SaveSystem.Save();
+
             Destroy(this);
         }
     }
