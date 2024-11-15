@@ -9,6 +9,8 @@ public class Barrier : MonoBehaviour
     public int startingHealth;
     int health;
 
+    public bool immune = false;
+
     public bool annihilate = false;
 
     public bool startMini = false;
@@ -67,8 +69,10 @@ public class Barrier : MonoBehaviour
 
     public void TakeDamage(int damage, GameObject attacker)
     {
-        health -= damage;
-        //print(gameObject.name + ": " + health);
+        if (!immune)
+        {
+            health -= damage;
+        }
 
         if (mesh)
         {

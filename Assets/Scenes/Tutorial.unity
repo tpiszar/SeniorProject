@@ -1373,6 +1373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -4659,27 +4660,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 138746662}
-  - {fileID: 1798248452}
-  - {fileID: 1798248452}
   enables:
   - {fileID: 622071996}
   - {fileID: 210439932}
   - {fileID: 1641683067}
   - {fileID: 1549720380}
   - {fileID: 413706551}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 0}
-  - {fileID: 1641683065}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1549720378}
-  manager: {fileID: 775187283}
-  fullActivate: 1
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!4 &231832530
 Transform:
   m_ObjectHideFlags: 0
@@ -5858,8 +5848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniReference: {fileID: 270879257}
   mapScale: 33.33
-  trackerPrefab: {fileID: 2636280498240385207, guid: bc0e5667f6b10874e8eb614e3014aaa2,
-    type: 3}
+  trackerPrefabs: []
   barrierPrefab: {fileID: 4548173733921706287, guid: 1590c0409a3678042a257a036dc539d6,
     type: 3}
   playerBarrier: {fileID: 0}
@@ -7035,6 +7024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -8739,6 +8729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -10321,25 +10312,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 84771272}
-  - {fileID: 210699703}
-  - {fileID: 1445560217}
   enables:
   - {fileID: 524885592}
   - {fileID: 956025270}
   - {fileID: 952701281}
   - {fileID: 1787781929}
   - {fileID: 127494135}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 956025267}
-  - {fileID: 952701278}
-  - {fileID: 1787781926}
-  manager: {fileID: 775187283}
-  fullActivate: 1
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &641267462
 GameObject:
   m_ObjectHideFlags: 0
@@ -12147,7 +12129,7 @@ MonoBehaviour:
   crystalTower: 0
   flameOrbTower: 0
   psychicTower: 1
-  setOnAwake: 0
+  setOnAwake: 1
 --- !u!1 &776500903
 GameObject:
   m_ObjectHideFlags: 0
@@ -12494,26 +12476,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 232613226}
-  - {fileID: 1882686508}
-  - {fileID: 9653056}
   enables:
   - {fileID: 1284647947}
   - {fileID: 1535468175}
   - {fileID: 1976598786}
   - {fileID: 1469939988}
   - {fileID: 262863240}
-  enableConditionalDisable:
-  - {fileID: 524885592}
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 1284647944}
-  - {fileID: 1535468172}
-  - {fileID: 1976598783}
-  manager: {fileID: 775187283}
-  fullActivate: 1
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &788555840
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,25 +14342,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 2019833610}
-  - {fileID: 1967946064}
   enables:
   - {fileID: 991091597}
   - {fileID: 1664702814}
   - {fileID: 1423816355}
   - {fileID: 51491870}
   - {fileID: 1996261874}
-  enableConditionalDisable:
-  - {fileID: 524885592}
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 991091594}
-  - {fileID: 1664702811}
-  - {fileID: 1423816352}
-  manager: {fileID: 775187283}
-  fullActivate: 0
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &931521355
 GameObject:
   m_ObjectHideFlags: 0
@@ -17316,23 +17279,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 185537935}
-  - {fileID: 1604956001}
   enables:
   - {fileID: 1856657879}
   - {fileID: 1592463388279467632}
   - {fileID: 1592463387862799122}
   - {fileID: 1592463388476351446}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 9087999755030141163}
-  - {fileID: 9087999754440172937}
-  - {fileID: 9087999754917139789}
-  manager: {fileID: 775187283}
-  fullActivate: 0
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &1064363010
 GameObject:
   m_ObjectHideFlags: 0
@@ -17793,6 +17748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -18382,23 +18338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 138695478}
-  - {fileID: 634039632}
-  - {fileID: 1440328587}
   enables:
   - {fileID: 1390088557}
   - {fileID: 1375635815}
   - {fileID: 1428953147}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 1390088556}
-  - {fileID: 1375635814}
-  - {fileID: 1428953146}
-  manager: {fileID: 775187283}
-  fullActivate: 0
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &1190081798
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,23 +18499,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 1298973700}
-  - {fileID: 1037255086}
   enables:
   - {fileID: 491086905}
   - {fileID: 511322155}
   - {fileID: 1256505422}
   - {fileID: 1314167992}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 511322152}
-  - {fileID: 1256505419}
-  - {fileID: 1314167989}
-  manager: {fileID: 775187283}
-  fullActivate: 1
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &1219646342
 GameObject:
   m_ObjectHideFlags: 0
@@ -19034,6 +18973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -19195,19 +19135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 54389245}
-  - {fileID: 1545443058}
   enables:
   - {fileID: 1300333123}
   - {fileID: 906992343}
   - {fileID: 972834745}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects: []
-  manager: {fileID: 775187283}
-  fullActivate: 0
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!1 &1271655080
 GameObject:
   m_ObjectHideFlags: 0
@@ -20429,6 +20364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -21902,6 +21838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -24827,6 +24764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -26586,6 +26524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -32153,6 +32092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -35011,9 +34951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba77b14cf0c9948a7e1f65ae071ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 1573944507}
-  - {fileID: 910815594}
   enables:
   - {fileID: 2118291593}
   - {fileID: 1112043718}
@@ -35021,17 +34958,10 @@ MonoBehaviour:
   - {fileID: 1980883761}
   - {fileID: 397855571}
   - {fileID: 1394784202}
-  enableConditionalDisable: []
+  enableDontDisable: []
   disables: []
-  conditionalDisable: 0
-  keyObjects:
-  - {fileID: 1112043715}
-  - {fileID: 68320002}
-  - {fileID: 1980883758}
-  - {fileID: 397855568}
-  - {fileID: 1394784199}
-  manager: {fileID: 775187283}
-  fullActivate: 1
+  UI: {fileID: 0}
+  nextScreen: 
 --- !u!23 &1289062649380192545 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1289062648050102269, guid: 36bd157f0fb23ca4ebc176ae882680e2,
@@ -35108,6 +35038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -35171,6 +35102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0
@@ -35234,6 +35166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61bee5c1aeaa634e8539682b41078bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 0}
   attkRange: 0
   attkRate: 0

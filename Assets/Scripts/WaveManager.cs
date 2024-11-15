@@ -33,6 +33,8 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager Instance;
 
+    public static int kills;
+
     public AudioSource winSound;
 
     private void Awake()
@@ -42,6 +44,8 @@ public class WaveManager : MonoBehaviour
         Instance = this;
 
         maxDistances = new List<float>();
+
+        kills = 0;
 
         //if (!Instance)
         //{
@@ -54,7 +58,7 @@ public class WaveManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         ShadeAI.setter = false;
         waves = GetComponentsInChildren<Wave>();
@@ -67,7 +71,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    float CalculatePathLength(Vector3 start, Vector3 end)
+    protected float CalculatePathLength(Vector3 start, Vector3 end)
     {
         NavMeshPath path = new NavMeshPath();
         if (NavMesh.CalculatePath(start, end, NavMesh.AllAreas, path))
@@ -92,6 +96,12 @@ public class WaveManager : MonoBehaviour
                 healths.RemoveAt(i);
             }
         }
+    }
+
+    public int EnemyCount()
+    {
+        CleanUp();
+        return enemies.Count;
     }
 
     public Transform GetTarget(DetectionType detectionType)

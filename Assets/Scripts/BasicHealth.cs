@@ -46,7 +46,10 @@ public class BasicHealth : MonoBehaviour
         mainColor = mainRend.material.color;
         //flashSpeed /= 2;
         agent = GetComponent<NavMeshAgent>();
-        baseSpeed = agent.speed;
+        if (agent)
+        {
+            baseSpeed = agent.speed;
+        }
     }
 
     // Update is called once per frame
@@ -155,6 +158,8 @@ public class BasicHealth : MonoBehaviour
             Mana.Instance.GainMana(manaGain);
 
             SoundManager.instance.PlayDeathClip(type, transform.position);
+
+            WaveManager.kills++;
 
             Destroy(gameObject, delayDeath);
         }
