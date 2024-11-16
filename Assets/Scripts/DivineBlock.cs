@@ -52,6 +52,8 @@ public class DivineBlock : MonoBehaviour
 
     void Slam()
     {
+        print("SLAM");
+
         if (left)
         {
             DivineHands.leftDivine = true;
@@ -103,7 +105,7 @@ public class DivineBlock : MonoBehaviour
             heightMod += transform.lossyScale.x / 2;
         }
 
-        Quaternion angledPath;
+        //Quaternion angledPath;
         snapPoint = MapPath.Instance.GetClosestPoint(transform.position);//, out angledPath);
         //if (!up)
         //{
@@ -116,7 +118,10 @@ public class DivineBlock : MonoBehaviour
 
         foreach (BasicHealth hit in hitEnemies)
         {
-            hit.TakeDamage(hitDamage, DamageType.energy);
+            if (hit)
+            {
+                hit.TakeDamage(hitDamage, DamageType.energy);
+            }
         }
 
         blockCollider.isTrigger = false;

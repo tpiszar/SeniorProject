@@ -29,7 +29,10 @@ public class ShockWave : MonoBehaviour
     {
         foreach (BasicHealth hit in shockEnemies)
         {
-            hit.TakeDamage(shockWaveDamage, DamageType.energy);
+            if (hit)
+            {
+                hit.TakeDamage(shockWaveDamage, DamageType.energy);
+            }
         }
     }
 

@@ -44,6 +44,7 @@ public class UltimateTutorial : Tutorial
 
             if (!leftBlock && !rightBlock)
             {
+                print("DOne");
                 done = true;
                 active = false;
             }
@@ -63,7 +64,7 @@ public class UltimateTutorial : Tutorial
         base.Activate();
 
         manager.Spawn(enemyTypes, enemyCounts, enemyDelay);
-        Invoke("isActive", enemyDelay * enemyCount + 3);
+        Invoke("isActive", 1);
     }
 
     void isActive()

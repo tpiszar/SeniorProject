@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SimpleManager : WaveManager
@@ -20,20 +21,22 @@ public class SimpleManager : WaveManager
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Spawn(Enemytype enemy)
     {
-        GameObject newEn = Instantiate(enemyPrefabs[(int)enemy], spawnPoint.position, Quaternion.identity);
-        newEn.GetComponent<EnemyAI>().player = player;
+        EnemyAI newEn = Instantiate(enemyPrefabs[(int)enemy], spawnPoint.position, Quaternion.identity).GetComponent<EnemyAI>();
+        newEn.player = player;
+        enemies.Add(newEn);
+        healths.Add(newEn.GetComponent<BasicHealth>());
     }
 
     public void Spawn(Enemytype enemy, int num, float interval)
     {
         for (int i = 0; i < num; i++)
         {
-            DelaySpawn(enemy, interval * i);
+            StartCoroutine(DelaySpawn(enemy, interval * i));
         }
     }
 
@@ -41,9 +44,13 @@ public class SimpleManager : WaveManager
     int cur = 0;
     public void Spawn(Enemytype[] enemies)
     {
-        GameObject newEn = Instantiate(enemyPrefabs[(int)enemies[cur]], spawnPoint.position, Quaternion.identity);
-        newEn.GetComponent<EnemyAI>().player = player;
+        Spawn(enemies[cur]);
+
         cur++;
+        if (cur >= enemies.Length)
+        {
+            cur = 0;
+        }
     }
 
     public void Spawn(Enemytype[] enemies, int[] nums, float interval)
@@ -64,9 +71,9 @@ public class SimpleManager : WaveManager
         cur = 0;
         for (int i = 0; i < total; i++)
         {
-            DelaySpawn(enemies[cur], interval * i);
+            StartCoroutine(DelaySpawn(enemies[cur], interval * i));
             cur++;
-            if (cur == enemies.Length)
+            if (cur >= enemies.Length)
             {
                 cur = 0;
             }
@@ -77,8 +84,24 @@ public class SimpleManager : WaveManager
     IEnumerator DelaySpawn(Enemytype enemy, float delay)
     {
         yield return new WaitForSeconds(delay);
-        GameObject newEn = Instantiate(enemyPrefabs[(int)enemy], spawnPoint.position, Quaternion.identity);
+        Spawn(enemy);
+    }
 
-        newEn.GetComponent<EnemyAI>().player = player;
+    public void CompleteTutorial()
+    {
+        switch (level)
+        {
+            case 0:
+                SaveLoad.level1TutorialDone = true;
+                break;
+            case 1:
+                SaveLoad.level2TutorialDone = true;
+                break;
+            case 2:
+                SaveLoad.level3TutorialDone = true;
+                break;
+        }
+
+        winSound.Play();
     }
 }

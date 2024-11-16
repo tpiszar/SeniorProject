@@ -54,6 +54,8 @@ public class Tutorial : MonoBehaviour
         //    }
         //}
 
+        manager.StopAllCoroutines();
+
         UI.SetScreen(nextScreen);
     }
 }

@@ -13,11 +13,11 @@ public class TowerTutorial : Tutorial
 
     int startKills;
 
+    public GameObject[] forceDisable;
+
     // Start is called before the first frame update
     void Start()
     {
-        startKills = WaveManager.kills;
-
         for (int i = 0; i < enemyCounts.Length; i++)
         {
             enemyCount += enemyCounts[i];
@@ -33,7 +33,7 @@ public class TowerTutorial : Tutorial
             {
                 Complete();
             }
-            else if (enemyCount > manager.EnemyCount())
+            else if (enemyCount - (WaveManager.kills - startKills) > manager.EnemyCount())
             {
                 manager.Spawn(enemyTypes);
             }
@@ -42,6 +42,8 @@ public class TowerTutorial : Tutorial
 
     public override void Activate()
     {
+        startKills = WaveManager.kills;
+
         base.Activate();
 
         manager.Spawn(enemyTypes, enemyCounts, enemyDelay);
@@ -72,6 +74,14 @@ public class TowerTutorial : Tutorial
         foreach (TowerDetection tower in towers)
         {
             Destroy(tower.gameObject);
+        }
+
+        foreach (GameObject go in forceDisable)
+        {
+            if (go)
+            {
+                go.SetActive(false);
+            }
         }
     }
 }

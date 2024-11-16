@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MiniTriggerWall : MonoBehaviour
 {
+    public bool trackerOnly = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,12 @@ public class MiniTriggerWall : MonoBehaviour
             if (enemy)
             {
                 MiniMapTracker.instance.AddMapTracker(enemy.transform, enemy.type);
-                WaveManager.Instance.enemies.Add(enemy);
-                WaveManager.Instance.healths.Add(enemy.GetComponent<BasicHealth>());
+
+                if (!trackerOnly)
+                {
+                    WaveManager.Instance.enemies.Add(enemy);
+                    WaveManager.Instance.healths.Add(enemy.GetComponent<BasicHealth>());
+                }
             }
         }
     }

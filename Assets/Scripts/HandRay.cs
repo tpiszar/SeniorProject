@@ -13,6 +13,11 @@ public class HandRay : MonoBehaviour
 
     bool started = false;
 
+    public bool left = false;
+
+    public static HandRay LeftHandRay;
+    public static HandRay RightHandRay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +29,31 @@ public class HandRay : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        if (left)
+        {
+            LeftHandRay = this;
+        }
+        else
+        {
+            RightHandRay = this;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void ForceOff()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ForceOn()
+    {
+        gameObject.SetActive(true);
     }
 
     public void IncrementHolding()
