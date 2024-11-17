@@ -126,6 +126,11 @@ public class BasicHealth : MonoBehaviour
     bool overTimeDamageThisFrame = true;
     public virtual EnemyBarrier TakeDamage(int damage, DamageType type)
     {
+        if (health <= 0)
+        {
+            return null;
+        }
+
         if (type == DamageType.overTime)
         {
             if (overTimeDamageThisFrame)

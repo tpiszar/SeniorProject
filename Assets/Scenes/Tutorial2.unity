@@ -8414,7 +8414,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545146140}
-  - component: {fileID: 545146139}
   m_Layer: 5
   m_Name: EndTutorial
   m_TagString: Untagged
@@ -8422,30 +8421,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &545146139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545146138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8e835a7307e4d47aa6424a2b041a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 877715732}
-  enables:
-  - {fileID: 1808403726}
-  enableDontDisable: []
-  disables: []
-  UI: {fileID: 0}
-  nextScreen: Towers4
-  enemyTypes: 0000000001000000
-  enemyCounts: 0200000001000000
-  enemyDelay: 3
-  forceDisable: []
-  noHands: 0
 --- !u!224 &545146140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10540,6 +10515,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Divine2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1504551619}
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+        m_MethodName: NoHands
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587306373}
@@ -15413,12 +15400,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921794663}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &931474846 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3668579084784376697, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
-    type: 3}
-  m_PrefabInstance: {fileID: 5941983441547390531}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &931474847 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1901270781209066342, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
@@ -17204,9 +17185,9 @@ MonoBehaviour:
           m_StringArgument: Enemies
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 931474846}
+      - m_Target: {fileID: 1587306373}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: 
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17254,6 +17235,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053718544}
   m_CullTransparentMesh: 1
+--- !u!65 &1056006419 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7961624760990149980, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1068640296
 GameObject:
   m_ObjectHideFlags: 0
@@ -25859,7 +25846,6 @@ MonoBehaviour:
   - {fileID: 2023622299}
   - {fileID: 609829335}
   - {fileID: 609829336}
-  noHands: 1
 --- !u!1 &1508190072
 GameObject:
   m_ObjectHideFlags: 0
@@ -29265,7 +29251,6 @@ MonoBehaviour:
   enemyCounts: 03000000
   enemyDelay: 3
   forceDisable: []
-  noHands: 0
 --- !u!224 &1697622483
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30141,7 +30126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756300716}
-  - component: {fileID: 1756300715}
   m_Layer: 5
   m_Name: EnemyTutorial
   m_TagString: Untagged
@@ -30149,30 +30133,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1756300715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756300714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8e835a7307e4d47aa6424a2b041a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 877715732}
-  enables:
-  - {fileID: 1808403726}
-  enableDontDisable: []
-  disables: []
-  UI: {fileID: 0}
-  nextScreen: Towers4
-  enemyTypes: 0000000001000000
-  enemyCounts: 0200000001000000
-  enemyDelay: 3
-  forceDisable: []
-  noHands: 0
 --- !u!224 &1756300716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30811,7 +30771,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819433027}
-  - component: {fileID: 1819433028}
   m_Layer: 5
   m_Name: TowerTutorial
   m_TagString: Untagged
@@ -30839,30 +30798,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1819433028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819433026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8e835a7307e4d47aa6424a2b041a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  enables:
-  - {fileID: 0}
-  enableDontDisable: []
-  disables: []
-  UI: {fileID: 0}
-  nextScreen: Towers4
-  enemyTypes: 0000000001000000
-  enemyCounts: 0200000001000000
-  enemyDelay: 3
-  forceDisable: []
-  noHands: 0
 --- !u!1 &1822722898
 GameObject:
   m_ObjectHideFlags: 0
@@ -35439,6 +35374,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 225019885839532068, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: overlapObj
+      value: 
+      objectReference: {fileID: 1056006419}
     - target: {fileID: 235314053167237083, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_InteractionManager
@@ -35508,6 +35448,11 @@ PrefabInstance:
         type: 3}
       propertyPath: spells.Array.data[2].recognitionThreshold
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 515288704718833817, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 557046663948730060, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -35829,6 +35774,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2446721292365382440, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2679464570795226135, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -36082,7 +36032,7 @@ PrefabInstance:
     - target: {fileID: 4943427162549176989, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5201330843477623093, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -36093,6 +36043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sockets.Array.data[2].heightRatio
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435011818962103806, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: overrideOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5520898602756248104, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -36578,6 +36533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941623984677820810, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: overrideOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7954701465978671160, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}

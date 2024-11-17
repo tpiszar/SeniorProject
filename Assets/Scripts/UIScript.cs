@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 public class UIScript : MonoBehaviour
 {
@@ -82,8 +83,10 @@ public class UIScript : MonoBehaviour
 
     IEnumerator Fade(float a, float b)
     {
-        leftRayInteractor.SetActive(false);
-        rightRayInteractor.SetActive(false);
+        //leftRayInteractor.SetActive(false);
+        //rightRayInteractor.SetActive(false);
+
+        HandRay.activeHandRays = false;
 
         if (a > b)
         {
@@ -108,8 +111,11 @@ public class UIScript : MonoBehaviour
             yield return null;
         }
 
-        leftRayInteractor.SetActive(true);
-        rightRayInteractor.SetActive(true);
+        //leftRayInteractor.SetActive(true);
+        //rightRayInteractor.SetActive(true);
+
+        HandRay.activeHandRays = true;
+        //print("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" + HandRay.activeHandRays);
     }
 
     public void Previous(GameObject deactivate)
@@ -192,8 +198,8 @@ public class UIScript : MonoBehaviour
             }
 
             HandRay.activeHandRays = true;
-            leftRayInteractor.SetActive(true);
-            rightRayInteractor.SetActive(true);
+            //leftRayInteractor.SetActive(true);
+            //rightRayInteractor.SetActive(true);
         }
         else
         {
@@ -206,8 +212,8 @@ public class UIScript : MonoBehaviour
             }
 
             HandRay.activeHandRays = false;
-            leftRayInteractor.SetActive(false);
-            rightRayInteractor.SetActive(false);
+            //leftRayInteractor.SetActive(false);
+            //rightRayInteractor.SetActive(false);
         }
     }
 

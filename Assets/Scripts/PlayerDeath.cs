@@ -87,8 +87,8 @@ public class PlayerDeath : MonoBehaviour
         WaveManager.LevelEnd = true;
         mainUI.SetScreen("Lose");
         HandRay.activeHandRays = true;
-        leftRayInteractor.SetActive(true);
-        rightRayInteractor.SetActive(true);
+        //leftRayInteractor.SetActive(true);
+        //rightRayInteractor.SetActive(true);
 
         //Hopefully stop late enemies
         WaveManager.Instance.StopAllCoroutines();

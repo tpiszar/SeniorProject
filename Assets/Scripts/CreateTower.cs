@@ -16,7 +16,8 @@ public class CreateTower : MonoBehaviour
     GameObject tower;
     public Transform player;
 
-    public float overlap = 0;
+    public int overlap = 0;
+    public BoxCollider overlapObj;
 
     public Transform holderTrans;
 

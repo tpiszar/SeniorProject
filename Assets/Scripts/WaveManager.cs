@@ -259,7 +259,7 @@ public class WaveManager : MonoBehaviour
 
         mainUI.SetScreen("Win");
         HandRay.activeHandRays = true;
-        leftRayInteractor.SetActive(true);
-        rightRayInteractor.SetActive(true);
+        //leftRayInteractor.SetActive(true);
+        //darightRayInteractor.SetActive(true);
     }
 }

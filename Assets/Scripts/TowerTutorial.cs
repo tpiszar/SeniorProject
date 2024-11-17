@@ -29,6 +29,7 @@ public class TowerTutorial : Tutorial
     {
         if (active)
         {
+            //print("KILLS: " + WaveManager.kills + " - START:" + startKills + " =? COUNT" + enemyCount);
             if (WaveManager.kills - startKills == enemyCount)
             {
                 Complete();
@@ -83,5 +84,7 @@ public class TowerTutorial : Tutorial
                 go.SetActive(false);
             }
         }
+
+        Hands();
     }
 }

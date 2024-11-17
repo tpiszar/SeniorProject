@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
@@ -57,5 +58,15 @@ public class Tutorial : MonoBehaviour
         manager.StopAllCoroutines();
 
         UI.SetScreen(nextScreen);
+    }
+
+    public void NoHands()
+    {
+        HandRay.activeHandRays = false;
+    }
+
+    public void Hands()
+    {
+        HandRay.activeHandRays = true;
     }
 }
