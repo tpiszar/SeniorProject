@@ -86,6 +86,8 @@ public class UIScript : MonoBehaviour
         //leftRayInteractor.SetActive(false);
         //rightRayInteractor.SetActive(false);
 
+        bool handsActive = HandRay.activeHandRays;
+
         HandRay.activeHandRays = false;
 
         if (a > b)
@@ -114,8 +116,7 @@ public class UIScript : MonoBehaviour
         //leftRayInteractor.SetActive(true);
         //rightRayInteractor.SetActive(true);
 
-        HandRay.activeHandRays = true;
-        //print("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" + HandRay.activeHandRays);
+        HandRay.activeHandRays = handsActive;
     }
 
     public void Previous(GameObject deactivate)

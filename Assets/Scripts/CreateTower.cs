@@ -16,7 +16,7 @@ public class CreateTower : MonoBehaviour
     GameObject tower;
     public Transform player;
 
-    public int overlap = 0;
+    //public int overlap = 0;
     public BoxCollider overlapObj;
 
     public Transform holderTrans;
@@ -151,33 +151,33 @@ public class CreateTower : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //CreateTower tower = other.GetComponentInParent<CreateTower>();
-        //if (tower)// && other.transform != transform)
-        //{
-        //    overlap++;
-        //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //CreateTower tower = other.GetComponentInParent<CreateTower>();
+    //    //if (tower)// && other.transform != transform)
+    //    //{
+    //    //    overlap++;
+    //    //}
 
-        if (other.CompareTag("Blocker"))
-        {
-            overlap++;
-        }
-    }
+    //    if (other.CompareTag("Blocker"))
+    //    {
+    //        overlap++;
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        //CreateTower tower = other.GetComponentInParent<CreateTower>();
-        //if (tower)// && other.transform != transform)
-        //{
-        //    overlap--;
-        //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    //CreateTower tower = other.GetComponentInParent<CreateTower>();
+    //    //if (tower)// && other.transform != transform)
+    //    //{
+    //    //    overlap--;
+    //    //}
 
-        if (other.CompareTag("Blocker"))
-        {
-            overlap--;
-        }
-    }
+    //    if (other.CompareTag("Blocker"))
+    //    {
+    //        overlap--;
+    //    }
+    //}
 
     //bool visible = true;
     //public void ToggleVisible()

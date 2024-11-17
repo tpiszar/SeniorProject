@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
 {
-    public static bool level1TutorialDone = true;
-    public static bool level2TutorialDone = true;
-    public static bool level3TutorialDone = true;
+    public static bool level1TutorialDone = false;
+    public static bool level2TutorialDone = false;
+    public static bool level3TutorialDone = false;
 
     public static bool level1Done = false;
     public static bool level2Done = false;

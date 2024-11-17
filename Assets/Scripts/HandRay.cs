@@ -16,11 +16,16 @@ public class HandRay : MonoBehaviour
 
     bool started = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         activeHandRays = overrideOn;
         started = true;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
