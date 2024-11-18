@@ -230,6 +230,43 @@ public class UIScript : MonoBehaviour
         StartCoroutine(Load(scene));
     }
 
+    public void LoadLevel(string level)
+    {
+        switch (level)
+        {
+            case "Level1":
+                if (SaveLoad.level1TutorialDone)
+                {
+                    LoadScene(level);
+                }
+                else
+                {
+                    LoadScene("Tutorial1");
+                }
+                break;
+            case "Level2":
+                if (SaveLoad.level2TutorialDone)
+                {
+                    LoadScene(level);
+                }
+                else
+                {
+                    LoadScene("Tutorial2");
+                }
+                break;
+            case "Level3":
+                if (SaveLoad.level3TutorialDone)
+                {
+                    LoadScene(level);
+                }
+                else
+                {
+                    LoadScene("Tutorial3");
+                }
+                break;
+        }
+    }
+
     public IEnumerator Load(string scene)
     {
         yield return new WaitForSeconds(fadeTime + padding);
