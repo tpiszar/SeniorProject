@@ -31,17 +31,11 @@ public class Book : MonoBehaviour
 
         grabbable.selectEntered.AddListener(Grab);
         grabbable.selectExited.AddListener(Drop);
-
-        Close();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (held && hand.noHand)
-        {
-            held = false;
-        }
         if (held && !open)
         {
             Open();
@@ -112,8 +106,6 @@ public class Book : MonoBehaviour
 
         animator.SetBool("Open", held);
 
-        curPage = 0;
-
 
         leftHand.SetBool("Point", false);
         leftPoint.gameObject.SetActive(false);
@@ -124,17 +116,11 @@ public class Book : MonoBehaviour
 
     void Grab(SelectEnterEventArgs args)
     {
-        if (!hand.noHand)
-        {
-            held = true;
-        }
+        held = true;
     }
 
     void Drop(SelectExitEventArgs args)
     {
-        if (!hand.noHand)
-        {
-            held = false;
-        }
+        held = false;
     }
 }

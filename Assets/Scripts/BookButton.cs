@@ -45,4 +45,10 @@ public class BookButton : MonoBehaviour
             book.Turn(pageNum);
         }
     }
+
+    private void OnDisable()
+    {
+        selected = false;
+        mesh.material = baseMat;
+    }
 }
