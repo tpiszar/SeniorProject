@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BlastAttack : MonoBehaviour
 {
+    public float force = 30;
+    public float maxDistance = 10;
+
     public int damage;
     bool hit = false;
     public float delayDestroy = 0;
@@ -12,17 +15,27 @@ public class BlastAttack : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float hitVolume = 1;
 
+    Vector3 start;
+
+    public bool passThrough = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 10);
-        transform.parent = null;
+        GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+
+        start = transform.position;
+
+        //Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Vector3.Distance(start, transform.position) > maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,34 +63,50 @@ public class BlastAttack : MonoBehaviour
     List<Transform> hits = new List<Transform>();
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
+
+        if (hit && !passThrough)
+        {
+            return;
+        }
+
+        hit = true;
+
         if (other.CompareTag("Enemy"))
         {
-
-
             BasicHealth enemy = other.gameObject.GetComponentInParent<BasicHealth>();
             if (enemy)
             {
-                if (hits.Contains(enemy.transform))
+                if (enemy.GetHealth() <= 0)
+                {
+                    hit = false;
+                    return;
+                }
+
+                if (passThrough && hits.Contains(enemy.transform))
                 {
                     return;
                 }
 
                 enemy.TakeDamage(damage, DamageType.energy);
                 hits.Add(enemy.transform);
-            }
-            else
-            {
-                if (!destroyDone)
+
+                if (passThrough)
                 {
-                    Destroy(gameObject, delayDestroy);
+                    return;
                 }
             }
         }
-        else
+        if (!destroyDone)
         {
-            if (!destroyDone)
+            destroyDone = true;
+            if (passThrough)
             {
                 Destroy(gameObject, delayDestroy);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
     }

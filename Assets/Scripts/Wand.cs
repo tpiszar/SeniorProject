@@ -202,7 +202,9 @@ public class Wand : MonoBehaviour
             }
             Vector3 lastPos = positionsList[positionsList.Count - 1];
             Vector3 currentPos = camReference.InverseTransformPoint(transform.position);//hand.movementSource.position); //BETA
-            if (Vector3.Distance(currentPos, lastPos) > newPosThreshold)
+
+            float distance = Vector3.Distance(currentPos, lastPos);
+            if (distance > newPosThreshold && distance < newPosThreshold * 10)
             {
                 positionsList.Add(currentPos);//hand.movementSource.position)); //BETA
                 trailLine.positionCount++;
@@ -430,7 +432,7 @@ public class Wand : MonoBehaviour
 
                 GameObject eBlast = Instantiate(spells[activeSpell].attackPrefab, shootPoint.position, Quaternion.identity);
                 eBlast.transform.forward = shootPoint.up;
-                eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
+                //eBlast.GetComponent<Rigidbody>().AddForce(shootPoint.up * force, ForceMode.Impulse);
 
                 break;
 

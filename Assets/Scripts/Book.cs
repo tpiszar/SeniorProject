@@ -24,6 +24,10 @@ public class Book : MonoBehaviour
     public GameObject[] rightPages;
     public int curPage = 0;
 
+    public AudioSource openSound;
+    public AudioSource closeSound;
+    public AudioSource turnSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +87,8 @@ public class Book : MonoBehaviour
         rightPages[curPage].SetActive(false);
         rightPages[page].SetActive(true);
         curPage = page;
+
+        turnSound.Play();
     }
 
     void Open()
@@ -94,6 +100,8 @@ public class Book : MonoBehaviour
         //rightPages[0].SetActive(true);
 
         animator.SetBool("Open", held);
+
+        openSound.Play();
     }
 
     void Close()
@@ -112,6 +120,8 @@ public class Book : MonoBehaviour
 
         rightHand.SetBool("Point", false);
         rightPoint.gameObject.SetActive(false);
+
+        closeSound.Play();
     }
 
     void Grab(SelectEnterEventArgs args)
