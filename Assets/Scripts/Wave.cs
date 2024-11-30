@@ -21,9 +21,6 @@ public class Wave : MonoBehaviour
     public int startDelay;
     public SpawnGroup[] spawns;
 
-    float teleportDelayOver;
-    float teleportDelay;
-
     // Start is called before the first frame update
     void Start()
     {

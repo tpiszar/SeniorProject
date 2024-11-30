@@ -59,7 +59,7 @@ public class EnemyProtecter : MonoBehaviour
                 {
                     colliders.Remove(enemy.transform);
                     enemies.Remove(enemy);
-                    enemy.RegularSpeed();
+                    enemy.SpeedDown(speedBoost);
                     enemy.SetInvincible(false, barrier);
                 }
             }

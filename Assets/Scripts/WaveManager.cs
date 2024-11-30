@@ -10,11 +10,11 @@ public class WaveManager : MonoBehaviour
 {
     public int level = 0;
 
-    int curWave = 0;
+    public int curWave = 0;
 
     Wave[] waves;
 
-    float nextWave;
+    protected float nextWave;
 
     public Transform player;
     public Transform spawnPoint;
@@ -196,7 +196,7 @@ public class WaveManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (waves.Length == 0)
         {

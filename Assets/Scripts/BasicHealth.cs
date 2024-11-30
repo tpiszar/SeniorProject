@@ -114,7 +114,12 @@ public class BasicHealth : MonoBehaviour
     public virtual void SpeedBoost(float boost)
     {
         if (!agent) { return; }
-        agent.speed = baseSpeed * (1 + boost);
+        agent.speed *= (1 + boost);
+    }
+    public virtual void SpeedDown(float boost)
+    {
+        if (!agent) { return; }
+        agent.speed /= (1 + boost);
     }
     public virtual void RegularSpeed()
     {

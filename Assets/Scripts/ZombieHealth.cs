@@ -41,4 +41,21 @@ public class ZombieHealth : BasicHealth
 
         return barrier;
     }
+
+    public override void SpeedBoost(float boost)
+    {
+        base.SpeedBoost(boost);
+        maxSpeed *= boost;
+    }
+
+    public override void SpeedDown(float boost)
+    {
+        base.SpeedDown(boost);
+        maxSpeed /= boost;
+    }
+
+    public override void RegularSpeed()
+    {
+        base.RegularSpeed();
+    }
 }

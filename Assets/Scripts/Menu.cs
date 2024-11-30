@@ -17,6 +17,8 @@ public class Menu : MonoBehaviour
     public Button tutorial2;
     public Button tutorial3;
 
+    public Button endless;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class Menu : MonoBehaviour
         tutorial1.gameObject.SetActive(false);
         tutorial2.gameObject.SetActive(false);
         tutorial3.gameObject.SetActive(false);
+
+        endless.gameObject.SetActive(false);
 
         if (SaveLoad.level1TutorialDone)
         {
@@ -67,6 +71,11 @@ public class Menu : MonoBehaviour
                 else
                 {
                     level3Tutorial.interactable = true;
+                }
+
+                if (SaveLoad.level3Done)
+                {
+                    endless.gameObject.SetActive(true);
                 }
             }
         }
