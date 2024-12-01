@@ -25,6 +25,13 @@ public class MiniTriggerWall : MonoBehaviour
             EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
             if (enemy)
             {
+                if (WaveManager.LevelEnd)
+                {
+                    Destroy(enemy.gameObject);
+                    return;
+                }
+                enemy.Locate();
+
                 MiniMapTracker.instance.AddMapTracker(enemy.transform, enemy.type);
 
                 if (!trackerOnly)

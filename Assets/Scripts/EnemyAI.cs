@@ -340,7 +340,7 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
     }
 
-    protected void Locate()
+    public void Locate()
     {
         if (!player || !agent)
         {
