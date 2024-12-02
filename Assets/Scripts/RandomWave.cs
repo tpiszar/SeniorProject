@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.CoreUtils;
 
 public class RandomWave : Wave
 {
-    public int[] pointCounts = new int[7];
+    static int[] pointCounts = new int[7] { 1, 3, 5, 9, 6, 7, 20 };
 
     public GameObject[] enemyPrefabs = new GameObject[7];
 
@@ -30,6 +30,8 @@ public class RandomWave : Wave
     };
 
     Enemytype lastEnemy = Enemytype.Slime;
+
+    static int[] enemyCutoffs = new int[7] { 7, 10, 10, 20, 15, 25, 500 };
 
     public Vector2 sectionBounds = new Vector2(5, 20);
     public Vector2 delayBounds = new Vector2(3, 10);
@@ -67,6 +69,12 @@ public class RandomWave : Wave
             while (remainingSpawnPoints > 0)
             {
                 Enemytype chosenEnemy = ChooseEnemy(lastEnemy);
+
+                if (WaveManager.Instance.curWave > enemyCutoffs[(int)chosenEnemy])
+                {
+                    continue;
+                }
+
                 int enemyIndex = (int)chosenEnemy;
                 int pointsCost = pointCounts[enemyIndex];
                 if (pointsCost <= remainingSpawnPoints)

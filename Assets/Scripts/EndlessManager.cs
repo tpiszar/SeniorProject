@@ -13,11 +13,11 @@ public class EndlessManager : WaveManager
     bool nextInitialized = false;
 
     [SerializeField]
-    int spawnPoints;
+    static int spawnPoints = 30;
     [SerializeField]
-    float percIncr = 0.5f;
-    public int waveStartMax = 500;
-    public float waveOverflowDelay = 10;
+    static float percIncr = 0.4f;
+    int waveStartMax = 500;
+    float waveOverflowDelay = 10;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -35,7 +35,7 @@ public class EndlessManager : WaveManager
     // Update is called once per frame
     protected override void Update()
     {
-        if (Time.time > nextWave)
+        if (Time.time > nextWave && !LevelEnd)
         {
             CleanUp();
             if (enemies.Count > waveStartMax)
