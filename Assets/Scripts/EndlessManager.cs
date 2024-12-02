@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EndlessManager : WaveManager
 {
+    public TextMeshProUGUI curWaveTxt;
+
     [SerializeField]
     RandomWave wave;
 
@@ -26,7 +29,7 @@ public class EndlessManager : WaveManager
             maxDistances.Add(CalculatePathLength(spawnPoint.position, playerBase.position));
         }
 
-        curWave = 1;
+        curWave = 0;
     }
 
     // Update is called once per frame
@@ -34,7 +37,6 @@ public class EndlessManager : WaveManager
     {
         if (Time.time > nextWave)
         {
-            print("Wave " + curWave + " Start");
             CleanUp();
             if (enemies.Count > waveStartMax)
             {
@@ -45,6 +47,8 @@ public class EndlessManager : WaveManager
             curWave++;
             float newPoints = (1 + percIncr) * spawnPoints;
             spawnPoints = (int)newPoints;
+
+            curWaveTxt.text = curWave.ToString();
         }
     }
 }

@@ -4064,6 +4064,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338421822}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &339011563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3367543050244471338, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339543800
 GameObject:
   m_ObjectHideFlags: 0
@@ -21594,9 +21606,10 @@ MonoBehaviour:
   rightRayInteractor: {fileID: 1929507495}
   barrierSphere: {fileID: 9204793069807270058}
   winSound: {fileID: 1805706594}
+  curWaveTxt: {fileID: 339011563}
   wave: {fileID: 1420523068}
-  spawnPoints: 20
-  percIncr: 0.7
+  spawnPoints: 30
+  percIncr: 0.4
   waveStartMax: 500
   waveOverflowDelay: 10
 --- !u!1 &1819407543
@@ -25419,12 +25432,12 @@ PrefabInstance:
     - target: {fileID: 427406669407086239, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: spells.Array.data[1].unlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 427406669407086239, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: spells.Array.data[2].unlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 427406669407086239, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -25922,6 +25935,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 224444348}
+    - target: {fileID: 3757634914479863325, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3785960717545361148, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_InteractionManager

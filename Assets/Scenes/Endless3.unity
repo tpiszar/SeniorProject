@@ -23254,9 +23254,10 @@ MonoBehaviour:
   rightRayInteractor: {fileID: 1225585736809489598}
   barrierSphere: {fileID: 2854000597984319426}
   winSound: {fileID: 1805706594}
+  curWaveTxt: {fileID: 5941983441547390536}
   wave: {fileID: 1146065564}
-  spawnPoints: 20
-  percIncr: 0.7
+  spawnPoints: 30
+  percIncr: 0.4
   waveStartMax: 500
   waveOverflowDelay: 10
 --- !u!1 &1822132653
@@ -28988,6 +28989,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 224444348}
+    - target: {fileID: 3757634914479863325, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3785960717545361148, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_InteractionManager
@@ -30322,6 +30328,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c34c42070d5d244cab2a35b5afdae21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5941983441547390536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3367543050244471338, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7346909075165229247 stripped
