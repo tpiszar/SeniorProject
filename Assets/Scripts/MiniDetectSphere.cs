@@ -8,33 +8,20 @@ public class MiniDetectSphere : MonoBehaviour
 
     public float mapScale = 0.03f;
 
-    Transform lastParent;
-
-    public bool selected = false;
+    public Transform follow;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastParent = transform.parent;
-
-        SetGlobalScale();
+        transform.localScale = new Vector3(
+            radius * 2 * mapScale,
+            radius * 2 * mapScale,
+            radius * 2 * mapScale);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent != lastParent)
-        {
-            SetGlobalScale();
-            lastParent = transform.parent;
-        }
-    }
-
-    void SetGlobalScale()
-    {
-        transform.localScale = new Vector3(
-            radius * 2 / transform.parent.lossyScale.x * mapScale,
-            radius * 2 / transform.parent.lossyScale.y * mapScale,
-            radius * 2 / transform.parent.lossyScale.z * mapScale);
+        transform.position = follow.position;
     }
 }
