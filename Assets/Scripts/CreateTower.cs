@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class CreateTower : MonoBehaviour
@@ -35,6 +36,9 @@ public class CreateTower : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float breakVolume = 1;
 
+    public GameObject crumble;
+    public GameObject miniCrumble;
+
     //List<MeshRenderer> meshes = new List<MeshRenderer>();
     //public Material invisbleMat;
     //Material baseMat;
@@ -58,6 +62,8 @@ public class CreateTower : MonoBehaviour
         //        }
         //    }
         //}
+
+        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     // Update is called once per frame
@@ -138,17 +144,29 @@ public class CreateTower : MonoBehaviour
         return tower;
     }
 
+    bool endScene = false;
     private void OnDestroy()
     {
+        if (endScene) { return; }
+
         if (tower)
         {
+            Instantiate(crumble, tower.transform.position, tower.transform.rotation);
+            Instantiate(miniCrumble, transform.position, transform.rotation);
+
             //PlayerDeath.towers.Remove(tower);
             Mana.Instance.GainMana(refundCost);
             Destroy(tower);
             //Destroy(socket.gameObject);
 
             SoundManager.instance.PlayClip(breakSound, transform.position, breakVolume);
+
         }
+    }
+
+    private void OnSceneChanged(Scene oldScene, Scene newScene)
+    {
+        endScene = true;
     }
 
     //private void OnTriggerEnter(Collider other)

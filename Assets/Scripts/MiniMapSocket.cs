@@ -9,6 +9,7 @@ public class MiniMapSocket : MonoBehaviour
     XROneObjectSocket socket;
     public Collider mapCollider;
     bool slotted = false;
+    public float destoryDelay = 0.2f;
     int miniNum;
 
     Material hoverMat;
@@ -34,12 +35,15 @@ public class MiniMapSocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (slotted && destoryDelay > 0)
+        {
+            destoryDelay -= Time.deltaTime;
+        }
     }
 
     public void HoverExit(HoverExitEventArgs args)
     {
-        
+
         if (socket.singleObject != args.interactable.gameObject)
         {
             return;
@@ -47,8 +51,11 @@ public class MiniMapSocket : MonoBehaviour
 
         if (slotted)
         {
-            Destroy(mini.gameObject);
-            Destroy(gameObject);
+            if (destoryDelay < 0)
+            {
+                Destroy(mini.gameObject);
+                Destroy(gameObject);
+            }
         }
         else
         {
@@ -69,6 +76,12 @@ public class MiniMapSocket : MonoBehaviour
             mini.GetComponent<DropReturn>().enabled = false;
             socket.interactableHoverMeshMaterial = socket.interactableCantHoverMeshMaterial;
             slotted = true;
+
+            Transform attach = transform.GetChild(0);
+            Vector3 placePos = attach.position;
+            attach.localPosition = Vector3.zero;
+            transform.position = placePos;
+
 
             socket.manaRequirement = -1;
 

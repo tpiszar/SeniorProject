@@ -93,6 +93,7 @@ public class BlastAttack : MonoBehaviour
 
                 if (passThrough)
                 {
+                    SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
                     return;
                 }
             }
@@ -108,12 +109,12 @@ public class BlastAttack : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
         }
     }
 
     private void OnDestroy()
     {
-        print("BlastDestroyed " + Time.time);
-        SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
+
     }
 }

@@ -37,6 +37,8 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
+        WaveManager.LevelEnd = true;
+
         loseAudio.Play();
 
         //foreach (GameObject tower in towers)
@@ -84,7 +86,6 @@ public class PlayerDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         // SHOW LOSS SCREEN
-        WaveManager.LevelEnd = true;
         mainUI.SetScreen("Lose");
         HandRay.activeHandRays = true;
         //leftRayInteractor.SetActive(true);
