@@ -14,7 +14,7 @@ public class CreateTower : MonoBehaviour
 
     public GameObject towerPrefab;
 
-    GameObject tower;
+    public GameObject tower;
     public Transform player;
 
     //public int overlap = 0;
