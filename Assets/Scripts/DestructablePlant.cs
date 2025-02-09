@@ -8,6 +8,10 @@ public class DestructablePlant : MonoBehaviour
     {
         // Some Effect
 
+        if (other.isTrigger) { return; }
+
+        print(other.gameObject.name);
+
         Destroy(gameObject);
     }
 }
