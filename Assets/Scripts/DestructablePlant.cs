@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class DestructablePlant : MonoBehaviour
 {
+    public GameObject destruct;
+
+    bool isDone = false;
+
     private void OnTriggerEnter(Collider other)
     {
         // Some Effect
 
-        if (other.isTrigger) { return; }
+        if (isDone || other.isTrigger) { return; }
 
-        print(other.gameObject.name);
+        isDone = true;
+
+        if (destruct != null)
+        {
+            Instantiate(destruct, transform.position, transform.rotation);
+        }
 
         Destroy(gameObject);
     }

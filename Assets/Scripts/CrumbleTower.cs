@@ -20,6 +20,7 @@ public class CrumbleTower : MonoBehaviour
         foreach (Rigidbody rig in pieces)
         {
             rig.AddForce(Random.onUnitSphere * Random.Range(minForce, maxForce), ForceMode.Impulse);
+            rig.transform.parent = null;
             Destroy(rig.gameObject, Random.Range(destroyMin, destroyMax));
         }
 
