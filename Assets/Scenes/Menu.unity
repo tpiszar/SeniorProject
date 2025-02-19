@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.75
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.13521284, g: 0.1692856, b: 0.23019214, a: 0.75}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -584,7 +584,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8aaa818a82730347b73df0e72fe8e98, type: 2}
+  - {fileID: 2100000, guid: 08095f363de5fd54e869cab3f6e10a98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1192,7 +1192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leaves A
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8850174142176057568, guid: 0e3c862ad8380554ab72c652342f99d3, type: 3}
+    - {fileID: 6489546916013808920, guid: 0e3c862ad8380554ab72c652342f99d3, type: 3}
+    - {fileID: 1321501689741307484, guid: 0e3c862ad8380554ab72c652342f99d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1350,7 +1353,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6390835590099122140, guid: db249fca61f842146b8995d656b4deb7, type: 3}
+    - {fileID: 3571115910065993862, guid: db249fca61f842146b8995d656b4deb7, type: 3}
+    - {fileID: -378459986417746204, guid: db249fca61f842146b8995d656b4deb7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2279,7 +2285,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8aaa818a82730347b73df0e72fe8e98, type: 2}
+  - {fileID: 2100000, guid: 08095f363de5fd54e869cab3f6e10a98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2387,7 +2393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2320628582321594909, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
+    - {fileID: 4382128820079760366, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
+    - {fileID: -5559686958179416810, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2514,7 +2523,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5612142661136127147, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
+    - {fileID: 1498630783971867460, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
+    - {fileID: 8299456449061637351, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2582,7 +2594,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6855822722162843756, guid: ab84166445beba4469447e3f4930b948, type: 3}
+    - {fileID: 2209495263115625558, guid: ab84166445beba4469447e3f4930b948, type: 3}
+    - {fileID: -6064821640962178345, guid: ab84166445beba4469447e3f4930b948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3052,7 +3067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Flower
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2844733396084106615, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
+    - {fileID: 3161123405451049916, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
+    - {fileID: 7789065876569049954, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3948,7 +3966,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 357056af155eeb44a8eb6e644342708f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4164,11 +4182,73 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass B
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7113224896204061699, guid: f3802bbe903359047b59df303f87c5c6, type: 3}
+    - {fileID: 5585731653580658219, guid: f3802bbe903359047b59df303f87c5c6, type: 3}
+    - {fileID: -989066740037361570, guid: f3802bbe903359047b59df303f87c5c6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3802bbe903359047b59df303f87c5c6, type: 3}
+--- !u!1001 &746331471
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_Name
+      value: SkyDome
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9394238
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.342758
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -40.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 100006, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+    - {fileID: 100008, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
 --- !u!1 &784051348
 GameObject:
   m_ObjectHideFlags: 0
@@ -5604,7 +5684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Flower (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2844733396084106615, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
+    - {fileID: 3161123405451049916, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
+    - {fileID: 7789065876569049954, guid: 86632ad5dd6604c4a83ed4a5a7ee4593, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5672,7 +5755,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5612142661136127147, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
+    - {fileID: 1498630783971867460, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
+    - {fileID: 8299456449061637351, guid: d61936a79ac450b46bdb08f3b9808f1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5874,7 +5960,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2320628582321594909, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
+    - {fileID: 4382128820079760366, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
+    - {fileID: -5559686958179416810, guid: 8a1cf7acd4944d042b773e1b34fb50c0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6509,7 +6598,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6855822722162843756, guid: ab84166445beba4469447e3f4930b948, type: 3}
+    - {fileID: 2209495263115625558, guid: ab84166445beba4469447e3f4930b948, type: 3}
+    - {fileID: -6064821640962178345, guid: ab84166445beba4469447e3f4930b948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6574,7 +6666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 357056af155eeb44a8eb6e644342708f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10201,7 +10293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6390835590099122140, guid: db249fca61f842146b8995d656b4deb7, type: 3}
+    - {fileID: 3571115910065993862, guid: db249fca61f842146b8995d656b4deb7, type: 3}
+    - {fileID: -378459986417746204, guid: db249fca61f842146b8995d656b4deb7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10236,7 +10331,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 66dff06d05eec0348a61f397d7e36753, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10482,7 +10577,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8aaa818a82730347b73df0e72fe8e98, type: 2}
+  - {fileID: 2100000, guid: 08095f363de5fd54e869cab3f6e10a98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10587,7 +10682,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 357056af155eeb44a8eb6e644342708f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10857,7 +10952,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4bcf1a31e03af645a714e4dd436a211, type: 2}
+  - {fileID: 2100000, guid: 5308ecbf639832340b278b35ca6ae486, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12408,7 +12503,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 357056af155eeb44a8eb6e644342708f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17154,3 +17249,4 @@ SceneRoots:
   - {fileID: 1248674364}
   - {fileID: 1013024129}
   - {fileID: 498260699}
+  - {fileID: 746331471}
