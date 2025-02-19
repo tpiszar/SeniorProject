@@ -11,6 +11,8 @@ public class Texture : MonoBehaviour
 
     public bool fromSize = true;
 
+    public Vector2 uvOffset = Vector2.zero;
+
     private void Start()
     {
         Calculate();
@@ -74,40 +76,40 @@ public class Texture : MonoBehaviour
         }
 
         //Front
-        meshUVs[2] = new Vector2(0, height);
-        meshUVs[3] = new Vector2(width, height);
-        meshUVs[0] = new Vector2(0, 0);
-        meshUVs[1] = new Vector2(width, 0);
+        meshUVs[2] = new Vector2(0, height) + uvOffset;
+        meshUVs[3] = new Vector2(width, height) + uvOffset;
+        meshUVs[0] = new Vector2(0, 0) + uvOffset;
+        meshUVs[1] = new Vector2(width, 0) + uvOffset;
 
         //Back
-        meshUVs[7] = new Vector2(0, 0);
-        meshUVs[6] = new Vector2(width, 0);
-        meshUVs[11] = new Vector2(0, height);
-        meshUVs[10] = new Vector2(width, height);
+        meshUVs[7] = new Vector2(0, 0) + uvOffset;
+        meshUVs[6] = new Vector2(width, 0) + uvOffset;
+        meshUVs[11] = new Vector2(0, height) + uvOffset;
+        meshUVs[10] = new Vector2(width, height) + uvOffset;
 
         //Left
-        meshUVs[19] = new Vector2(depth, 0);
-        meshUVs[17] = new Vector2(0, height);
-        meshUVs[16] = new Vector2(0, 0);
-        meshUVs[18] = new Vector2(depth, height);
+        meshUVs[19] = new Vector2(depth, 0) + uvOffset;
+        meshUVs[17] = new Vector2(0, height) + uvOffset;
+        meshUVs[16] = new Vector2(0, 0) + uvOffset;
+        meshUVs[18] = new Vector2(depth, height) + uvOffset;
 
         //Right
-        meshUVs[23] = new Vector2(depth, 0);
-        meshUVs[21] = new Vector2(0, height);
-        meshUVs[20] = new Vector2(0, 0);
-        meshUVs[22] = new Vector2(depth, height);
+        meshUVs[23] = new Vector2(depth, 0) + uvOffset;
+        meshUVs[21] = new Vector2(0, height) + uvOffset;
+        meshUVs[20] = new Vector2(0, 0) + uvOffset;
+        meshUVs[22] = new Vector2(depth, height) + uvOffset;
 
         //Top
-        meshUVs[4] = new Vector2(width, 0);
-        meshUVs[5] = new Vector2(0, 0);
-        meshUVs[8] = new Vector2(width, depth);
-        meshUVs[9] = new Vector2(0, depth);
+        meshUVs[4] = new Vector2(width, 0) + uvOffset;
+        meshUVs[5] = new Vector2(0, 0) + uvOffset;
+        meshUVs[8] = new Vector2(width, depth) + uvOffset;
+        meshUVs[9] = new Vector2(0, depth) + uvOffset;
 
         //Bottom
-        meshUVs[13] = new Vector2(width, 0);
-        meshUVs[14] = new Vector2(0, 0);
-        meshUVs[12] = new Vector2(width, depth);
-        meshUVs[15] = new Vector2(0, depth);
+        meshUVs[13] = new Vector2(width, 0) + uvOffset;
+        meshUVs[14] = new Vector2(0, 0) + uvOffset;
+        meshUVs[12] = new Vector2(width, depth) + uvOffset;
+        meshUVs[15] = new Vector2(0, depth) + uvOffset;
 
         return meshUVs;
     }
