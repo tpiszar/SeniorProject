@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -38,6 +38,9 @@ public class BasicHealth : MonoBehaviour
 
     public float soundInterval = 2;
     float nextInterval = 0;
+
+    public Animator animator;
+    public float dissapearRate = 3f;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -307,5 +310,53 @@ public class BasicHealth : MonoBehaviour
             // Could have enemy take the extra shock damage if there is nothing left to chain to?
         }
         delayDeath = 0;
+    }
+
+    bool endScene = false;
+    private void OnSceneChanged(Scene oldScene, Scene newScene)
+    {
+        endScene = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (endScene || !animator) { return;  }
+
+        if (health >= 0) //ANIHALATE
+        {
+            //Play effect
+        }
+        else //KILL
+        {
+            mainRend.material.color = mainColor;
+
+            animator.transform.SetParent(null);
+
+            animator.enabled = true;
+            animator.SetBool("Dead", true);
+            //animator.Play(deathAnim);
+
+            Component[] components = animator.GetComponents<Component>();
+
+            foreach (Component comp in components)
+            {
+                if (comp is Animator || comp is Transform)
+                    continue;
+
+                Destroy(comp);
+            }
+
+            Collider[] colliders = animator.GetComponentsInChildren<Collider>();
+
+            foreach (Collider col in colliders)
+            {
+                if (col.gameObject == gameObject)
+                    continue;
+
+                Destroy(col);
+            }
+
+            Destroy(animator.gameObject, dissapearRate);
+        }
     }
 }
