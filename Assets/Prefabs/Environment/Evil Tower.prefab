@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5407585958312559118}
   - component: {fileID: 3419799471273224311}
   - component: {fileID: 541932907516849111}
+  - component: {fileID: 2548863358287712216}
   m_Layer: 0
   m_Name: crystal_1
   m_TagString: Untagged
@@ -103,6 +104,27 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!65 &2548863358287712216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630583236892697836}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.000003, y: 8.000008, z: 26.046494}
+  m_Center: {x: 0, y: -0.00000128466, z: -7.0232434}
 --- !u!1 &2159027458987824808
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7867728793049537688}
+  - component: {fileID: 4276271447111558552}
   m_Layer: 0
   m_Name: Evil Tower
   m_TagString: Untagged
@@ -391,6 +414,29 @@ Transform:
   - {fileID: 4802127380263774512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!136 &4276271447111558552
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5996136514934486817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.25
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6428287889774626198
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +614,6 @@ GameObject:
   - component: {fileID: 2592454640831678675}
   - component: {fileID: 7248463341075404840}
   - component: {fileID: 5101370301281578520}
-  - component: {fileID: 1939686761903886712}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -641,29 +686,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1939686761903886712
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7436884545442798066}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7579727741639589941
 GameObject:
   m_ObjectHideFlags: 0
