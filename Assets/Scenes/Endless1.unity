@@ -4058,6 +4058,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+--- !u!23 &303095169 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 303095168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &312256314
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,7 +6980,7 @@ Transform:
   m_GameObject: {fileID: 484528532}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13, y: 0.125, z: -4.25}
+  m_LocalPosition: {x: -13, y: 0.125, z: -4.125}
   m_LocalScale: {x: 4, y: 0.25, z: 5.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21917,7 +21923,7 @@ Transform:
   m_GameObject: {fileID: 1566155213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13, y: 0.375, z: -9.75}
+  m_LocalPosition: {x: -13, y: 0.375, z: -9.625}
   m_LocalScale: {x: 4, y: 0.75, z: 5.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31098,9 +31104,19 @@ PrefabInstance:
       objectReference: {fileID: 547899317}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
+      propertyPath: deadSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 2064563fdaeedac43a6d59a614b26a38, type: 2}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1805706595}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: skyDome
+      value: 
+      objectReference: {fileID: 303095169}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: directionalLight

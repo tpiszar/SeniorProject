@@ -5828,7 +5828,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -29701,6 +29701,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+--- !u!23 &1845962549 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1845962548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1846983462
 GameObject:
   m_ObjectHideFlags: 0
@@ -33607,9 +33613,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
+      propertyPath: deadSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 2064563fdaeedac43a6d59a614b26a38, type: 2}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1805706591}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: skyDome
+      value: 
+      objectReference: {fileID: 1845962549}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: directionalLight

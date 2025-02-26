@@ -13,6 +13,7 @@ public class PlayerDeath : MonoBehaviour
 
     public GameObject directionalLight;
     public MeshRenderer skyDome;
+    public Material deadSky;
     private Light skyLight;
 
     public UIScript mainUI;
@@ -50,7 +51,7 @@ public class PlayerDeath : MonoBehaviour
         skyLight.color = Color.red;
         if (skyDome != null )
         {
-            skyDome.material.color = Color.red;
+            skyDome.material = deadSky;
         }
 
         for (int i = manager.enemies.Count - 1; i >= 0; i--)

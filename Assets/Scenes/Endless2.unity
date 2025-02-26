@@ -5770,7 +5770,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
+  m_ColorTemperature: 5000
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -27260,6 +27260,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+--- !u!23 &1816964634 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1816964633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1821712476
 GameObject:
   m_ObjectHideFlags: 0
@@ -32956,9 +32962,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
+      propertyPath: deadSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 2064563fdaeedac43a6d59a614b26a38, type: 2}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1805706595}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: skyDome
+      value: 
+      objectReference: {fileID: 1816964634}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: directionalLight

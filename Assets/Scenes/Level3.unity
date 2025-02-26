@@ -7662,6 +7662,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
+--- !u!23 &471565124 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 471565123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &478314839
 GameObject:
   m_ObjectHideFlags: 0
@@ -33341,9 +33347,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
+      propertyPath: deadSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 2064563fdaeedac43a6d59a614b26a38, type: 2}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1805706591}
+    - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: skyDome
+      value: 
+      objectReference: {fileID: 471565124}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: directionalLight
