@@ -13,7 +13,11 @@ public class RedOrbHealth : BasicHealth
 
     protected override IEnumerator DamageFlash()
     {
-        mainColor = Color.Lerp(hurtColor, Color.red, (float)health / maxHealth);
+        for (int i = 0; i < matColors.Length; i++)
+        {
+            matColors[i] = Color.Lerp(hurtColor, Color.red, (float)health / maxHealth);
+        }
+
         return base.DamageFlash();
     }
 }

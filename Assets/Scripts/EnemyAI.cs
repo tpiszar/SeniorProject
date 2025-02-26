@@ -353,6 +353,11 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     protected virtual void OnTeleport(float teleportTime)
     {
+        if (type == Enemytype.Slime)
+        {
+            animator.SetTrigger("ForceIdle");
+        }
+
         agent.enabled = false;
         chasingBarrier = false;
         close = false;
@@ -366,6 +371,12 @@ public class EnemyAI : MonoBehaviour, IComparable
         yield return new WaitForSeconds(delay);
         agent.enabled = true;
         Locate();
+
+        if (type == Enemytype.Slime)
+        {
+            animator.SetTrigger("ForceIdle");
+        }
+
         yield return new WaitForSeconds(0.2f);
         CleanUpBarriers();
         if (attackObjs.Count > 0)

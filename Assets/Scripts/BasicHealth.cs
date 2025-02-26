@@ -20,7 +20,9 @@ public class BasicHealth : MonoBehaviour
     public Renderer mainRend;
     public float flashSpeed = 0.5f;
     Coroutine currentFlash;
-    protected Color mainColor;
+    //protected Color mainColor;
+
+    protected Color[] matColors;
 
     int invincible = 0;
     List<EnemyBarrier> enemyBarriers = new List<EnemyBarrier>();
@@ -45,8 +47,14 @@ public class BasicHealth : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        matColors = new Color[mainRend.materials.Length];
+        for (int i = 0; i < mainRend.materials.Length; i++)
+        {
+            matColors[i] = mainRend.materials[i].color;
+        }
+
         health = maxHealth;
-        mainColor = mainRend.material.color;
+        //mainColor = mainRend.material.color;
         //flashSpeed /= 2;
         agent = GetComponent<NavMeshAgent>();
         if (agent)
@@ -206,19 +214,28 @@ public class BasicHealth : MonoBehaviour
         //    yield return null;
         //}
 
-        mainRend.material.color = Color.red;
+        for (int i = 0; i < mainRend.materials.Length; i++)
+        {
+            mainRend.materials[i].color = Color.red;
+        }
 
         timer = 0;
         while (timer < flashSpeed)
         {
             timer += Time.deltaTime;
 
-            mainRend.material.color = Color.Lerp(Color.red, mainColor, timer / flashSpeed);
+            for (int i = 0; i < mainRend.materials.Length; i++)
+            {
+                mainRend.materials[i].color = Color.Lerp(Color.red, matColors[i], timer / flashSpeed);
+            }
 
             yield return null;
         }
 
-        mainRend.material.color = mainColor;
+        for (int i = 0; i < mainRend.materials.Length; i++)
+        {
+            mainRend.materials[i].color = matColors[i];
+        }
     }
 
     public virtual void Burn(float duration, float rate, int tick)
@@ -328,7 +345,10 @@ public class BasicHealth : MonoBehaviour
         }
         else //KILL
         {
-            mainRend.material.color = mainColor;
+            for (int i = 0; i < mainRend.materials.Length; i++)
+            {
+                mainRend.materials[i].color = matColors[i];
+            }
 
             animator.transform.SetParent(null);
 
