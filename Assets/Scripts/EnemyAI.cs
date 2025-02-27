@@ -123,9 +123,10 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
 
         travellingDir.y = transform.position.y;
-        Vector3 direction1 = (travellingDir - transform.position).normalized;
+        Vector3 MovingDir = (travellingDir - transform.position).normalized;
 
-        Debug.DrawRay(transform.position, direction1 * attkRange, Color.red);
+        Debug.DrawRay(transform.position, MovingDir * attkRange, Color.red);
+        Debug.DrawRay(transform.position, (transform.forward + MovingDir).normalized * attkRange, Color.green);
         Debug.DrawRay(transform.position, transform.forward * attkRange, Color.blue);
 
         if (close)
@@ -160,9 +161,10 @@ public class EnemyAI : MonoBehaviour, IComparable
                     nextRay = rayInterval;
 
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, 
-                        //direction1,
-                        transform.forward, 
+                    if (Physics.Raycast(transform.position,
+                        //MovingDir,
+                        //transform.forward,
+                        (transform.forward + MovingDir),
                         out hit, attkRange, hitMask))
                     {
                         nextAttk = attkRate;
