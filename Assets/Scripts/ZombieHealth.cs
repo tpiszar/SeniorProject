@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class ZombieHealth : BasicHealth
 {
     public EnemyAI enemyAI;
-    public Animator animator;
     public float minSpeed;
     float maxSpeed;
     public float minAttk;

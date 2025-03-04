@@ -199,6 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2351350808239836866}
+  - component: {fileID: 5276323118266502137}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -222,6 +223,27 @@ Transform:
   - {fileID: 1789930002423252636}
   m_Father: {fileID: 6902382242784569101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5276323118266502137
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417950658909698939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2f85547e2efa9145b960b3dc9b7ab2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8014673178385859721
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +350,11 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 461f8692c26827d46b30199aaedaa6e8, type: 3}
   damageVolume: 1
   soundInterval: 1
+  animator: {fileID: 5276323118266502137}
+  dissapearRate: 3
   hurtColor: {r: 0.49803922, g: 0, b: 0, a: 1}
+  deathShatter: {fileID: 5686475541500042253, guid: 2b31d90e791b01643ad01b413ee392c6,
+    type: 3}
 --- !u!114 &2146899055019605033
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -335,11 +335,11 @@ public class BasicHealth : MonoBehaviour
         endScene = true;
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (endScene || !animator) { return;  }
 
-        if (health >= 0) //ANIHALATE
+        if (health > 0) //ANIHALATE
         {
             //Play effect
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RedOrbHealth : BasicHealth
 {
     public Color hurtColor;
+    public GameObject deathShatter;
 
     public override int GetHealth()
     {
@@ -19,5 +20,17 @@ public class RedOrbHealth : BasicHealth
         }
 
         return base.DamageFlash();
+    }
+
+    protected override void OnDestroy()
+    {
+        if (health >= 0)
+        {
+
+        }
+        else
+        {
+            Instantiate(deathShatter, animator.transform.position, animator.transform.rotation);
+        }
     }
 }
