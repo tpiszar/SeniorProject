@@ -24,7 +24,7 @@ public class RedOrbHealth : BasicHealth
 
     protected override void OnDestroy()
     {
-        if (health >= 0)
+        if (health > 0)
         {
 
         }
