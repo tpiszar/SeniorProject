@@ -14,6 +14,8 @@ public class GhoulAI : EnemyAI
 
     float speed;
 
+    public bool matchWithAttack = true;
+
     protected override void Start()
     {
         base.Start();
@@ -38,7 +40,15 @@ public class GhoulAI : EnemyAI
         {
             restoring = true;
             agent.enabled = false;
-            animator.SetTrigger("Attack");
+            if (matchWithAttack)
+            {
+                animator.SetTrigger("Attack");
+            }
+            else
+            {
+                animator.SetTrigger("Barrier");
+            }
+
             nextRestore = restoreRate;
         }
     }
