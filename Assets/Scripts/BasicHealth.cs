@@ -183,6 +183,8 @@ public class BasicHealth : MonoBehaviour
             WaveManager.kills++;
 
             Destroy(gameObject, delayDeath);
+
+            return null;
         }
         else
         {
