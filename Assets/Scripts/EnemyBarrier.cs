@@ -6,6 +6,8 @@ public class EnemyBarrier : BasicHealth
 {
     public GhoulAI ghoul;
 
+    public GameObject shatterBarrier;
+
     protected override void Start()
     {
         health = maxHealth;
@@ -42,5 +44,22 @@ public class EnemyBarrier : BasicHealth
         health = maxHealth;
         ghoul.barrierUp = true;
         gameObject.SetActive(true);
+    }
+
+    protected override void OnDestroy()
+    {
+        return;
+    }
+
+    private void OnDisable()
+    {
+
+        if (UIScript.sceneLoading) return;
+
+
+        if (shatterBarrier)
+        {
+            Instantiate(shatterBarrier, transform.position, transform.rotation);
+        }
     }
 }

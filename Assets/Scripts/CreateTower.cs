@@ -62,8 +62,6 @@ public class CreateTower : MonoBehaviour
         //        }
         //    }
         //}
-
-        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     // Update is called once per frame
@@ -144,10 +142,9 @@ public class CreateTower : MonoBehaviour
         return tower;
     }
 
-    bool endScene = false;
     private void OnDestroy()
     {
-        if (endScene) { return; }
+        if (UIScript.sceneLoading) { return; }
 
         if (tower)
         {
@@ -162,11 +159,6 @@ public class CreateTower : MonoBehaviour
             SoundManager.instance.PlayClip(breakSound, transform.position, breakVolume);
 
         }
-    }
-
-    private void OnSceneChanged(Scene oldScene, Scene newScene)
-    {
-        endScene = true;
     }
 
     //private void OnTriggerEnter(Collider other)

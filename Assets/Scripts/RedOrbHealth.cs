@@ -24,6 +24,8 @@ public class RedOrbHealth : BasicHealth
 
     protected override void OnDestroy()
     {
+        if (UIScript.sceneLoading) return;
+
         if (health > 0)
         {
 

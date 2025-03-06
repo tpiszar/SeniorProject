@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Barrier : MonoBehaviour
 {
@@ -31,6 +30,10 @@ public class Barrier : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float destroyVolume = 1;
 
+    public Vector2 fadeBounds = new Vector2(0.2f, 0.8f);
+
+    public GameObject shatterBarrier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +59,7 @@ public class Barrier : MonoBehaviour
             health = startingHealth;
             mesh = GetComponent<MeshRenderer>();
             wardColor = mesh.material.color;
-            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
             mesh.material.color = wardColor;
         }
     }
@@ -76,7 +79,7 @@ public class Barrier : MonoBehaviour
 
         if (mesh)
         {
-            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
             mesh.material.color = wardColor;
         }
 
@@ -126,7 +129,7 @@ public class Barrier : MonoBehaviour
 
         if (mesh)
         {
-            wardColor.a = Mathf.Lerp(0.2f, 0.8f, (float)health / maxHealth);
+            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
             mesh.material.color = wardColor;
         }
     }
@@ -157,9 +160,16 @@ public class Barrier : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (UIScript.sceneLoading) return;
+
         if (mini)
         {
             Destroy(mini);
+        }
+
+        if (shatterBarrier)
+        {
+            Instantiate(shatterBarrier, transform.position, transform.rotation);
         }
     }
 }

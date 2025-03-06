@@ -1700,6 +1700,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4480060710399585441, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8738236f926bd84f9a5e4d78e3073ef, type: 2}
+    - target: {fileID: 5881219594484613565, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
+        type: 3}
+      propertyPath: fadeBounds.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881219594484613565, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
+        type: 3}
+      propertyPath: fadeBounds.y
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4409,6 +4424,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crystal Tower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6871284874957861862, guid: 1c3f4d146a5b7cd41bb3bcf84d527cdb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17180,6 +17200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crystal Tower (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6871284874957861862, guid: 1c3f4d146a5b7cd41bb3bcf84d527cdb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30330,6 +30355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 6871284874957861862, guid: 1c3f4d146a5b7cd41bb3bcf84d527cdb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33946,7 +33976,7 @@ MonoBehaviour:
     - {fileID: 6564139298950782055, guid: 4481dc13ad1be3e40846f637046d9043, type: 3}
     - {fileID: 8014673178385859721, guid: f97bde853ecacde44970d4cef2ccf1fc, type: 3}
     - {fileID: 3163385665159897073, guid: 5df614e8029f32b49a1701ae4d373982, type: 3}
-    counts: 000000000000000000000000000000000300000000000000
+    counts: 00000000000000000000000001000000000000000c000000
     delay: 2
 --- !u!1001 &2044819426
 PrefabInstance:
@@ -37493,6 +37523,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   dissapearRate: 3
   ghoul: {fileID: 6968107393487397457}
+  shatterBarrier: {fileID: 0}
 --- !u!4 &2363057542108136535
 Transform:
   m_ObjectHideFlags: 0

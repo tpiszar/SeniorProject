@@ -331,15 +331,9 @@ public class BasicHealth : MonoBehaviour
         delayDeath = 0;
     }
 
-    bool endScene = false;
-    private void OnSceneChanged(Scene oldScene, Scene newScene)
-    {
-        endScene = true;
-    }
-
     protected virtual void OnDestroy()
     {
-        if (endScene || !animator) { return;  }
+        if (UIScript.sceneLoading || !animator) { return;  }
 
         if (health > 0) //ANIHALATE
         {

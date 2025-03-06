@@ -8,6 +8,8 @@ using JetBrains.Annotations;
 
 public class UIScript : MonoBehaviour
 {
+    public static bool sceneLoading = false;
+
     public Renderer fade;
     public float fadeTime;
     public float padding;
@@ -60,6 +62,8 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sceneLoading = false;
+
         StartCoroutine(Fade(1, 0));
 
         foreach (Screen screen in screenArr)
@@ -220,6 +224,8 @@ public class UIScript : MonoBehaviour
 
     public void LoadScene(string scene)
     {
+        sceneLoading = true;
+
         startSound.Play();
 
         if (paused)
@@ -276,6 +282,8 @@ public class UIScript : MonoBehaviour
 
     public void Quit()
     {
+        sceneLoading = true;
+
         quitSound.Play();
 
         StartCoroutine(Fade(0, 1));
@@ -287,5 +295,10 @@ public class UIScript : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
 
         Application.Quit();
+    }
+
+    private void OnApplicationQuit()
+    {
+        sceneLoading = true;
     }
 }
