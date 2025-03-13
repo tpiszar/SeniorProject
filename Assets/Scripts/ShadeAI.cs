@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,9 +16,11 @@ public class ShadeAI : EnemyAI
     public float maxFade = 0.8f;
     [Range(0, 1)]
     public float distanceActivateRatio = 0.5f;
-    bool active = false;
+    public bool active = false;
 
-    public SkinnedMeshRenderer[] meshs;
+    public SkinnedMeshRenderer mesh;
+
+    Color matColor;
 
     float curMaxDist;
 
@@ -25,6 +28,8 @@ public class ShadeAI : EnemyAI
     protected override void Start()
     {
         root.gameObject.SetActive(false);
+
+        active = false;
 
         //if (WaveManager.maxDistances.Count == 0 && !setter)
         //{
@@ -46,6 +51,8 @@ public class ShadeAI : EnemyAI
         //curMaxDist = 10000;
 
         curMaxDist = WaveManager.maxDistances[Teleport.Instance.curBase];
+
+        matColor = mesh.materials[1].color;
 
         base.Start();
     }
@@ -84,7 +91,10 @@ public class ShadeAI : EnemyAI
             {
                 shadeRoot.gameObject.SetActive(false);
                 root.gameObject.SetActive(true);
-                SetAlphas(1);
+
+                matColor.a = 1;
+                mesh.materials[1].color = matColor;
+
                 active = true;
 
                 MiniMapTracker.instance.AddMapTracker(transform, Enemytype.Shade);
@@ -92,10 +102,12 @@ public class ShadeAI : EnemyAI
             else
             {
                 float alpha = Mathf.Lerp(maxFade, minFade, (distance - ratioDist) / ratioDist);
-                SetAlphas(alpha);
+
+                matColor.a = alpha;
+                mesh.materials[1].color = matColor;
             }
 
-            if (active || WaveManager.LevelEnd)
+            if (active)
             {
                 WaveManager.Instance.enemies.Add(this);
                 WaveManager.Instance.healths.Add(GetComponent<BasicHealth>());
@@ -105,15 +117,15 @@ public class ShadeAI : EnemyAI
         base.Update();
     }
 
-    void SetAlphas(float alpha)
-    {
-        foreach (SkinnedMeshRenderer mesh in meshs)
-        {
-            Color col = mesh.material.color;
-            col.a = alpha;
-            mesh.material.color = col;
-        }
-    }
+    //void SetAlphas(float alpha)
+    //{
+    //    foreach (SkinnedMeshRenderer mesh in meshs)
+    //    {
+    //        Color col = mesh.material.color;
+    //        col.a = alpha;
+    //        mesh.material.color = col;
+    //    }
+    //}
 
     protected override void OnTeleport(float teleportTime)
     {

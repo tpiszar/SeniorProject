@@ -62,6 +62,16 @@ public class PlayerDeath : MonoBehaviour
             }
         }
 
+        // NEW
+        ShadeAI[] shades = FindObjectsOfType<ShadeAI>();
+        foreach ( ShadeAI shade in shades )
+        {
+            if (!shade.active)
+            {
+                manager.enemies.Add(shade);
+            }
+        }
+
         manager.enemies.Sort();
 
         float curRamp = 0;
@@ -77,6 +87,9 @@ public class PlayerDeath : MonoBehaviour
                 Destroy(manager.enemies[i]);
             }
         }
+
+        //Hopefully stop late enemies
+        WaveManager.Instance.StopAllCoroutines();
 
         StartCoroutine(ShowScreen(curRamp + minKillInterval * 2));
 
@@ -97,7 +110,6 @@ public class PlayerDeath : MonoBehaviour
         //leftRayInteractor.SetActive(true);
         //rightRayInteractor.SetActive(true);
 
-        //Hopefully stop late enemies
-        WaveManager.Instance.StopAllCoroutines();
+        // MOVED STOP COROUTINES FROM HERE
     }
 }

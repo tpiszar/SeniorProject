@@ -341,6 +341,7 @@ public class BasicHealth : MonoBehaviour
         }
         else //KILL
         {
+
             for (int i = 0; i < mainRend.materials.Length; i++)
             {
                 mainRend.materials[i].color = matColors[i];
