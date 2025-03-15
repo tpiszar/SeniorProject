@@ -44,13 +44,15 @@ public class ZombieHealth : BasicHealth
     public override void SpeedBoost(float boost)
     {
         base.SpeedBoost(boost);
-        maxSpeed *= boost;
+        if (boosted != 1) { return; }
+        maxSpeed *= (1 + boost);
     }
 
     public override void SpeedDown(float boost)
     {
         base.SpeedDown(boost);
-        maxSpeed /= boost;
+        if (boosted != 0) { return; }
+        maxSpeed /= (1 + boost);
     }
 
     public override void RegularSpeed()

@@ -122,17 +122,17 @@ public class BasicHealth : MonoBehaviour
         return invincible > 0;
     }
 
-    int boosted = 0;
+    protected int boosted = 0;
     public virtual void SpeedBoost(float boost)
     {
         boosted++;
-        if (!agent || boosted > 1) { return; }
+        if (!agent || boosted != 1) { return; }
         agent.speed *= (1 + boost);
     }
     public virtual void SpeedDown(float boost)
     {
         boosted--;
-        if (!agent || boosted > 0) { return; }
+        if (!agent || boosted != 0) { return; }
         agent.speed /= (1 + boost);
     }
     public virtual void RegularSpeed()

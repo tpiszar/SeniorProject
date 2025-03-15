@@ -6,9 +6,9 @@ using UnityEngine.Rendering;
 public class LightningDrawer : MonoBehaviour
 {
     public LineRenderer[] lightningRenders;
-    public static float lightningSpikesPerUnit = 3;
+    public static float lightningSpikesPerUnit = 2;
     public static float lightningSpikeOffset = 0.2f;
-    public static float lightningSpikeOffsetMax = 0.2f;
+    public static float lightningSpikeOffsetMax = 0.3f;
 
     public AudioClip zapSound;
     [Range(0.0001f, 1f)]
