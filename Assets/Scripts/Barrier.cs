@@ -44,7 +44,7 @@ public class Barrier : MonoBehaviour
     public float maxIntensity = 1.75f;
 
     public float antiFlashRate = 1.4f;
-    float nextFlash = 0;
+    float nextFlash = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +89,7 @@ public class Barrier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nextFlash -= Time.deltaTime;
+        //nextFlash -= Time.deltaTime;
     }
 
     public void TakeDamage(int damage, GameObject attacker)
