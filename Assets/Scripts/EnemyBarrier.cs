@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemyBarrier : BasicHealth
@@ -8,9 +9,33 @@ public class EnemyBarrier : BasicHealth
 
     public GameObject shatterBarrier;
 
+    Material barrierMat;
+    Color baseColor;
+    Color curColor;
+    Color maxColor;
+    float startIntensity = 1f;
+    public float endIntensity = .5f;
+    public float maxIntensity = 1.5f;
+
+    public float antiFlashRate = 1f;
+    float nextFlash = 0;
+
     protected override void Start()
     {
         health = maxHealth;
+
+        barrierMat = mainRend.material;
+
+        baseColor = barrierMat.GetColor("_Color");
+
+        curColor = baseColor;
+
+        maxColor = baseColor * (maxIntensity / startIntensity);
+    }
+
+    void Update()
+    {
+        nextFlash -= Time.deltaTime;
     }
 
     public override EnemyBarrier TakeDamage(int damage, DamageType type)
@@ -24,9 +49,57 @@ public class EnemyBarrier : BasicHealth
         {
             ghoul.barrierUp = false;
             gameObject.SetActive(false);
+
+            barrierMat.SetColor("_Color", baseColor);
+
+            curColor = baseColor;
+
+            return this;
+        }
+
+        float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
+
+        print("NEW " + newIntensity);
+
+        curColor = baseColor * (newIntensity / startIntensity);
+
+
+        if (nextFlash > 0)
+        {
+            barrierMat.SetColor("_Color", curColor);
+        }
+        else
+        {
+            if (currentFlash != null)
+            {
+                StopCoroutine(currentFlash);
+            }
+
+            currentFlash = StartCoroutine(DamageFlash());
         }
 
         return this;
+    }
+
+    protected override IEnumerator DamageFlash()
+    {
+        nextFlash = antiFlashRate;
+
+        float timer = 0;
+
+        barrierMat.SetColor("_Color", maxColor);
+
+        timer = 0;
+        while (timer < flashSpeed)
+        {
+            timer += Time.deltaTime;
+
+            barrierMat.SetColor("_Color", Color.Lerp(curColor, maxColor, timer / flashSpeed));
+
+            yield return null;
+        }
+
+        barrierMat.SetColor("_Color", curColor);
     }
 
     public override void Burn(float duration, float rate, int tick)

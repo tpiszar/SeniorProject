@@ -34,6 +34,8 @@ public class Barrier : MonoBehaviour
 
     public GameObject shatterBarrier;
 
+
+
     // Start is called before the first frame update
     void Start()
     {

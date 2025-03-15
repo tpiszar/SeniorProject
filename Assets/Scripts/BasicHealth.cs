@@ -19,7 +19,7 @@ public class BasicHealth : MonoBehaviour
 
     public Renderer mainRend;
     public float flashSpeed = 0.5f;
-    Coroutine currentFlash;
+    protected Coroutine currentFlash;
     //protected Color mainColor;
 
     protected Color[] matColors;
