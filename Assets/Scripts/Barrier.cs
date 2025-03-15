@@ -1,6 +1,6 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Barrier : MonoBehaviour
 {
@@ -20,9 +20,6 @@ public class Barrier : MonoBehaviour
     public TextMeshProUGUI healthText;
     Color startingColor;
 
-    MeshRenderer mesh;
-    Color wardColor;
-
     public AudioClip damageSound;
     [Range(0.0001f, 1f)]
     public float damageVolume = 1;
@@ -34,7 +31,20 @@ public class Barrier : MonoBehaviour
 
     public GameObject shatterBarrier;
 
+    public Renderer mainRend;
+    public float flashSpeed = 0.5f;
+    protected Coroutine currentFlash;
 
+    Material barrierMat;
+    Color baseColor;
+    Color curColor;
+    Color maxColor;
+    float startIntensity = 1f;
+    public float endIntensity = .5f;
+    public float maxIntensity = 1.75f;
+
+    public float antiFlashRate = 1.4f;
+    float nextFlash = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -52,24 +62,34 @@ public class Barrier : MonoBehaviour
 
         if (healthText)
         {
+            startingHealth = maxHealth;
+
             startingColor = healthText.color;
             healthText.text = health.ToString();
         }
 
-        if (!isPlayer && !healthText)
+        if (!isPlayer)
         {
             health = startingHealth;
-            mesh = GetComponent<MeshRenderer>();
-            wardColor = mesh.material.color;
-            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
-            mesh.material.color = wardColor;
+
+            barrierMat = mainRend.material;
+
+            baseColor = barrierMat.GetColor("_Color");
+
+            float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
+
+            curColor = baseColor * (newIntensity / startIntensity);
+
+            barrierMat.SetColor("_Color", curColor);
+
+            maxColor = baseColor * (maxIntensity / startIntensity);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        nextFlash -= Time.deltaTime;
     }
 
     public void TakeDamage(int damage, GameObject attacker)
@@ -77,12 +97,6 @@ public class Barrier : MonoBehaviour
         if (!immune)
         {
             health -= damage;
-        }
-
-        if (mesh)
-        {
-            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
-            mesh.material.color = wardColor;
         }
 
         if (annihilate)
@@ -113,7 +127,50 @@ public class Barrier : MonoBehaviour
         else
         {
             SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
+
+            if (!isPlayer)
+            {
+                float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
+
+                curColor = baseColor * (newIntensity / startIntensity);
+
+
+                if (nextFlash > 0)
+                {
+                    barrierMat.SetColor("_Color", curColor);
+                }
+                else
+                {
+                    if (currentFlash != null)
+                    {
+                        StopCoroutine(currentFlash);
+                    }
+
+                    currentFlash = StartCoroutine(DamageFlash());
+                }
+            }
         }
+    }
+
+    IEnumerator DamageFlash()
+    {
+        nextFlash = antiFlashRate;
+
+        float timer = 0;
+
+        barrierMat.SetColor("_Color", maxColor);
+
+        timer = 0;
+        while (timer < flashSpeed)
+        {
+            timer += Time.deltaTime;
+
+            barrierMat.SetColor("_Color", Color.Lerp(curColor, maxColor, timer / flashSpeed));
+
+            yield return null;
+        }
+
+        barrierMat.SetColor("_Color", curColor);
     }
 
     public bool CanMaximizeCharge(int gain)
@@ -129,10 +186,13 @@ public class Barrier : MonoBehaviour
             health = maxHealth;
         }
 
-        if (mesh)
+        if (!isPlayer)
         {
-            wardColor.a = Mathf.Lerp(fadeBounds.x, fadeBounds.y, (float)health / maxHealth);
-            mesh.material.color = wardColor;
+            float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
+
+            curColor = baseColor * (newIntensity / startIntensity);
+
+            barrierMat.SetColor("_Color", curColor);
         }
     }
 

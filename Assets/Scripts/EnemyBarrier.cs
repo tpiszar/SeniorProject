@@ -59,8 +59,6 @@ public class EnemyBarrier : BasicHealth
 
         float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
 
-        print("NEW " + newIntensity);
-
         curColor = baseColor * (newIntensity / startIntensity);
 
 
