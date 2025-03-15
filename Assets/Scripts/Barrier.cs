@@ -43,8 +43,8 @@ public class Barrier : MonoBehaviour
     public float endIntensity = .5f;
     public float maxIntensity = 1.75f;
 
-    public float antiFlashRate = 1.4f;
-    float nextFlash = 1;
+    Vector3 scale;
+    public Vector3 upScale;
 
     // Start is called before the first frame update
     void Start()
@@ -82,14 +82,16 @@ public class Barrier : MonoBehaviour
 
             barrierMat.SetColor("_Color", curColor);
 
-            maxColor = baseColor * (maxIntensity / startIntensity);
+            maxColor = curColor * (maxIntensity / startIntensity);
+
+            scale = mainRend.transform.localScale;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //nextFlash -= Time.deltaTime;
+        
     }
 
     public void TakeDamage(int damage, GameObject attacker)
@@ -134,33 +136,24 @@ public class Barrier : MonoBehaviour
 
                 curColor = baseColor * (newIntensity / startIntensity);
 
+                maxColor = curColor * (maxIntensity / startIntensity);
 
-                if (nextFlash > 0)
-                {
-                    barrierMat.SetColor("_Color", curColor);
-                }
-                else
-                {
-                    if (currentFlash != null)
-                    {
-                        StopCoroutine(currentFlash);
-                    }
+                barrierMat.SetColor("_Color", curColor);
 
-                    currentFlash = StartCoroutine(DamageFlash());
+                if (currentFlash != null)
+                {
+                    StopCoroutine(currentFlash);
                 }
+
+                currentFlash = StartCoroutine(DamageFlash());
             }
         }
     }
 
     IEnumerator DamageFlash()
     {
-        nextFlash = antiFlashRate;
-
         float timer = 0;
 
-        barrierMat.SetColor("_Color", maxColor);
-
-        timer = 0;
         while (timer < flashSpeed)
         {
             timer += Time.deltaTime;
@@ -170,7 +163,24 @@ public class Barrier : MonoBehaviour
             yield return null;
         }
 
-        barrierMat.SetColor("_Color", curColor);
+
+        barrierMat.SetColor("_Color", maxColor);
+
+        //mainRend.transform.localScale = upScale;
+
+        timer = 0;
+        while (timer < flashSpeed)
+        {
+            timer += Time.deltaTime;
+
+            barrierMat.SetColor("_Color", Color.Lerp(maxColor, curColor, timer / flashSpeed));
+
+            //mainRend.transform.localScale = Vector3.Lerp(upScale, scale, timer / flashSpeed);
+
+            yield return null;
+        }
+
+        //barrierMat.SetColor("_Color", curColor);
     }
 
     public bool CanMaximizeCharge(int gain)

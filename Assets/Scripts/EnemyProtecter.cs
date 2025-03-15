@@ -80,14 +80,16 @@ public class EnemyProtecter : MonoBehaviour
         if (ghoul)
         {
             ghoul.SetInvincible(false, barrier);
-            ghoul.RegularSpeed();
+            //ghoul.RegularSpeed();
+            ghoul.SpeedDown(speedBoost);
         }
         foreach (BasicHealth enemy in enemies)
         {
             if (enemy)
             {
                 enemy.SetInvincible(false, barrier);
-                enemy.RegularSpeed();
+                //enemy.RegularSpeed();
+                enemy.SpeedDown(speedBoost);
             }
         }
     }

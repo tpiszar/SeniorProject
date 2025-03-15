@@ -17,8 +17,8 @@ public class EnemyBarrier : BasicHealth
     public float endIntensity = .5f;
     public float maxIntensity = 1.5f;
 
-    public float antiFlashRate = 1f;
-    float nextFlash = 0;
+    //public float antiFlashRate = 1f;
+    //float nextFlash = 0;
 
     protected override void Start()
     {
@@ -30,12 +30,12 @@ public class EnemyBarrier : BasicHealth
 
         curColor = baseColor;
 
-        maxColor = baseColor * (maxIntensity / startIntensity);
+        maxColor = curColor * (maxIntensity / startIntensity);
     }
 
     void Update()
     {
-        nextFlash -= Time.deltaTime;
+        //nextFlash -= Time.deltaTime;
     }
 
     public override EnemyBarrier TakeDamage(int damage, DamageType type)
@@ -61,29 +61,47 @@ public class EnemyBarrier : BasicHealth
 
         curColor = baseColor * (newIntensity / startIntensity);
 
+        maxColor = curColor * (maxIntensity / startIntensity);
 
-        if (nextFlash > 0)
-        {
-            barrierMat.SetColor("_Color", curColor);
-        }
-        else
-        {
-            if (currentFlash != null)
-            {
-                StopCoroutine(currentFlash);
-            }
+        //if (nextFlash > 0)
+        //{
+        //    barrierMat.SetColor("_Color", curColor);
 
-            currentFlash = StartCoroutine(DamageFlash());
+        //}
+        //else
+        //{
+        //    if (currentFlash != null)
+        //    {
+        //        StopCoroutine(currentFlash);
+        //    }
+
+        //    currentFlash = StartCoroutine(DamageFlash());
+        //}
+
+        barrierMat.SetColor("_Color", curColor);
+
+        if (currentFlash != null)
+        {
+            StopCoroutine(currentFlash);
         }
+
+        currentFlash = StartCoroutine(DamageFlash());
 
         return this;
     }
 
     protected override IEnumerator DamageFlash()
     {
-        nextFlash = antiFlashRate;
-
         float timer = 0;
+
+        while (timer < flashSpeed)
+        {
+            timer += Time.deltaTime;
+
+            barrierMat.SetColor("_Color", Color.Lerp(curColor, maxColor, timer / flashSpeed));
+
+            yield return null;
+        }
 
         barrierMat.SetColor("_Color", maxColor);
 
@@ -92,7 +110,7 @@ public class EnemyBarrier : BasicHealth
         {
             timer += Time.deltaTime;
 
-            barrierMat.SetColor("_Color", Color.Lerp(curColor, maxColor, timer / flashSpeed));
+            barrierMat.SetColor("_Color", Color.Lerp(maxColor, curColor, timer / flashSpeed));
 
             yield return null;
         }
