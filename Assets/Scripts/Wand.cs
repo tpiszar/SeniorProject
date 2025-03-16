@@ -356,7 +356,11 @@ public class Wand : MonoBehaviour
 
                     //print("PRIMED " + spell.name);
                     activeSpell = spell.number;
-                    spell.chargeSystem.Play();
+
+                    if (spell.chargeSystem)
+                    {
+                        spell.chargeSystem.Play();
+                    }
                 }
                 break;
             }
@@ -418,7 +422,11 @@ public class Wand : MonoBehaviour
 
     void Fire()
     {
-        spells[activeSpell].chargeSystem.Stop();
+        if (spells[activeSpell].chargeSystem)
+        {
+            spells[activeSpell].chargeSystem.Stop();
+        }
+
 
         if (spells[activeSpell].fireSound)
         {

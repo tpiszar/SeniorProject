@@ -16,7 +16,10 @@ public class MiniMapDetector : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
         CreateTower tower = other.transform.parent.GetComponent<CreateTower>();
+
+        if (!tower || !tower.holderTrans) { return; }
 
         Vector3 newPos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
 
