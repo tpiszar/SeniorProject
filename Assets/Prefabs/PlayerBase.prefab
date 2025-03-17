@@ -7794,6 +7794,7 @@ GameObject:
   - component: {fileID: 430681582951928299}
   - component: {fileID: 2697047911182644928}
   - component: {fileID: 8492551606907200937}
+  - component: {fileID: 5245848488527089247}
   m_Layer: 0
   m_Name: r_divineBlock_Smol
   m_TagString: Blocker
@@ -8021,6 +8022,22 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   attachLeft: {fileID: 2666390826009532528}
   attachRight: {fileID: 9046114112914144258}
+--- !u!114 &5245848488527089247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848978039197808828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!1 &877426331948193988
 GameObject:
   m_ObjectHideFlags: 0
@@ -22549,6 +22566,7 @@ GameObject:
   - component: {fileID: 4628801626023313473}
   - component: {fileID: 1425601618102672585}
   - component: {fileID: 8130607175234073270}
+  - component: {fileID: 5522219641825600034}
   m_Layer: 15
   m_Name: r_divineBlock_BIG
   m_TagString: Untagged
@@ -22714,6 +22732,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchDestroyObjects:
   - {fileID: 848978039197808828}
+--- !u!114 &5522219641825600034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384883364871925156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!1 &4385350897291359802
 GameObject:
   m_ObjectHideFlags: 0
@@ -31158,6 +31192,7 @@ GameObject:
   - component: {fileID: 1150106306227927602}
   - component: {fileID: 5367972049948554870}
   - component: {fileID: 2396452160881418747}
+  - component: {fileID: 7599233424778866983}
   m_Layer: 0
   m_Name: l_divineBlock_Smol
   m_TagString: Blocker
@@ -31385,6 +31420,22 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   attachLeft: {fileID: 5479433272637094340}
   attachRight: {fileID: 1862790341895691348}
+--- !u!114 &7599233424778866983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856776601506811574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!1 &6899538710713068226
 GameObject:
   m_ObjectHideFlags: 0
@@ -35529,6 +35580,7 @@ GameObject:
   - component: {fileID: 7125923570047987130}
   - component: {fileID: 1770613252558963167}
   - component: {fileID: 119844352207294143}
+  - component: {fileID: 5621419292228260246}
   m_Layer: 15
   m_Name: l_divineBlock_BIG
   m_TagString: Untagged
@@ -35694,6 +35746,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchDestroyObjects:
   - {fileID: 6856776601506811574}
+--- !u!114 &5621419292228260246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323062391868655937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!1 &8347935530320899799
 GameObject:
   m_ObjectHideFlags: 0
@@ -45872,6 +45940,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 424351182693302289}
+    - targetCorrespondingSourceObject: {fileID: 100054, guid: ca20b3907ff1c794cb89c1ad2cce8282,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5557600784841817257}
   m_SourcePrefab: {fileID: 100100000, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
 --- !u!95 &8068577189792613307 stripped
 Animator:
@@ -45926,6 +45998,22 @@ MonoBehaviour:
   animator: {fileID: 8068577189792613307}
   overrideTrig: -1
   overrideGrip: -1
+--- !u!114 &5557600784841817257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068577189802143757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!4 &8068577189802437741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282,
@@ -46798,6 +46886,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 387717013035302523}
+    - targetCorrespondingSourceObject: {fileID: 100054, guid: d0c255d07fd68f14b94e55d388e7e6bb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1143995195826437458}
   m_SourcePrefab: {fileID: 100100000, guid: d0c255d07fd68f14b94e55d388e7e6bb, type: 3}
 --- !u!1 &8541097291489626347 stripped
 GameObject:
@@ -46846,6 +46938,22 @@ MonoBehaviour:
   animator: {fileID: 8541097291499125597}
   overrideTrig: -1
   overrideGrip: -1
+--- !u!114 &1143995195826437458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541097291489626347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.2
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 1
 --- !u!4 &8541097291489858699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400054, guid: d0c255d07fd68f14b94e55d388e7e6bb,

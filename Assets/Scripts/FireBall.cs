@@ -18,6 +18,8 @@ public class FireBall : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float hitVolume = 1;
 
+    public ParticleSystem expandParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,10 @@ public class FireBall : MonoBehaviour
 
     IEnumerator ExpandFlame()
     {
+        expandParticle.Play();
+        expandParticle.transform.parent = null;
+
+
         flame.hitThisCycle.Clear();
         float timer = 0;
         while (timer < expandRate)

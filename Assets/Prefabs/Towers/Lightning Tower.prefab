@@ -770,6 +770,7 @@ GameObject:
   - component: {fileID: 8866929608420969664}
   - component: {fileID: 2332470438027254271}
   - component: {fileID: 8495691770028340631}
+  - component: {fileID: 8737111166312688070}
   m_Layer: 6
   m_Name: Lightning Tower
   m_TagString: Untagged
@@ -855,6 +856,21 @@ MonoBehaviour:
   jumpRadius: 3
   jumpDelay: 0.2
   lightningDrawer: {fileID: 4595392387961984466}
+--- !u!114 &8737111166312688070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902017228300354023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269de063a921dcb4883881981e1bcc30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growDuration: 0.2
+  landDuration: 0.075
+  riseHeight: 0.75
 --- !u!1001 &213726928435725945
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 3369664526119592313}
   - component: {fileID: 8212613416771996428}
   - component: {fileID: 2322826298108297662}
+  - component: {fileID: 5328504549692359050}
   m_Layer: 16
   m_Name: GhoulBarrier
   m_TagString: Enemy
@@ -732,7 +733,22 @@ MonoBehaviour:
     type: 3}
   endIntensity: 0.5
   maxIntensity: 1.75
-  antiFlashRate: 1.1
+--- !u!114 &5328504549692359050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601767975678759720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec29d6d84b593c84598189e056dc864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSize: 0.1
+  growDuration: 0.2
+  shrinkDuration: 0.1
+  singleUse: 0
 --- !u!1 &1629584888449554163
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ public class FlameTower : MonoBehaviour
 
     public AudioSource blastSound;
 
+    public ParticleSystem expandParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,8 @@ public class FlameTower : MonoBehaviour
 
     IEnumerator ExpandFlame()
     {
+        expandParticle.Play();
+
         flame.hitThisCycle.Clear();
         flame.soundCount = 0;
         float timer = 0;

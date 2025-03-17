@@ -34,6 +34,9 @@ public class WardTower : MonoBehaviour
 
     public AudioSource riseSound;
 
+    public float startDelay = 0.3f;
+    bool wait = true;
+
     public class BarrierSpawn : IComparable
     {
         public Vector3 spawnPoint;
@@ -93,6 +96,11 @@ public class WardTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Invoke("DelayedStart", startDelay);
+    }
+
+    void DelayedStart()
+    {
         topPosition = top.position;
 
         spawnHeight = barrierPrefab.transform.lossyScale.y / 2 - burySize;
@@ -106,12 +114,17 @@ public class WardTower : MonoBehaviour
         }
 
         SetWardPositions();
+
+        wait = false;
     }
 
     int cycle = 0;
     // Update is called once per frame
     void Update()
     {
+        if (wait) { return; }
+
+
         nextCharge -= Time.deltaTime;
         if (rising > 0)
         {
