@@ -36,13 +36,13 @@ public class ShatterEffect : MonoBehaviour
                 rends.Add(rend);
             }
         }
-        setMat = rends[0].material;
-        baseColor = rends[0].material.color;
+        //setMat = rends[0].material;
+        //baseColor = rends[0].material.color;
         
-        if (!overrideAlpha)
-        {
-            baseAlpha = baseColor.a;
-        }
+        //if (!overrideAlpha)
+        //{
+        //    baseAlpha = baseColor.a;
+        //}
 
     }
     
@@ -60,12 +60,13 @@ public class ShatterEffect : MonoBehaviour
 
         RescaleChildren();
 
-        baseColor.a = Mathf.Lerp(baseAlpha, 0, easedT);
-        setMat.color = baseColor;
+        //baseColor.a = Mathf.Lerp(baseAlpha, 0, easedT);
+        //setMat.color = baseColor;
 
         foreach (Renderer r in rends)
         {
-            r.material = setMat;
+            //r.material = setMat;
+            r.material.SetFloat("_Fade", Mathf.Lerp(1, 0, t));
         }
 
         if (timer >= duration)

@@ -68,7 +68,7 @@ public class Barrier : MonoBehaviour
             healthText.text = health.ToString();
         }
 
-        if (!isPlayer)
+        if (!isPlayer && mainRend)
         {
             health = startingHealth;
 
@@ -130,7 +130,7 @@ public class Barrier : MonoBehaviour
         {
             SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
 
-            if (!isPlayer)
+            if (!isPlayer && mainRend)
             {
                 float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
 
