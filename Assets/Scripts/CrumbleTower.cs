@@ -17,9 +17,14 @@ public class CrumbleTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         foreach (Rigidbody rig in pieces)
         {
-            rig.AddForce(Random.onUnitSphere * Random.Range(minForce, maxForce), ForceMode.Impulse);
+            if (maxForce > 0)
+            {
+                rig.AddForce(Random.onUnitSphere * Random.Range(minForce, maxForce), ForceMode.Impulse);
+            }
+
             rig.transform.parent = null;
             Destroy(rig.gameObject, Random.Range(destroyMin, destroyMax));
         }
