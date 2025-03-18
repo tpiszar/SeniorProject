@@ -40,12 +40,10 @@ public class BarrierSpawn : MonoBehaviour
         if (timer < growDuration)
         {
             transform.localScale = Vector3.Lerp(Vector3.zero, bigSize, timer / growDuration);
-            print("growing "  + timer / growDuration + " " + Time.time);
         }
         else if (timer < growDuration + shrinkDuration)
         {
             transform.localScale = Vector3.Lerp(bigSize, sizeVector, (timer - growDuration) / shrinkDuration);
-            print("shrinking " + (timer - growDuration)/ shrinkDuration + " " + Time.time);
         }
         else
         {

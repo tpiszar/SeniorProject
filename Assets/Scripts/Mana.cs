@@ -11,9 +11,9 @@ public class Mana : MonoBehaviour
 
     int currentMana;
 
-    public Transform fill;
-    public Transform useFill;
-    public Transform gainFill;
+    //public Transform fill;
+    //public Transform useFill;
+    //public Transform gainFill;
 
     public static Mana Instance;
 
@@ -24,6 +24,12 @@ public class Mana : MonoBehaviour
     public int preGain = 0;
 
     public TextMeshProUGUI manaText;
+
+    public MeshRenderer fillMesh;
+    public MeshRenderer useFillMesh;
+    public MeshRenderer gainFillMesh;
+
+    public AnimationCurve fillCurve;
 
     // Start is called before the first frame update
     void Start()
@@ -62,50 +68,73 @@ public class Mana : MonoBehaviour
 
         float ratio = 1;
 
+
         float appendedMana = currentMana - preUse;
 
-        if (preUse > currentMana)
+        if (currentMana > maxJarMana)
         {
-            appendedMana = currentMana;
+            appendedMana = maxJarMana - preUse;
         }
 
-        if (appendedMana < maxJarMana)
+        if (appendedMana + preGain > maxJarMana)
         {
-            ratio = (float)appendedMana / maxJarMana;
+            appendedMana = maxJarMana - preUse - preGain;
         }
 
-        Vector3 localScale = fill.localScale;
-        localScale.y = ratio;
-        fill.localScale = localScale;
+        //appendedMana -= preGain;
 
-        Vector3 localPos = fill.localPosition;
-        localPos.y = ratio - 1;
-        fill.localPosition = localPos;
+        //if (preUse > currentMana)
+        //{
+        //    appendedMana = currentMana;
+        //}
 
-        float useRatio = (float)preUse / maxJarMana;
+        //if (appendedMana < maxJarMana)
+        //{
+        //    ratio = (float)appendedMana / maxJarMana;
+        //}
 
-        if (preUse > currentMana)
-        {
-            useRatio = 0;
-        }
+        ratio = (float)appendedMana / maxJarMana;
 
-        Vector3 useLocalScale = useFill.localScale;
-        useLocalScale.y = useRatio + .001f; // Anti z fighting
-        useFill.localScale = useLocalScale;
+        fillMesh.material.SetFloat("_Fill", fillCurve.Evaluate(ratio));
 
-        Vector3 useLocalPos = useFill.localPosition;
-        useLocalPos.y = Mathf.Clamp(localPos.y + localScale.y + useLocalScale.y, useRatio - 1, 1 - useRatio);
-        useFill.localPosition = useLocalPos;
+        //Vector3 localScale = fill.localScale;
+        //localScale.y = ratio;
+        //fill.localScale = localScale;
 
-        float gainRatio = (float)preGain / maxJarMana;
+        //Vector3 localPos = fill.localPosition;
+        //localPos.y = ratio - 1;
+        //fill.localPosition = localPos;
 
-        Vector3 gainLocalScale = gainFill.localScale;
-        gainLocalScale.y = gainRatio; // Anti z fighting
-        gainFill.localScale = gainLocalScale;
+        float useRatio = ((float)preUse + appendedMana) / maxJarMana;
 
-        Vector3 gainLocalPos = gainFill.localPosition;
-        gainLocalPos.y = Mathf.Clamp(useLocalPos.y + useLocalScale.y + gainLocalScale.y, gainRatio - 1, 1 - gainRatio);
-        gainFill.localPosition = gainLocalPos;
+        //if (preUse > currentMana)
+        //{
+        //    useRatio = 0;
+        //}
+
+        useFillMesh.enabled = preUse > 0;
+        useFillMesh.material.SetFloat("_Fill", fillCurve.Evaluate(useRatio));
+
+        //Vector3 useLocalScale = useFill.localScale;
+        //useLocalScale.y = useRatio + .001f; // Anti z fighting
+        //useFill.localScale = useLocalScale;
+
+        //Vector3 useLocalPos = useFill.localPosition;
+        //useLocalPos.y = Mathf.Clamp(localPos.y + localScale.y + useLocalScale.y, useRatio - 1, 1 - useRatio);
+        //useFill.localPosition = useLocalPos;
+
+        float gainRatio = ((float)preGain + preUse + appendedMana) / maxJarMana;
+
+        gainFillMesh.enabled = preGain > 0;
+        gainFillMesh.material.SetFloat("_Fill", fillCurve.Evaluate(gainRatio));
+
+        //Vector3 gainLocalScale = gainFill.localScale;
+        //gainLocalScale.y = gainRatio; // Anti z fighting
+        //gainFill.localScale = gainLocalScale;
+
+        //Vector3 gainLocalPos = gainFill.localPosition;
+        //gainLocalPos.y = Mathf.Clamp(useLocalPos.y + useLocalScale.y + gainLocalScale.y, gainRatio - 1, 1 - gainRatio);
+        //gainFill.localPosition = gainLocalPos;
     }
 
     public bool CheckMana(int amount)
@@ -121,28 +150,28 @@ public class Mana : MonoBehaviour
     {
 
         preUse += amount;
-        if (preUse > 0)
-        {
-            useFill.gameObject.SetActive(true);
-        }
-        else
-        {
-            useFill.gameObject.SetActive(false);
-        }
+        //if (preUse > 0)
+        //{
+        //    useFill.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    useFill.gameObject.SetActive(false);
+        //}
         UpdateJar();
     }
 
     public void PreGaining(int amount)
     {
         preGain += amount;
-        if (preGain > 0)
-        {
-            gainFill.gameObject.SetActive(true);
-        }
-        else
-        {
-            gainFill.gameObject.SetActive(false);
-        }
+        //if (preGain > 0)
+        //{
+        //    gainFill.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    gainFill.gameObject.SetActive(false);
+        //}
         UpdateJar();
     }
 

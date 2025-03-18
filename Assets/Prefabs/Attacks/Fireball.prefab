@@ -274,8 +274,8 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4488156403945256847}
   - {fileID: 8797927738504784932}
+  - {fileID: 4488156403945256847}
   - {fileID: 8184386977248153735}
   - {fileID: 5298850180796504874}
   - {fileID: 2552342884159650706}
@@ -562,6 +562,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968525805731989066, guid: 85ec411677f94174d97ead5c52d8a26e,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968525805731989066, guid: 85ec411677f94174d97ead5c52d8a26e,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968525805731989066, guid: 85ec411677f94174d97ead5c52d8a26e,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
