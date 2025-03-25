@@ -138,6 +138,10 @@ public class DivineBlock : MonoBehaviour
         miniBlock.localPosition = transform.position * shrinkScale;
         miniBlock.localRotation = transform.rotation;
 
+        shockWaveParticle.transform.parent = null;
+        snapPoint.y -= heightMod - 0.5f;
+        shockWaveParticle.transform.position = snapPoint;
+        shockWaveParticle.transform.rotation = Quaternion.identity;
         shockWaveParticle.Play();
 
         SoundManager.instance.PlayClip(slamSound, transform.position, slamVolume);

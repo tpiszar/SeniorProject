@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MortarPool : MonoBehaviour
 {
+    public static List<MortarPool> pools = new List<MortarPool>();
+    bool added = false;
+    public float overrideDistance = 0.5f;
+
     public ParticleSystem particle;
 
     public float duration;
@@ -21,10 +25,21 @@ public class MortarPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (MortarPool pool in pools)
+        {
+            if (Vector3.Distance(transform.position, pool.transform.position) < overrideDistance)
+            {
+                pool.Stop();
+            }
+        }
+        pools.Add(this);
+        added = true;
+
         hitSound.Play();
         bubbleSound.Play();
 
         particle.Play();
+        particle.transform.parent = null;
         timer = duration;
     }
 
@@ -34,8 +49,7 @@ public class MortarPool : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            particle.Stop();
-            Destroy(gameObject);
+            Stop();
         }
 
         if (enemies.Count == 0)
@@ -58,6 +72,20 @@ public class MortarPool : MonoBehaviour
             {
                 enemies[i].TakeDamage(dmg, DamageType.overTime);
             }
+        }
+    }
+
+    public void Stop()
+    {
+        particle.Stop();
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (added)
+        {
+            pools.Remove(this);
         }
     }
 
