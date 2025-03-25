@@ -19,6 +19,8 @@ public class BlastAttack : MonoBehaviour
 
     public bool passThrough = false;
 
+    public ParticleSystem staticParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +117,10 @@ public class BlastAttack : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (UIScript.sceneLoading) { return; }
 
+        staticParticle.transform.parent = null;
+        staticParticle.Stop();
+        Destroy(staticParticle, 1);
     }
 }

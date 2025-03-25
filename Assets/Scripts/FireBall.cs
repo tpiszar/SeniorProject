@@ -13,6 +13,7 @@ public class FireBall : MonoBehaviour
     float blastRadius;
 
     public GameObject mesh;
+    public ParticleSystem staticParticle;
 
     public AudioClip hitSound;
     [Range(0.0001f, 1f)]
@@ -60,6 +61,11 @@ public class FireBall : MonoBehaviour
         StartCoroutine(ExpandFlame());
 
         mesh.SetActive(false);
+
+        staticParticle.transform.parent = null;
+        staticParticle.Stop();
+        Destroy(staticParticle, 1);
+
         GetComponent<Collider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
     }

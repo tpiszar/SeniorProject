@@ -1821,7 +1821,7 @@ PrefabInstance:
     - target: {fileID: 5881219594484613565, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
       propertyPath: maxHealth
-      value: 8000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5881219594484613565, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
@@ -1861,7 +1861,7 @@ PrefabInstance:
     - target: {fileID: 5881219594484613565, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
       propertyPath: startingHealth
-      value: 8000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11832,6 +11832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Magic Mortar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890654055728456409, guid: dc2ce6b0a32eb8049821d64f6132da66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35370,7 +35375,7 @@ MonoBehaviour:
     - {fileID: 8014673178385859721, guid: f97bde853ecacde44970d4cef2ccf1fc, type: 3}
     - {fileID: 3163385665159897073, guid: 5df614e8029f32b49a1701ae4d373982, type: 3}
     - {fileID: 9044469474275244636, guid: 3104c287a6209d24a97cd6c059ab2d70, type: 3}
-    counts: 14000000000000000000000000000000000000000000000000000000
+    counts: 00000000030000000100000000000000000000000000000001000000
     delay: 2
 --- !u!1001 &2044819426
 PrefabInstance:
@@ -37858,6 +37863,7 @@ MonoBehaviour:
   soundInterval: 1
   animator: {fileID: 8035681660908470222}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
 --- !u!1 &982869956536685607
 GameObject:
   m_ObjectHideFlags: 0
@@ -38995,6 +39001,7 @@ MonoBehaviour:
   soundInterval: 2
   animator: {fileID: 0}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
   ghoul: {fileID: 6968107393487397457}
   shatterBarrier: {fileID: 0}
   endIntensity: -0.5
@@ -39051,6 +39058,7 @@ MonoBehaviour:
   soundInterval: 1
   animator: {fileID: 8627114563974859049}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
 --- !u!114 &2398503361648193516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39072,6 +39080,7 @@ MonoBehaviour:
   soundInterval: 1
   animator: {fileID: 1626104284}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
 --- !u!4 &2405196756424940404
 Transform:
   m_ObjectHideFlags: 0
@@ -46652,6 +46661,7 @@ MonoBehaviour:
   soundInterval: 1
   animator: {fileID: 3445985791074168237}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
   enemyAI: {fileID: 1735697186727782638}
   minSpeed: 1
   minAttk: 3
@@ -47270,6 +47280,7 @@ MonoBehaviour:
   soundInterval: 1
   animator: {fileID: 2731702513552695728}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
 --- !u!1 &7562081210625050523
 GameObject:
   m_ObjectHideFlags: 0

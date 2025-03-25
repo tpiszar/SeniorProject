@@ -44,6 +44,8 @@ public class BasicHealth : MonoBehaviour
     public Animator animator;
     public float dissapearRate = 3f;
 
+    public ParticleSystem annihilateParticle;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -340,7 +342,8 @@ public class BasicHealth : MonoBehaviour
 
         if (health > 0) //ANIHALATE
         {
-            //Play effect
+            annihilateParticle.transform.parent = null;
+            annihilateParticle.Play();
         }
         else //KILL
         {

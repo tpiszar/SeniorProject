@@ -16,10 +16,12 @@ public class Laser : MonoBehaviour
 
     public AudioSource laserSound;
 
+    public ParticleSystem laserHitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        laserHitParticle.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -66,6 +68,15 @@ public class Laser : MonoBehaviour
 
         laserLine.SetPosition(1, ground);
         laserLine.SetPosition(0, ground + direction.normalized * 100);
+
+        laserHitParticle.transform.position = ground;
+    }
+
+    private void OnDestroy()
+    {
+        if (UIScript.sceneLoading) { return; }
+
+        Destroy(laserHitParticle.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

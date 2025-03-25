@@ -28,7 +28,8 @@ public class RedOrbHealth : BasicHealth
 
         if (health > 0)
         {
-
+            annihilateParticle.transform.parent = null;
+            annihilateParticle.Play();
         }
         else
         {

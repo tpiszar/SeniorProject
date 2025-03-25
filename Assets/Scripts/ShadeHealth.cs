@@ -57,7 +57,8 @@ public class ShadeHealth : BasicHealth
 
         if (health > 0) //ANIHALATE
         {
-            //Play effect
+            annihilateParticle.transform.parent = null;
+            annihilateParticle.Play();
         }
         else //KILL
         {

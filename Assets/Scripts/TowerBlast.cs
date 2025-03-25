@@ -30,6 +30,8 @@ public class TowerBlast : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float hitVolume = 1;
 
+    public ParticleSystem particle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,7 @@ public class TowerBlast : MonoBehaviour
             if (aHit)
             {
                 aHit.TakeDamage(damage, DamageType.energy);
-                Destroy(gameObject);
+                HitDestroy();
                 return;
             }
             if (redirect)
@@ -79,7 +81,7 @@ public class TowerBlast : MonoBehaviour
 
                 if (missingTarget > 5)
                 {
-                    Destroy(this.gameObject);
+                    HitDestroy();
                 }
             }
         }
@@ -144,6 +146,18 @@ public class TowerBlast : MonoBehaviour
     //    //}
     //}
 
+    void HitDestroy()
+    {
+        if (particle)
+        {
+            particle.transform.parent = null;
+            particle.Stop();
+            Destroy(particle, 1);
+        }
+
+        Destroy(gameObject);
+    }
+
     BasicHealth aHit;
     private void OnTriggerEnter(Collider other)
     {
@@ -165,7 +179,7 @@ public class TowerBlast : MonoBehaviour
 
                     SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
 
-                    Destroy(gameObject);
+                    HitDestroy();
                 }
                 else
                 {
@@ -178,7 +192,7 @@ public class TowerBlast : MonoBehaviour
                 {
                     aHit.TakeDamage(damage, DamageType.energy);
                 }
-                Destroy(gameObject);
+                HitDestroy();
             }
         }
     }
