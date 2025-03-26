@@ -29,6 +29,8 @@ public class BlastAttack : MonoBehaviour
         start = transform.position;
 
         //Destroy(gameObject, 10);
+
+        staticParticle.Play();
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class BlastAttack : MonoBehaviour
     {
         if (Vector3.Distance(start, transform.position) > maxDistance)
         {
-            Destroy(gameObject);
+            HitDestroy();
         }
     }
 
@@ -58,7 +60,7 @@ public class BlastAttack : MonoBehaviour
         }
         print("Wand Blast Hit: " + collision.gameObject.name);
 
-        Destroy(gameObject);
+        HitDestroy();
     }
 
     bool destroyDone = false;
@@ -105,22 +107,22 @@ public class BlastAttack : MonoBehaviour
             destroyDone = true;
             if (passThrough)
             {
-                Destroy(gameObject, delayDestroy);
+                Invoke("HitDestroy", delayDestroy);
             }
             else
             {
-                Destroy(gameObject);
+                HitDestroy();
             }
             SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
         }
     }
 
-    private void OnDestroy()
+    void HitDestroy()
     {
-        if (UIScript.sceneLoading) { return; }
-
         staticParticle.transform.parent = null;
         staticParticle.Stop();
-        Destroy(staticParticle, 1);
+        Destroy(staticParticle, 2);
+
+        Destroy(gameObject);
     }
 }

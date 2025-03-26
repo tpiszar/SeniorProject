@@ -72,11 +72,12 @@ public class Laser : MonoBehaviour
         laserHitParticle.transform.position = ground;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (UIScript.sceneLoading) { return; }
 
-        Destroy(laserHitParticle.gameObject);
+        laserHitParticle.Stop();
+        Destroy(laserHitParticle.gameObject, 2);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -38,6 +38,8 @@ public class HandLaser : MonoBehaviour
     public AudioSource startSound;
     public AudioSource shootSound;
 
+    public ParticleSystem laserHitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,11 +67,17 @@ public class HandLaser : MonoBehaviour
 
         if (isPressed)
         {
+
             TriggerHaptic(fireHapticIntensity, fireHapticDuration);
 
             if (!shootSound.isPlaying)
             {
                 shootSound.Play();
+            }
+
+            if (!laserHitParticle.isPlaying)
+            {
+                laserHitParticle.Play();
             }
 
             Vector3 groundPos;
@@ -97,11 +105,16 @@ public class HandLaser : MonoBehaviour
             smallLaser.SetPosition(0, transform.position);
             smallLaser.SetPosition(1, groundPos);
 
-            
+
+            laserHitParticle.transform.position = groundPos;
+            laserHitParticle.transform.rotation = Quaternion.Euler(new Vector3(-90, 0, 0));
+
         }
         else
         {
             shootSound.Stop();
+
+            laserHitParticle.Stop();
 
             smallLaser.SetPosition(0, transform.position);
             smallLaser.SetPosition(1, transform.position);
@@ -137,5 +150,7 @@ public class HandLaser : MonoBehaviour
         smallLaser.enabled = false;
 
         animator.SetBool("Laser", false);
+
+        laserHitParticle.Stop();
     }
 }

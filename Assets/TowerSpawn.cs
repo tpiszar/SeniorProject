@@ -46,6 +46,7 @@ public class TowerSpawn : MonoBehaviour
         else
         {
             transform.position = startPos;
+            transform.localScale = sizeVector;
             Destroy(this);
         }
     }

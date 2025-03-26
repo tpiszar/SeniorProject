@@ -1808,6 +1808,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3485296363668689329, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4480060710399585441, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12720,6 +12725,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1897800274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &671995238
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.5658875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.3260064
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003671395412407437, guid: c5bf98725656107438e7508b066a112b,
+        type: 3}
+      propertyPath: m_Name
+      value: Magic Orb Tower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5bf98725656107438e7508b066a112b, type: 3}
 --- !u!4 &678152944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2574018875889818319, guid: f3802bbe903359047b59df303f87c5c6,
@@ -34754,6 +34827,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 802417747}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1990702427 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8918824854691312065, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993151076
 GameObject:
   m_ObjectHideFlags: 0
@@ -38670,7 +38749,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 7498142189639415132}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 8035681660908470222}
   attackAnimDuration: 0.84
   rotationSpeed: 150
@@ -38706,7 +38786,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 3445985791074168236}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 3445985791074168237}
   attackAnimDuration: 0.4
   rotationSpeed: 150
@@ -44308,6 +44389,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 864014900937617528, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 948288893942483648, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: duration
@@ -44316,7 +44402,7 @@ PrefabInstance:
     - target: {fileID: 1009930349406518193, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -44673,6 +44759,21 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 224444348}
+    - target: {fileID: 3396117346116457065, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396117346116457065, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396117346116457065, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3403364603926177986, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -44801,7 +44902,7 @@ PrefabInstance:
     - target: {fileID: 4378299652886355146, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4384883364871925156, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45251,7 +45352,7 @@ PrefabInstance:
     - target: {fileID: 6551364126347415097, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6643077488878610872, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45311,7 +45412,7 @@ PrefabInstance:
     - target: {fileID: 7277576859275759936, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: startingMana
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7277576859275759936, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45691,7 +45792,7 @@ PrefabInstance:
     - target: {fileID: 8066881088096137617, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8068577189788482939, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45888,6 +45989,11 @@ PrefabInstance:
       propertyPath: startingBase
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8997792971852865232, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: teleportParticle
+      value: 
+      objectReference: {fileID: 1990702427}
     - target: {fileID: 8997792971852865232, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: bases.Array.data[0]
@@ -46691,7 +46797,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 2731702513560407632}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 2731702513552695728}
   attackAnimDuration: 0.84
   rotationSpeed: 150
@@ -47651,7 +47758,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 3190442761359548352}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 8627114563974859049}
   attackAnimDuration: 1.21
   rotationSpeed: 150
@@ -47687,7 +47795,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 0}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 1626104284}
   attackAnimDuration: 1.21
   rotationSpeed: 150
@@ -48544,3 +48653,4 @@ SceneRoots:
   - {fileID: 391792009}
   - {fileID: 942113353}
   - {fileID: 593289349}
+  - {fileID: 671995238}

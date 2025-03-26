@@ -31,6 +31,8 @@ public class MagicOrbTower : MonoBehaviour
     public AudioSource chargeSound;
     public AudioSource laserSound;
 
+    public ParticleSystem laserHitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,10 @@ public class MagicOrbTower : MonoBehaviour
 
             laserSound.Stop();
             chargeSound.Stop();
+            
+
+            laserHitParticle.Stop();
+
             
             if (chargeLevel > 0)
             {
@@ -98,18 +104,28 @@ public class MagicOrbTower : MonoBehaviour
                     laserSound.Play();
                 }
 
+                if (!laserHitParticle.isPlaying)
+                {
+                    laserHitParticle.Play();
+                }
+
                 EnemyBarrier barrier = currentHealth.TakeDamage(dmg, DamageType.energy);
+
+                Vector3 hitPos;
 
                 if (barrier)
                 {
                     Vector3 barrierPos = barrier.transform.position + (shootPoint.position - barrier.transform.position).normalized * barrier.transform.lossyScale.x / 2;
-                    laser.SetPosition(1, barrierPos);
+                    hitPos = barrierPos;
                 }
                 else
                 {
-                    laser.SetPosition(1, currentTarget.position);
+                    hitPos = currentHealth.GetHitPosition();
                 }
 
+                laser.SetPosition(1, hitPos);
+
+                laserHitParticle.transform.position = hitPos;
             }
 
             if (!detector.enemies.Contains(currentEnemy))

@@ -46,14 +46,15 @@ public class Barrier : MonoBehaviour
     Vector3 scale;
     public Vector3 upScale;
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
-        if (startMini)
-        {
-            mini = MiniMapTracker.instance.AddMapBarrier(transform);
-        }
         
         if (health == 0)
         {
@@ -85,6 +86,16 @@ public class Barrier : MonoBehaviour
             maxColor = curColor * (maxIntensity / startIntensity);
 
             scale = mainRend.transform.localScale;
+        }
+
+        Invoke("DelayedSpawn", .5f);
+    }
+
+    public void DelayedSpawn()
+    {
+        if (startMini)
+        {
+            mini = MiniMapTracker.instance.AddMapBarrier(transform);
         }
     }
 

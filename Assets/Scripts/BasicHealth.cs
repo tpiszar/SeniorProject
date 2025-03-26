@@ -46,6 +46,8 @@ public class BasicHealth : MonoBehaviour
 
     public ParticleSystem annihilateParticle;
 
+    public Vector3 hitMod = Vector3.zero;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -79,6 +81,11 @@ public class BasicHealth : MonoBehaviour
                 burnRamp = 0;
             }
         }
+    }
+
+    public Vector3 GetHitPosition()
+    {
+        return transform.position + hitMod;
     }
 
     public virtual int GetHealth()

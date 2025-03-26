@@ -152,7 +152,7 @@ public class TowerBlast : MonoBehaviour
         {
             particle.transform.parent = null;
             particle.Stop();
-            Destroy(particle, 1);
+            Destroy(particle, 2);
         }
 
         Destroy(gameObject);

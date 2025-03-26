@@ -38,7 +38,8 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public Transform marker;
 
-    public Vector3 travellingDir;
+    public Vector3 travellingPoint;
+    public Vector3 MovingDir;
 
     public Animator animator;
     public float attackAnimDuration = 1;
@@ -83,9 +84,6 @@ public class EnemyAI : MonoBehaviour, IComparable
         nextDist = 0;
         Locate();
 
-        // Will need to be changed in the future
-        //animator.speed = 1 / attkRate;
-
         if (animator)
         {
             animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
@@ -111,19 +109,17 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
 
         destination = agent.destination;
-        if (agent.enabled && agent.path.corners.Length >= 2 && !close)
-        {
-            travellingDir = agent.path.corners[1];
-            //marker.position = agent.path.corners[1];
-        }
-        else
-        {
-            travellingDir = transform.forward + transform.position;
-            //marker.position = transform.forward + transform.position;
-        }
+        //if (agent.enabled && agent.path.corners.Length >= 2 && !close)
+        //{
+        //    travellingPoint = agent.path.corners[1];
+        //}
+        //else
+        //{
+        //    travellingPoint = transform.forward + transform.position;
+        //}
 
-        travellingDir.y = transform.position.y;
-        Vector3 MovingDir = (travellingDir - transform.position).normalized;
+        //travellingPoint.y = transform.position.y;
+        //MovingDir = (travellingPoint - transform.position).normalized;
 
         Debug.DrawRay(transform.position, MovingDir * attkRange, Color.red);
         Debug.DrawRay(transform.position, (transform.forward + MovingDir).normalized * attkRange, Color.green);
@@ -156,15 +152,28 @@ public class EnemyAI : MonoBehaviour, IComparable
             {
                 nextAttk -= Time.deltaTime;
 
+
                 if (nextAttk < 0 && nextRay < 0)
                 {
                     nextRay = rayInterval;
+
+
+                    // NEW
+                    Vector3 direction = curAttackObj.position - transform.position;
+                    direction.y = 0;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+
 
                     RaycastHit hit;
                     if (Physics.Raycast(transform.position,
                         //MovingDir,
                         //transform.forward,
-                        (transform.forward + MovingDir),
+                        GetAttackDirection(),
+                        //(transform.forward + MovingDir),
                         out hit, attkRange, hitMask))
                     {
                         nextAttk = attkRate;
@@ -178,30 +187,33 @@ public class EnemyAI : MonoBehaviour, IComparable
             }
             else if (nextRay < 0)
             {
+                // NEW
+                agent.updateRotation = true;
+
+
                 if (chasingBarrier)
                 {
                     chasingBarrier = false;
                     agent.SetDestination(player.position);
                 }
-                //if (agent.enabled && agent.path.corners.Length >= 2)
-                //{
-                //    travellingDir = agent.path.corners[1];
-                //    marker.position = agent.path.corners[1];
-                //}
-                //else
-                //{
-                //    travellingDir = transform.forward + transform.position;
-                //    marker.position = transform.forward + transform.position;
-                //}
 
-                travellingDir.y = transform.position.y;
-                Vector3 direction = (travellingDir - transform.position).normalized;
+                travellingPoint.y = transform.position.y;
+                Vector3 direction = (travellingPoint - transform.position).normalized;
 
                 nextRay = rayInterval;
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, direction, out hit, attkRange, hitMask))
+                if (Physics.Raycast(transform.position,
+                    //direction,
+                    GetAttackDirection(),
+                    out hit, attkRange, hitMask))
                 {
                     curAttackObj = hit.transform;
+
+
+                    // NEW
+                    agent.updateRotation = false;
+
+
                     GetDistance();
 
                     if (hit.transform.CompareTag("Player"))
@@ -226,6 +238,25 @@ public class EnemyAI : MonoBehaviour, IComparable
         }
     }
 
+    Vector3 GetAttackDirection()
+    {
+        if (agent.enabled && agent.path.corners.Length >= 2 && !close)
+        {
+            travellingPoint = agent.path.corners[1];
+            //marker.position = agent.path.corners[1];
+        }
+        else
+        {
+            travellingPoint = transform.forward + transform.position;
+            //marker.position = transform.forward + transform.position;
+        }
+
+        travellingPoint.y = transform.position.y;
+        MovingDir = (travellingPoint - transform.position).normalized;
+
+        return (transform.forward + MovingDir);
+    }
+
     void Attack()
     {
         Barrier barrier = curAttackObj.GetComponent<Barrier>();
@@ -246,7 +277,10 @@ public class EnemyAI : MonoBehaviour, IComparable
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attkRange, hitMask))
+        if (Physics.Raycast(transform.position,
+            //transform.forward,
+            GetAttackDirection(),
+            out hit, attkRange, hitMask))
         {
 
             Barrier barrier = hit.transform.GetComponent<Barrier>();//curAttackObj.GetComponent<Barrier>();

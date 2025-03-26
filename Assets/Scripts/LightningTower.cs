@@ -49,7 +49,7 @@ public class LightningTower : MonoBehaviour
             }
             else
             {
-                lightningDrawer.Draw(shootPoint.position, enemy.transform.position, jumpCount - 1, jumpDelay);
+                lightningDrawer.Draw(shootPoint.position, enemy.GetHitPosition(), jumpCount - 1, jumpDelay);
             }
 
 

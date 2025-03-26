@@ -28,6 +28,8 @@ public class Teleport : MonoBehaviour
 
     public AudioSource teleportSound;
 
+    public ParticleSystem teleportParticle;
+
     public void startTeleport(int baseNum)
     {
         lastBase = curBase;
@@ -43,6 +45,7 @@ public class Teleport : MonoBehaviour
 
         teleportSound.Play();
 
+        //teleportParticle.Play();
 
         Invoke("doTeleport", easeInTime);
     }
@@ -58,12 +61,21 @@ public class Teleport : MonoBehaviour
             crystals[lastBase].SetActive(true);
         }
 
+        //teleportParticle.Play();
+
         Invoke("endTeleport", easeInTime);
     }
 
+    bool firstPlay = true;
     public void endTeleport()
     {
         vignetteProvider.setLocomotion(LocomotionPhase.Done);
+
+        if (!firstPlay)
+        {
+            teleportParticle.Play();
+        }
+        firstPlay = false;
 
         isTeleporting = false;
     }

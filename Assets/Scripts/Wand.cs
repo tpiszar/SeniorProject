@@ -510,7 +510,7 @@ public class Wand : MonoBehaviour
                     }
                     else
                     {
-                        lightningDrawer.Draw(shootPoint.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+                        lightningDrawer.Draw(shootPoint.position, minEn.GetHitPosition(), jumpCount - 1, jumpDelay);
                     }
 
                     //StartCoroutine(DrawLightning(transform.position, minEn.transform.position, lightningRenders[jumpCount - 1]));

@@ -26,6 +26,8 @@ public class MortarBlast : MonoBehaviour
 
     List<BasicHealth> enemies = new List<BasicHealth>();
 
+    public ParticleSystem staticParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,8 +116,14 @@ public class MortarBlast : MonoBehaviour
                 enemy.TakeDamage(impactDmg, DamageType.energy);
             }
         }
+
+        staticParticle.transform.parent = null;
+
         shot.SetActive(false);
         pool.enabled = true;
+
+        staticParticle.Stop();
+        Destroy(staticParticle, 2);
     }
 
     private void OnTriggerEnter(Collider other)

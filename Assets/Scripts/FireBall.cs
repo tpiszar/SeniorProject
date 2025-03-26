@@ -60,11 +60,14 @@ public class FireBall : MonoBehaviour
 
         StartCoroutine(ExpandFlame());
 
-        mesh.SetActive(false);
+
 
         staticParticle.transform.parent = null;
+
+        mesh.SetActive(false);
+
         staticParticle.Stop();
-        Destroy(staticParticle, 1);
+        Destroy(staticParticle, 2);
 
         GetComponent<Collider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
