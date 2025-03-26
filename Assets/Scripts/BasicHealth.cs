@@ -46,7 +46,7 @@ public class BasicHealth : MonoBehaviour
 
     public ParticleSystem annihilateParticle;
 
-    public Vector3 hitMod = Vector3.zero;
+    public Transform hitPosition;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -85,7 +85,9 @@ public class BasicHealth : MonoBehaviour
 
     public Vector3 GetHitPosition()
     {
-        return transform.position + hitMod;
+        if (hitPosition) { return hitPosition.position; }
+
+        return transform.position;
     }
 
     public virtual int GetHealth()
@@ -320,7 +322,7 @@ public class BasicHealth : MonoBehaviour
         {
             minEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, transform);
 
-            drawer.Draw(transform.position, minEn.transform.position, jumpCount - 1, jumpDelay);
+            drawer.Draw(transform.position, minEn.GetHitPosition(), jumpCount - 1, jumpDelay);
 
             //StartCoroutine(DrawLightning(minEn.transform.position, jumpDelay, lines[jumpCount - 1]));
         }
@@ -331,7 +333,7 @@ public class BasicHealth : MonoBehaviour
             {
                 newEn.Shock(damage, jumpMod, jumpCount, jumpRadius, lightningMask, drawer, jumpDelay, transform);
 
-                drawer.Draw(transform.position, newEn.transform.position, jumpCount - 1, jumpDelay);
+                drawer.Draw(transform.position, newEn.GetHitPosition(), jumpCount - 1, jumpDelay);
 
                 //StartCoroutine(DrawLightning(newEn.transform.position, jumpDelay, lines[jumpCount - 1]));
             }

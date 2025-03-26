@@ -8,7 +8,7 @@ public class TowerBlast : MonoBehaviour
     Vector3 startPoint;
     bool starting = true;
 
-    public Transform target;
+    public BasicHealth target;
     public EnergyTower tower;
     Vector3 direction;
     Rigidbody rig;
@@ -46,10 +46,10 @@ public class TowerBlast : MonoBehaviour
     {
         if (target)
         {
-            direction = (target.position - transform.position).normalized * speed;
+            direction = (target.GetHitPosition() - transform.position).normalized * speed;
             if (rotateTowards)
             {
-                transform.LookAt(target.position);
+                transform.LookAt(target.GetHitPosition());
             }
         }
         else
@@ -62,7 +62,7 @@ public class TowerBlast : MonoBehaviour
             }
             if (redirect)
             {
-                target = tower.detector.GetTarget();
+                target = tower.detector.GetTarget().GetComponent<BasicHealth>();
                 smoothing /= 2;
 
                 if (!target)
@@ -172,7 +172,7 @@ public class TowerBlast : MonoBehaviour
             if (enemy)
             {
                 EnemyBarrier barrier = other.GetComponent<EnemyBarrier>();
-                if (!target || enemy.transform == target || barrier)
+                if (!target || enemy == target || barrier)
                 {
                     enemy.TakeDamage(damage, DamageType.energy);
                     hit = true;

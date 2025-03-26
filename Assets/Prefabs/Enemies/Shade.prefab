@@ -53,6 +53,37 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5823384891151736440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2127658623835175805}
+  m_Layer: 9
+  m_Name: HitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2127658623835175805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823384891151736440}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.011220187, y: 0.00000014098329, z: 0.000000064317376, w: 0.9999371}
+  m_LocalPosition: {x: 0, y: 0.253, z: 0.019}
+  m_LocalScale: {x: 0.13333333, y: 0.13333334, z: 0.13333334}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6154621022496650744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6693514268827229172
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +249,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   dissapearRate: 3
   annihilateParticle: {fileID: 6517432279539191665}
+  hitPosition: {fileID: 2127658623835175805}
   shadeDestroyParticle: {fileID: 8478507984960645534, guid: b02ddce655450af43b8392cd28dbc2e5,
     type: 3}
 --- !u!114 &8638255283628298657
@@ -246,7 +278,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 0}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 76669004740563212}
   attackAnimDuration: 1.25
   rotationSpeed: 150
@@ -906,6 +939,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 7395305363190827667}
+    - targetCorrespondingSourceObject: {fileID: -8857616666208970395, guid: e5ac4386b734ff84fb6f1a387bd9e483,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2127658623835175805}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e5ac4386b734ff84fb6f1a387bd9e483,
         type: 3}
@@ -1094,6 +1131,12 @@ Transform:
 --- !u!137 &5824559065176240127 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 48987883293688674, guid: e5ac4386b734ff84fb6f1a387bd9e483,
+    type: 3}
+  m_PrefabInstance: {fileID: 5799219755065322653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6154621022496650744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8857616666208970395, guid: e5ac4386b734ff84fb6f1a387bd9e483,
     type: 3}
   m_PrefabInstance: {fileID: 5799219755065322653}
   m_PrefabAsset: {fileID: 0}

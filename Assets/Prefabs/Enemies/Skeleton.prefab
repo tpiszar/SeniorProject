@@ -520,6 +520,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6177185476911892770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1492698146413956856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014326116740440400}
+  m_Layer: 9
+  m_Name: HitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2014326116740440400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492698146413956856}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.06424446, y: -0.0607009, z: 0.7052141, w: 0.7034638}
+  m_LocalPosition: {x: -0.25, y: -0.001, z: 0.023}
+  m_LocalScale: {x: 0.20000002, y: 0.19999993, z: 0.20000003}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6855631928822065439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628573252557171546
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2014326116740440400}
   - {fileID: 5379839378093155523}
   m_Father: {fileID: 9010244164801014974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2698,6 +2730,7 @@ MonoBehaviour:
   animator: {fileID: 4452839049963103775}
   dissapearRate: 3
   annihilateParticle: {fileID: 6599856842165890089}
+  hitPosition: {fileID: 2014326116740440400}
 --- !u!114 &8042977139383859418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2724,7 +2757,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 1652793571673213839}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 4452839049963103775}
   attackAnimDuration: 1.5
   rotationSpeed: 150

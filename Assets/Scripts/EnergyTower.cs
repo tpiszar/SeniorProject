@@ -31,7 +31,7 @@ public class EnergyTower : MonoBehaviour
             }
 
             TowerBlast newShot = Instantiate(energyShot, shootPoint.position, Quaternion.identity).GetComponent<TowerBlast>();
-            newShot.target = currentTarget;
+            newShot.target = currentTarget.GetComponent<BasicHealth>(); ;
             newShot.tower = this;
             //newShot.GetComponent<TowerBlast>().target = currentTarget;
 

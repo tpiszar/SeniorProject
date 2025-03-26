@@ -12725,74 +12725,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1897800274}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &671995238
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.5658875
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.3260064
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704665046783898013, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003671395412407437, guid: c5bf98725656107438e7508b066a112b,
-        type: 3}
-      propertyPath: m_Name
-      value: Magic Orb Tower
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c5bf98725656107438e7508b066a112b, type: 3}
 --- !u!4 &678152944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2574018875889818319, guid: f3802bbe903359047b59df303f87c5c6,
@@ -37943,6 +37875,7 @@ MonoBehaviour:
   animator: {fileID: 8035681660908470222}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
 --- !u!1 &982869956536685607
 GameObject:
   m_ObjectHideFlags: 0
@@ -39083,6 +39016,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
   ghoul: {fileID: 6968107393487397457}
   shatterBarrier: {fileID: 0}
   endIntensity: -0.5
@@ -39140,6 +39074,7 @@ MonoBehaviour:
   animator: {fileID: 8627114563974859049}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
 --- !u!114 &2398503361648193516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39162,6 +39097,7 @@ MonoBehaviour:
   animator: {fileID: 1626104284}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
 --- !u!4 &2405196756424940404
 Transform:
   m_ObjectHideFlags: 0
@@ -44402,7 +44338,7 @@ PrefabInstance:
     - target: {fileID: 1009930349406518193, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1149635048564719582, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -44902,7 +44838,7 @@ PrefabInstance:
     - target: {fileID: 4378299652886355146, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4384883364871925156, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45352,7 +45288,7 @@ PrefabInstance:
     - target: {fileID: 6551364126347415097, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6643077488878610872, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -45792,7 +45728,7 @@ PrefabInstance:
     - target: {fileID: 8066881088096137617, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8068577189788482939, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
@@ -46768,6 +46704,7 @@ MonoBehaviour:
   animator: {fileID: 3445985791074168237}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
   enemyAI: {fileID: 1735697186727782638}
   minSpeed: 1
   minAttk: 3
@@ -47388,6 +47325,7 @@ MonoBehaviour:
   animator: {fileID: 2731702513552695728}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitMod: {x: 0, y: 0, z: 0}
 --- !u!1 &7562081210625050523
 GameObject:
   m_ObjectHideFlags: 0
@@ -48653,4 +48591,3 @@ SceneRoots:
   - {fileID: 391792009}
   - {fileID: 942113353}
   - {fileID: 593289349}
-  - {fileID: 671995238}

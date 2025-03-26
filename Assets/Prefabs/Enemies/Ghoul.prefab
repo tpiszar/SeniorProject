@@ -159,6 +159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 206966740636905733}
   - {fileID: 4598344656561971270}
   m_Father: {fileID: 8627185195809749058}
   m_LocalEulerAnglesHint: {x: 2.6745155, y: 90, z: -30.063435}
@@ -729,6 +730,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   dissapearRate: 3
   annihilateParticle: {fileID: 0}
+  hitPosition: {fileID: 0}
   ghoul: {fileID: 6968107392899441078}
   shatterBarrier: {fileID: 3804107003339193408, guid: 44b78f0ba635af94bbc459011774ea05,
     type: 3}
@@ -1087,6 +1089,37 @@ MonoBehaviour:
   barrier: {fileID: 2322826298108297662}
   ghoul: {fileID: 7531703607498963480}
   speedBoost: 0.3
+--- !u!1 &3898106061595031587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206966740636905733}
+  m_Layer: 9
+  m_Name: HitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &206966740636905733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898106061595031587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.290174, y: -0.6448248, z: 0.2901741, w: 0.6448248}
+  m_LocalPosition: {x: -0.292, y: 0.007, z: 0}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6356397247122895689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4022489786810738371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,6 +1755,7 @@ MonoBehaviour:
   animator: {fileID: 6933056607740993494}
   dissapearRate: 3
   annihilateParticle: {fileID: 8288188524247905235}
+  hitPosition: {fileID: 206966740636905733}
 --- !u!114 &6968107392899441078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,7 +1782,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 8627185195809749058}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 6933056607740993494}
   attackAnimDuration: 0.84
   rotationSpeed: 150
