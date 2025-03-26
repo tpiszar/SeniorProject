@@ -48,6 +48,8 @@ public class BasicHealth : MonoBehaviour
 
     public Transform hitPosition;
 
+    public ParticleSystem burnParticle;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -79,6 +81,11 @@ public class BasicHealth : MonoBehaviour
             {
                 TakeDamage(tickBurn, DamageType.fire);
                 burnRamp = 0;
+            }
+
+            if (burnDuration < 0)
+            {
+                burnParticle.Stop();
             }
         }
     }
@@ -196,6 +203,8 @@ public class BasicHealth : MonoBehaviour
 
             WaveManager.kills++;
 
+            burnParticle.Stop();
+
             Destroy(gameObject, delayDeath);
 
             return null;
@@ -265,6 +274,8 @@ public class BasicHealth : MonoBehaviour
         burnRate = rate;
         burnRamp = 0;
         tickBurn = tick;
+
+        burnParticle.Play();
     }
 
     public virtual EnemyBarrier Shock(int damage, float jumpMod, int jumpCount, float jumpRadius, LayerMask lightningMask, LightningDrawer drawer, float jumpDelay = 0, Transform shocker = null)

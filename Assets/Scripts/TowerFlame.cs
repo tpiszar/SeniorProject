@@ -18,6 +18,8 @@ public class TowerFlame : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float burnVolume = 1;
 
+    public GameObject hitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,8 @@ public class TowerFlame : MonoBehaviour
                 enemy.Burn(burnDuration, burnRate, tickDamage);
 
                 hitThisCycle.Add(enemy.transform);
+
+                Instantiate(hitParticle, enemy.GetHitPosition(), Quaternion.identity);
             }
         }
 

@@ -380,6 +380,8 @@ MonoBehaviour:
   soundCount: 0
   burnSound: {fileID: 8300000, guid: 3b1fb0b6db6868248bef91d2d720513d, type: 3}
   burnVolume: 1
+  hitParticle: {fileID: 5415828688575881703, guid: 97ae572008429194aacb8cdf2bca05a2,
+    type: 3}
 --- !u!1 &6330842339098444427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,12 +1196,12 @@ PrefabInstance:
     - target: {fileID: 6999612629334634594, guid: 5b958d2a84cef5848a99b7a7489533f7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6999612629334634594, guid: 5b958d2a84cef5848a99b7a7489533f7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6999612629334634594, guid: 5b958d2a84cef5848a99b7a7489533f7,
         type: 3}
@@ -1214,7 +1216,7 @@ PrefabInstance:
     - target: {fileID: 6999612629334634594, guid: 5b958d2a84cef5848a99b7a7489533f7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6999612629334634594, guid: 5b958d2a84cef5848a99b7a7489533f7,
         type: 3}

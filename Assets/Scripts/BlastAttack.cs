@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BlastAttack : MonoBehaviour
 {
+    Rigidbody rig;
+
     public float force = 30;
     public float maxDistance = 10;
 
@@ -20,11 +23,16 @@ public class BlastAttack : MonoBehaviour
     public bool passThrough = false;
 
     public ParticleSystem staticParticle;
+    public GameObject hitParticle;
+
+    public float reverseSpawnDistance = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+        rig = GetComponent<Rigidbody>();
+
+        rig.AddForce(transform.forward * force, ForceMode.Impulse);
 
         start = transform.position;
 
@@ -38,7 +46,7 @@ public class BlastAttack : MonoBehaviour
     {
         if (Vector3.Distance(start, transform.position) > maxDistance)
         {
-            HitDestroy();
+            HitDestroy(true);
         }
     }
 
@@ -60,7 +68,7 @@ public class BlastAttack : MonoBehaviour
         }
         print("Wand Blast Hit: " + collision.gameObject.name);
 
-        HitDestroy();
+        HitDestroy(true);
     }
 
     bool destroyDone = false;
@@ -75,6 +83,10 @@ public class BlastAttack : MonoBehaviour
         }
 
         hit = true;
+
+        Instantiate(hitParticle, transform.position - rig.velocity.normalized * reverseSpawnDistance, Quaternion.identity);
+
+        bool hitEffectDone = false;
 
         if (other.CompareTag("Enemy"))
         {
@@ -95,10 +107,15 @@ public class BlastAttack : MonoBehaviour
                 enemy.TakeDamage(damage, DamageType.energy);
                 hits.Add(enemy.transform);
 
+
                 if (passThrough)
                 {
                     SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
                     return;
+                }
+                else
+                {
+                    hitEffectDone = true;
                 }
             }
         }
@@ -111,17 +128,23 @@ public class BlastAttack : MonoBehaviour
             }
             else
             {
-                HitDestroy();
+                HitDestroy(!hitEffectDone);
             }
             SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
         }
     }
 
-    void HitDestroy()
+    void HitDestroy(bool particle)
     {
         staticParticle.transform.parent = null;
         staticParticle.Stop();
         Destroy(staticParticle, 2);
+
+        //if (particle)
+        //{
+        //    Instantiate(hitParticle, transform.position - rig.velocity.normalized * reverseSpawnDistance, Quaternion.identity);
+        //}
+
 
         Destroy(gameObject);
     }
