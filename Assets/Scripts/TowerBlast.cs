@@ -32,6 +32,8 @@ public class TowerBlast : MonoBehaviour
 
     public ParticleSystem particle;
 
+    public ParticleSystem hitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -179,6 +181,10 @@ public class TowerBlast : MonoBehaviour
 
                     SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
 
+                    hitParticle.transform.parent = null;
+                    hitParticle.transform.position = enemy.GetHitPosition();
+                    hitParticle.Play();
+
                     HitDestroy();
                 }
                 else
@@ -192,6 +198,11 @@ public class TowerBlast : MonoBehaviour
                 {
                     aHit.TakeDamage(damage, DamageType.energy);
                 }
+
+                hitParticle.transform.parent = null;
+                hitParticle.transform.position = enemy.GetHitPosition();
+                hitParticle.Play();
+
                 HitDestroy();
             }
         }

@@ -15,13 +15,23 @@ public class BarrierSpawn : MonoBehaviour
 
     float timer = 0;
 
+    bool hasStarted = false;
     // Start is called before the first frame update
     void Start()
     {
+        Begin();
 
+        hasStarted = true;
     }
 
     private void OnEnable()
+    {
+        if (!hasStarted) { return; }
+
+        Begin();
+    }
+
+    void Begin()
     {
         timer = 0;
 
@@ -54,5 +64,10 @@ public class BarrierSpawn : MonoBehaviour
                 Destroy(this);
             }
         }
+    }
+
+    public Vector3 GetRegularSize()
+    {
+        return sizeVector;
     }
 }

@@ -88,7 +88,12 @@ public class Barrier : MonoBehaviour
             scale = mainRend.transform.localScale;
         }
 
-        Invoke("DelayedSpawn", .5f);
+        if (startMini)
+        {
+            mini = MiniMapTracker.instance.AddMapBarrier(transform);
+        }
+
+        //Invoke("DelayedSpawn", .5f);
     }
 
     public void DelayedSpawn()
@@ -247,7 +252,9 @@ public class Barrier : MonoBehaviour
 
         if (mini)
         {
-            Destroy(mini);
+            //Destroy(mini);
+
+            MiniMapTracker.instance.ShrinkDestroy(mini.transform);
         }
 
         if (shatterBarrier)

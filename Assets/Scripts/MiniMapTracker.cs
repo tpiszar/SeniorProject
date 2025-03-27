@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MiniMapTracker : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class MiniMapTracker : MonoBehaviour
     public Transform playerBarrier;
     public Transform miniPlayerBarrier;
     bool noBarrier = false;
+
+    public ParticleSystem destroyParticle;
+
+    public float miniShrinkSpeed = 0.1f;
 
     private void Awake()
     {
@@ -46,7 +51,10 @@ public class MiniMapTracker : MonoBehaviour
         }
         else if (!noBarrier)
         {
-            Destroy(miniPlayerBarrier.gameObject);
+            //Destroy(miniPlayerBarrier.gameObject);
+
+            ShrinkDestroy(miniPlayerBarrier);
+
             noBarrier = true;
         }
 
@@ -55,7 +63,10 @@ public class MiniMapTracker : MonoBehaviour
             if (!trackedObjects[i])
             {
                 trackedObjects.RemoveAt(i);
-                Destroy(trackers[i].gameObject);
+                //Destroy(trackers[i].gameObject);
+
+                ShrinkDestroy(trackers[i]);
+
                 trackers.RemoveAt(i);
             }
             else
@@ -64,6 +75,30 @@ public class MiniMapTracker : MonoBehaviour
                 trackers[i].rotation = trackedObjects[i].rotation * miniReference.rotation;
             }
         }
+    }
+
+    public void ShrinkDestroy(Transform obj)
+    {
+        StartCoroutine(Shrink(obj));
+    }
+
+    IEnumerator Shrink(Transform obj)
+    {
+        Vector3 maxScale = obj.localScale;
+
+        float timer = 0;
+        while (timer < miniShrinkSpeed)
+        {
+            timer += Time.deltaTime;
+
+            obj.localScale = Vector3.Lerp(maxScale, Vector3.zero, timer / miniShrinkSpeed);
+
+            yield return null;
+        }
+
+        Instantiate(destroyParticle, obj.transform.position, Quaternion.identity);
+
+        Destroy(obj.gameObject);
     }
 
     public void AddMapTracker(Transform obj, Enemytype type)
@@ -82,5 +117,21 @@ public class MiniMapTracker : MonoBehaviour
         newBarrier.transform.parent = miniReference;
 
         return newBarrier;
+    }
+
+    public GameObject AddMapBarrier(Vector3 scale, Vector3 position, Quaternion rotation)
+    {
+        //trackedObjects.Add(obj);
+        GameObject newBarrier = Instantiate(barrierPrefab, miniReference.TransformPoint(position / mapScale), Quaternion.Inverse(rotation) * miniReference.rotation);
+        newBarrier.transform.localScale = scale / mapScale;
+        //trackers.Add(newBarrier.transform);
+        newBarrier.transform.parent = miniReference;
+
+        return newBarrier;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
