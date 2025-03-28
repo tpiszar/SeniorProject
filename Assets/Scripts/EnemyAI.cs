@@ -347,6 +347,9 @@ public class EnemyAI : MonoBehaviour, IComparable
             return;
         }
 
+        if (!agent || !agent.isActiveAndEnabled) { return; }
+        agent.isStopped = false;
+
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position,
@@ -368,8 +371,7 @@ public class EnemyAI : MonoBehaviour, IComparable
             }
         }
 
-        if (!agent || !agent.isActiveAndEnabled) { return; }
-        agent.isStopped = false;
+
     }
 
     public virtual void AttackDone()
