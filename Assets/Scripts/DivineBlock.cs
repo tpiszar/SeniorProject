@@ -15,7 +15,7 @@ public class DivineBlock : MonoBehaviour
 
     public ShockWave shockWave;
 
-    public Collider blockCollider;
+    public BoxCollider blockCollider;
     public Collider barrierTrigger;
     public Barrier barrier;
     public GameObject obstacle;
@@ -90,6 +90,7 @@ public class DivineBlock : MonoBehaviour
         float heightMod = -burySize;
 
         Vector3 rot = transform.rotation.eulerAngles;
+
         if (up)
         {
             rot.y = y;
@@ -103,6 +104,8 @@ public class DivineBlock : MonoBehaviour
             transform.rotation = Quaternion.Euler(rot);
 
             heightMod += transform.lossyScale.x / 2;
+
+            blockCollider.size = new Vector3(3, 1, 1);
         }
 
         //Quaternion angledPath;

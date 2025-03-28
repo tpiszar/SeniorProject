@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Android;
 
 public class EnemyAI : MonoBehaviour, IComparable
 {
@@ -119,6 +120,52 @@ public class EnemyAI : MonoBehaviour, IComparable
         //}
 
         //travellingPoint.y = transform.position.y;
+        //MovingDir = (travellingPoint - transform.position).normalized;
+
+        if (agent.enabled && agent.path.corners.Length >= 2 && !close)
+        {
+            travellingPoint = agent.path.corners[1];
+            //marker.position = agent.path.corners[1];
+        }
+        else
+        {
+            travellingPoint = transform.forward + transform.position;
+            //marker.position = transform.forward + transform.position;
+        }
+
+        //float atHeight = transform.position.y;
+
+        //if (attackObjs.Count > 0)
+        //{
+        //    float total = 0;
+
+        //    float min = Mathf.Infinity;
+
+        //    for (int i = attackObjs.Count - 1; i >= 0; i--)
+        //    {
+        //        if (!attackObjs[i])
+        //        {
+        //            attackObjs.RemoveAt(i);
+        //            i--;
+        //            continue;
+        //        }
+
+        //        if (attackObjs[i].position.y < min)
+        //        {
+        //            min = attackObjs[i].position.y;
+        //            atHeight = min;
+        //        }
+
+        //        total += attackObjs[i].position.y;
+        //    }
+
+        //    //atHeight = total / attackObjs.Count;
+
+        //    print(min);
+        //}
+
+        //travellingPoint.y = atHeight;
+
         //MovingDir = (travellingPoint - transform.position).normalized;
 
         Debug.DrawRay(transform.position, MovingDir * attkRange, Color.red);
@@ -251,7 +298,30 @@ public class EnemyAI : MonoBehaviour, IComparable
             //marker.position = transform.forward + transform.position;
         }
 
-        travellingPoint.y = transform.position.y;
+        float atHeight = transform.position.y;
+
+        //if (attackObjs.Count > 0)
+        //{
+        //    float total = 0;
+
+
+        //    for (int i = attackObjs.Count - 1; i >= 0; i--)
+        //    {
+        //        if (!attackObjs[i])
+        //        {
+        //            attackObjs.RemoveAt(i);
+        //            i--;
+        //            continue;
+        //        }
+
+        //        total += attackObjs[i].position.y;
+        //    }
+
+        //    atHeight = total / attackObjs.Count;
+        //}
+
+        travellingPoint.y = atHeight;
+
         MovingDir = (travellingPoint - transform.position).normalized;
 
         return (transform.forward + MovingDir);
@@ -266,6 +336,8 @@ public class EnemyAI : MonoBehaviour, IComparable
 
             animator.SetTrigger("Attack");
         }
+
+        agent.isStopped = true;
     }
 
     public virtual void Hit()
@@ -295,6 +367,9 @@ public class EnemyAI : MonoBehaviour, IComparable
                 }
             }
         }
+
+        if (!agent || !agent.isActiveAndEnabled) { return; }
+        agent.isStopped = false;
     }
 
     public virtual void AttackDone()
@@ -408,6 +483,9 @@ public class EnemyAI : MonoBehaviour, IComparable
     {
         yield return new WaitForSeconds(delay);
         agent.enabled = true;
+
+        agent.updateRotation = true;
+
         Locate();
 
         if (type == Enemytype.Slime)

@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 247609156872152414}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.479, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -336,6 +336,8 @@ MonoBehaviour:
   animator: {fileID: 3052838517658601781}
   dissapearRate: 3
   annihilateParticle: {fileID: 707200249402320049}
+  hitPosition: {fileID: 0}
+  burnParticle: {fileID: 0}
   energy: 0
   fire: 0
   lightning: 1
@@ -365,7 +367,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 8622060914435545027}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 3052838517658601781}
   attackAnimDuration: 1
   rotationSpeed: 150

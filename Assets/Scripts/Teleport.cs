@@ -30,6 +30,8 @@ public class Teleport : MonoBehaviour
 
     public ParticleSystem teleportParticle;
 
+    public XRGrabInteractable tableGrab;
+
     public void startTeleport(int baseNum)
     {
         lastBase = curBase;
@@ -48,6 +50,8 @@ public class Teleport : MonoBehaviour
         //teleportParticle.Play();
 
         Invoke("doTeleport", easeInTime);
+
+        tableGrab.interactionManager.SelectExit(tableGrab.interactorsSelecting[0], tableGrab);
     }
 
     public void doTeleport()
