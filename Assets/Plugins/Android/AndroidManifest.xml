@@ -1,33 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     package="com.tpiszar.ArcaneAssault"
-     android:versionCode="1"
-     android:versionName="1.0"
-     android:installLocation="auto"
-	 xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:installLocation="auto">
+<uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
+<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" tools:node="remove" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" tools:node="remove" />
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
+<uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" tools:node="remove" />
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGE" tools:node="remove" />
 
-	<uses-sdk
-         android:minSdkVersion="29"
-         android:targetSdkVersion="32" />
+  <uses-feature android:name="android.hardware.vr.headtracking" android:required="true" />
+  <uses-feature android:name="android.hardware.vr.high_performance" android:required="true" />
 
-	<uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
-
-	<application>
-		<meta-data
-             android:name="com.oculus.supportedDevices"
-             android:value="quest2|questpro|quest3|quest3s"/>
-
-		<activity android:screenOrientation="landscape"
-             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-             android:configChanges="density|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|uiMode"
-             android:launchMode="singleTask"
-             android:resizeableActivity="false">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-				<category android:name="com.oculus.intent.category.VR" />
-			</intent-filter>
-		</activity>
-	</application>
+  <uses-sdk
+     android:minSdkVersion="23"
+     android:targetSdkVersion="32" />
+  
+  <application
+	  
+      android:allowBackup="false"
+      android:label="@string/app_name">
+      
+    <activity
+        android:name="com.unity3d.player.UnityPlayerActivity"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+        android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
+        android:launchMode="singleTask"
+        android:screenOrientation="landscape"
+        android:exported="true">
+        
+<intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="com.oculus.intent.category.VR" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+      
+    </activity>
+    
+    <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="false" />
+    <meta-data android:name="com.samsung.android.vr.application.mode" android:value="vr_only" />
+	<meta-data android:name="com.oculus.vr.focusaware" android:value="true"/>
+    
+  </application>
+  
 </manifest>
