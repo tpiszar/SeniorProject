@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndlessManager : WaveManager
 {
     public TextMeshProUGUI curWaveTxt;
+    public TextMeshProUGUI finalWaveTxt;
 
     [SerializeField]
     RandomWave wave;
@@ -49,6 +50,8 @@ public class EndlessManager : WaveManager
             spawnPoints = (int)newPoints;
 
             curWaveTxt.text = curWave.ToString();
+
+            finalWaveTxt.text = "You survived " + (curWave - 1).ToString() + " waves!";
         }
     }
 }

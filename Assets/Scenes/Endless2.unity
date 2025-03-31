@@ -26653,6 +26653,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 9665019}
   enemies: []
   healths: []
+  hidden: []
   winDelay: 2
   mainUI: {fileID: 5941983441547390534}
   leftRayInteractor: {fileID: 4639652124427103381}
@@ -26660,6 +26661,7 @@ MonoBehaviour:
   barrierSphere: {fileID: 2854000597984319426}
   winSound: {fileID: 1805706594}
   curWaveTxt: {fileID: 764727719}
+  finalWaveTxt: {fileID: 2022210573}
   wave: {fileID: 45636117}
 --- !u!1001 &1806079699
 PrefabInstance:
@@ -30513,6 +30515,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2017467279}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022210573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6165671766535311376, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2022714557
 GameObject:
   m_ObjectHideFlags: 0
@@ -33123,6 +33137,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.117
       objectReference: {fileID: 0}
+    - target: {fileID: 1749129852520329779, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754924386148785262, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33202,6 +33221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damagePerSec
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010683338489741747, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3139526826975269248, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
