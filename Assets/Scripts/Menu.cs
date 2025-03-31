@@ -28,7 +28,7 @@ public class Menu : MonoBehaviour
         //level2Tutorial.interactable = false;
         //level3Tutorial.interactable = false;
         
-        level1.gameObject.SetActive(false);
+        level1.gameObject.SetActive(true);
         level2.gameObject.SetActive(false);
         level3.gameObject.SetActive(false);
 
