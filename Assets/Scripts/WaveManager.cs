@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
     public Transform spawnPoint;
     public List<EnemyAI> enemies = new List<EnemyAI>();
     public List<BasicHealth> healths = new List<BasicHealth>();
+    public List<EnemyAI> hidden = new List<EnemyAI>();
 
     public float winDelay;
 
@@ -94,6 +95,14 @@ public class WaveManager : MonoBehaviour
             {
                 enemies.RemoveAt(i);
                 healths.RemoveAt(i);
+            }
+        }
+
+        for (int i = hidden.Count - 1; i >= 0; i--)
+        {
+            if (!hidden[i])
+            {
+                hidden.RemoveAt(i);
             }
         }
     }
@@ -219,7 +228,7 @@ public class WaveManager : MonoBehaviour
             else
             {
                 CleanUp();
-                if (enemies.Count == 0)
+                if (enemies.Count == 0 && hidden.Count == 0)
                 {
                     //VICTORY
 

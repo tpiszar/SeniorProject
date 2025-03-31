@@ -341,13 +341,12 @@ public class EnemyAI : MonoBehaviour, IComparable
 
     public virtual void Hit()
     {
-        if (!this || !curAttackObj)
-        {
-            return;
-        }
+        if (!this) { return; }
 
-        if (!agent || !agent.isActiveAndEnabled) { return; }
-        agent.isStopped = false;
+        if (agent && agent.isActiveAndEnabled) { agent.isStopped = false; }
+
+        if (!curAttackObj) { return; }
+
 
         RaycastHit hit;
 

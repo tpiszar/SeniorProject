@@ -43,13 +43,16 @@ public class MiniTriggerWall : MonoBehaviour
         }
         else if (other.CompareTag("Shade Root"))
         {
-            if (WaveManager.LevelEnd)
+            ShadeAI shade = other.GetComponentInParent<ShadeAI>();
+            if (shade)
             {
-                ShadeAI shade = GetComponentInParent<ShadeAI>();
-                if (shade)
+                if (WaveManager.LevelEnd)
                 {
                     Destroy(shade.gameObject);
+                    return;
                 }
+
+                WaveManager.Instance.hidden.Add(shade);
             }
         }
     }
