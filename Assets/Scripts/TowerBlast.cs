@@ -64,13 +64,16 @@ public class TowerBlast : MonoBehaviour
             }
             if (redirect)
             {
-                target = tower.detector.GetTarget().GetComponent<BasicHealth>();
-                smoothing /= 2;
+                Transform newTarget = tower.detector.GetTarget();
 
-                if (!target)
+                if (!newTarget)
                 {
                     redirect = false;
+                    return;
                 }
+
+                target = newTarget.GetComponent<BasicHealth>();
+                smoothing /= 2;
             }
             else
             {
@@ -81,7 +84,7 @@ public class TowerBlast : MonoBehaviour
                     direction *= 1 / startMod;
                 }
 
-                if (missingTarget > 5)
+                if (missingTarget > 2)
                 {
                     HitDestroy();
                 }

@@ -50,7 +50,7 @@ public class RandomWave : Wave
         spawns = new SpawnGroup[sectionCount];
         int previousSpawnPoints = 0;
 
-        print("Sections: " + sectionCount + " " + pointDistribution);
+        //print("Sections: " + sectionCount + " " + pointDistribution);
 
         for (int i = 0; i < sectionCount; i++)
         {
@@ -64,7 +64,7 @@ public class RandomWave : Wave
             int remainingSpawnPoints = pointDistribution[i] + excessPoints;
             excessPoints = 0;
 
-            print("Section " + i + " " + remainingSpawnPoints);
+            //print("Section " + i + " " + remainingSpawnPoints);
 
             while (remainingSpawnPoints > 0)
             {
@@ -88,11 +88,16 @@ public class RandomWave : Wave
                         lastEnemy = chosenEnemy;
                     }
 
-                    if (lastEnemy != Enemytype.Slime && pointsCost < pointCounts[1])
-                    {
-                        excessPoints = remainingSpawnPoints;
-                        remainingSpawnPoints = 0;
-                    }
+                    //if (lastEnemy != Enemytype.Slime && pointsCost < pointCounts[1])
+                    //{
+                    //    excessPoints = remainingSpawnPoints;
+                    //    remainingSpawnPoints = 0;
+                    //}
+                }
+                else
+                {
+                    excessPoints = remainingSpawnPoints;
+                    remainingSpawnPoints = 0;
                 }
             }
 

@@ -44,7 +44,11 @@ public class EndlessManager : WaveManager
                 nextWave = Time.time + waveOverflowDelay;
                 return;
             }
+
+            print("Preparing wave " + (curWave + 1) + " with " + spawnPoints + " spawn points");
+
             nextWave = Time.time + wave.GenerateRandomWave(spawnPoints) + 0.2f;
+
             curWave++;
             float newPoints = (1 + percIncr) * spawnPoints;
             spawnPoints = (int)newPoints;
