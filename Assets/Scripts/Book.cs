@@ -28,6 +28,8 @@ public class Book : MonoBehaviour
     public AudioSource closeSound;
     public AudioSource turnSound;
 
+    public BookSmoother smoother;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,10 +129,16 @@ public class Book : MonoBehaviour
     void Grab(SelectEnterEventArgs args)
     {
         held = true;
+
+        smoother.transform.parent = null;
+        smoother.Activate();
     }
 
     void Drop(SelectExitEventArgs args)
     {
         held = false;
+
+        smoother.Deactivate();
+        smoother.transform.parent = transform;
     }
 }
