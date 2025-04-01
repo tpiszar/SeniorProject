@@ -56,8 +56,13 @@ public class AccessibilityModifier : MonoBehaviour
                 snapProvider.enabled = false;
             }
 
+            leftSocket.gameObject.SetActive(true);
+
             wandDrop.resetPoint = leftSocket.transform;
             leftSocket.singleObject = wand.gameObject;
+
+            rightSocket.gameObject.SetActive(false);
+
             if (initialSet)
             {
                 wand.position = leftSocket.transform.position;
@@ -90,8 +95,13 @@ public class AccessibilityModifier : MonoBehaviour
                 snapProvider.enabled = false;
             }
 
+            rightSocket.gameObject.SetActive(true);
+
             wandDrop.resetPoint = rightSocket.transform;
             rightSocket.singleObject = wand.gameObject;
+
+            leftSocket.gameObject.SetActive(false);
+
             if (initialSet)
             {
                 wand.position = rightSocket.transform.position;

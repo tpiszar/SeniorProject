@@ -25,13 +25,15 @@ public class BookSmoother : MonoBehaviour
     {
         if (isActive)
         {
+            //print("ANGLE: " + Quaternion.Angle(transform.rotation, parent.rotation) + " DIST: " + Vector3.Distance(transform.position, parent.position));
+
             if (Vector3.Distance(transform.position, parent.position) > maxDistance)
             {
                 transform.position = parent.position;
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, parent.position, moveFactor * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, parent.position, moveFactor * Time.unscaledDeltaTime);
             }
 
             if (Quaternion.Angle(transform.rotation, parent.rotation) > maxAngle)
@@ -40,7 +42,7 @@ public class BookSmoother : MonoBehaviour
             }
             else
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, parent.rotation, rotateFactor * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, parent.rotation, rotateFactor * Time.unscaledDeltaTime);
             }
         }
     }

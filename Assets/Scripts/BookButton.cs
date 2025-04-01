@@ -13,6 +13,8 @@ public class BookButton : MonoBehaviour
     public Material selectedMat;
     Material baseMat;
 
+    //public LayerMask handLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,48 @@ public class BookButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Physics.SyncTransforms();
+
+        //Collider[] colliders = Physics.OverlapBox(transform.position, transform.lossyScale / 2, transform.rotation, handLayer);
+
+        //if (selected && colliders.Length == 0)
+        //{
+        //    Exit();
+
+        //    return;
+        //}
+
+        //foreach (Collider col in colliders)
+        //{
+        //    if (col.gameObject.CompareTag("Pointer"))
+        //    {
+        //        if (!selected && colliders.Length > 0)
+        //        {
+        //            Enter();
+        //        }
+
+        //        return;
+        //    }
+        //}
+
+        //if (selected)
+        //{
+        //    Exit();
+        //}
+    }
+
+    void Enter()
+    {
+        mesh.material = selectedMat;
+        selected = true;
+    }
+
+    void Exit()
+    {
+        mesh.material = baseMat;
+        selected = false;
+
+        book.Turn(pageNum);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +91,8 @@ public class BookButton : MonoBehaviour
 
     private void OnDisable()
     {
+        if (UIScript.sceneLoading) { return; }
+
         selected = false;
         mesh.material = baseMat;
     }

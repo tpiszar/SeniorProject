@@ -51,7 +51,11 @@ public class Teleport : MonoBehaviour
 
         Invoke("doTeleport", easeInTime);
 
-        tableGrab.interactionManager.SelectExit(tableGrab.interactorsSelecting[0], tableGrab);
+        try
+        {
+            tableGrab.interactionManager.SelectExit(tableGrab.interactorsSelecting[0], tableGrab);
+        }
+        catch (Exception e) { }
     }
 
     public void doTeleport()

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -37,11 +39,18 @@ public class Book : MonoBehaviour
 
         grabbable.selectEntered.AddListener(Grab);
         grabbable.selectExited.AddListener(Drop);
+
+        leftPages[0].SetActive(false);
+        rightPages[0].SetActive(false);
     }
+
+    Vector3 lastPos;
 
     // Update is called once per frame
     void Update()
     {
+        lastPos = transform.position;
+
         if (held && !open)
         {
             Open();
@@ -103,7 +112,12 @@ public class Book : MonoBehaviour
 
         animator.SetBool("Open", held);
 
+        leftPages[curPage].SetActive(true);
+        rightPages[curPage].SetActive(true);
+
         openSound.Play();
+
+        //Time.timeScale = 0;
     }
 
     void Close()
@@ -123,7 +137,20 @@ public class Book : MonoBehaviour
         rightHand.SetBool("Point", false);
         rightPoint.gameObject.SetActive(false);
 
+
+        Invoke("DelayedDisable", 0.5f);
+
         closeSound.Play();
+
+        //Time.timeScale = 1;
+
+        //Vector3 direction = (transform.position - lastPos).normalized;
+    }
+
+    public void DelayedDisable()
+    {
+        leftPages[curPage].SetActive(false);
+        rightPages[curPage].SetActive(false);
     }
 
     void Grab(SelectEnterEventArgs args)
@@ -140,5 +167,6 @@ public class Book : MonoBehaviour
 
         smoother.Deactivate();
         smoother.transform.parent = transform;
+        smoother.transform.localPosition = Vector3.zero;
     }
 }
