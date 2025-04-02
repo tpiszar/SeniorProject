@@ -14,7 +14,11 @@ public class SettingsMenu : MonoBehaviour
     public Slider snapSlide;
     public TextMeshProUGUI snapAmount;
 
+    public TMP_Dropdown priorityType;
+
     public AccessibilityModifier accessibility;
+
+    public UIScript uiScript;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,24 @@ public class SettingsMenu : MonoBehaviour
         {
             turnType.value = 1;
             snapSlide.gameObject.SetActive(false);
+        }
+
+        priorityType.value = SaveLoad.priority - 1;
+    }
+
+    float priorityWait = 0;
+    bool priorityDisabled = false;
+    private void Update()
+    {
+        if (priorityDisabled && priorityWait > 0)
+        {
+            priorityWait -= Time.unscaledDeltaTime;
+
+            if (priorityWait < 0)
+            {
+                priorityDisabled = false;
+                priorityType.interactable = true;
+            }
         }
     }
 
@@ -83,5 +105,18 @@ public class SettingsMenu : MonoBehaviour
         SaveLoad.snapAmount = (int)snapSlide.value * 15;
         snapAmount.text = SaveLoad.snapAmount.ToString();
         accessibility.Set();
+    }
+
+    public void SetPriority()
+    {
+        if (SaveLoad.priority != priorityType.value + 1)
+        {
+            SaveLoad.priority = priorityType.value + 1;
+            priorityType.interactable = false;
+            priorityWait = 3f;
+            priorityDisabled = true;
+
+            uiScript.ChangeGraphicsQuality();
+        }
     }
 }

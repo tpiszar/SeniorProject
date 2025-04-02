@@ -17,4 +17,6 @@ public struct SaveData
     public float master;
     public float fx;
     public float music;
+
+    public int priority;
 }

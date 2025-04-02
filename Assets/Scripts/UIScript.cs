@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 public class UIScript : MonoBehaviour
 {
     public static bool sceneLoading = false;
+    static bool openGame = true;
 
     public Renderer fade;
     public float fadeTime;
@@ -57,6 +58,8 @@ public class UIScript : MonoBehaviour
     private void Awake()
     {
         fadeColor = fade.material.color;
+
+
     }
 
     // Start is called before the first frame update
@@ -73,6 +76,12 @@ public class UIScript : MonoBehaviour
             {
                 currentScreen = screen.name;
             }
+        }
+
+        if (openGame)
+        {
+            openGame = false;
+            QualitySettings.SetQualityLevel(SaveLoad.priority);
         }
     }
 
@@ -96,7 +105,7 @@ public class UIScript : MonoBehaviour
 
         if (a > b)
         {
-            yield return new WaitForSeconds(padding);
+            yield return new WaitForSecondsRealtime(padding);
         }
 
         float timer = 0;
@@ -109,7 +118,7 @@ public class UIScript : MonoBehaviour
 
         while (timer <= maxTime)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
 
             fadeColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, Mathf.Lerp(a, b, timer / fadeTime));
             fade.material.color = fadeColor;
@@ -300,5 +309,18 @@ public class UIScript : MonoBehaviour
     private void OnApplicationQuit()
     {
         sceneLoading = true;
+    }
+
+    public void ChangeGraphicsQuality()
+    {
+        StartCoroutine(ChangeQuality());
+    }
+
+    public IEnumerator ChangeQuality()
+    {
+        StartCoroutine(Fade(0, 1));
+        yield return new WaitForSecondsRealtime(fadeTime + padding);
+        QualitySettings.SetQualityLevel(SaveLoad.priority);
+        StartCoroutine(Fade(1, 0));
     }
 }

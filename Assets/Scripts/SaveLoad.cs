@@ -22,6 +22,8 @@ public class SaveLoad : MonoBehaviour
     public static float musicVolume = 2f;
     public static float sounfFXVolume = 2f;
 
+    public static int priority = 2;
+
     public static SaveLoad Instance;
 
     public void Save(ref SaveData data)
@@ -42,6 +44,8 @@ public class SaveLoad : MonoBehaviour
         data.master = masterVolume;
         data.fx = sounfFXVolume;
         data.music = musicVolume;
+
+        data.priority = priority;
     }
 
     public void Load(SaveData data)
@@ -62,6 +66,8 @@ public class SaveLoad : MonoBehaviour
         masterVolume = data.master;
         sounfFXVolume = data.fx;
         musicVolume = data.music;
+
+        priority = data.priority;
     }
 
     private void Awake()

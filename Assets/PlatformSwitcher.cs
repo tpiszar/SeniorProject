@@ -4,8 +4,9 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
-public class PlatformMaterialSwitcher : EditorWindow
+public class PlatformSwitcher : EditorWindow
 {
     // Define material mappings for Windows and Android
     private static MaterialMapping[] materialMappings = new MaterialMapping[]
@@ -15,16 +16,36 @@ public class PlatformMaterialSwitcher : EditorWindow
         new MaterialMapping("Assets/Materials 1/GhoulBarrierMax.mat", "Assets/Materials 1/GhoulNoDepth.mat"),
     };
 
-    [MenuItem("Tools/Switch Materials/Set for Windows")]
+    private static string[] windowsRPPaths = new string[]
+    {
+        "Assets/Settings/URP-Performant.asset",
+        "Assets/Settings/URP-Balanced.asset",
+        "Assets/Settings/URP-HighFidelity.asset"
+    };
+
+    private static string[] androidRPPaths = new string[]
+    {
+        "Assets/Settings/URP-Performant Android.asset",
+        "Assets/Settings/URP-Balanced Android.asset",
+        "Assets/Settings/URP-HighFidelity Android.asset"
+    };
+
+    // Paths to the render pipeline assets for each platform
+    private const string windowsRPPath = "Assets/Settings/URP-HighFidelity.asset";
+    private const string androidRPPath = "Assets/Settings/URP-HighFidelity Android.asset";
+
+    [MenuItem("Tools/Switch Platform/Set for Windows")]
     public static void SetWindowsMaterials()
     {
         SetMaterialsForPlatform(true);
+        SwitchRenderPipelineAsset(true);
     }
 
-    [MenuItem("Tools/Switch Materials/Set for Android")]
+    [MenuItem("Tools/Switch Platform/Set for Android")]
     public static void SetAndroidMaterials()
     {
         SetMaterialsForPlatform(false);
+        SwitchRenderPipelineAsset(false);
     }
 
     private static void SetMaterialsForPlatform(bool isWindows)
@@ -79,6 +100,31 @@ public class PlatformMaterialSwitcher : EditorWindow
 
         AssetDatabase.SaveAssets();
         Debug.Log($"Material switch to {(isWindows ? "Windows" : "Android")} completed.");
+    }
+
+    private static void SwitchRenderPipelineAsset(bool isWindows)
+    {
+        for (int i = 0; i < windowsRPPaths.Length; i++)
+        {
+            string pipelinePath = isWindows ? windowsRPPaths[i] : androidRPPaths[i];
+            RenderPipelineAsset pipelineAsset = AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(pipelinePath);
+            if (pipelineAsset != null)
+            {
+                QualitySettings.SetQualityLevel(i);
+                QualitySettings.renderPipeline = pipelineAsset;
+                Debug.Log("Render Pipeline asset set to: " + pipelineAsset.name);
+            }
+            else
+            {
+                Debug.LogWarning("Render Pipeline asset missing at " + pipelinePath);
+            }
+        }
+
+
+        AssetDatabase.SaveAssets();
+        Debug.Log($"Switch to {(isWindows ? "Windows" : "Android")} completed.");
+
+
     }
 
     private class MaterialMapping
