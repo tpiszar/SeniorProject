@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -71,6 +72,12 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
 
         Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
+    public void SpawnClip(AudioSource source, Vector3 point)
+    {
+        Instantiate(source, point, Quaternion.identity);
+        Destroy(source.gameObject, source.clip.length);
     }
 
     public void PlayRandomClip(AudioClip[] clips, Vector3 point, float volume)
