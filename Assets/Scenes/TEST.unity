@@ -1683,7 +1683,7 @@ PrefabInstance:
     - target: {fileID: 2686674799563236522, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.413805
+      value: -2.02
       objectReference: {fileID: 0}
     - target: {fileID: 2686674799563236522, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
@@ -1693,7 +1693,7 @@ PrefabInstance:
     - target: {fileID: 2686674799563236522, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.9340787
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 2686674799563236522, guid: 46cb8989a80d5b545a6230a0eb1a8ca5,
         type: 3}
@@ -9641,6 +9641,8 @@ MonoBehaviour:
   fireVolume: 1
   lightningDeath: {fileID: 8300000, guid: fa665dd15369dd24d9f5d7cf68c6d061, type: 3}
   lightningVolume: 1
+  annihilateAudio: {fileID: 8300000, guid: 3fa2ff9cff3b4a34589a335196db59a3, type: 3}
+  annihilateVolume: 0.5
 --- !u!4 &519947677
 Transform:
   m_ObjectHideFlags: 0
@@ -19707,7 +19709,7 @@ PrefabInstance:
     - target: {fileID: 3268371174949810232, guid: 380bf4c7ad3b1a34ba2aa5b8649aa028,
         type: 3}
       propertyPath: damage
-      value: 0
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3538995425908706659, guid: 380bf4c7ad3b1a34ba2aa5b8649aa028,
         type: 3}
@@ -34462,7 +34464,7 @@ MonoBehaviour:
     - {fileID: 8014673178385859721, guid: f97bde853ecacde44970d4cef2ccf1fc, type: 3}
     - {fileID: 3163385665159897073, guid: 5df614e8029f32b49a1701ae4d373982, type: 3}
     - {fileID: 9044469474275244636, guid: 3104c287a6209d24a97cd6c059ab2d70, type: 3}
-    counts: 02000000000000000000000000000000000000000000000000000000
+    counts: 00000000000000000000000001000000000000000000000000000000
     delay: 2
 --- !u!1001 &2044819426
 PrefabInstance:
@@ -36947,6 +36949,8 @@ MonoBehaviour:
   flashSpeed: 0.4
   damageSound: {fileID: 8300000, guid: 9f67da1843085344eb38761b0eaba74c, type: 3}
   damageVolume: 0.6
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 8035681660908470222}
   dissapearRate: 3
@@ -38016,6 +38020,8 @@ MonoBehaviour:
   flashSpeed: 0.5
   damageSound: {fileID: 8300000, guid: 23f8e7618c077a84590e8639f5f92ac2, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 2
   animator: {fileID: 0}
   dissapearRate: 3
@@ -38075,6 +38081,8 @@ MonoBehaviour:
   flashSpeed: 0.4
   damageSound: {fileID: 8300000, guid: 11f674b9feb8caa46922c4ca6cea9336, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 8627114563974859049}
   dissapearRate: 3
@@ -38099,6 +38107,8 @@ MonoBehaviour:
   flashSpeed: 0.4
   damageSound: {fileID: 8300000, guid: 3bad2f096d20ce04d8c463a0574cd4f6, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 1626104284}
   dissapearRate: 3
@@ -45742,6 +45752,8 @@ MonoBehaviour:
   flashSpeed: 0.4
   damageSound: {fileID: 8300000, guid: ab4e897e24d263040a70f4aaa53b81d3, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 3445985791074168237}
   dissapearRate: 3
@@ -46364,6 +46376,8 @@ MonoBehaviour:
   flashSpeed: 0.4
   damageSound: {fileID: 8300000, guid: 89e112f03abe5a84988ee294ade44315, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 2731702513552695728}
   dissapearRate: 3

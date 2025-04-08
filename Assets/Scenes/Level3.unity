@@ -4035,6 +4035,8 @@ MonoBehaviour:
   fireVolume: 1
   lightningDeath: {fileID: 8300000, guid: fa665dd15369dd24d9f5d7cf68c6d061, type: 3}
   lightningVolume: 1
+  annihilateAudio: {fileID: 8300000, guid: 3fa2ff9cff3b4a34589a335196db59a3, type: 3}
+  annihilateVolume: 0.5
 --- !u!4 &253515062
 Transform:
   m_ObjectHideFlags: 0
@@ -6110,17 +6112,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.81
+      value: -12.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.172
+      value: 2.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.46
+      value: 39.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
@@ -6160,22 +6162,22 @@ PrefabInstance:
     - target: {fileID: -8391222552659086748, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -5824510187379060028, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -391268320553695201, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
@@ -6185,22 +6187,22 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8821623529969584324, guid: 8bd4df5bcd5784444895bb9f151056b4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6214,6 +6216,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 395103147}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8bd4df5bcd5784444895bb9f151056b4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 395103150}
   m_SourcePrefab: {fileID: 100100000, guid: 8bd4df5bcd5784444895bb9f151056b4, type: 3}
 --- !u!1 &395103144 stripped
 GameObject:
@@ -6257,6 +6263,32 @@ CapsuleCollider:
   m_Height: 3.64
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.28}
+--- !u!114 &395103150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395103144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d90d1b2c134e0647a29bd4322fdf931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  manaGain: 0
+  mainRend: {fileID: 0}
+  flashSpeed: 0.5
+  damageSound: {fileID: 0}
+  damageVolume: 1
+  deathSound: {fileID: 0}
+  deathVolume: 1
+  soundInterval: 2
+  animator: {fileID: 0}
+  dissapearRate: 3
+  annihilateParticle: {fileID: 0}
+  hitPosition: {fileID: 0}
+  burnParticle: {fileID: 0}
 --- !u!1 &398360442
 GameObject:
   m_ObjectHideFlags: 0
@@ -24962,19 +24994,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c37b1ccfbc7ed274eb99f9d40e72c4e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c37b1ccfbc7ed274eb99f9d40e72c4e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.22
+      value: -12.61
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c37b1ccfbc7ed274eb99f9d40e72c4e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.48
+      value: -0.25199986
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c37b1ccfbc7ed274eb99f9d40e72c4e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.33
+      value: 40.170002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c37b1ccfbc7ed274eb99f9d40e72c4e6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29557,7 +29589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1897968043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29582,7 +29614,7 @@ Transform:
   m_GameObject: {fileID: 1897968042}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.81, y: 5.172, z: 18.46}
+  m_LocalPosition: {x: -12.2, y: 2.44, z: 39.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

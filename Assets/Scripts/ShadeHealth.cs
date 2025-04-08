@@ -59,6 +59,8 @@ public class ShadeHealth : BasicHealth
         {
             annihilateParticle.transform.parent = null;
             annihilateParticle.Play();
+
+            SoundManager.instance.Annihilate(transform.position);
         }
         else //KILL
         {

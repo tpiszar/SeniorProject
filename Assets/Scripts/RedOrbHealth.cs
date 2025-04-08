@@ -30,6 +30,8 @@ public class RedOrbHealth : BasicHealth
         {
             annihilateParticle.transform.parent = null;
             annihilateParticle.Play();
+
+            SoundManager.instance.Annihilate(transform.position);
         }
         else
         {

@@ -439,11 +439,16 @@ MonoBehaviour:
   manaGain: 0
   mainRend: {fileID: 8006227969384203236}
   flashSpeed: 0.4
-  damageSound: {fileID: 8300000, guid: 6f84c517ec4cd344e9504adb75adb918, type: 3}
+  damageSound: {fileID: 8300000, guid: 463a6cdae99dab248955f2626f376f7b, type: 3}
   damageVolume: 1
+  deathSound: {fileID: 8300000, guid: 2dffcdefa05d34d4aacd40f440bf119c, type: 3}
+  deathVolume: 1
   soundInterval: 1
   animator: {fileID: 0}
   dissapearRate: 3
+  annihilateParticle: {fileID: 0}
+  hitPosition: {fileID: 0}
+  burnParticle: {fileID: 0}
   shadeDestroyParticle: {fileID: 0}
 --- !u!114 &7208195636133897460
 MonoBehaviour:
@@ -471,7 +476,8 @@ MonoBehaviour:
   distCheckInterval: 0.5
   model: {fileID: 0}
   marker: {fileID: 0}
-  travellingDir: {x: 0, y: 0, z: 0}
+  travellingPoint: {x: 0, y: 0, z: 0}
+  MovingDir: {x: 0, y: 0, z: 0}
   animator: {fileID: 4530421641296297239}
   attackAnimDuration: 1.25
   rotationSpeed: 150

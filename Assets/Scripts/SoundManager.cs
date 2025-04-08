@@ -22,6 +22,10 @@ public class SoundManager : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float lightningVolume = 1;
 
+    public AudioClip annihilateAudio;
+    [Range(0.0001f, 1f)]
+    public float annihilateVolume = 1;
+
     public void Awake()
     {
         if (!instance)
@@ -101,5 +105,10 @@ public class SoundManager : MonoBehaviour
                 PlayClip(lightningDeath, point, lightningVolume);
                 break;
         }
+    }
+
+    public void Annihilate(Vector3 point)
+    {
+        PlayClip(annihilateAudio, point, annihilateVolume);
     }
 }

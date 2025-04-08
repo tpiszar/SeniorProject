@@ -244,8 +244,10 @@ MonoBehaviour:
   manaGain: 0
   mainRend: {fileID: 5824559065176240127}
   flashSpeed: 0.4
-  damageSound: {fileID: 8300000, guid: 6f84c517ec4cd344e9504adb75adb918, type: 3}
-  damageVolume: 1
+  damageSound: {fileID: 8300000, guid: 463a6cdae99dab248955f2626f376f7b, type: 3}
+  damageVolume: 0.3
+  deathSound: {fileID: 8300000, guid: 2dffcdefa05d34d4aacd40f440bf119c, type: 3}
+  deathVolume: 0.5
   soundInterval: 1
   animator: {fileID: 0}
   dissapearRate: 3
@@ -417,9 +419,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
         type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
+        type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 5fb32e6caf6624a4181a62b1e68a3413, type: 3}
+      objectReference: {fileID: 8300000, guid: 27f28da26f5d4154ba471bf73cd59a9f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1482,9 +1489,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
         type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366304492578119866, guid: 78fe3a08e66e86a4db7d290e76f674f3,
+        type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 77f0876cd91bdd34bb9de5159b028320, type: 3}
+      objectReference: {fileID: 8300000, guid: 047205ea31f8ab24c9cef2259f0d95ca, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

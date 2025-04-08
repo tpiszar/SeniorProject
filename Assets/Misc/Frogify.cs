@@ -38,6 +38,10 @@ public class Frogify : MonoBehaviour
     {
         active = true;
 
+        if (!Camera.main) { return; }
+
+        Camera.main.backgroundColor = Color.black;
+
         Destroy(fade);
         Destroy(vignette);
     }

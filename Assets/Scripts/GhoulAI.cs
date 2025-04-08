@@ -43,10 +43,14 @@ public class GhoulAI : EnemyAI
             if (matchWithAttack)
             {
                 animator.SetTrigger("Attack");
+
+                attackSound.Play();
             }
             else
             {
                 animator.SetTrigger("Barrier");
+
+                attackSound.Play();
             }
 
             nextRestore = restoreRate;
@@ -64,6 +68,7 @@ public class GhoulAI : EnemyAI
         {
             restoring = false;
             barrier.Restore();
+
             return;
         }
 

@@ -375,6 +375,8 @@ public class BasicHealth : MonoBehaviour
         {
             annihilateParticle.transform.parent = null;
             annihilateParticle.Play();
+
+            SoundManager.instance.Annihilate(transform.position);
         }
         else //KILL
         {
