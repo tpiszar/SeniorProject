@@ -37,6 +37,9 @@ public class BasicHealth : MonoBehaviour
     public AudioClip damageSound;
     [Range(0.0001f, 1f)]
     public float damageVolume = 1;
+    public AudioClip deathSound;
+    [Range(0.0001f, 1f)]
+    public float deathVolume = 1;
 
     public float soundInterval = 2;
     float nextInterval = 0;
@@ -199,7 +202,15 @@ public class BasicHealth : MonoBehaviour
         {
             Mana.Instance.GainMana(manaGain);
 
-            SoundManager.instance.PlayDeathClip(type, transform.position);
+            //SoundManager.instance.PlayDeathClip(type, transform.position);
+            if (deathSound)
+            {
+                SoundManager.instance.PlayClip(deathSound, transform.position, deathVolume);
+            }
+            else
+            {
+                print("No Death Sound");
+            }
 
             WaveManager.kills++;
 

@@ -76,8 +76,8 @@ public class SoundManager : MonoBehaviour
 
     public void SpawnClip(AudioSource source, Vector3 point)
     {
-        Instantiate(source, point, Quaternion.identity);
-        Destroy(source.gameObject, source.clip.length);
+        GameObject newSound = Instantiate(source.gameObject, point, Quaternion.identity);
+        Destroy(newSound, source.clip.length);
     }
 
     public void PlayRandomClip(AudioClip[] clips, Vector3 point, float volume)
