@@ -39,6 +39,8 @@ public class PlatformSwitcher : EditorWindow
     {
         SetMaterialsForPlatform(true);
         SwitchRenderPipelineAsset(true);
+
+        SaveLoad.priority = 1;
     }
 
     [MenuItem("Tools/Switch Platform/Set for Android")]

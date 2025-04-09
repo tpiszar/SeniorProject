@@ -89,7 +89,8 @@ public class EnemyAI : MonoBehaviour, IComparable
             animator.SetFloat("AttackRate", 1 / (attkRate / attackAnimDuration));
         }
 
-        playPassive = UnityEngine.Random.Range(passiveMin / 2, passiveMin);
+        playPassive = UnityEngine.Random.Range(passiveMin, passiveMax);
+        playPassive -= passiveMin;
     }
 
     private void OnEnable()

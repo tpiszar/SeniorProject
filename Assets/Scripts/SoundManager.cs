@@ -109,6 +109,13 @@ public class SoundManager : MonoBehaviour
 
     public void Annihilate(Vector3 point)
     {
-        PlayClip(annihilateAudio, point, annihilateVolume);
+        if (WaveManager.LevelEnd)
+        {
+            PlayClip(annihilateAudio, point, annihilateVolume / 2);
+        }
+        else
+        {
+            PlayClip(annihilateAudio, point, annihilateVolume);
+        }
     }
 }

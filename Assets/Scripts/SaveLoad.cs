@@ -84,6 +84,12 @@ public class SaveLoad : MonoBehaviour
             catch (FileNotFoundException)
             {
                 print("Save file not found. New Save Created");
+#if UNITY_STANDALONE_WIN
+                priority = 2;
+#elif UNITY_ANDROID
+                priority = 1;
+#endif
+
                 SaveSystem.Save();
             }
 

@@ -19,7 +19,7 @@ public class GhoulAI : EnemyAI
     protected override void Start()
     {
         base.Start();
-        nextRestore = restoreRate / 3;
+        nextRestore = restoreRate / 3 + UnityEngine.Random.Range(-0.25f, 1f);
         speed = agent.speed;
     }
 
