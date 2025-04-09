@@ -185,7 +185,20 @@ public class TowerBlast : MonoBehaviour
                     SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
 
                     hitParticle.transform.parent = null;
-                    hitParticle.transform.position = enemy.GetHitPosition();
+                    //hitParticle.transform.position = enemy.GetHitPosition();
+
+                    if (!barrier)
+                    {
+                        hitParticle.transform.position = enemy.GetHitPosition();
+                    }
+                    else
+                    {
+                        Vector3 direction = (tower.transform.position - barrier.transform.position).normalized;
+                        //print(barrier.transform.position + " " + direction);
+
+                        hitParticle.transform.position = barrier.transform.position + direction * barrier.transform.lossyScale.x / 2;
+                    }
+
                     hitParticle.Play();
 
                     HitDestroy();

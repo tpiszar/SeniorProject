@@ -56,6 +56,16 @@ public class EnemyBarrier : BasicHealth
 
             return this;
         }
+        else
+        {
+            if (Time.time > nextInterval)
+            {
+                nextInterval = Time.time + soundInterval;
+                SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
+            }
+
+            //SoundManager.instance.PlayClip(damageSound, transform.position, damageVolume);
+        }
 
         float newIntensity = Mathf.Lerp(endIntensity, startIntensity, (float)health / maxHealth);
 
@@ -149,6 +159,8 @@ public class EnemyBarrier : BasicHealth
         if (shatterBarrier)
         {
             Instantiate(shatterBarrier, transform.position, transform.rotation);
+
+            SoundManager.instance.PlayClip(deathSound, transform.position, deathVolume);
         }
     }
 }

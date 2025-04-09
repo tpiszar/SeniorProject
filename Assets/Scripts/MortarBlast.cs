@@ -113,7 +113,7 @@ public class MortarBlast : MonoBehaviour
         {
             if (enemy)
             {
-                enemy.TakeDamage(impactDmg, DamageType.energy);
+                enemy.TakeDamage(impactDmg, DamageType.fire);
             }
         }
 

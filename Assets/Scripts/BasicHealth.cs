@@ -42,7 +42,7 @@ public class BasicHealth : MonoBehaviour
     public float deathVolume = 1;
 
     public float soundInterval = 2;
-    float nextInterval = 0;
+    protected float nextInterval = 0;
 
     public Animator animator;
     public float dissapearRate = 3f;
@@ -186,9 +186,13 @@ public class BasicHealth : MonoBehaviour
         {
             //CleanUpBarriers();
             
-            if (enemyBarriers[invincible - 1] && type != DamageType.fire)
+            if (enemyBarriers[invincible - 1])
             {
-                return enemyBarriers[invincible - 1].TakeDamage(damage, type);
+                if (type != DamageType.fire)
+                {
+                    return enemyBarriers[invincible - 1].TakeDamage(damage, type);
+                }
+                return enemyBarriers[invincible - 1];
             }
             return null;
         }

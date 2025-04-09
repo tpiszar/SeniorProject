@@ -52,12 +52,17 @@ public class TowerFlame : MonoBehaviour
                 }
 
 
-                enemy.TakeDamage(damage, DamageType.fire);
-                enemy.Burn(burnDuration, burnRate, tickDamage);
+                EnemyBarrier barrier = enemy.TakeDamage(damage, DamageType.fire);
+
+                if (!barrier)
+                {
+                    enemy.Burn(burnDuration, burnRate, tickDamage);
+                    Instantiate(hitParticle, enemy.GetHitPosition(), Quaternion.identity);
+                }
 
                 hitThisCycle.Add(enemy.transform);
 
-                Instantiate(hitParticle, enemy.GetHitPosition(), Quaternion.identity);
+
             }
         }
 
