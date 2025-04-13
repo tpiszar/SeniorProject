@@ -85,6 +85,13 @@ public class TowerTutorial : Tutorial
             }
         }
 
+        //ADDED
+        EnemyAI[] survivors = FindObjectsOfType<EnemyAI>();
+        foreach (EnemyAI enemy in survivors)
+        {
+            Destroy(enemy.gameObject);
+        }
+
         Hands();
     }
 }
