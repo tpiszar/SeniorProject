@@ -15,6 +15,9 @@ public class Frogify : MonoBehaviour
 
     private HashSet<Renderer> froggedRends = new HashSet<Renderer>();
 
+    public AudioClip forestMusic;
+    public AudioSource music;
+
     // Update is called once per frame
     void Update()
     {
@@ -37,6 +40,11 @@ public class Frogify : MonoBehaviour
     public void Activate()
     {
         active = true;
+
+        music.Stop();
+        music.clip = forestMusic;
+        music.volume = 0.3f;
+        music.Play();
 
         if (!Camera.main) { return; }
 

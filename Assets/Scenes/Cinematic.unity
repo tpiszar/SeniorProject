@@ -2641,7 +2641,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 728.6263, y: 114.7614}
+  m_SizeDelta: {x: 516.0073, y: 81.2731}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159566318
 MonoBehaviour:
@@ -4722,7 +4722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &270769799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7438,7 +7438,8 @@ Transform:
   m_LocalPosition: {x: -14.089358, y: 1.0853479, z: -9.148939}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2509555354237014286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
@@ -9309,8 +9310,7 @@ Transform:
   m_LocalPosition: {x: -12.5, y: 0, z: 10}
   m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2509555354237014286}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594138015
@@ -30860,6 +30860,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WardObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8661762297689247562, guid: 01ea0541af1dcd54eb27d4d08c6c998a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30879,13 +30884,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8047974216046780148}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14054367, y: -0.3782296, z: 0.05821509, w: 0.913127}
-  m_LocalPosition: {x: 2.5, y: 2.5, z: -2.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 585683753}
-  m_LocalEulerAnglesHint: {x: 17.5, y: -45, z: 0}
+  m_Father: {fileID: 408284741}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3411641999990529886
 PrefabInstance:
   m_ObjectHideFlags: 0

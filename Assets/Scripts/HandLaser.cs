@@ -37,6 +37,7 @@ public class HandLaser : MonoBehaviour
 
     public AudioSource startSound;
     public AudioSource shootSound;
+    public AudioSource beginShootSound;
 
     public ParticleSystem laserHitParticle;
 
@@ -48,6 +49,8 @@ public class HandLaser : MonoBehaviour
             startSound.Play();
         }
     }
+
+    bool wasPressed = true;
 
     // Update is called once per frame
     void Update()
@@ -69,6 +72,12 @@ public class HandLaser : MonoBehaviour
         {
 
             TriggerHaptic(fireHapticIntensity, fireHapticDuration);
+
+            if (!wasPressed)
+            {
+                beginShootSound.Play();
+            }
+            wasPressed = true;
 
             if (!shootSound.isPlaying)
             {
@@ -112,6 +121,8 @@ public class HandLaser : MonoBehaviour
         }
         else
         {
+            wasPressed = true;
+
             shootSound.Stop();
 
             laserHitParticle.Stop();

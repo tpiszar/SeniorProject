@@ -30,6 +30,7 @@ public class MagicOrbTower : MonoBehaviour
 
     public AudioSource chargeSound;
     public AudioSource laserSound;
+    public AudioSource startLaserSound;
 
     public ParticleSystem laserHitParticle;
 
@@ -90,6 +91,12 @@ public class MagicOrbTower : MonoBehaviour
                 chargeSound.pitch = Mathf.Lerp(1, 3, chargeLevel / chargeTime);
 
                 chargeLevel += Time.deltaTime;
+
+                if (chargeLevel >= chargeTime)
+                {
+                    print("Play start " + Time.time);
+                    startLaserSound.Play();
+                }
             }
             else
             {

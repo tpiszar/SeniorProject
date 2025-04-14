@@ -26,6 +26,11 @@ public class PickUpUseSound : MonoBehaviour
 
     public void Hold(SelectEnterEventArgs args)
     {
+        if (Time.timeSinceLevelLoad < 2)
+        {
+            return;
+        }
+
         pickupSound.Play();
         //if (!hand.noHand)
         //{
