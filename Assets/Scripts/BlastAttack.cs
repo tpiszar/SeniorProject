@@ -110,7 +110,7 @@ public class BlastAttack : MonoBehaviour
 
                 if (passThrough)
                 {
-                    SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
+                    //SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
                     return;
                 }
                 else
@@ -130,7 +130,11 @@ public class BlastAttack : MonoBehaviour
             {
                 HitDestroy(!hitEffectDone);
             }
-            SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
+
+            if (hitSound)
+            {
+                SoundManager.instance.PlayClip(hitSound, transform.position, hitVolume);
+            }
         }
     }
 

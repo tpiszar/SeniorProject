@@ -50,7 +50,7 @@ public class HandLaser : MonoBehaviour
         }
     }
 
-    bool wasPressed = true;
+    bool wasPressed = false;
 
     // Update is called once per frame
     void Update()
@@ -121,7 +121,7 @@ public class HandLaser : MonoBehaviour
         }
         else
         {
-            wasPressed = true;
+            wasPressed = false;
 
             shootSound.Stop();
 

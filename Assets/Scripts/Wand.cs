@@ -181,6 +181,11 @@ public class Wand : MonoBehaviour
 
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(hand.inputSource), inputButton, out bool isPressed, inputThreshold);
 
+        if (Time.timeScale < 1)
+        {
+            return;
+        }
+
         if (isPressed && !primed && !usingRay && !waitForNext)
         {
             if (!chargingSound.isPlaying)
@@ -475,16 +480,21 @@ public class Wand : MonoBehaviour
                 RaycastHit[] hits = Physics.SphereCastAll(shootPoint.position, lightningRadius, shootPoint.up, lightningRange, lightningMask);
                 float minDist = float.MaxValue;
                 BasicHealth minEn = null;
+
+                if (hits.Length == 0) { print("No Hits"); }
+
                 for (int i = 0; i < hits.Length; i++)
                 {
                     if (!hits[i].transform.CompareTag("Enemy"))
                     {
+                        print("Not enemy");
                         continue;
                     }
 
                     BasicHealth newEn = hits[i].transform.GetComponentInParent<BasicHealth>();
                     if (!newEn)
                     {
+                        print("No health");
                         continue;
                     }
 
