@@ -94,7 +94,6 @@ public class MagicOrbTower : MonoBehaviour
 
                 if (chargeLevel >= chargeTime)
                 {
-                    print("Play start " + Time.time);
                     startLaserSound.Play();
                 }
             }

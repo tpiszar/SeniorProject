@@ -106,7 +106,9 @@ public class WardTower : MonoBehaviour
         spawnHeight = barrierPrefab.transform.lossyScale.y / 2 - burySize;
         nextCharge = chargeRate;
 
+
         player = Camera.main.transform;
+
 
         if (Teleport.Instance)
         {
