@@ -13,12 +13,24 @@ public class EndlessManager : WaveManager
 
     bool nextInitialized = false;
 
-    [SerializeField]
     static int spawnPoints = 30;
-    [SerializeField]
+
     static float percIncr = 0.4f;
     int waveStartMax = 500;
     float waveOverflowDelay = 10;
+
+
+    static float buffIncr = 0.1f;
+
+    static float lesserBuff = 0.05f;
+
+    static float switchToBuffWave = 13;
+
+    static float lesserWave = 25;
+
+    static float maxOutWave = 35;
+
+    static float screwItWave = 40;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -50,8 +62,29 @@ public class EndlessManager : WaveManager
             nextWave = Time.time + wave.GenerateRandomWave(spawnPoints) + 0.2f;
 
             curWave++;
-            float newPoints = (1 + percIncr) * spawnPoints;
-            spawnPoints = (int)newPoints;
+            if (curWave > screwItWave)
+            {
+                float newPoints = (1 + percIncr) * spawnPoints;
+                spawnPoints = (int)newPoints;
+            }
+            else if (curWave > maxOutWave)
+            {
+
+            }
+            else if (curWave > lesserWave)
+            {
+                buff *= 1 + lesserBuff;
+            }
+            else if (curWave > switchToBuffWave)
+            {
+                buff *= 1 + buffIncr;
+            }
+            else
+            {
+                float newPoints = (1 + percIncr) * spawnPoints;
+                spawnPoints = (int)newPoints;
+            }
+
 
             curWaveTxt.text = curWave.ToString();
 

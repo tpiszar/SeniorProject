@@ -12,6 +12,8 @@ public class ShadeHealth : BasicHealth
     // Start is called before the first frame update
     protected override void Start()
     {
+        maxHealth = (int)(WaveManager.buff * maxHealth);
+
         matColors = new Color[1];
 
         matColors[0] = mainRend.materials[1].color;

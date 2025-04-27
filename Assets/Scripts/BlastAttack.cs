@@ -148,7 +148,7 @@ public class BlastAttack : MonoBehaviour
         //{
         //    Instantiate(hitParticle, transform.position - rig.velocity.normalized * reverseSpawnDistance, Quaternion.identity);
         //}
-
+        CancelInvoke();
 
         Destroy(gameObject);
     }

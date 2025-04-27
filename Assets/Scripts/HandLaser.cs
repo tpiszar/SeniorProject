@@ -47,6 +47,8 @@ public class HandLaser : MonoBehaviour
         if (handNode == XRNode.RightHand)
         {
             startSound.Play();
+
+            WallSwitcher.Instance.SetSolid();
         }
     }
 
@@ -59,6 +61,9 @@ public class HandLaser : MonoBehaviour
         if (timer < 0)
         {
             gameObject.SetActive(false);
+
+            WallSwitcher.Instance.SetFade();
+
             return;
         }
 

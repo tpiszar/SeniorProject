@@ -5942,6 +5942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404638651}
+  - component: {fileID: 404638652}
   m_Layer: 8
   m_Name: EnterModel
   m_TagString: Untagged
@@ -5971,6 +5972,21 @@ Transform:
   - {fileID: 125021859}
   m_Father: {fileID: 1378382608}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &404638652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404638650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3ba98788d874c478c116e707857ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 68082298}
+  fadeMat: {fileID: 2100000, guid: fb55a725dbda6b04eae838ea9cff9bcf, type: 2}
+  solidMat: {fileID: 2100000, guid: da783491aa46d234facc70426789f5d8, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -34958,6 +34974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470989198080790056, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: immune
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7470989198080790056, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}

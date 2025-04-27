@@ -319,8 +319,10 @@ public class UIScript : MonoBehaviour
     public IEnumerator ChangeQuality()
     {
         StartCoroutine(Fade(0, 1));
+        HandRay.activeHandRays = false;
         yield return new WaitForSecondsRealtime(fadeTime + padding);
         QualitySettings.SetQualityLevel(SaveLoad.priority);
         StartCoroutine(Fade(1, 0));
+        HandRay.activeHandRays = true;
     }
 }

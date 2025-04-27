@@ -31,7 +31,7 @@ public class RandomWave : Wave
 
     Enemytype lastEnemy = Enemytype.Slime;
 
-    static int[] enemyCutoffs = new int[7] { 7, 10, 10, 20, 15, 25, 500 };
+    static int[] enemyCutoffs = new int[7] { 12, 20, 30, 500, 500, 40, 500 };
 
     public Vector2 sectionBounds = new Vector2(5, 20);
     public Vector2 delayBounds = new Vector2(3, 10);

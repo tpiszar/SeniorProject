@@ -22,6 +22,8 @@ public class EnemyBarrier : BasicHealth
 
     protected override void Start()
     {
+        maxHealth = (int)(WaveManager.buff * maxHealth);
+
         health = maxHealth;
 
         barrierMat = mainRend.material;

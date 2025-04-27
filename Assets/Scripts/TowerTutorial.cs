@@ -58,6 +58,8 @@ public class TowerTutorial : Tutorial
 
     public override void Complete()
     {
+        CancelInvoke();
+
         base.Complete();
 
         active = false;

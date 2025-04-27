@@ -300,6 +300,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7686051}
   m_Mesh: {fileID: -629986376292941662, guid: 717fb2854e1147146bc5b82b5284f302, type: 3}
+--- !u!1 &8986983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7684812298926257345, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9665018
 GameObject:
   m_ObjectHideFlags: 0
@@ -14968,7 +14974,7 @@ MonoBehaviour:
   nextScreen: Aura
   enemyTypes: 00000000
   enemyCounts: 03000000
-  enemyDelay: 3
+  enemyDelay: 1.5
   forceDisable: []
 --- !u!224 &789736155
 RectTransform:
@@ -19462,6 +19468,7 @@ MonoBehaviour:
   enemyDelay: 0.1
   forceDisable:
   - {fileID: 910250196}
+  - {fileID: 8986983}
 --- !u!224 &999479149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30021,7 +30028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 71}
+  m_AnchoredPosition: {x: 0, y: 52}
   m_SizeDelta: {x: 1681, y: 446.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587551424
@@ -30045,7 +30052,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Hold your wand up and over your shoulder, hold down the trigger and draw
-    an upwards facing circle to prime. Release to fire.
+    an upwards facing circle to prime. Release to fire. Can be held for longer to
+    increase damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d699ca6a1651c04b9a48e1dd162f2f0, type: 2}
   m_sharedMaterial: {fileID: -6026828197270046517, guid: 1d699ca6a1651c04b9a48e1dd162f2f0,
@@ -43142,6 +43150,11 @@ PrefabInstance:
     - target: {fileID: 8201502209615163912, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267051511399975040, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+        type: 3}
+      propertyPath: pauseable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8267051511399975040, guid: 80dd192da7d66ed4a8e16bbbdb557e73,

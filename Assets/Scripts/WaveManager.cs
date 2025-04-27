@@ -4,7 +4,6 @@ using System.Linq;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 public class WaveManager : MonoBehaviour
 {
@@ -35,6 +34,8 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance;
 
     public static int kills;
+
+    public static float buff = 1;
 
     public AudioSource winSound;
 

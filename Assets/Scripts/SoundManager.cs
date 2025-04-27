@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
     [Range(0.0001f, 1f)]
     public float annihilateVolume = 1;
 
+    float annihilateDelay = 0;
+
     public void Awake()
     {
         if (!instance)
@@ -42,6 +44,11 @@ public class SoundManager : MonoBehaviour
         SetMasterVolume(SaveLoad.masterVolume);
         SetMusicVolume(SaveLoad.musicVolume);
         SetFXVolume(SaveLoad.sounfFXVolume);
+    }
+
+    private void Update()
+    {
+        annihilateDelay -= Time.deltaTime;
     }
 
     public void SetMasterVolume(float volume)
@@ -115,7 +122,14 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
+            if (annihilateDelay > 0)
+            {
+                return;
+            }
+
             PlayClip(annihilateAudio, point, annihilateVolume);
+
+            annihilateDelay = 0.1f;
         }
     }
 }

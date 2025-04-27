@@ -21,6 +21,8 @@ public class UltimateTutorial : Tutorial
 
     public GameObject[] destroys;
 
+    public GameObject[] forceDisable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +85,14 @@ public class UltimateTutorial : Tutorial
             if (go)
             {
                 Destroy(go);
+            }
+        }
+
+        foreach (GameObject go in forceDisable)
+        {
+            if (go)
+            {
+                go.SetActive(false);
             }
         }
 

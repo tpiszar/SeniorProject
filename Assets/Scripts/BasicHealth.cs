@@ -56,6 +56,8 @@ public class BasicHealth : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        maxHealth = (int)(WaveManager.buff * maxHealth);
+
         matColors = new Color[mainRend.materials.Length];
         for (int i = 0; i < mainRend.materials.Length; i++)
         {
@@ -218,7 +220,10 @@ public class BasicHealth : MonoBehaviour
 
             WaveManager.kills++;
 
-            burnParticle.Stop();
+            if (burnParticle)
+            {
+                burnParticle.Stop();
+            }
 
             Destroy(gameObject, delayDeath);
 

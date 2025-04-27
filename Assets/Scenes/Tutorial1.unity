@@ -7306,6 +7306,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327889387}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &328384952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4936487056198430056, guid: 80dd192da7d66ed4a8e16bbbdb557e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 5941983441547390531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328569124
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,7 +8725,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The map in front of you shows your surroundings.\n\nThe barrier shows
-    your position. \n\nThe gray door is where enemies come from."
+    your position. \n\nThe arrow shows where enemies come from."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d699ca6a1651c04b9a48e1dd162f2f0, type: 2}
   m_sharedMaterial: {fileID: -6026828197270046517, guid: 1d699ca6a1651c04b9a48e1dd162f2f0,
@@ -15478,7 +15484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grab and crush the Divine Hands Crystal
+  m_text: Grab the Divine Hands Crystal from your waist and crush it
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d699ca6a1651c04b9a48e1dd162f2f0, type: 2}
   m_sharedMaterial: {fileID: -6026828197270046517, guid: 1d699ca6a1651c04b9a48e1dd162f2f0,
@@ -37284,6 +37290,8 @@ MonoBehaviour:
   - {fileID: 5941983441547390539}
   - {fileID: 5941983441547390545}
   - {fileID: 5941983441547390544}
+  forceDisable:
+  - {fileID: 328384952}
 --- !u!1 &1571958901
 GameObject:
   m_ObjectHideFlags: 0
